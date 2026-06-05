@@ -1,10 +1,15 @@
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx,booktabs,float,multirow,setspace,fancyhdr,hyperref}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
 
 \onehalfspacing
+\setlength{\headheight}{13.6pt}
 \pagestyle{fancy}
 \lhead{\small Economic Narrative Indices: A Systematic Review}
 \rhead{\thepage}
@@ -176,11 +181,51 @@ However, LLM studies remain scarce in peer-reviewed literature; current evidence
 
 \textbf{Theoretical papers} (20 papers, 30\%) develop macroeconomic models incorporating sentiment without extracting sentiment from text. These papers define sentiment as extrinsic shocks, consumer/firm beliefs, or narrative modes, modeling how sentiment propagates through expectations and behavior into macroeconomic outcomes.
 
+The timeline of methodological evolution (Figure~\ref{fig:timeline}) illustrates the shifting research landscape: dictionary-based methods dominated 2007--2018, then plateaued as alternative approaches emerged. BERT adoption accelerated post-2019, reflecting availability of pre-trained models and computational infrastructure. LLM studies are emerging post-2022 but remain limited to 2 papers. Theoretical papers (N=20) are not included in the timeline as they do not employ computational text extraction.
+
+\begin{figure}[H]
+\centering
+\caption{Evolution of Sentiment Extraction Methods Over Time (2007--2025)}
+\label{fig:timeline}
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.95\textwidth,
+    height=0.6\textwidth,
+    xlabel=Year,
+    ylabel=Cumulative Number of Studies,
+    legend pos=north west,
+    grid=major,
+    ymajorgrids=true,
+    xmajorgrids=false,
+    xtick={2007,2010,2013,2016,2019,2022,2025},
+    style={very thick},
+    line width=1.5pt,
+]
+\addplot[mark=o, color=blue, line width=2pt] coordinates {
+    (2007, 1) (2010, 3) (2012, 5) (2014, 8) (2016, 12) (2018, 18) (2020, 28) (2022, 33) (2023, 35) (2024, 36) (2025, 36)
+};
+\addlegendentry{Dictionary-Based}
+\addplot[mark=square, color=orange, line width=2pt] coordinates {
+    (2007, 0) (2010, 0) (2013, 1) (2015, 2) (2017, 3) (2018, 4) (2020, 4) (2022, 4) (2025, 4)
+};
+\addlegendentry{Traditional ML}
+\addplot[mark=triangle, color=red, line width=2pt] coordinates {
+    (2007, 0) (2015, 0) (2017, 0) (2019, 1) (2020, 2) (2021, 3) (2022, 4) (2023, 4) (2024, 4) (2025, 4)
+};
+\addlegendentry{BERT/Transformers}
+\addplot[mark=diamond, color=purple, line width=2pt] coordinates {
+    (2007, 0) (2020, 0) (2022, 1) (2023, 1) (2024, 2) (2025, 2)
+};
+\addlegendentry{LLM}
+\end{axis}
+\end{tikzpicture}
+\raggedright\footnotesize
+\textit{Note:} Cumulative count of papers using each method over time. Dictionary-based methods dominated 2007--2018, then plateaued. BERT adoption accelerated post-2019, reflecting availability of pre-trained models and computational infrastructure. LLM studies emerging post-2022. Theoretical papers (N=20) not included in timeline.
+\end{figure}
+
 ---
 
-\noindent\textbf{
-
-\textit{\textbf{Example 1: Papers by Methodological Approach}}
+\noindent\textbf{\textit{Example 1: Papers by Methodological Approach}}
 
 \begin{table}[H]
 \centering \small
@@ -197,7 +242,6 @@ Kwon et al. (2025) & GPT-4 & GDP Decomposition & 92\% Accuracy \\
 \caption{Representative papers across methodological spectrum.}
 \label{tab:examples}
 \end{table}
-}
 
 ---
 

@@ -4,7 +4,11 @@
 ═══════════════════════════════════════════════════════════════════
 
 This folder contains everything needed to submit your manuscript to 
-the International Journal of Forecasting.
+the International Journal of Forecasting. The manuscript has been
+adapted from a systematic review to a forecasting methodology paper,
+featuring a practitioner decision framework, method-comparison
+analysis, and a tiered validation framework tailored for IJF's
+forecaster audience.
 
 FOLDER CONTENTS
 ═══════════════════════════════════════════════════════════════════
