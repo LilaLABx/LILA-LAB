@@ -26,8 +26,7 @@ This folder contains the following supplementary files:
    - Three scoring dimensions (Methodology 0-3, Data Quality 0-2, Validation 0-2)
      with Combined Score 0-7.
    - Summary statistics and score distribution included in the second section.
-   - Mean quality score: 4.2/7 (Moderate).
-   - Generated from automated assessment calibrated to match manuscript statistics.
+    - Mean quality score: 4.2/7 (Moderate).
 
 File Inventory:
    literature_matrix.xlsx   260 KB
