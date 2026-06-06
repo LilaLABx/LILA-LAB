@@ -1,0 +1,37 @@
+{
+  "data_preparation": [
+    "\u2713 Dataset source documented",
+    "\u2713 Train/test split dates clearly stated",
+    "\u2713 No look-ahead bias in features",
+    "\u2713 Preprocessing steps reproducible",
+    "\u2713 Missing values handled consistently"
+  ],
+  "model_specification": [
+    "\u2713 Architecture fully specified",
+    "\u2713 Hyperparameters listed",
+    "\u2713 Random seeds set",
+    "\u2713 Initialization method documented",
+    "\u2713 Optimization algorithm stated"
+  ],
+  "validation": [
+    "\u2713 Out-of-sample testing on held-out set",
+    "\u2713 Walk-forward validation (if time-series)",
+    "\u2713 Multiple baseline comparisons",
+    "\u2713 Statistical significance test (e.g., DM)",
+    "\u2713 Confidence intervals reported"
+  ],
+  "reporting": [
+    "\u2713 Main results in tables/figures",
+    "\u2713 Ablation studies (if applicable)",
+    "\u2713 Failure cases discussed",
+    "\u2713 Limitations acknowledged",
+    "\u2713 Reproducibility checklist included"
+  ],
+  "code_and_data": [
+    "\u2713 Code available (GitHub/Zenodo)",
+    "\u2713 Dependencies listed",
+    "\u2713 Installation instructions",
+    "\u2713 Data access (public or request form)",
+    "\u2713 README with examples"
+  ]
+}

@@ -1,0 +1,24 @@
+# Python/generated files
+__pycache__/
+*.py[cod]
+*.log
+*.aux
+*.out
+texput.log
+
+# Local tool/session state
+.omo/run-continuation/
+
+# Large local datasets and generated artifacts
+beni/data/
+beni/Bangla_News_Database/
+beni/experiment/data/raw/
+beni/experiment/data/processed/
+beni/experiment/models/
+beni/experiment/outputs/models/
+beni/experiment/outputs/reports/
+
+# Model/data artifacts
+*.joblib
+*.safetensors
+*.jsonl

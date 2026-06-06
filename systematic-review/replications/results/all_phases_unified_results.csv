@@ -1,0 +1,9 @@
+paper_name,method,train_period,test_period,rmse,mae,direction_accuracy,baseline_rmse,rmse_improvement,granger_pvalue,n_train,n_test,timestamp,notes
+Tetlock (2007),Dictionary (GI) + PCA + VAR,1984-01-02 to 1996-04-05,1996-04-08 to 1999-04-30,0.102378,0.082842,0.6746,0.110709,0.0752,,3200,800,2026-06-06T01:11:09.638727,"GI categories: 16, Recentering: daily, Baseline: AR(1)"
+Gentzkow et al. (2019),Policy Uncertainty Index (keyword-based),1985-01-31 to 2005-11-30,2005-12-31 to 2014-12-31,0.326867,0.259368,1.0,0.306405,-0.0668,,251,109,2026-06-06T01:11:10.159104,"EPU categories: 4 (fiscal, monetary, regulation, uncertainty), Lags: 12, Horizon: 1"
+SVM Classifier (2013-2019 era),SVM with TF-IDF,Sample 1-1598,Sample 1599-1998,0.0,0.0,1.0,0.471109,0.0,,1598,400,2026-06-06T01:11:10.239059,"Accuracy: 100.00%, F1: 100.00%"
+Random Forest Classifier (2013-2019 era),RF with TF-IDF,Sample 1-1598,Sample 1599-1998,0.0,0.0,1.0,0.471109,0.0,,1598,400,2026-06-06T01:11:10.440922,"Accuracy: 100.00%, F1: 100.00%"
+XGBoost Classifier (2013-2019 era),XGBoost with TF-IDF,Sample 1-1598,Sample 1599-1998,0.0,0.0,1.0,0.471109,0.0,,1598,400,2026-06-06T01:11:10.741179,"Accuracy: 100.00%, F1: 100.00%"
+LSTM Sentiment Model (2018+ era),LSTM + embedding,Sample 1-800,Sample 801-1000,0.533854,0.285,0.715,0.497494,0.285,,800,200,2026-06-06T01:11:13.893119,"Accuracy: 71.50%, F1: 67.05%, Hidden: 64"
+BERT Fine-tuned (2019+ era),BERT + classification head,Sample 1-800,Sample 801-1000,0.561249,0.315,0.685,0.497494,0.315,,800,200,2026-06-06T01:11:19.390117,"Accuracy: 68.50%, F1: 62.28%, Hidden: 256"
+RoBERTa Fine-tuned (2020+ era),RoBERTa + classification head,Sample 1-800,Sample 801-1000,0.552268,0.305,0.695,0.497494,0.305,,800,200,2026-06-06T01:11:24.551511,"Accuracy: 69.50%, F1: 65.92%, Hidden: 256"
