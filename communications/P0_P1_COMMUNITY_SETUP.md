@@ -12,7 +12,7 @@ These items block community contribution. Without them, people cannot find, join
 
 | Task | Status | Owner | Notes |
 |------|--------|-------|-------|
-| Rename repo from `economic-narrative-indices` to `lila-lab` | ⏳ Pending | Ann N. Nabil | Aligns with brand. Redirects auto-create. |
+| Rename repo from `economic-narrative-indices` to `LILA-LAB` | ✅ Complete | Ann N. Nabil | Redirects auto-created. |
 | Add `README.md` with channel links, contribution guide, and badge | ⏳ Pending | Ann N. Nabil | First thing newcomers see. Must include Discord, OSF, HF links. |
 | Add `CONTRIBUTING.md` with 8 contribution models | ⏳ Pending | Ann N. Nabil | Reference `COLLABORATION.md` content. |
 | Add `CODE_OF_CONDUCT.md` | ⏳ Pending | Ann N. Nabil | Pull from `communications/COMMUNITY.md` Section "Code of Conduct" |

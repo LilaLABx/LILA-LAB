@@ -21,8 +21,20 @@ LILA Lab
 │   ├── CENI  → Chittagonian  " (Chittagong region)
 │   └── [X]ENI → [Language] Exploration & Native-language Intelligence
 │
-└── The ENI suffix means "Exploration & Native-language Intelligence"
-    First letter = language initial (e.g., B for Bangla, A for Assamese)
+├── Indices (per pipeline, per domain):
+│   ├── BENI Economic Index    ← Bangla economic narrative index (proven)
+│   ├── BENI Health Index      ← Bangla health discourse index (planned)
+│   ├── BENI Climate Index     ← Bangla climate narrative index (open)
+│   ├── HENI Economic Index    ← Hindi economic narrative index (future)
+│   └── [X]ENI [Domain] Index  ← Any language × any domain
+│
+├── Key naming rule:
+│   The pipeline is named XENI. The index it produces is named "XENI [Domain] Index."
+│   BENI = the instrument. BENI Economic Index = one specific reading from it.
+│   A single pipeline can produce many indices across different domains.
+│
+└── The ENI suffix always means "Exploration & Native-language Intelligence"
+    First letter = language initial (e.g., B for Bangla, H for Hindi)
 ```
 
 ### Why LILA?
@@ -41,9 +53,18 @@ Every pipeline is an **XENI** — [Language initial] + **E**xploration & **N**at
 ```
 BENI = Bangla Exploration & Native-language Intelligence
 AENI = Assamese Exploration & Native-language Intelligence
+HENI = Hindi   Exploration & Native-language Intelligence
 ```
 
-The naming is **self-teaching**: a contributor who sees "BENI" and "AENI" instantly understands the pattern and knows that their language fits as "[initial]ENI."
+#### Two-Level Self-Teaching Pattern
+
+The naming teaches itself on **two axes**:
+
+**Level 1 — Language**: A contributor who sees "BENI" and "AENI" instantly understands the pattern and knows their language fits as "[initial]ENI."
+
+**Level 2 — Domain**: A researcher who sees "BENI Economic Index" and "BENI Health Index" instantly understands the pattern and knows their domain fits as "XENI [Domain] Index."
+
+> The XENI suffix always refers to the **pipeline** (the language instrument). The domain is a plain-English qualifier on the index it produces. This keeps every XENI pronounceable (BENI, HENI, AENI all flow) while making the domain scope instantly readable without decoding acronyms.
 
 ---
 
@@ -63,9 +84,10 @@ The naming is **self-teaching**: a contributor who sees "BENI" and "AENI" instan
 | ✅ Do | ❌ Don't |
 |-------|----------|
 | "We built a pipeline to measure economic narratives in Bangla" | "We revolutionized NLP" |
+| "The BENI pipeline now also tracks health discourse — same instrument, new domain" | "BENI is an economic index" (it's a pipeline that can produce many indices) |
 | "Your language is part of the Global South's 4,000+ voices. We can build infrastructure for it together." | "Your language is primitive according to AI" |
 | "BENI achieves 88.2% accuracy on gold-standard human annotations" | "BENI crushes benchmarks" |
-| "This framework is designed for easy adaptation to new languages" | "One-click language support" |
+| "This framework is designed for easy adaptation to new languages and domains" | "One-click language support" |
 
 ---
 
@@ -74,18 +96,19 @@ The naming is **self-teaching**: a contributor who sees "BENI" and "AENI" instan
 | Element | Convention | Example |
 |---------|-----------|---------|
 | **Umbrella** | LILA Lab | LILA Lab |
-| **Pipeline** | XENI (language initial + ENI) | BENI, AENI, NENI |
-| **Full name** | [Language] Exploration & Native-language Intelligence | Bangla Exploration & Native-language Intelligence |
+| **Pipeline** | XENI (language initial + ENI) | BENI, AENI, NENI, HENI |
+| **Full pipeline name** | [Language] Exploration & Native-language Intelligence | Bangla Exploration & Native-language Intelligence |
+| **Index** | XENI [Domain] Index | BENI Economic Index, BENI Health Index |
 | **Papers** | "LILA Technical Report #N: Title" | "LILA Technical Report #3: Building BENI" |
 | **Series** | LILA Technical Report Series | — |
-| **Data releases** | `lila-{pipeline}-{version}` | `lila-beni-v1.0` |
-| **Tags** | `lila-lab`, `lila-{pipeline}`, `{language}-nlp` | `lila-benai`, `bangla-nlp` |
+| **Data releases** | `lila-{pipeline}-{domain}-{version}` | `lila-beni-eco-v1.0`, `lila-beni-health-v1.0` |
+| **Tags** | `lila-lab`, `lila-{pipeline}`, `{language}-nlp`, `{domain}-narratives` | `lila-beni`, `bangla-nlp`, `economic-narratives` |
 
 ### Transition from BENI (old) to LILA (new)
 
 | Context | Old | New |
 |---------|-----|-----|
-| Repository | `economic-narrative-indices` | `lila-lab` (future rename) |
+| Repository | `economic-narrative-indices` (formerly) | `LILA-LAB` (current) |
 | Research program | "BENI Research Program" | "LILA Lab Technical Reports" |
 | Bangla pipeline | BENI (stays) | BENI (no change — it was always BENI) |
 | Acknowledgements | "BENI research program" | "LILA Lab" |
@@ -148,6 +171,8 @@ The naming is **self-teaching**: a contributor who sees "BENI" and "AENI" instan
 
 - [ ] Does this use "LILA Lab" not "BENI Research Program" (unless referring to historical BENI work)?
 - [ ] Is the XENI naming correct? (BENI = Bangla, not generic)
+- [ ] Is the pipeline/index distinction correct? (BENI = pipeline, "BENI Economic Index" = index)
+- [ ] Is the domain scope accurate? (Don't call BENI an "economic index" when referring to the pipeline itself)
 - [ ] Are all contributors credited?
 - [ ] Is the tone warm and precise (not hype)?
 - [ ] Are Global South languages described as underserved, not primitive? Is the "Global South" framing used instead of "low-resource" where appropriate?

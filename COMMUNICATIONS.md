@@ -54,7 +54,7 @@ No channel operates in isolation. Every post, upload, and announcement is design
                           │    communications/     │
                           │  ─ Content originates  │
                           │    from technical-reports/ and   │
-                          │    beni/ pipelines    │
+                          │    pipelines/beni/    │
                           └──────────────────────┘
 ```
 

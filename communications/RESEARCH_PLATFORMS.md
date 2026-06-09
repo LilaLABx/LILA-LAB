@@ -40,7 +40,7 @@
 
 | Context | BENI (old) | LILA (new) |
 |---------|-----------|-------------|
-| GitHub repo name | `economic-narrative-indices` | `lila-lab` (pending rename) |
+| GitHub repo name | `economic-narrative-indices` (formerly) | `LILA-LAB` (current) |
 | OSF project title | "Bangla Economic Narrative Indices (BENI)" | "LILA Lab: Language Intelligence for Low-resource Applications" |
 | OSF component names | "Paper 3: BENI Pipeline" | "Technical Report #3: Building BENI" |
 | Zenodo dataset | "BENI v1.0: Bangla Economic Narrative Index" | "LILA-BENI v1.0: Bangla Economic Narrative Index Pipeline" |
@@ -103,7 +103,7 @@ Pipeline improvement merged to main
 | Setting | Value |
 |---------|-------|
 | **Owner** | `nabil0x` |
-| **Repo name** | `economic-narrative-indices` (current) → `lila-lab` (planned rename) |
+| **Repo name** | `economic-narrative-indices` → `LILA-LAB` (rename completed) |
 | **Topics** | `lila-lab`, `low-resource-nlp`, `bangla-nlp`, `economic-narrative`, `text-as-data` |
 | **Website** | `https://lila-lab.org` |
 | **Description** | "LILA Lab — Language Intelligence for Low-resource Applications. Collaborative platform for building AI infrastructure for underserved languages." |
