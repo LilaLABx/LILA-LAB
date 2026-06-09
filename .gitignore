@@ -42,19 +42,14 @@ texput.log
 # ── Large data directories (stay local) ──
 
 # BENI pipeline — raw databases, experiment outputs, model weights
-beni/Bangla_News_Database/
-beni/data/
-beni/database/beni_v0_1.sqlite
-beni/database/outputs/
-beni/experiment/
-beni/annotation/outputs/
-
-# Pipelines — large datasets and experiment outputs
 pipelines/beni/Bangla_News_Database/
+pipelines/beni/data/
+pipelines/beni/database/beni_v0_1.sqlite
+pipelines/beni/database/outputs/
 pipelines/beni/experiment/outputs/
 pipelines/beni/experiment/bnlp-resources/
-pipelines/beni/data/raw/
 pipelines/beni/experiment/models/
+pipelines/beni/annotation/outputs/
 
 # Data paper — large CSV/JSONL data files
 dataset/data/
