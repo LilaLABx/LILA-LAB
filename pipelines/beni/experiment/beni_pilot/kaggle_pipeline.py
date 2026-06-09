@@ -64,8 +64,8 @@ print(f"  Economy CSVs: {len(potrika_files)}")
 # Cell 3 — Clone the repo
 # ──────────────────────────────────────────────────────────────────────
 """
-!git clone --depth 1 https://github.com/nabil0x/economic-narrative-indices.git /kaggle/working/repo 2>&1 | tail -3
-%cd /kaggle/working/repo/beni/experiment/beni_pilot
+!git clone --depth 1 https://github.com/nabil0x/LILA-LAB.git /kaggle/working/repo 2>&1 | tail -3
+%cd /kaggle/working/repo/pipelines/beni/experiment/beni_pilot
 !pwd
 """
 
@@ -100,7 +100,7 @@ from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import chi2
 from torch.utils.data import DataLoader
 
-sys.path.insert(0, "/kaggle/working/repo/beni/experiment/beni_pilot")
+sys.path.insert(0, "/kaggle/working/repo/pipelines/beni/experiment/beni_pilot")
 from data import load_potrika_timeseries
 from config import ExperimentConfig
 from banglabert import BanglaBERTDataset

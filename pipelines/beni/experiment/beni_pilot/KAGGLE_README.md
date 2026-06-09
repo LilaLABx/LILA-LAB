@@ -92,7 +92,7 @@ for cand in [
 print(f"DATA_DIR={DATA_DIR}")
 
 # Clone code
-!git clone --depth 1 https://github.com/annnasernabil/economic-narrative-indices.git /kaggle/working/repo
+!git clone --depth 1 https://github.com/nabil0x/LILA-LAB.git /kaggle/working/repo
 %cd /kaggle/working/repo/beni/experiment/beni_pilot
 
 # Install dependencies

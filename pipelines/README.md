@@ -4,7 +4,7 @@
 
 **LILA Lab builds open-source NLP pipelines that let any low-resource language participate in the LLM revolution.**
 
-We don't just talk about multilingual AI — we build the infrastructure for it. Our XENI pipeline framework takes raw native-language news and produces validated economic narrative indices, ready for research and policy analysis.
+We don't just talk about multilingual AI — we build the infrastructure for it. Our XENI pipeline framework takes raw native-language news and produces validated narrative indices across any domain — economics, health, climate, education, and beyond.
 
 > **84% of NLP research is English-only.** If your language isn't served, you're invisible in the data that shapes global decisions.
 >
@@ -20,11 +20,40 @@ Each language gets its own pipeline that:
 
 1. **Collects** native-language news articles
 2. **Annotates** them using LLM ensembles (Claude, GPT-4o, local models)
-3. **Classifies** narratives into economic categories
-4. **Builds** a monthly narrative index
-5. **Validates** against real-world economic indicators
+3. **Classifies** narratives into domain-specific categories (economic, health, climate, ...)
+4. **Builds** monthly narrative indices for each domain
+5. **Validates** against real-world indicators (CPI, health outcomes, climate data, ...)
 
-**The result:** A reproducible, open-source measurement tool for your language's economic narratives.
+**The result:** A reproducible, open-source narrative observatory for your language, capable of measuring discourse across any domain.
+
+### Pipeline vs Index: How Naming Works
+
+A XENI is the **pipeline** (the language instrument). Each pipeline can produce many **indices** across different domains.
+
+```
+          ┌─────────────────────────────────────────┐
+          │  BENI (Bangla Exploration &              │
+          │  Native-language Intelligence)           │
+          │  ─ the pipeline, the instrument          │
+          ├─────────────────────────────────────────┤
+          │  Produces:                               │
+          │  ├── BENI Economic Index   (proven)      │
+          │  ├── BENI Health Index     (planned)     │
+          │  ├── BENI Climate Index    (open)        │
+          │  └── BENI [Domain] Index   (yours)      │
+          └─────────────────────────────────────────┘
+```
+
+| Element | Convention | Example |
+|---------|-----------|---------|
+| **Pipeline** | XENI (language initial + ENI) | BENI, HENI, AENI |
+| **Index** | XENI [Domain] Index | BENI Economic Index, HENI Health Index |
+
+The self-teaching pattern works on **two levels**:
+- **Language**: BENI → AENI → NENI → *your language here*
+- **Domain**: BENI Economic Index → BENI Health Index → BENI Climate Index → *your domain here*
+
+> BENI was always the Bangla pipeline, not the economic index. Its first index happened to be economic. The same instrument can now measure health discourse, climate narratives, education policy — whatever domain a research group builds a schema for.
 
 ---
 
@@ -49,13 +78,21 @@ Every XENI pipeline follows the same structure, making it easy to replicate and 
 ```
 [x]eni/
 ├── README.md              # Pipeline-specific documentation
-├── annotation/            # LLM annotation pipeline
-│   ├── llm_annotate.py    # Multi-LLM annotation
-│   ├── adjudicate.py      # Resolve disagreements
-│   └── schema.json        # Annotation categories
-├── index/                 # Index construction
-│   ├── build_index.py     # Create monthly indices
-│   └── visualize.py       # Visualization tools
+├── annotation/            # LLM annotation pipeline (domain-agnostic core)
+│   ├── schemas/           # Per-domain annotation schemas
+│   │   ├── economic.json  # Economic narrative schema
+│   │   ├── health.json    # Health discourse schema
+│   │   └── ...            # Your domain here
+│   ├── llm_annotate.py    # Multi-LLM annotation (works with any schema)
+│   └── adjudicate.py      # Resolve disagreements
+├── indices/               # Index construction — one subdirectory per domain
+│   ├── eco/               # Economic narrative index
+│   │   ├── build_index.py
+│   │   └── validate.py    # Validate against CPI, FX, etc.
+│   ├── health/            # Health discourse index
+│   │   ├── build_index.py
+│   │   └── validate.py    # Validate against health outcomes
+│   └── ...                # Your domain here
 ├── experiment/            # Model training & evaluation
 │   ├── train.py           # Train classifiers
 │   └── evaluate.py        # Benchmark performance
@@ -106,7 +143,7 @@ mv BENI_ROADMAP.md [YOUR-LANG]_ROADMAP.md
 
 ### Step 4: Validate & Publish
 
-- Compare your index against economic indicators (CPI, exchange rates, GDP)
+- Compare your index against real-world indicators (CPI, health outcomes, climate data — whatever your domain calls for)
 - Write up your methodology
 - Submit to our paper series or your own venue
 
@@ -135,7 +172,7 @@ The BENI pipeline demonstrates what's possible:
 
 ### For Researchers
 
-- **First-author paper** on your language's economic narratives
+- **First-author paper** on your language's narratives — economics, health, climate, or your domain
 - **Open-source pipeline** you can cite and build on
 - **Validation data** for your language's NLP capabilities
 - **Network** with researchers working on similar problems
@@ -151,7 +188,7 @@ The BENI pipeline demonstrates what's possible:
 
 - **Representation** in global AI research
 - **Tools** built for your language's specific needs
-- **Documentation** of your language's economic narratives
+- **Documentation** of your language's narratives across domains
 - **Voice** in conversations that shape policy
 
 ---
