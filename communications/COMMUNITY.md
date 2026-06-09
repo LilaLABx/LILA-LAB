@@ -17,7 +17,7 @@ LILA Lab is a **research collective**, not a typical open-source project. Contri
 
 ## Channels
 
-### Discord (`discord.gg/lila-lab`)
+### Discord (`discord.gg/TrrdKbky`)
 
 The primary real-time coordination space. 
 
@@ -51,7 +51,7 @@ For structured, persistent coordination:
 | Question | How do I...? | `question` |
 | Contribution | I want to contribute X language data | `contribution` |
 
-### Email (`ann.n.nabil@gmail.com`)
+### Email (`lila.lab0x@gmail.com`)
 
 For direct inquiries that don't belong in public channels:
 - Collaboration proposals from institutions
@@ -79,7 +79,7 @@ New person arrives (Discord / GitHub / Email)
     │
     ├── 1. Read COLLABORATION.md — 8 contribution models
     ├── 2. Read LINGUISTIC_CONTRIBUTION_GUIDE.md (if linguist)
-    ├── 3. Browse papers/extensions/INDEX.md — active extensions
+    ├── 3. Browse technical-reports/extensions/INDEX.md — active extensions
     ├── 4. Introduce yourself in Discord #welcome
     ├── 5. Choose contribution model
     ├── 6. Record intent in OWNERS.csv
@@ -112,4 +112,4 @@ All LILA Lab spaces (Discord, GitHub, email, calls) follow this simple code:
 4. **No hierarchy of contributions.** The annotator who labels 100 articles is as valued as the PhD who wrote the pipeline.
 5. **Harassment of any kind is not tolerated.**
 
-Report violations to ann.n.nabil@gmail.com. Reports are handled confidentially.
+Report violations to lila.lab0x@gmail.com. Reports are handled confidentially.

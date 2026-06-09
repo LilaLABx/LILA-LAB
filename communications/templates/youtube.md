@@ -61,7 +61,7 @@ LILA Lab (Language Intelligence for Low-resource Applications) is a collaborativ
 🌐 lila-lab.org (coming soon)
 🐦 @LILA_Lab
 💼 /company/lila-lab
-💬 discord.gg/lila-lab
+💬 discord.gg/TrrdKbky
 ```
 
 ---

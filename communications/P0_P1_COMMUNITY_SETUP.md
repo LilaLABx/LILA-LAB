@@ -27,7 +27,7 @@ These items block community contribution. Without them, people cannot find, join
 
 | Task | Status | Owner | Notes |
 |------|--------|-------|-------|
-| Create Discord server at `discord.gg/lila-lab` | ⏳ Pending | Ann N. Nabil | — |
+| Create Discord server at `discord.gg/TrrdKbky` | ⏳ Pending | Ann N. Nabil | — |
 | Set up channels per `COMMUNITY.md`: `#welcome`, `#announcements`, `#general`, `#linguistic-data`, `#pipelines`, `#extensions`, `#paper-writing`, `#monthly-lab-call` | ⏳ Pending | Ann N. Nabil | Match documented structure exactly |
 | Write `#welcome` pinned message with rules + onboarding flow | ⏳ Pending | Ann N. Nabil | Link to `COLLABORATION.md`, `LINGUISTIC_CONTRIBUTION_GUIDE.md` |
 | Set up role hierarchy: `@Researcher`, `@Contributor`, `@Annotator`, `@Newcomer` | ⏳ Pending | Ann N. Nabil | Enables channel access control |
@@ -129,7 +129,7 @@ These items improve community experience and growth but don't block initial cont
 |------|--------|-------|-------|
 | Set up GitHub Projects board for contribution tracking | ⏳ Pending | Ann N. Nabil | Visualize contributor pipeline |
 | Create shared Google Drive for drafts and assets | ⏳ Pending | Ann N. Nabil | Collaborative editing space |
-| Set up Overleaf project for paper collaboration | ⏳ Pending | Ann N. Nabil | LaTeX templates per `papers/` |
+| Set up Overleaf project for paper collaboration | ⏳ Pending | Ann N. Nabil | LaTeX templates per `technical-reports/` |
 | Create Notion workspace for internal coordination | ⏳ Pending | Ann N. Nabil | Optional — if team grows |
 
 ### P1.6 — Extension Pipeline Onboarding

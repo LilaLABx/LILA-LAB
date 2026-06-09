@@ -36,8 +36,8 @@
 |---------|-----|---------|---------|
 | **Website** | `lila-lab.org` (GitHub Pages) | Central brand landing page — links to all channels, showcases pipelines, lists contributors | Overview, pipeline maps, contributor directory, channel links |
 | **Substack / Newsletter** | `lila.substack.com` | Monthly research digest for followers who prefer email | Monthly summary of new papers, datasets, pipeline improvements, contributor spotlights |
-| **Discord** | `discord.gg/lila-lab` | Real-time community discussion, contributor coordination, Q&A, language annotation coordination | Discussion threads, annotation coordination, newcomer onboarding |
-| **Email** | `ann.n.nabil@gmail.com` | Direct contact for collaboration inquiries, paper submissions, media | Inquiries, proposals, support |
+| **Discord** | `discord.gg/TrrdKbky` | Real-time community discussion, contributor coordination, Q&A, language annotation coordination | Discussion threads, annotation coordination, newcomer onboarding |
+| **Email** | `lila.lab0x@gmail.com` | Direct contact for collaboration inquiries, paper submissions, media | Inquiries, proposals, support |
 
 ---
 
@@ -74,8 +74,9 @@
 
 | Role | Person | Channels |
 |------|--------|----------|
-| **Channel Owner** | Ann N. Nabil | All channels — final approval on all content |
-| **Technical Co-owner** | Ann N. Nabil | GitHub, HF, Zenodo, OSF, Website |
+| **Maintainer** | Ann Naser Nabil | All channels — final approval on all content |
+| **Channel Owner** | Ann Naser Nabil | All channels — daily operations |
+| **Technical Co-owner** | Ann Naser Nabil | GitHub, HF, Zenodo, OSF, Website |
 
 *As the lab grows, channel ownership can be delegated to contributors. The communications/ directory in this repo enables smooth handoff — everything is documented.*
 

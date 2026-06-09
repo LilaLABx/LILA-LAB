@@ -137,7 +137,7 @@ To avoid recreating content:
 |------------|---------------|
 | `communications/templates/` | Reusable post templates for each platform |
 | `communications/CONTENT_CALENDAR.md` | Scheduled posts, drafts, due dates |
-| `papers/extensions/` | Extension announcements → social posts |
+| `technical-reports/extensions/` | Extension announcements → social posts |
 | `communications/templates/` | Platform-specific formatting guides (X, LinkedIn, YouTube, Substack) |
 
 ---
