@@ -26,7 +26,7 @@ class GitHubIntegration(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.github_token = os.getenv("GITHUB_TOKEN")
-        self.github_repo = os.getenv("GITHUB_REPO", "nabil0x/economic-narrative-indices")
+        self.github_repo = os.getenv("GITHUB_REPO", "nabil0x/LILA-LAB")
         self.owners_csv_path = Path(__file__).parent.parent.parent / "papers" / "contributions" / "OWNERS.csv"
         self.contributors_cache = {}
         self.headers = {

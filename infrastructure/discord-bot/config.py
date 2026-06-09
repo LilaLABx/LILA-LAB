@@ -51,11 +51,11 @@ CONTRIBUTION_ROLES = [
 
 # Resource Links
 RESOURCES = {
-    "collaboration": "https://github.com/nabil0x/economic-narrative-indices/blob/main/COLLABORATION.md",
-    "contribution_guide": "https://github.com/nabil0x/economic-narrative-indices/blob/main/CONTRIBUTING.md",
-    "linguistic_guide": "https://github.com/nabil0x/economic-narrative-indices/blob/main/LINGUISTIC_CONTRIBUTION_GUIDE.md",
-    "extension_template": "https://github.com/nabil0x/economic-narrative-indices/blob/main/technical-reports/extensions/EXTENSION_TEMPLATE.md",
-    "github": "https://github.com/nabil0x/economic-narrative-indices",
+"collaboration": "https://github.com/nabil0x/LILA-LAB/blob/main/COLLABORATION.md",
+        "contribution_guide": "https://github.com/nabil0x/LILA-LAB/blob/main/CONTRIBUTING.md",
+        "linguistic_guide": "https://github.com/nabil0x/LILA-LAB/blob/main/LINGUISTIC_CONTRIBUTION_GUIDE.md",
+        "extension_template": "https://github.com/nabil0x/LILA-LAB/blob/main/technical-reports/extensions/EXTENSION_TEMPLATE.md",
+        "github": "https://github.com/nabil0x/LILA-LAB",
     "website": "https://lila-lab.org",
     "osf": "https://osf.io/",
     "huggingface": "https://huggingface.co/nabil0x",

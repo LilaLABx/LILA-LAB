@@ -80,8 +80,8 @@ class EmailNotifier:
                     <h3>Getting Started:</h3>
                     <ol>
                         <li>Join our Discord: <a href="{discord_invite}" class="link">discord.gg/TrrdKbky</a></li>
-                        <li>Read the <a href="https://github.com/nabil0x/economic-narrative-indices/blob/main/COLLABORATION.md" class="link">Collaboration Framework</a></li>
-                        <li>Check the <a href="https://github.com/nabil0x/economic-narrative-indices/blob/main/CONTRIBUTING.md" class="link">Contributing Guide</a></li>
+                        <li>Read the <a href="https://github.com/nabil0x/LILA-LAB/blob/main/COLLABORATION.md" class="link">Collaboration Framework</a></li>
+                        <li>Check the <a href="https://github.com/nabil0x/LILA-LAB/blob/main/CONTRIBUTING.md" class="link">Contributing Guide</a></li>
                         <li>Introduce yourself in #general on Discord</li>
                     </ol>
                     
@@ -99,12 +99,12 @@ class EmailNotifier:
                     
                     <p>Questions? Reply to this email or ask in #support on Discord.</p>
                     
-                    <a href="https://github.com/nabil0x/economic-narrative-indices" class="button">View Repository</a>
+                    <a href="https://github.com/nabil0x/LILA-LAB" class="button">View Repository</a>
                 </div>
                 <div class="footer">
                     <p>LILA Lab | Language Intelligence for Low-resource Applications</p>
                     <p><a href="https://lila-lab.org" style="color: #E29578;">Website</a> | 
-                       <a href="https://github.com/nabil0x/economic-narrative-indices" style="color: #E29578;">GitHub</a> | 
+                       <a href="https://github.com/nabil0x/LILA-LAB" style="color: #E29578;">GitHub</a> | 
                        <a href="{discord_invite}" style="color: #E29578;">Discord</a></p>
                 </div>
             </div>
@@ -227,7 +227,7 @@ class EmailNotifier:
                     <p>Stay connected:</p>
                     <ul>
                         <li>Discord: <a href="https://discord.gg/TrrdKbky">discord.gg/TrrdKbky</a></li>
-                        <li>GitHub: <a href="https://github.com/nabil0x/economic-narrative-indices">Repository</a></li>
+                        <li>GitHub: <a href="https://github.com/nabil0x/LILA-LAB">Repository</a></li>
                     </ul>
                 </div>
                 <div class="footer">
@@ -283,13 +283,13 @@ class EmailNotifier:
                     <h3>Get Involved</h3>
                     <p>We're always looking for contributors. Check out open issues on GitHub or join us on Discord.</p>
                     
-                    <a href="https://github.com/nabil0x/economic-narrative-indices" class="button">View Repository</a>
+                    <a href="https://github.com/nabil0x/LILA-LAB" class="button">View Repository</a>
                     <a href="https://discord.gg/TrrdKbky" class="button">Join Discord</a>
                 </div>
                 <div class="footer">
                     <p>LILA Lab | Language Intelligence for Low-resource Applications</p>
                     <p><a href="https://lila-lab.org" style="color: #E29578;">Website</a> | 
-                       <a href="https://github.com/nabil0x/economic-narrative-indices" style="color: #E29578;">GitHub</a> | 
+                       <a href="https://github.com/nabil0x/LILA-LAB" style="color: #E29578;">GitHub</a> | 
                        <a href="https://discord.gg/TrrdKbky" style="color: #E29578;">Discord</a></p>
                 </div>
             </div>
