@@ -5,7 +5,7 @@
 **BENI** is a daily narrative index measuring the proportion of economic news in Bangla-language online news media from July 1, 2020 to June 30, 2021. It is constructed from the Potrika corpus (≈7.5M articles, 2013–2023) filtered to 2020–2021 (≈1.5M articles), classified using a TF-IDF + Logistic Regression model trained on 3,200 human-annotated sentences with active learning.
 
 - **Homepage**: [OSF Project](https://osf.io/[project-id])
-- **Repository**: [GitHub](https://github.com/nabil0x/economic-narrative-indices)
+- **Repository**: [GitHub](https://github.com/nabil0x/LILA-LAB)
 - **DOI**: `10.5281/zenodo.20585401`
 - **License**: CC BY 4.0 (data), MIT (code)
 - **Contact**: Ann Naser Nabil (lila.lab0x@gmail.com)
@@ -94,7 +94,7 @@ ds = load_dataset("nabil0x/beni-narrative-index", split="train")
   publisher = {Zenodo},
   year = {2025},
   doi = {10.5281/zenodo.20585401},
-  url = {https://github.com/nabil0x/economic-narrative-indices}
+  url = {https://github.com/nabil0x/LILA-LAB}
 }
 ```
 
