@@ -49,6 +49,13 @@ beni/database/outputs/
 beni/experiment/
 beni/annotation/outputs/
 
+# Pipelines — large datasets and experiment outputs
+pipelines/beni/Bangla_News_Database/
+pipelines/beni/experiment/outputs/
+pipelines/beni/experiment/bnlp-resources/
+pipelines/beni/data/raw/
+pipelines/beni/experiment/models/
+
 # Data paper — large CSV/JSONL data files
 dataset/data/
 
