@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use BENI v1.0, please cite this dataset and the upstream news sources."
+title: "BENI v1.0: A Harmonised Bangla News Dataset for Economic Narrative Measurement"
+authors:
+  - family-names: "Nabil"
+    given-names: "Ann Naser"
+    email: "ann.n.nabil@gmail.com"
+date-released: "2026-06"
+version: "1.0"
+license: "CC-BY-4.0"
+keywords:
+  - "Bangla news"
+  - "economic narratives"
+  - "text as data"
+  - "low-resource NLP"
+  - "Bangladesh"
+repository-code: "https://github.com/ann-nabil/economic-narrative-indices"
+abstract: "BENI v1.0 is a derived Bangla news measurement layer for economic narrative research. It provides harmonised article metadata, source provenance, duplicate metadata, text hashes, economic seed labels, and index-ready fields. Full article text remains subject to upstream corpus and news-source terms."

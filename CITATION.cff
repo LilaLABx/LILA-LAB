@@ -1,0 +1,123 @@
+cff-version: 1.2.0
+message: >-
+  If you use the LILA Lab research program, please cite the relevant
+  technical report(s) and the LILA-BENI dataset. See individual report
+  plans in papers/ for specific citation information.
+title: "LILA Lab: Language Intelligence for Low-resource Applications"
+authors:
+  - family-names: "Nabil"
+    given-names: "Ann Naser"
+    email: "ann.n.nabil@gmail.com"
+    orcid: "https://orcid.org/0009-0006-3561-045X"
+    affiliation: "Department of Economics, Jahangirnagar University"
+date-released: "2026-06"
+version: "1.0"
+license: "MIT"
+repository-code: "https://github.com/nabil0x/LILA-LAB"
+abstract: >-
+  LILA Lab (Language Intelligence for Low-resource Applications) is a
+  collaborative research platform building NLP measurement infrastructure
+  for languages underserved by current AI. This repository contains the
+  BENI (Bangla Exploration & Native-language Intelligence) pipeline —
+  the flagship XENI pipeline spanning NLP, economics, and computational
+  social science — as well as extension frameworks for new languages,
+  full communications hub for multi-channel presence, and open research
+  collaboration templates.
+
+# --- Platform Identifiers ---
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20585401"
+    description: "LILA-BENI v1.0 Dataset (Zenodo)"
+  - type: url
+    value: "https://github.com/nabil0x/LILA-LAB"
+    description: "GitHub repository — LILA Lab source of truth"
+  - type: url
+    value: "https://huggingface.co/nabil0x"
+    description: "Hugging Face models and datasets (LILA pipelines)"
+
+# --- Upstream Data Sources ---
+references:
+  - type: dataset
+    title: "Potrika: Bangla News Corpus"
+    authors:
+      - family-names: "Hasan"
+        given-names: "Md. Arid"
+    doi: "10.17632/v362rp78dc.4"
+    publisher: "Mendeley Data"
+    year: 2023
+
+# --- LILA Lab Technical Report Series ---
+  - type: article
+    title: "LILA Technical Report #1: Statistical Economics of Narrative — A Quantitative Framework for Narrative-Based Economic Analysis"
+    authors:
+      - family-names: "Nabil"
+        given-names: "Ann Naser"
+    status: "completed"
+    year: 2026
+
+  - type: article
+    title: "LILA Technical Report #2: Economic Narrative Indices and Media-Based Sentiment Measures — A Systematic Review, Replication Study, and Bangla Extension"
+    authors:
+      - family-names: "Nabil"
+        given-names: "Ann Naser"
+    status: "submitted"
+    year: 2026
+    repository: "https://github.com/nabil0x/economic-narrative-indices/tree/main/systematic-review"
+    keywords: ["systematic review", "economic narrative", "replication", "meta-analysis"]
+
+  - type: article
+    title: "LILA Technical Report #3: Building BENI — A Replicable Pipeline from Raw News to Validated Index"
+    authors:
+      - family-names: "Nabil"
+        given-names: "Ann Naser"
+    status: "in preparation"
+    year: 2026
+    repository: "https://github.com/nabil0x/economic-narrative-indices/tree/main/beni"
+
+  - type: article
+    title: "LILA Technical Report #4: Nowcasting Inflation with BENI — Local-Language News as a High-Frequency Economic Indicator"
+    authors:
+      - family-names: "Nabil"
+        given-names: "Ann Naser"
+    status: "planned"
+    year: 2026
+
+  - type: article
+    title: "LILA Technical Report #5: Text as Data in Social Science — A Systematic Review of Language-Based Methods from Content Analysis to Large Language Models (1916–2026)"
+    authors:
+      - family-names: "Nabil"
+        given-names: "Ann Naser"
+    status: "planned"
+    year: 2026
+
+  - type: article
+    title: "LILA Technical Report #6: Large Language Models as Measurement Devices — A Structured Framework for Narrative Extraction in Low-Resource Languages"
+    authors:
+      - family-names: "Nabil"
+        given-names: "Ann Naser"
+    status: "planned"
+    year: 2027
+
+  - type: article
+    title: "LILA-BENI v1.0: A Harmonised Bangla News Dataset for Economic Narrative Measurement"
+    authors:
+      - family-names: "Nabil"
+        given-names: "Ann Naser"
+    doi: "10.5281/zenodo.20585401"
+    year: 2026
+
+keywords:
+  - "LILA Lab"
+  - "Bangla NLP"
+  - "economic narrative indices"
+  - "text as data"
+  - "nowcasting"
+  - "active learning"
+  - "LLM annotation"
+  - "low-resource language"
+  - "Bangladesh"
+  - "computational social science"
+  - "BENI"
+  - "XENI"
+  - "language intelligence"

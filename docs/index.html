@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LILA Lab — Language Intelligence for Low-resource Applications. A collaborative research platform building NLP infrastructure for languages underserved by current AI.">
+  <meta property="og:title" content="LILA Lab">
+  <meta property="og:description" content="Language Intelligence for Low-resource Applications. Build AI that understands your language.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nabil0x.github.io/LILA-LAB/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LILA Lab">
+  <meta name="twitter:description" content="Language Intelligence for Low-resource Applications. Build AI that understands your language.">
+  <title>LILA Lab — Language Intelligence for Low-resource Applications</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔬</text></svg>">
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-mark">LILA</span>
+        <span class="nav-logo-sub">Lab</span>
+      </a>
+      <div class="nav-links">
+        <a href="#pipelines">Pipelines</a>
+        <a href="#research">Research</a>
+        <a href="#contribute">Contribute</a>
+        <a href="#community">Community</a>
+        <a href="https://github.com/nabil0x/LILA-LAB" class="nav-gh" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <header class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="hero-eni">LILA</span>
+        <span class="hero-sub">Lab</span>
+      </h1>
+      <p class="hero-tagline">Language Intelligence for<br>Low-resource Applications</p>
+      <p class="hero-desc">
+        84% of NLP research is in English. 0% is in Bangla. 0% in Assamese. 0% in Sylheti.<br>
+        We are building the infrastructure that lets <strong>every language</strong> participate in the AI revolution.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contribute" class="btn btn-primary">Contribute Your Language</a>
+        <a href="#pipelines" class="btn btn-outline">Explore Pipelines</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ XENI BRAND EXPLAINER ═══ -->
+  <section class="section section-light" id="about">
+    <div class="section-inner">
+      <div class="xeni-grid">
+        <div class="xeni-card">
+          <div class="xeni-icon">🌍</div>
+          <h3 class="xeni-label">XENI Pipelines</h3>
+          <p class="xeni-desc">Every language gets its own XENI — <strong>[X]</strong>ploration &amp; <strong>E</strong> Native-language <strong>I</strong>ntelligence. The first letter changes per language.</p>
+        </div>
+        <div class="xeni-card">
+          <div class="xeni-icon">🔬</div>
+          <h3 class="xeni-label">Proven in Bangla</h3>
+          <p class="xeni-desc">664K articles → LLM annotation → 88.2% accuracy → validated index correlating with CPI (r=−0.75). The pipeline works.</p>
+        </div>
+        <div class="xeni-card">
+          <div class="xeni-icon">🤝</div>
+          <h3 class="xeni-label">Open Collaboration</h3>
+          <p class="xeni-desc">Linguists, NLP researchers, and native speakers co-author papers. Every contribution leads to academic credit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PIPELINES ═══ -->
+  <section class="section section-dark" id="pipelines">
+    <div class="section-inner">
+      <h2 class="section-title">The XENI Pipeline Family</h2>
+      <p class="section-sub">Each pipeline is named <strong>[Language initial] + ENI</strong>. The pattern teaches itself.</p>
+
+      <div class="pipeline-showcase">
+        <div class="pipeline-card active">
+          <div class="pipeline-letter">B</div>
+          <div class="pipeline-info">
+            <h3>BENI <span class="pipeline-lang">— Bangla</span></h3>
+            <p class="pipeline-status"><span class="badge badge-active">Active</span> 265M speakers</p>
+            <p>Economic narrative index for Bangla news. Classifies 664K+ articles with 88.2% accuracy. Validated against CPI, FX, reserves.</p>
+            <pre class="pipeline-code"><code>git clone https://github.com/nabil0x/LILA-LAB
+cd beni/experiment/beni_pilot/
+python3 train.py --model-type tfidf</code></pre>
+          </div>
+        </div>
+
+        <div class="pipeline-card future">
+          <div class="pipeline-letter">A</div>
+          <div class="pipeline-info">
+            <h3>AENI <span class="pipeline-lang">— Assamese</span></h3>
+            <p class="pipeline-status"><span class="badge badge-future">Seeking Contributors</span> 15M speakers</p>
+            <p>First NLP pipeline for Assamese economic narratives. Pipeline ready — needs native speakers for annotation.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-card future">
+          <div class="pipeline-letter">N</div>
+          <div class="pipeline-info">
+            <h3>NENI <span class="pipeline-lang">— Nepali</span></h3>
+            <p class="pipeline-status"><span class="badge badge-future">Seeking Contributors</span> 16M speakers</p>
+            <p>Nepali economic narrative index. Ready for adaptation with native-language collaboration.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-card future">
+          <div class="pipeline-letter">S</div>
+          <div class="pipeline-info">
+            <h3>SENI <span class="pipeline-lang">— Sylheti</span></h3>
+            <p class="pipeline-status"><span class="badge badge-future">Seeking Contributors</span> 11M speakers</p>
+            <p>Sylheti language narrative extraction. Currently no NLP infrastructure exists for this language.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-card future">
+          <div class="pipeline-letter">C</div>
+          <div class="pipeline-info">
+            <h3>CENI <span class="pipeline-lang">— Chittagonian</span></h3>
+            <p class="pipeline-status"><span class="badge badge-future">Seeking Contributors</span> 13M speakers</p>
+            <p>Chittagonian narrative index. One of the most underserved languages in NLP relative to speaker count.</p>
+          </div>
+        </div>
+
+        <div class="pipeline-card yourlang">
+          <div class="pipeline-letter pipeline-letter-your">?</div>
+          <div class="pipeline-info">
+            <h3>YOUR Language Here</h3>
+            <p class="pipeline-status"><span class="badge badge-yourlang">Be First</span></p>
+            <p>The pipeline is language-agnostic. If you speak it, we can process it. Fork the repo, adapt, publish.</p>
+            <a href="#contribute" class="btn btn-small">Start Your XENI →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RESEARCH ═══ -->
+  <section class="section section-light" id="research">
+    <div class="section-inner">
+      <h2 class="section-title">LILA Technical Reports</h2>
+      <p class="section-sub">A 6-paper academic research program on economic narrative measurement in low-resource languages.</p>
+
+      <div class="papers-grid">
+        <div class="paper-card">
+          <div class="paper-num">#1</div>
+          <h3>Statistical Economics of Narrative</h3>
+          <p>A quantitative framework for narrative-based economic analysis.</p>
+          <span class="badge badge-done">Complete</span>
+        </div>
+        <div class="paper-card">
+          <div class="paper-num">#2</div>
+          <h3>Systematic Review of Economic Narrative Indices</h3>
+          <p>Systematic review, replication study, and Bangla extension (2007–2025).</p>
+          <span class="badge badge-submitted">Submitted to arXiv</span>
+        </div>
+        <div class="paper-card">
+          <div class="paper-num">#3</div>
+          <h3>Building BENI: A Replicable Pipeline</h3>
+          <p>From raw news to validated narrative index — the complete methodology.</p>
+          <span class="badge badge-active">Active (Jul 2026)</span>
+        </div>
+        <div class="paper-card">
+          <div class="paper-num">#4</div>
+          <h3>Nowcasting Inflation with BENI</h3>
+          <p>Local-language news as a high-frequency economic indicator.</p>
+          <span class="badge badge-planned">Planned (Aug 2026)</span>
+        </div>
+        <div class="paper-card">
+          <div class="paper-num">#5</div>
+          <h3>Text as Data in Social Science</h3>
+          <p>110-year survey of language-based methods: from content analysis to LLMs.</p>
+          <span class="badge badge-planned">Planned (Oct 2026)</span>
+        </div>
+        <div class="paper-card">
+          <div class="paper-num">#6</div>
+          <h3>LLMs as Measurement Devices</h3>
+          <p>Framework for narrative extraction in low-resource languages.</p>
+          <span class="badge badge-proposed">Proposed (Jan 2027)</span>
+        </div>
+      </div>
+      <div class="research-cta">
+        <a href="https://github.com/nabil0x/LILA-LAB/tree/main/papers" class="btn btn-outline" target="_blank">Browse All Reports →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTRIBUTE ═══ -->
+  <section class="section section-accent" id="contribute">
+    <div class="section-inner">
+      <h2 class="section-title">Eight Ways to Contribute</h2>
+      <p class="section-sub">Every contribution model leads to academic authorship. <strong>You are not a data source — you are a collaborator.</strong></p>
+
+      <div class="contrib-grid">
+        <div class="contrib-card">
+          <span class="contrib-icon">🌍</span>
+          <h3>Language Extension</h3>
+          <p>Apply the pipeline to YOUR language. First-author paper.</p>
+        </div>
+        <div class="contrib-card">
+          <span class="contrib-icon">🔬</span>
+          <h3>Cross-Domain</h3>
+          <p>Apply to health, climate, education. First-author paper.</p>
+        </div>
+        <div class="contrib-card">
+          <span class="contrib-icon">⚙️</span>
+          <h3>Methodological</h3>
+          <p>Improve the classifier, reduce cost. Co-authorship.</p>
+        </div>
+        <div class="contrib-card">
+          <span class="contrib-icon">✅</span>
+          <h3>Replication</h3>
+          <p>Independently verify results. Published replication report.</p>
+        </div>
+        <div class="contrib-card">
+          <span class="contrib-icon">🗣️</span>
+          <h3>Citizen Annotation</h3>
+          <p>Label articles in your language. Acknowledgement in papers.</p>
+        </div>
+        <div class="contrib-card">
+          <span class="contrib-icon">📊</span>
+          <h3>Policy Brief</h3>
+          <p>Analyze narratives for policy. Co-authorship.</p>
+        </div>
+        <div class="contrib-card">
+          <span class="contrib-icon">🛠️</span>
+          <h3>Infrastructure</h3>
+          <p>Build dashboards, APIs, tools. Tool paper co-authorship.</p>
+        </div>
+        <div class="contrib-card">
+          <span class="contrib-icon">📖</span>
+          <h3>Education</h3>
+          <p>Create tutorials, course modules. Educational paper co-authorship.</p>
+        </div>
+      </div>
+      <div class="contribute-cta">
+        <a href="https://github.com/nabil0x/LILA-LAB/blob/main/COLLABORATION.md" class="btn btn-primary" target="_blank">Read the Full Framework →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ QUOTE / ETHOS ═══ -->
+  <section class="section section-quote">
+    <div class="section-inner">
+      <blockquote class="ethos-block">
+        <p class="ethos-text">"This is not data extraction. This is cognitive infrastructure. Every linguistic insight you contribute is encoded into the LLM's understanding of how your language thinks about the world."</p>
+        <footer class="ethos-attribution">— LILA Lab</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══ COMMUNITY ═══ -->
+  <section class="section section-light" id="community">
+    <div class="section-inner">
+      <h2 class="section-title">Connect with LILA Lab</h2>
+      <p class="section-sub">Choose your channel. Every platform is coordinated from the repository.</p>
+
+      <div class="channels-grid">
+        <a href="https://x.com/LILA_Lab" class="channel-card" target="_blank">
+          <span class="channel-icon">🐦</span>
+          <span class="channel-name">X / Twitter</span>
+          <span class="channel-handle">@LILA_Lab</span>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/company/lila-lab" class="channel-card" target="_blank">
+          <span class="channel-icon">💼</span>
+          <span class="channel-name">LinkedIn</span>
+          <span class="channel-handle">/company/lila-lab</span>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://www.youtube.com/@LILA_Lab" class="channel-card" target="_blank">
+          <span class="channel-icon">▶️</span>
+          <span class="channel-name">YouTube</span>
+          <span class="channel-handle">@LILA_Lab</span>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://discord.gg/lila-lab" class="channel-card" target="_blank">
+          <span class="channel-icon">💬</span>
+          <span class="channel-name">Discord</span>
+          <span class="channel-handle">discord.gg/lila-lab</span>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://lila.substack.com" class="channel-card" target="_blank">
+          <span class="channel-icon">📰</span>
+          <span class="channel-name">Substack</span>
+          <span class="channel-handle">lila.substack.com</span>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://github.com/nabil0x/LILA-LAB" class="channel-card" target="_blank">
+          <span class="channel-icon">⌨️</span>
+          <span class="channel-name">GitHub</span>
+          <span class="channel-handle">nabil0x/LILA-LAB</span>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://osf.io/[project-id]" class="channel-card" target="_blank">
+          <span class="channel-icon">📄</span>
+          <span class="channel-name">OSF</span>
+          <span class="channel-handle">Open Science Framework</span>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://huggingface.co/nabil0x" class="channel-card" target="_blank">
+          <span class="channel-icon">🤗</span>
+          <span class="channel-name">Hugging Face</span>
+          <span class="channel-handle">nabil0x</span>
+          <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://www.facebook.com/LILALabResearch" class="channel-card" target="_blank">
+          <span class="channel-icon">👤</span>
+          <span class="channel-name">Facebook</span>
+          <span class="channel-handle">LILALabResearch</span>
+          <span class="channel-arrow">→</span>
+        </a>
+      </div>
+      <p class="channel-note">All channels are documented and coordinated from the <a href="https://github.com/nabil0x/LILA-LAB/blob/main/COMMUNICATIONS.md">Communications Center</a>.</p>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h3>LILA Lab</h3>
+          <p>Language Intelligence for Low-resource Applications</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigate</h4>
+          <a href="#pipelines">Pipelines</a>
+          <a href="#research">Research</a>
+          <a href="#contribute">Contribute</a>
+          <a href="#community">Community</a>
+        </div>
+        <div class="footer-links">
+          <h4>Repository</h4>
+          <a href="https://github.com/nabil0x/LILA-LAB" target="_blank">GitHub</a>
+          <a href="https://github.com/nabil0x/LILA-LAB/blob/main/COLLABORATION.md" target="_blank">Collaboration Guide</a>
+          <a href="https://github.com/nabil0x/LILA-LAB/blob/main/CONTRIBUTING.md" target="_blank">Contributing Guide</a>
+          <a href="https://github.com/nabil0x/LILA-LAB/blob/main/COMMUNICATIONS.md" target="_blank">Communications Hub</a>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <a href="mailto:ann.n.nabil@gmail.com">ann.n.nabil@gmail.com</a>
+          <a href="https://orcid.org/0009-0006-3561-045X" target="_blank">ORCID</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Code: MIT License &middot; Data: CC BY 4.0 &middot; Papers: © Ann Naser Nabil</p>
+        <p>Built from Dhaka, Bangladesh &middot; Serving South Asian languages</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

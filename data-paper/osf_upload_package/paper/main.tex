@@ -1,0 +1,344 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{BENI v1.0: A Harmonised Bangla News Dataset for Economic Narrative Measurement}
+
+\author{Ann Naser Nabil\\
+Department of Economics, Jahangirnagar University\\
+\texttt{ann.n.nabil@gmail.com}}
+
+\date{June 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\fbox{\begin{minipage}{0.92\linewidth}
+\textbf{Preprint notice.} This manuscript is prepared for deposit as an OSF
+Preprints version of BENI v1.0. It has not yet been certified by peer review.
+The data paper and BENI-created documentation are licensed under Creative
+Commons Attribution 4.0 International (CC BY 4.0). BENI processing code is
+released under the MIT License. Full article text, where present in local
+reproducible files, remains subject to upstream corpus and news-source terms.
+
+\vspace{0.5em}
+\noindent\textbf{Version:} BENI v1.0 data-paper preprint, June 2026.\\
+\textbf{OSF DOI/URL:} to be added after OSF deposit.\\
+\textbf{Recommended citation:} Nabil, A. N. (2026). \emph{BENI v1.0: A
+Harmonised Bangla News Dataset for Economic Narrative Measurement}. Preprint.\\
+\textbf{Licence:} CC BY 4.0 for the manuscript and BENI-derived metadata,
+documentation, hashes, labels, and index-ready outputs; MIT for code.
+\end{minipage}}
+\end{center}
+
+\begin{abstract}
+This data paper describes BENI v1.0, a derived Bangla news dataset designed for local-language economic narrative measurement. The release harmonises dated articles from the Potrika Bangla News Corpus for 2014--2020 with post-2020 articles from the Bangla News Database (BNAD), preserving source provenance, publication dates, original categories, harmonised categories, text hashes, duplicate flags, and economic seed labels. BENI v1.0 contains 1,467,705 dated Bangla news article records: 471,723 Potrika records from 2014--2020 and 995,982 BNAD records from 2021--2024. Exact-text deduplication identifies 1,453,510 unique text hashes and flags 14,195 duplicate rows across 11,951 duplicate groups.
+
+The dataset is intended to support research on economic text classification, Bangla natural language processing, monthly narrative-index construction, and robustness analysis around corpus-source transitions. BENI v1.0 is not a replacement for the upstream news corpora and should not be interpreted as a complete archive of Bangladeshi media. Instead, it is a reproducible measurement layer built from public news corpora, annotation metadata, classifier-ready article fields, and documented processing scripts. BENI metadata, derived labels, duplicate flags, hashes, documentation, and index-ready fields are released under CC BY 4.0; full article text remains subject to upstream corpus and news-source terms.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Bangla news; economic narratives; text-as-data;\\
+low-resource NLP; dataset; Bangladesh
+
+\noindent\textbf{JEL Codes:} C55; C81; E37
+
+\section{Data Value}
+
+BENI v1.0 provides a reusable dataset for measuring economic narratives in Bangla news. Its main value is that it turns heterogeneous Bangla news files into a canonical article-level panel with stable identifiers, date fields, source provenance, harmonised categories, duplicate metadata, and fields needed for economic relevance classification.
+
+The dataset is useful for four research communities. First, applied economists can use it to construct monthly economic narrative indicators and compare news-based measures with macroeconomic series. Second, computational social scientists can study local-language media coverage without beginning from raw scraping and date parsing. Third, Bangla NLP researchers can use the corpus as an applied economic text-classification benchmark. Fourth, researchers working on low-resource languages can reuse the pipeline as a template for turning local-language news corpora into measurement-ready economic indicators.
+
+The main contribution is not the creation of a new raw news archive. The upstream articles come from existing Bangla news corpora. BENI v1.0 contributes a harmonised measurement layer: canonical article metadata, processing code, category harmonisation, duplicate flags, economic seed labels, annotation references, and index-ready monthly fields.
+
+\section{Dataset Overview}
+
+\subsection{Sources}
+
+The unified panel combines two upstream sources. The first source is the Potrika Bangla News Corpus, used here for dated newspaper/category files covering 2014--2020 \citep{mendeley2024potrika}. The second source is BNAD, used here as a post-2020 extension covering 2021--2024 \citep{banglanewsdb}. The merge is source-aware: Potrika provides the historical baseline, and BNAD extends the panel after 2020.
+
+The unified panel deliberately avoids blind pooling. Potrika and BNAD differ in source composition, file structure, category labels, and scraping conventions. For that reason, the recommended main panel uses Potrika for 2014--2020 and BNAD after 2020. BNAD observations from overlapping pre-2021 years should be reserved for robustness and source-break diagnostics rather than mixed into the baseline panel.
+
+\begin{table}[htbp]
+\centering
+\caption{Source provenance and rights status}
+\label{tab:source-provenance}
+\small
+\begin{tabular}{L{0.15\linewidth}L{0.15\linewidth}L{0.31\linewidth}L{0.27\linewidth}}
+\toprule
+Source & Used period & Role in BENI v1.0 & Redistribution note\\
+\midrule
+Potrika & 2014--2020 & Historical dated baseline; raw dated newspaper/category files. & Upstream corpus should be cited and its CC BY 4.0 terms followed.\\
+BNAD & 2021--2024 & Post-2020 extension; JSONL source files. & Full-text redistribution is conditional on documented upstream permission or licence.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Outputs}
+
+The release script creates the following article-level files:
+
+\begin{table}[htbp]
+\centering
+\caption{Primary generated files}
+\begin{tabular}{L{0.42\linewidth}L{0.48\linewidth}}
+\toprule
+File & Purpose\\
+\midrule
+\texttt{potrika\_articles\_canonical.csv} & Canonical Potrika article file for 2014--2020.\\
+\texttt{bnad\_articles\_canonical.csv} & Canonical BNAD article file for 2021--2024.\\
+\texttt{beni\_unified\_articles.csv} & Merged BENI v1.0 article-level panel.\\
+\texttt{beni\_unified\_articles\_deduped.csv} & Merged panel with exact duplicate text flags.\\
+\texttt{beni\_unified\_articles\_summary.json} & Machine-readable build summary.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The generated CSV files are large reproducible artifacts and are not intended to be committed directly to a source-code repository. The summary JSON and build scripts are the preferred lightweight reproducibility artifacts. For public deposit, the recommended release package is a rights-aware archive: metadata, hashes, harmonised categories, duplicate flags, labels, scripts, and index-ready outputs are deposited openly, while full text is included only for upstream sources whose licences permit redistribution.
+
+\section{Coverage}
+
+The BENI v1.0 build contains 1,467,705 article rows after date parsing and a minimum cleaned-text filter of 50 characters. Table \ref{tab:source-counts} reports the source-level composition.
+
+\begin{table}[htbp]
+\centering
+\caption{Source composition of BENI v1.0}
+\label{tab:source-counts}
+\begin{tabular}{lrr}
+\toprule
+Source & Period & Rows\\
+\midrule
+Potrika & 2014--2020 & 471,723\\
+BNAD & 2021--2024 & 995,982\\
+\midrule
+Unified panel & 2014--2024 & 1,467,705\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table \ref{tab:year-coverage} reports year-level coverage. The sharp increase after 2020 reflects the source transition from Potrika to BNAD and should be treated as a measurement diagnostic rather than interpreted mechanically as an increase in news volume.
+
+\begin{table}[htbp]
+\centering
+\caption{Year coverage}
+\label{tab:year-coverage}
+\begin{tabular}{rr}
+\toprule
+Year & Rows\\
+\midrule
+2014 & 2,516\\
+2015 & 30,693\\
+2016 & 88,059\\
+2017 & 78,009\\
+2018 & 97,642\\
+2019 & 76,987\\
+2020 & 97,817\\
+2021 & 282,886\\
+2022 & 281,822\\
+2023 & 364,350\\
+2024 & 66,924\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table \ref{tab:category-coverage} summarises harmonised categories. Category labels are inherited from upstream corpora and mapped into a smaller set of BENI categories. Economic relevance should not be equated with the source category alone: national, politics, and international stories may contain economic content, while some economy-section articles may not be relevant to the final index definition.
+
+\begin{table}[htbp]
+\centering
+\caption{Harmonised category counts}
+\label{tab:category-coverage}
+\begin{tabular}{lr}
+\toprule
+Harmonised category & Rows\\
+\midrule
+National & 780,271\\
+Other or unknown & 369,643\\
+International & 79,608\\
+Sports & 67,729\\
+Economy & 57,792\\
+Politics & 53,714\\
+Entertainment & 39,335\\
+Education & 9,442\\
+Technology and science & 5,544\\
+Health & 4,627\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Data Structure}
+
+Each article row follows a canonical schema. The most important fields are shown in Table \ref{tab:schema}. The schema preserves both provenance fields and modelling fields, allowing users to filter by source, publication month, category, duplicate status, or model version.
+
+\begin{longtable}{L{0.25\linewidth}L{0.66\linewidth}}
+\caption{Canonical article-level fields}
+\label{tab:schema}\\
+\toprule
+Field & Description\\
+\midrule
+\endfirsthead
+\toprule
+Field & Description\\
+\midrule
+\endhead
+\texttt{article\_id} & Stable generated identifier, prefixed by source.\\
+\texttt{dataset\_source} & Upstream dataset source: \texttt{potrika} or \texttt{bnad}.\\
+\texttt{source\_file} & Original raw filename.\\
+\texttt{newspaper} & Parsed newspaper or source name.\\
+\texttt{publication\_date} & ISO publication date.\\
+\texttt{year\_month} & Monthly period in \texttt{YYYY-MM} format.\\
+\texttt{category\_original} & Original upstream category string.\\
+\texttt{category\_harmonised} & BENI category mapping.\\
+\texttt{headline} & Article title or headline.\\
+\texttt{text} & Article body after basic whitespace normalisation.\\
+\texttt{text\_clean} & Cleaned article text used for hashing and modelling.\\
+\texttt{tags} & Optional BNAD tags.\\
+\texttt{meta} & Optional BNAD metadata.\\
+\texttt{language} & Default language marker, currently \texttt{bn}.\\
+\texttt{text\_hash} & SHA-1 hash of cleaned article text.\\
+\texttt{headline\_date\_hash} & SHA-1 hash of publication date and headline.\\
+\texttt{is\_duplicate} & Exact duplicate flag based on \texttt{text\_hash}.\\
+\texttt{duplicate\_group\_id} & Generated duplicate group identifier.\\
+\texttt{economic\_seed\_label} & Category-derived seed label: positive, negative, or ambiguous.\\
+\texttt{economic\_probability} & Placeholder for classifier probability.\\
+\texttt{economic\_prediction} & Placeholder for binary classifier prediction.\\
+\texttt{model\_version} & Model version used for prediction.\\
+\texttt{release\_version} & BENI release marker.\\
+\bottomrule
+\end{longtable}
+
+\section{Construction Workflow}
+
+The build script streams raw files and writes canonical outputs without loading the full corpus into memory. The current command is:
+
+\begin{verbatim}
+python3 BENI_v1_data_paper/scripts/build_beni_v1_articles.py
+\end{verbatim}
+
+The workflow has six steps. First, Potrika CSV files are parsed, excluding balanced undated \texttt{*\_40k.csv} category files from the time-series panel. Second, BNAD JSONL files are parsed and restricted to publication years after 2020 for the main extension. Third, Bangla date strings and Bangla numerals are converted into ISO dates. Fourth, source categories are mapped into a small set of harmonised BENI categories. Fifth, article text is normalised and hashed. Sixth, the source-specific canonical files are merged and exact text duplicates are flagged.
+
+The merge rule is intentionally conservative. Potrika is used for the 2014--2020 baseline because it provides a stable dated panel over that period. BNAD is used after 2020 because it extends the corpus into 2021--2024. Overlapping BNAD years before 2021 should be used to test source-break robustness.
+
+\section{Processing Audit}
+
+The release includes a schema audit generated before the merge. The audit streams raw Potrika and BNAD files, records field availability, counts parseable publication dates, summarises source-category distributions, and identifies the date ranges observed in each file. This audit is used to define the merge rule and to separate dated time-series files from undated balanced category files.
+
+The audit found 472,464 parseable dated Potrika rows from 2014--2020 before the minimum-text filter; 471,723 remain in BENI v1.0 after filtering. For BNAD, the audit found 1,009,119 post-2020 parseable rows before filtering; 995,982 remain in BENI v1.0 after filtering. These differences are expected because the release script excludes rows with unparseable dates, years outside the merge rule, and cleaned article text shorter than 50 characters.
+
+The current validation is procedural rather than adjudicative. It verifies schema consistency, date parseability, source coverage, row counts, and exact duplicate hashes. It does not claim that every date, source category, or article body has been manually validated. Before making causal, trend, or nowcasting claims from the unified panel, users should run source-break diagnostics around 2020/2021 and inspect a stratified manual sample of parsed dates and category mappings.
+
+\section{Duplicate Handling}
+
+The current deduplication pass flags exact duplicate cleaned text. It does not delete duplicate rows. This design keeps article provenance intact and allows users to decide whether to retain all source appearances or construct a canonical one-row-per-text panel.
+
+The BENI v1.0 build flags 14,195 exact duplicate rows across 11,951 duplicate groups. This leaves 1,453,510 unique exact text hashes. Future releases can add near-duplicate detection using headline-date hashes, locality-sensitive hashing, or same-day source-aware clustering.
+
+\section{Reuse Notes}
+
+For monthly index construction, users should remove or downweight exact duplicates, keep source provenance, and report the source transition at 2020/2021. Recommended baseline indices are:
+
+\begin{itemize}
+  \item a Potrika-only 2014--2020 index;
+  \item a BNAD-only 2021--2024 index;
+  \item a unified 2014--2024 index with explicit source-break diagnostics.
+\end{itemize}
+
+Economic relevance should be based on classifier probabilities or validated labels rather than source categories alone. The category-derived economic seed label is useful for weak supervision, but it is not a final gold-standard economic label.
+
+\section{Limitations}
+
+BENI v1.0 has several limitations. First, the source transition between Potrika and BNAD is substantial and should be modelled explicitly. Second, the dataset is not a complete media census. It reflects the coverage, selection rules, and scraping practices of the upstream corpora. Third, current annotation files are LLM-assisted reference labels, not independently adjudicated human gold labels. Fourth, exact-text deduplication does not remove paraphrased or syndicated near-duplicates. Fifth, the 2024 coverage is partial in the current BNAD files.
+
+These limitations do not prevent use of the dataset, but they define the correct empirical design. Strong claims about long-run trends should include source-break checks, source-balanced robustness tests, and category-composition diagnostics.
+
+\section{Ethics, Licensing, and User Obligations}
+
+The dataset is a derived research layer built from upstream public news corpora. Users should cite the upstream datasets and respect their licences. BENI v1.0 should not be described as a newly scraped archive created by the BENI project. The project releases processing metadata, annotations, scripts, and measurement outputs; raw article redistribution should follow the upstream licence terms.
+
+The recommended rights structure is layered. BENI metadata, harmonised categories, duplicate flags, text hashes, economic seed labels, documentation, and derived index-ready fields are released under Creative Commons Attribution 4.0 International (CC BY 4.0). Processing code is released under the MIT License. Full article text remains governed by the licences and terms of the upstream corpora and original news sources. If full-text redistribution cannot be documented for a source, the public release should provide metadata, hashes, and reconstruction scripts rather than redistributing article bodies.
+
+Users of BENI v1.0 should cite both the BENI data paper and the upstream data sources. A recommended citation statement is:
+
+\begin{quote}
+If you use BENI v1.0, please cite the BENI v1.0 data paper and the upstream Potrika and BNAD data sources. BENI v1.0 is a derived measurement layer and is not the original source of the underlying news articles.
+\end{quote}
+
+\section{Release Package}
+
+Table \ref{tab:release-package} distinguishes files intended for public archival deposit from local reproducible artifacts. This distinction is important because the generated article CSV files contain text fields and are large. The safer public-release default is to deposit rights-cleared metadata and derived fields, then provide scripts for reconstructing full article-level files locally from authorised upstream corpora.
+
+\begin{table}[htbp]
+\centering
+\caption{Recommended public release package}
+\label{tab:release-package}
+\small
+\begin{tabular}{L{0.25\linewidth}L{0.45\linewidth}L{0.19\linewidth}}
+\toprule
+Component & Contents & Recommended licence or status\\
+\midrule
+BENI metadata layer & Article IDs, dates, source fields, harmonised categories, duplicate flags, hashes, seed labels. & CC BY 4.0\\
+Code & Parsers, build scripts, validation scripts, index-construction scripts. & MIT\\
+Documentation & Dataset card, schema, merge plan, release manifest, data paper. & CC BY 4.0\\
+Indices and summaries & Monthly index-ready outputs, summary JSON, aggregate diagnostics. & CC BY 4.0\\
+Full article text & Article bodies and cleaned text fields. & Upstream terms only; include only when rights are documented.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Data and Code Availability}
+
+At the time of this manuscript draft, the release files are available locally and are being prepared for archival deposit. The final submission should replace the placeholders below with a repository URL, DOI, checksums, and archive date.
+
+\begin{table}[htbp]
+\centering
+\caption{Data availability fields to complete at deposit}
+\label{tab:data-availability}
+\begin{tabular}{L{0.32\linewidth}L{0.56\linewidth}}
+\toprule
+Field & Current status\\
+\midrule
+Repository DOI & To be assigned at Zenodo, OSF, Mendeley Data, or institutional repository.\\
+Code repository & To be linked after public repository preparation.\\
+Dataset version & BENI v1.0.\\
+Metadata/data licence & CC BY 4.0 for BENI-derived metadata, documentation, hashes, labels, and index-ready outputs.\\
+Code licence & MIT.\\
+Full-text status & Conditional on upstream rights; otherwise reconstructed locally from authorised upstream corpora.\\
+Checksums & To be generated for deposited archives.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The processing script is located at:
+
+\begin{verbatim}
+BENI_v1_data_paper/scripts/build_beni_v1_articles.py
+\end{verbatim}
+
+The machine-readable build summary is located at:
+
+\begin{verbatim}
+BENI_v1_data_paper/data/processed/beni_unified_articles_summary.json
+\end{verbatim}
+
+The merge-result note is located at:
+
+\begin{verbatim}
+BENI_v1_data_paper/docs/PRELIMINARY_MERGE_RESULT.md
+\end{verbatim}
+
+Generated CSV files are reproducible from the raw corpora and build script. Because they are large, repository releases should prefer compressed archives, Parquet files, or external data hosting rather than committing the generated CSV files directly. For storage efficiency, the recommended archival format is Parquet for rights-cleared article metadata and derived fields, with CSV summaries retained for inspection.
+
+\section{Conclusion}
+
+BENI v1.0 demonstrates that existing Bangla news corpora can be harmonised into a long article-level panel for economic narrative research. The unified panel contains 1.47 million dated article records from 2014--2024, with source provenance and duplicate metadata preserved. The dataset is ready for source-break diagnostics, classifier scoring, source-balanced index construction, and macro-validation work. Its main research value is as a transparent measurement layer for local-language economic text-as-data research.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

@@ -1,32 +1,101 @@
-# Python/generated files
+# ──────────────────────────────────────────────
+# LILA Lab — .gitignore
+# Only code, docs, and small config files.
+# Data files stay local (see distribution/ for
+# external platform manifests & DOIs).
+# ──────────────────────────────────────────────
+
+# Python build artifacts
 __pycache__/
 *.py[cod]
-*.log
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# Python virtual environment
+.benv/
+.python-version
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# LaTeX build artifacts
 *.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.lof
+*.lot
+*.log
 *.out
+*.toc
+*.synctex.gz
+*.run.xml
+*.bcf
 texput.log
 
-# Local tool/session state
-.omo/run-continuation/
+# ── Large data directories (stay local) ──
 
-# Large local datasets and generated artifacts
-beni/data/
+# BENI pipeline — raw databases, experiment outputs, model weights
 beni/Bangla_News_Database/
-beni/experiment/data/raw/
-beni/experiment/data/processed/
-beni/experiment/models/
-beni/experiment/outputs/models/
-beni/experiment/outputs/reports/
-BENI_v1_data_paper/data/raw/bnad
-BENI_v1_data_paper/data/processed/*.csv
+beni/data/
+beni/database/beni_v0_1.sqlite
+beni/database/outputs/
+beni/experiment/
+beni/annotation/outputs/
 
-# Model/data artifacts
+# Data paper — large CSV/JSONL data files
+data-paper/data/
+
+# Archived OSF upload zip (1.1 GB)
+archive/BENI_v1_data_paper_osf_dataset_upload.zip
+
+# ── Model artifacts ──
 *.joblib
 *.safetensors
+*.pth
+*.pt
+*.h5
+*.onnx
+
+# ── Large data files ──
+*.csv
 *.jsonl
+*.json
+*.parquet
+*.sqlite
+*.sqlite3
+*.db
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
 
-# Kaggle data bundle (too large for git)
-beni/experiment/data/kaggle/
+# ── Logs ──
+*.log
+beni-*-*.log
 
-# All generated outputs (models, reports, index, correlations)
-beni/experiment/outputs/
+# ── Generated PDFs (source .tex is tracked) ──
+*.pdf
+
+# ── OS / editor ──
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.nfs*
+
+# ── Local tool/session state ──
+.omo/run-continuation/
+
+# ── Environment ──
+.env
+.env.local
+.env.*.local

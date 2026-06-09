@@ -1,3 +1,0 @@
-paper_name,method,train_period,test_period,rmse,mae,direction_accuracy,baseline_rmse,rmse_improvement,granger_pvalue,n_train,n_test,timestamp,notes
-Tetlock (2007),Dictionary (GI) + PCA + VAR,1984-01-02 to 1996-04-05,1996-04-08 to 1999-04-30,0.102378,0.082842,0.6746,0.110709,0.0752,,3200,800,2026-06-06T01:06:49.193692,"GI categories: 16, Recentering: daily, Baseline: AR(1)"
-Gentzkow et al. (2019),Policy Uncertainty Index (keyword-based),1985-01-31 to 2005-11-30,2005-12-31 to 2014-12-31,0.326867,0.259368,1.0,0.306405,-0.0668,,251,109,2026-06-06T01:06:49.661657,"EPU categories: 4 (fiscal, monetary, regulation, uncertainty), Lags: 12, Horizon: 1"
