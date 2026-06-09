@@ -8,7 +8,7 @@
 
 | File | Original Location | Why Archived |
 |------|-------------------|--------------|
-| `BENI_v1_data_paper_osf_dataset_upload.zip` | Root (1.1 GB) | OSF upload zip — superseded by `data-paper/osf_upload_package/` |
+| `BENI_v1_data_paper_osf_dataset_upload.zip` | Root (1.1 GB) | OSF upload zip — superseded by `dataset/osf_upload_package/` |
 | `beni-3-llm-ensemble.log` | Root | Log from a 3-LLM ensemble run — retained for reference |
 | `beni-3-llm-ensemble-t4.log` | Root | Log from T4-accelerated ensemble run — retained for reference |
 | `hello.txt` | Root | Scratch file |
@@ -28,5 +28,5 @@ They are kept here rather than deleted in case the ensemble logs contain useful 
 ## For Research Agents
 
 - If you need LLM annotation runtime metrics, check `beni-3-llm-ensemble*.log` for timing and cost data.
-- The 1.1 GB OSF zip is superseded by the structured release in `data-paper/osf_upload_package/`.
+- The 1.1 GB OSF zip is superseded by the structured release in `dataset/osf_upload_package/`.
 - These files are **not** git-tracked (they're in .gitignore).

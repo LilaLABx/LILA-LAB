@@ -10,15 +10,96 @@
 
 ---
 
-## To the Linguists, Native Speakers, and Language Experts of South Asia
+## Repository Structure
 
-**We need your expertise.**
+This repository is the **central hub** for LILA Lab — a research collective building NLP infrastructure for languages underserved by current AI.
 
-Large Language Models are transforming how the world processes text — but they are blind to most of the world's languages. A model trained on English internet text does not understand the economic anxiety expressed in a Bangla newspaper, the agricultural metaphors of a Nepali farmer, or the code-switched conversation of a Dhaka street market.
+```
+lila-lab/
+│
+├── 📁 pipelines/                    # XENI Pipeline Collection
+│   ├── beni/                        # Bangla (active)
+│   ├── aeni/                        # Assamese (planned)
+│   ├── nenl/                        # Nepali (planned)
+│   └── shared/                      # Shared utilities
+│
+├── 📁 technical-reports/                       # Research Papers (6-paper series)
+│   ├── paper1_statistical_economics/
+│   ├── paper2_systematic_review/
+│   ├── paper3_beni_method/
+│   ├── paper4_beni_nowcasting/
+│   ├── paper5_text_as_data_survey/
+│   ├── paper6_llm_narrative_extraction/
+│   ├── contributions/               # Contributor records
+│   └── extensions/                  # Extension proposals
+│
+├── 📁 data/                         # Datasets
+│   ├── beni-v1/                     # BENI v1 dataset
+│   ├── raw/                         # Upstream data
+│   └── processed/                   # Processed datasets
+│
+├── 📁 communications/               # Multi-channel command center
+│   ├── CHANNELS.md
+│   ├── BRAND_GUIDELINES.md
+│   ├── SOCIAL_MEDIA_STRATEGY.md
+│   ├── COMMUNITY.md
+│   ├── CONTENT_CALENDAR.md
+│   └── templates/
+│
+├── 📁 infrastructure/               # Infrastructure & Tools
+│   ├── discord-bot/                 # Discord bot
+│   ├── website/                     # Website source
+│   └── scripts/                     # Utility scripts
+│
+└── 📁 docs/                         # Documentation
+    ├── pipelines/
+    ├── research/
+    └── assets/
+```
 
-This repository is a **collaborative platform** where linguistic experts contribute their native-language data, and we apply LLM infrastructure to extract insights, build indices, and improve multilingual AI cognition.
+---
 
-**You bring the language. We bring the LLM pipeline. Together we build AI that understands your world.**
+## Quick Start
+
+### For Linguistic Contributors
+
+```bash
+# 1. Read the guide
+cat LINGUISTIC_CONTRIBUTION_GUIDE.md
+
+# 2. Check what languages are most needed
+ls technical-reports/extensions/INDEX.md
+
+# 3. Register as a contributor
+# Use /register command in Discord or email lila.lab0x@gmail.com
+```
+
+### For Researchers
+
+```bash
+# 1. Explore the BENI pipeline
+cd pipelines/beni/
+
+# 2. Run the baseline classifier
+python3 experiment/beni_pilot/train.py --task economic --model-type tfidf
+
+# 3. Build the narrative index
+python3 experiment/beni_pilot/build_index.py --model-type tfidf
+```
+
+### For Developers
+
+```bash
+# 1. Set up the Discord bot
+cd infrastructure/discord-bot/
+cp .env.example .env
+pip install -r requirements.txt
+python bot.py
+
+# 2. Contribute to the website
+cd infrastructure/website/
+# Edit index.html, styles.css
+```
 
 ---
 
@@ -39,65 +120,15 @@ Raw Bangla news articles (664,000+)
 
 | Benchmark | Result |
 |-----------|--------|
-| Classification accuracy | 91.7% (TF-IDF), expected higher with LLM labels |
+| Classification accuracy | 91.7% (TF-IDF) |
 | Monthly index built | 79 months (2014–2020) |
 | Level correlation with CPI | r = −0.75 (p < 0.001) |
 | Level correlation with FX | r = −0.72 (p < 0.001) |
 | Papers published | 2 submitted, 4 in pipeline |
-| LLM annotation cost | ~$0.02/article (Claude), ~$0.03/article (GPT-4o) |
 
 ---
 
-## Why Your Linguistic Expertise Is Irreplaceable
-
-LLMs fail at low-resource languages in specific, predictable ways. You can fix them:
-
-| Problem | How Linguists Help |
-|---------|-------------------|
-| **Wrong sentiment** — LLM misreads cultural tone | You annotate with native context |
-| **Missing idioms** — "Price hike eats the salt" makes no sense to GPT | You document local metaphors |
-| **Code-switching** — Bangla-English mixed in one sentence | You provide real-world bilingual data |
-| **Dialect gaps** — Standard Bangla ≠ Chittagonian ≠ Sylheti | You contribute dialectal variants |
-| **Topic blindness** — "Rickshaw fare increase" is economic news but LLM classifies it as transport | You define the economic narrative frame |
-| **Historical amnesia** — Pre-2020 data is not on the internet | Your community archives are the only source |
-
-**Every annotation, every correction, every cultural insight you contribute makes the LLM smarter for your language.**
-
----
-
-## How to Contribute Your Language Data
-
-### 1. Submit Text Data
-
-We need **native-language news articles, social media posts, or any text** in your language. Minimum 1,000 articles.
-
-→ Use the template at [`papers/contributions/linguistic_data/`](papers/contributions/linguistic_data/)
-
-### 2. Annotate for Economic Relevance
-
-Label articles as "Economic" or "Not Economic" in your language — with cultural context.
-
-→ Guide: [`LINGUISTIC_CONTRIBUTION_GUIDE.md`](LINGUISTIC_CONTRIBUTION_GUIDE.md)
-
-### 3. Validate LLM Outputs
-
-Review what the LLM extracted from your language data. Correct its mistakes. Teach it your language's narrative patterns.
-
-### What You Get in Return
-
-- **Co-authorship** on papers that use your data (you are not a data source — you are a collaborator)
-- **Your language's first LLM-validated narrative index**
-- **Attribution** in all publications, datasets, and model releases
-- **Your contribution recorded** in `papers/contributions/OWNERS.csv` as a permanent scholarly record
-- **A working LLM pipeline** trained on your language — use it for your own research
-
----
-
-## 🎯 Research Collaboration: Eight Ways to Contribute
-
-> Linguistic data is one path. There are **seven more** — and they all lead to co-authored publications.
-
-This framework is designed so that **every contributor can earn academic authorship** — whether you build a new language extension, replicate our results, improve the pipeline, or write a policy brief.
+## Eight Ways to Contribute
 
 | Contribution Model | What You Do | What You Get |
 |--------------------|-------------|--------------|
@@ -110,129 +141,38 @@ This framework is designed so that **every contributor can earn academic authors
 | 🛠️ **Infrastructure** | Build dashboards, APIs, tools | Tool paper co-authorship |
 | 📖 **Education** | Create tutorials, course modules | Educational paper |
 
-**→ Full framework with templates:** [`COLLABORATION.md`](COLLABORATION.md)
-**→ Extension registry + templates:** [`papers/extensions/`](papers/extensions/)
-**→ Submodule integration guide:** [`SUBREPOS.md`](SUBREPOS.md)
+**→ Full framework:** [`COLLABORATION.md`](COLLABORATION.md)
 
 ---
 
-## 📡 Communications Center
+## Communications Center
 
-> This repository is the **command center** for LILA Lab's entire multi-channel presence — social media, research platforms, community spaces, and infrastructure.
+This repository is the **command center** for LILA Lab's entire multi-channel presence.
 
 | Channel Layer | Channels | Managed In |
 |--------------|----------|-----------|
 | 🐦 **Social** | X (`@LILA_Lab`), LinkedIn, YouTube, Facebook | [`communications/SOCIAL_MEDIA_STRATEGY.md`](communications/SOCIAL_MEDIA_STRATEGY.md) |
-| 📄 **Research** | GitHub, OSF, Zenodo, Hugging Face, arXiv, Google Scholar, ORCID | [`communications/RESEARCH_PLATFORMS.md`](communications/RESEARCH_PLATFORMS.md) |
+| 📄 **Research** | GitHub, OSF, Zenodo, Hugging Face, arXiv | [`communications/RESEARCH_PLATFORMS.md`](communications/RESEARCH_PLATFORMS.md) |
 | 💬 **Community** | Discord, email, monthly lab calls | [`communications/COMMUNITY.md`](communications/COMMUNITY.md) |
 | 🎨 **Brand** | LILA+XENI naming, voice, visual identity | [`communications/BRAND_GUIDELINES.md`](communications/BRAND_GUIDELINES.md) |
-| 📅 **Calendar** | Scheduled posts, paper releases, milestones | [`communications/CONTENT_CALENDAR.md`](communications/CONTENT_CALENDAR.md) |
-| 📝 **Templates** | X threads, LinkedIn articles, YouTube scripts, newsletters | [`communications/templates/`](communications/templates/) |
+| 📅 **Calendar** | Scheduled posts, paper releases | [`communications/CONTENT_CALENDAR.md`](communications/CONTENT_CALENDAR.md) |
 
-**→ Full communications hub:** [`COMMUNICATIONS.md`](COMMUNICATIONS.md)
-
----
-
-## How This Makes LLMs Smarter for Your Language
-
-The pipeline works like this:
-
-```
-Your language text → LLM extracts narratives → we validate with you → we build a cognitive model of how your language expresses economic concepts → we fine-tune open-source LLMs → better AI for your language
-```
-
-**This is not "data extraction." This is cognitive infrastructure.** Every linguistic insight you contribute is encoded into the LLM's understanding of how your language thinks about the world.
+**→ Full hub:** [`COMMUNICATIONS.md`](COMMUNICATIONS.md)
 
 ---
 
-## For the Research Community
-
-This repository is also home to the **LILA Lab Technical Report Series** — a 6-paper academic research program on economic narrative measurement in low-resource languages. The papers provide the methodological foundation for the linguistic data work.
+## Research Papers
 
 | Paper | Title | Status |
 |-------|-------|--------|
-| **1** | Statistical Economics | ✅ Complete |
-| **2** | Economic Narrative Indices: Systematic Review (2007–2025) | ✅ Submitted to arXiv |
-| **3** | Building Local-Language Economic Narrative Indices | 🔄 Active (July 2026) |
+| **1** | Statistical Economics of Narrative | ✅ Complete |
+| **2** | Economic Narrative Indices: Systematic Review | ✅ Submitted |
+| **3** | Building BENI Pipeline | 🔄 Active (July 2026) |
 | **4** | Nowcasting Inflation with BENI | 📋 Planned (Aug 2026) |
-| **5** | Text as Data in Social Science (1916–2026) | 📋 Planned (Oct 2026) |
+| **5** | Text as Data in Social Science | 📋 Planned (Oct 2026) |
 | **6** | LLMs as Measurement Devices | 💡 Proposed (Jan 2027) |
 
-→ Full details: [`papers/README.md`](papers/README.md)
-
----
-
-## Repository Map
-
-```
-economic narrative indices/
-│
-├── 📋 COMMUNICATIONS.md                 ← LILA Lab's multi-channel command center
-├── 📋 COLLABORATION.md                 ← START HERE for research collaboration
-├── 📋 LINGUISTIC_CONTRIBUTION_GUIDE.md ← START HERE if you're a linguist
-├── 📋 README.md                          ← This file
-├── 📋 CONTRIBUTING.md                    ← General contribution guide
-├── 📋 SUBREPOS.md                        ← Git submodule integration guide
-│
-├── 📁 papers/contributions/linguistic_data/   ← Templates for data submission
-│
-├── 📁 papers/                        ← 6 research papers
-│   ├── 📋 CONTRIBUTING.md             ← Standard contribution workflows
-│   ├── 📁 contributions/              ← Ownership logs, screening records
-│   ├── 📁 extensions/                 ← Research extension registry + templates
-│   │   ├── 📋 INDEX.md                ← Active extensions listing
-│   │   ├── 📋 EXTENSION_TEMPLATE.md   ← Extension proposal template
-│   │   └── 📋 REPLICATION_TEMPLATE.md ← Replication report template
-│   ├── paper2_systematic_review/      ← Paper 2
-│   ├── paper3_beni_method/            ← Paper 3 (BENI Pipeline)
-│   ├── paper4_beni_nowcasting/        ← Paper 4 (Nowcasting)
-│   ├── paper5_text_as_data_survey/    ← Paper 5 (Survey)
-│   └── paper6_llm_narrative_extraction/ ← Paper 6 (LLM Extraction)
-│
-├── 📁 communications/                 ← Multi-channel command center
-│   ├── 📋 CHANNELS.md                  ← 15+ channels with purposes, URLs, sync rules
-│   ├── 📋 BRAND_GUIDELINES.md          ← LILA+XENI naming, voice, visual identity
-│   ├── 📋 SOCIAL_MEDIA_STRATEGY.md    ← X, LinkedIn, YouTube content plan
-│   ├── 📋 RESEARCH_PLATFORMS.md       ← OSF, Zenodo, HF, arXiv integration
-│   ├── 📋 COMMUNITY.md                ← Discord, contributor coordination
-│   ├── 📋 CONTENT_CALENDAR.md         ← Scheduled posts, release timelines
-│   └── 📁 templates/                   ← Reusable post templates per platform
-│
-├── 📁 beni/                           ← Core codebase & data (39 GB)
-│   ├── annotation/                     ← LLM annotation pipeline
-│   ├── index/                          ← Index construction
-│   ├── experiment/                     ← Model training & evaluation
-│   └── figures/                        ← Paper figures
-│
-├── 📁 data-paper/                     ← BENI v1 data release
-├── 📁 distribution/                   ← Platform distribution manifests
-└── 📁 archive/                        ← Archived files
-```
-
----
-
-## Quick Start
-
-### For Linguistic Contributors
-```bash
-# 1. Read the guide
-cat LINGUISTIC_CONTRIBUTION_GUIDE.md
-
-# 2. Check what languages are most needed
-ls papers/contributions/linguistic_data/
-
-# 3. Record your intent
-echo "Your Name,Linguist,paper3,Annotate Assamese economic news,in_progress,2026-06-10," >> papers/contributions/OWNERS.csv
-```
-
-### For Researchers
-```bash
-# Train the TF-IDF baseline (no GPU)
-cd beni/experiment/beni_pilot/
-python3 train.py --task economic --model-type tfidf --data-source potrika-timeseries
-python3 build_index.py --model-type tfidf
-python3 correlate.py
-```
+**→ Full details:** [`technical-reports/README.md`](technical-reports/README.md)
 
 ---
 
@@ -240,34 +180,27 @@ python3 correlate.py
 
 | Dataset | Language | Size | License |
 |---------|----------|------|---------|
-| Potrika Bangla News | Bangla (বাংলা) | 3.3 GB | CC BY 4.0 |
-| Bangla News Database | Bangla (বাংলা) | ~14 GB | — |
-| BNLP News Categorization | Bangla (বাংলা) | 56 MB | CC BY-NC-SA 4.0 |
+| Potrika Bangla News | Bangla | 3.3 GB | CC BY 4.0 |
+| BENI v1 | Bangla | — | CC BY 4.0 |
 
 **YOUR LANGUAGE HERE** — submit via the linguistic contribution guide.
 
 ---
 
-## Languages We Want to Cover
-
-**Immediate priority:** Bangla dialects (Chittagonian, Sylheti, Rangpuri), Assamese, Nepali, Maithili, Odia, and other under-represented languages of Bangladesh, Northeast India, Nepal, and Myanmar.
-
-**The pipeline is language-agnostic.** If you speak it, we can process it.
-
----
-
 ## Contact
 
-**Ann Naser Nabil** — Department of Economics, Jahangirnagar University
-ann.n.nabil@gmail.com | [ORCID](https://orcid.org/0009-0006-3561-045X)
+**Maintainer:** Ann Naser Nabil — Department of Economics, Jahangirnagar University
 
-Open an issue or start a discussion for linguistic data contributions.
+- Email: lila.lab0x@gmail.com
+- ORCID: [0009-0006-3561-045X](https://orcid.org/0009-0006-3561-045X)
+- GitHub: [nabil0x](https://github.com/nabil0x)
+- Discord: [discord.gg/TrrdKbky](https://discord.gg/TrrdKbky)
 
 ---
 
 ## License
 
 - **Code**: MIT License
-- **Data**: CC BY 4.0 (unless otherwise specified by contributor)
+- **Data**: CC BY 4.0 (unless otherwise specified)
 - **Papers**: © Ann Naser Nabil
-- **Linguistic contributions**: Attributed to contributor, shared under CC BY 4.0
+- **Contributions**: Attributed to contributor, shared under CC BY 4.0

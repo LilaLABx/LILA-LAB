@@ -212,14 +212,14 @@ economic-narrative-indices/
 │   (DO NOT commit: Potrika CSVs, Bangla_News_Database, model checkpoints)
 ├── models/                           # Model references (not weights)
 │   └── README.md                     # Links to Hugging Face for weights
-├── papers/                           # Paper source files + plans
+├── technical-reports/                           # Paper source files + plans
 │   ├── paper1_statistical_economics/
 │   ├── paper2_systematic_review/
 │   ├── paper3_beni_pipeline/
 │   ├── paper4_beni_nowcasting/
 │   ├── paper5_text_as_data_survey/
 │   └── paper6_llm_narrative_extraction/
-├── distribution/                     # Distribution manifests (THIS plan)
+├── releases/                     # Distribution manifests (THIS plan)
 │   ├── OSF_UPLOAD_MANIFEST.md
 │   ├── HUGGINGFACE_MODEL_CARD.md
 │   ├── ZENODO_UPLOAD_MANIFEST.md
@@ -327,7 +327,7 @@ Potrika Corpus (Mendeley) ← cited by BENI Data Paper
 ### GitHub (Estimated: 2-3 hours)
 - [ ] Reorganize repo structure as outlined above
 - [ ] Add `.gitignore` for: `*.safetensors`, `*.joblib`, `*.sqlite`, `*.parquet`, `*.zip`, `*.tar.gz`, `Bangla_News_Database/`, `bnlp-resources/`, whole raw data directories
-- [ ] Create `distribution/` directory with manifests
+- [ ] Create `releases/` directory with manifests
 - [ ] Update root `README.md` with badges: Zenodo DOI, OSF project, Hugging Face, Mendeley
 - [ ] Update `CITATION.cff` with all DOIs
 - [ ] Create `RELEASE.md` with versioning strategy

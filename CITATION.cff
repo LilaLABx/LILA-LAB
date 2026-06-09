@@ -2,12 +2,12 @@ cff-version: 1.2.0
 message: >-
   If you use the LILA Lab research program, please cite the relevant
   technical report(s) and the LILA-BENI dataset. See individual report
-  plans in papers/ for specific citation information.
+  plans in technical-reports/ for specific citation information.
 title: "LILA Lab: Language Intelligence for Low-resource Applications"
 authors:
   - family-names: "Nabil"
     given-names: "Ann Naser"
-    email: "ann.n.nabil@gmail.com"
+    email: "lila.lab0x@gmail.com"
     orcid: "https://orcid.org/0009-0006-3561-045X"
     affiliation: "Department of Economics, Jahangirnagar University"
 date-released: "2026-06"

@@ -50,7 +50,7 @@ beni/experiment/
 beni/annotation/outputs/
 
 # Data paper — large CSV/JSONL data files
-data-paper/data/
+dataset/data/
 
 # Archived OSF upload zip (1.1 GB)
 archive/BENI_v1_data_paper_osf_dataset_upload.zip

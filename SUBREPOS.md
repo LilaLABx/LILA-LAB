@@ -29,7 +29,7 @@ your-extension/
 └── CONTRIBUTORS.md     ← Who worked on this
 ```
 
-Recommended structure mirrors `papers/extensions/EXTENSION_TEMPLATE.md`.
+Recommended structure mirrors `technical-reports/extensions/EXTENSION_TEMPLATE.md`.
 
 ### Step 2: Open an Issue
 
@@ -44,15 +44,15 @@ In this repository, open an issue with:
 
 ```bash
 # We run this on our end:
-git submodule add https://github.com/your-username/your-extension.git papers/extensions/your-extension
+git submodule add https://github.com/your-username/your-extension.git technical-reports/extensions/your-extension
 git submodule update --init --recursive
 ```
 
-Your repository is now linked as a submodule at `papers/extensions/your-extension/`.
+Your repository is now linked as a submodule at `technical-reports/extensions/your-extension/`.
 
 ### Step 4: We Update the Registry
 
-Your extension gets a row in `papers/extensions/INDEX.md` with the submodule path, status, and lead contributor.
+Your extension gets a row in `technical-reports/extensions/INDEX.md` with the submodule path, status, and lead contributor.
 
 ---
 
@@ -61,7 +61,7 @@ Your extension gets a row in `papers/extensions/INDEX.md` with the submodule pat
 Your repository stays independent. When you push changes, collaborators can update the submodule reference:
 
 ```bash
-git submodule update --remote papers/extensions/your-extension
+git submodule update --remote technical-reports/extensions/your-extension
 ```
 
 We periodically sync active extensions.
@@ -96,9 +96,9 @@ assamese-narrative-index/
 
 ### Linked from this repo as:
 
-`papers/extensions/assamese-narrative-index` → `github.com/your-username/assamese-narrative-index`
+`technical-reports/extensions/assamese-narrative-index` → `github.com/your-username/assamese-narrative-index`
 
-### Registered in `papers/extensions/INDEX.md`:
+### Registered in `technical-reports/extensions/INDEX.md`:
 
 ```markdown
 | asm-001 | Assamese Narrative Index | Language Extension | Your Name | published | 2026-07-15 |

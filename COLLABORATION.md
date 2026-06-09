@@ -23,7 +23,7 @@ Your language's news corpus
 **What you get**: First-author publication + your language's first LLM-validated narrative index
 **Innovation**: Every new language reveals something about how economic narratives work differently — you discover that.
 
-**→ Template**: `papers/extensions/EXTENSION_TEMPLATE.md`
+**→ Template**: `technical-reports/extensions/EXTENSION_TEMPLATE.md`
 
 ---
 
@@ -44,7 +44,7 @@ Your domain's texts (health news, climate reports, education policy)
 **What you get**: First-author publication + opens a new measurement subfield
 **Innovation**: You create the first climate narrative index for a low-resource language. Nobody has done this.
 
-**→ Template**: `papers/extensions/EXTENSION_TEMPLATE.md`
+**→ Template**: `technical-reports/extensions/EXTENSION_TEMPLATE.md`
 
 ---
 
@@ -70,11 +70,11 @@ Your domain's texts (health news, climate reports, education policy)
 ```bash
 # Fork → reproduce → publish
 git clone https://github.com/nabil0x/LILA-LAB
-cd papers/paper2_systematic_review/replications/
+cd technical-reports/paper2_systematic_review/replications/
 python3 run_all_phases.py
 
 # Write your replication report
-cp papers/extensions/REPLICATION_TEMPLATE.md my_replication.md
+cp technical-reports/extensions/REPLICATION_TEMPLATE.md my_replication.md
 # Fill in: which results replicated, which didn't, why
 ```
 
@@ -82,7 +82,7 @@ cp papers/extensions/REPLICATION_TEMPLATE.md my_replication.md
 **What you get**: Replication report published in this repository + potential co-authorship on a replication paper
 **Innovation**: Science advances when results are independently verified.
 
-**→ Template**: `papers/extensions/REPLICATION_TEMPLATE.md`
+**→ Template**: `technical-reports/extensions/REPLICATION_TEMPLATE.md`
 
 ---
 
@@ -158,7 +158,7 @@ The cleanest way to contribute a substantial research extension:
 
 ```
 1. Fork this repository
-2. Create your extension in papers/extensions/your_study/
+2. Create your extension in technical-reports/extensions/your_study/
 3. Add your code, data, manuscript
 4. Open a Pull Request
 5. We review, merge, and you become a contributor
@@ -173,7 +173,7 @@ If you prefer to maintain your own independent repository:
 ```
 1. Develop your extension in your own repo
 2. Open an issue in this repo with a link
-3. We add your repo as a git submodule under papers/extensions/
+3. We add your repo as a git submodule under technical-reports/extensions/
 4. Your repo stays yours — we link to it
 ```
 
@@ -184,7 +184,7 @@ Your work remains independent while being part of the collective infrastructure.
 If you don't use git:
 
 ```
-1. Submit your paper draft + data to ann.n.nabil@gmail.com
+1. Submit your paper draft + data to lila.lab0x@gmail.com
 2. We review for fit with the research program
 3. We collaborate on revisions
 4. Paper gets published as part of the BENI extension series
@@ -205,7 +205,7 @@ If you don't use git:
 | Infrastructure/Tooling | Co-authorship on dedicated tool paper |
 | Educational Materials | Co-authorship on educational paper |
 
-**All contributions** are recorded in `papers/contributions/OWNERS.csv` as a permanent scholarly record.
+**All contributions** are recorded in `technical-reports/contributions/OWNERS.csv` as a permanent scholarly record.
 
 ---
 
@@ -230,13 +230,13 @@ Level 5: Cross-language comparative analysis       → novel theoretical insight
 ```bash
 # 1. Choose your contribution model (1–8 above)
 # 2. Find the relevant template
-ls papers/extensions/
-cat papers/extensions/EXTENSION_TEMPLATE.md
+ls technical-reports/extensions/
+cat technical-reports/extensions/EXTENSION_TEMPLATE.md
 
 # 3. Record your intent
-echo "Your Name,Extension Author,papers/extensions,Apply BENI to Assamese,in_progress,2026-06-10," >> papers/contributions/OWNERS.csv
+echo "Your Name,Extension Author,technical-reports/extensions,Apply BENI to Assamese,in_progress,2026-06-10," >> technical-reports/contributions/OWNERS.csv
 
 # 4. Build your extension and submit
 ```
 
-**Questions?** Open a GitHub Discussion or email ann.n.nabil@gmail.com
+**Questions?** Open a GitHub Discussion or email lila.lab0x@gmail.com

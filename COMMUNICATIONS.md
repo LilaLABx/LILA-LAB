@@ -53,7 +53,7 @@ No channel operates in isolation. Every post, upload, and announcement is design
                           │    live in            │
                           │    communications/     │
                           │  ─ Content originates  │
-                          │    from papers/ and   │
+                          │    from technical-reports/ and   │
                           │    beni/ pipelines    │
                           └──────────────────────┘
 ```
@@ -63,7 +63,7 @@ No channel operates in isolation. Every post, upload, and announcement is design
 ## How Content Flows
 
 ```
-papers/  ──→ research output ──→ OSF preprint + Zenodo DOI + arXiv
+technical-reports/  ──→ research output ──→ OSF preprint + Zenodo DOI + arXiv
                 │
                 ├──→ GitHub release ──→ Hugging Face model/dataset
                 │
@@ -119,7 +119,7 @@ ls communications/templates/
 | `COLLABORATION.md` | How researchers contribute — includes communication about contributions |
 | `README.md` | Public face of the repo — links to all channels |
 | `CITATION.cff` | Citation metadata — used by every research platform |
-| `papers/extensions/INDEX.md` | Extension registry — announced through social channels |
+| `technical-reports/extensions/INDEX.md` | Extension registry — announced through social channels |
 
 ---
 
