@@ -86,10 +86,10 @@ This document focuses on **research platform distribution** (OSF, Zenodo, Huggin
 | Document | Purpose |
 |----------|---------|
 | [`COMMUNICATIONS.md`](COMMUNICATIONS.md) | Hub entry point |
-| [`communications/CHANNELS.md`](communications/CHANNELS.md) | Complete 15+ channel inventory |
-| [`communications/SOCIAL_MEDIA_STRATEGY.md`](communications/SOCIAL_MEDIA_STRATEGY.md) | X, LinkedIn, YouTube plans |
-| [`communications/COMMUNITY.md`](communications/COMMUNITY.md) | Discord, contributor coordination |
-| [`communications/BRAND_GUIDELINES.md`](communications/BRAND_GUIDELINES.md) | LILA+XENI naming and identity |
+| [`CHANNELS.md`](CHANNELS.md) | Complete 15+ channel inventory |
+| [`SOCIAL_MEDIA_STRATEGY.md`](SOCIAL_MEDIA_STRATEGY.md) | X, LinkedIn, YouTube plans |
+| [`COMMUNITY.md`](COMMUNITY.md) | Discord, contributor coordination |
+| [`BRAND_GUIDELINES.md`](BRAND_GUIDELINES.md) | LILA+XENI naming and identity |
 
 ---
 

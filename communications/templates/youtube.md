@@ -42,7 +42,7 @@ LILA Lab Technical Report #[N]: [Paper/Video Title]
 
 📄 Full paper: [OSF/arXiv link]
 💻 Code: [GitHub link]
-🤝 Collaborate: [COLLABORATION.md link]
+🤝 Collaborate: [../../docs/COLLABORATION.md link]
 📅 Subscribe: [YouTube channel link]
 
 [TIMESTAMPS]

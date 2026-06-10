@@ -116,10 +116,10 @@ ls communications/templates/
 | Document | Connection |
 |----------|------------|
 | `DISTRIBUTION_STRATEGY.md` | Research platform upload manifests (OSF, Zenodo, HF, Mendeley) |
-| `COLLABORATION.md` | How researchers contribute — includes communication about contributions |
-| `README.md` | Public face of the repo — links to all channels |
-| `CITATION.cff` | Citation metadata — used by every research platform |
-| `technical-reports/extensions/INDEX.md` | Extension registry — announced through social channels |
+| `../docs/COLLABORATION.md` | How researchers contribute — includes communication about contributions |
+| `../README.md` | Public face of the repo — links to all channels |
+| `../CITATION.cff` | Citation metadata — used by every research platform |
+| `../technical-reports/extensions/INDEX.md` | Extension registry — announced through social channels |
 
 ---
 

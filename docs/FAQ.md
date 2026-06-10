@@ -34,7 +34,7 @@ cd pipelines/beni/experiment/beni_pilot
 pip install -r requirements.txt
 ```
 
-See the [README](README.md#installation) for full installation instructions.
+See the [README](../README.md#installation) for full installation instructions.
 
 ---
 
@@ -59,7 +59,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 OPENAI_API_KEY=sk-proj-...
 ```
 
-The pipeline degrades gracefully. You can still run classification and index construction without API keys. See [`pipelines/beni/annotation/llm_annotate.py`](pipelines/beni/annotation/llm_annotate.py).
+The pipeline degrades gracefully. You can still run classification and index construction without API keys. See [`pipelines/beni/annotation/llm_annotate.py`](../pipelines/beni/annotation/llm_annotate.py).
 
 ---
 
@@ -94,7 +94,7 @@ You can contribute by:
 - **Validating LLM outputs** by reviewing and correcting labels produced by the automated pipeline
 - **Documenting dialectal variants**, idioms, and culturally specific expressions
 
-All contributions are recorded in [`technical-reports/contributions/OWNERS.csv`](technical-reports/contributions/OWNERS.csv) and lead to co-authorship or acknowledgement in publications.
+All contributions are recorded in [`technical-reports/contributions/OWNERS.csv`](../technical-reports/contributions/OWNERS.csv) and lead to co-authorship or acknowledgement in publications.
 
 See the [Linguistic Contribution Guide](LINGUISTIC_CONTRIBUTION_GUIDE.md) and the [Collaboration Framework](COLLABORATION.md) for details.
 
@@ -122,7 +122,7 @@ pip install -r requirements.txt
 python bot.py
 ```
 
-The bot handles community registration, contributor tracking, and project notifications. See the [README](README.md#for-developers) for more.
+The bot handles community registration, contributor tracking, and project notifications. See the [README](../README.md#for-developers) for more.
 
 ---
 
@@ -132,7 +132,7 @@ The XENI pipeline is designed to be language-agnostic. To train a model for a ne
 
 1. **Copy the template:** `cp -r pipelines/template/ pipelines/[your-lang]/`
 2. **Collect data:** Gather at least 1,000 news articles in your language
-3. **Define a schema:** Adapt [`pipelines/beni/annotation/ANNOTATION_SCHEMA.md`](pipelines/beni/annotation/ANNOTATION_SCHEMA.md) for your domain
+3. **Define a schema:** Adapt [`pipelines/beni/annotation/ANNOTATION_SCHEMA.md`](../pipelines/beni/annotation/ANNOTATION_SCHEMA.md) for your domain
 4. **Annotate:** Use the LLM annotation scripts or Label Studio for human annotation
 5. **Train:** Run `train.py --model-type tfidf --data-source your-data`
 6. **Build your index:** Run `build_index.py`
@@ -156,7 +156,7 @@ To cite the overall project:
 }
 ```
 
-For individual papers in the 6-paper series, see [`technical-reports/README.md`](technical-reports/README.md) for specific citations. To cite the Potrika dataset:
+For individual papers in the 6-paper series, see [`technical-reports/README.md`](../technical-reports/README.md) for specific citations. To cite the Potrika dataset:
 
 ```bibtex
 @dataset{potrika_bangla_news,
@@ -183,7 +183,7 @@ For the LILA-BENI dataset:
 
 ## Where are the research papers?
 
-LILA Lab is producing a 6-paper technical report series, all available in [`technical-reports/`](technical-reports/):
+LILA Lab is producing a 6-paper technical report series, all available in [`technical-reports/`](../technical-reports/):
 
 | Paper | Title | Status |
 |-------|-------|--------|
@@ -219,7 +219,7 @@ XENI stands for **[Language initial] + Exploration & Native-language Intelligenc
 - **AENI** = Assamese XENI
 - **NENI** = Nepali XENI
 
-Each XENI pipeline collects native-language news, annotates articles using an LLM ensemble, trains a classifier, constructs a monthly narrative index, and validates the index against real-world indicators. The full framework is documented in [`pipelines/README.md`](pipelines/README.md).
+Each XENI pipeline collects native-language news, annotates articles using an LLM ensemble, trains a classifier, constructs a monthly narrative index, and validates the index against real-world indicators. The full framework is documented in [`pipelines/README.md`](../pipelines/README.md).
 
 ---
 
@@ -257,7 +257,7 @@ For BanglaBERT fine-tuning, a GPU is recommended. The full 70,000-article, 3-epo
 
 The index is built in two steps. First, the trained classifier predicts an "economic probability" for each article in the corpus. Second, articles are grouped by month, and the index is the proportion of articles with probability above 0.5. The result is a monthly time series showing the share of economic news in the language's media.
 
-The BENI Economic Index contains 79 monthly observations from June 2014 to December 2020, with a mean economic news share of 38.9%. See [`pipelines/beni/experiment/beni_pilot/README.md`](pipelines/beni/experiment/beni_pilot/README.md).
+The BENI Economic Index contains 79 monthly observations from June 2014 to December 2020, with a mean economic news share of 38.9%. See [`pipelines/beni/experiment/beni_pilot/README.md`](../pipelines/beni/experiment/beni_pilot/README.md).
 
 ---
 
@@ -265,7 +265,7 @@ The BENI Economic Index contains 79 monthly observations from June 2014 to Decem
 
 Each article is annotated independently by multiple LLMs (Claude and GPT-4o). When the models disagree, adjudication uses majority voting. If there is a tie, the higher-confidence label wins. The adjudicated labels become the ground truth for classifier training.
 
-The ensemble approach improves label reliability and provides natural confidence estimates. See [`pipelines/beni/annotation/adjudicate.py`](pipelines/beni/annotation/adjudicate.py) and the [annotation schema](pipelines/beni/annotation/ANNOTATION_SCHEMA.md).
+The ensemble approach improves label reliability and provides natural confidence estimates. See [`pipelines/beni/annotation/adjudicate.py`](../pipelines/beni/annotation/adjudicate.py) and the [annotation schema](../pipelines/beni/annotation/ANNOTATION_SCHEMA.md).
 
 ---
 

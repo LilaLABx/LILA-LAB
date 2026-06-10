@@ -1,12 +1,12 @@
 # Contributor Quickstart
 
-Get from zero to your first pull request in about five minutes. For the full picture, see [CONTRIBUTING.md](../CONTRIBUTING.md) and [COLLABORATION.md](../COLLABORATION.md).
+Get from zero to your first pull request in about five minutes. For the full picture, see [CONTRIBUTING.md](../CONTRIBUTING.md) and [COLLABORATION.md](COLLABORATION.md).
 
 ## 1. Pick your path
 
 | Path | Best if you… | Start here |
 |------|--------------|------------|
-| **Linguistic** | Speak Bangla, Assamese, Nepali, or another low-resource language | [LINGUISTIC_CONTRIBUTION_GUIDE.md](../LINGUISTIC_CONTRIBUTION_GUIDE.md) |
+| **Linguistic** | Speak Bangla, Assamese, Nepali, or another low-resource language | [LINGUISTIC_CONTRIBUTION_GUIDE.md](LINGUISTIC_CONTRIBUTION_GUIDE.md) |
 | **Code** | Write Python, build pipelines, or fix bugs | [pipelines/template/README.md](../pipelines/template/README.md) |
 | **Docs** | Improve guides, READMEs, or translations | [CONTRIBUTING.md](../CONTRIBUTING.md) |
 

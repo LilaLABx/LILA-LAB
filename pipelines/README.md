@@ -216,7 +216,7 @@ The BENI pipeline demonstrates what's possible:
 | 🛠️ **Infrastructure** | Build dashboards, APIs, tools | Tool paper co-authorship |
 | 📖 **Education** | Create tutorials, course modules | Educational paper |
 
-**→ Full framework:** [`COLLABORATION.md`](../COLLABORATION.md)
+**→ Full framework:** [`COLLABORATION.md`](../docs/COLLABORATION.md)
 
 ---
 

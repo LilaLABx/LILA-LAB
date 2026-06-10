@@ -72,4 +72,4 @@ Submit your completed report as a Pull Request to `technical-reports/extensions/
 3. Open a Pull Request or email the completed report.
 4. The maintainers will review and, if accepted, link the report from the original paper's README.
 
-Accepted replication reports earn the replicator an authorship credit or formal acknowledgment, depending on the scope of work (see [COLLABORATION.md](../../COLLABORATION.md)).
+Accepted replication reports earn the replicator an authorship credit or formal acknowledgment, depending on the scope of work (see [COLLABORATION.md](../../docs/COLLABORATION.md)).

@@ -50,4 +50,4 @@ To contribute:
 2. Add a row to [`technical-reports/contributions/OWNERS.csv`](../contributions/OWNERS.csv) recording your contribution.
 3. Submit a Pull Request with a draft section or curated bibliography.
 
-See [`CONTRIBUTING.md`](../../CONTRIBUTING.md) for general contribution guidelines and [`COLLABORATION.md`](../../COLLABORATION.md) for authorship and credit policies.
+See [`CONTRIBUTING.md`](../../CONTRIBUTING.md) for general contribution guidelines and [`COLLABORATION.md`](../../docs/COLLABORATION.md) for authorship and credit policies.

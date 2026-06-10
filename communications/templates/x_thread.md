@@ -43,7 +43,7 @@
 **Tweet 7 (Call to action):**
 > Want to contribute YOUR language?
 >
-> → [Link to COLLABORATION.md]
+> → [Link to ../../docs/COLLABORATION.md]
 > → [Link to paper/dataset]
 > → [Link to GitHub]
 >
@@ -85,7 +85,7 @@
 
 > Want to build this for YOUR language?
 >
-> → COLLABORATION.md explains how: [link]
+> → ../../docs/COLLABORATION.md explains how: [link]
 > → Full paper: [OSF/arXiv link]
 > → Code: [GitHub link]
 >

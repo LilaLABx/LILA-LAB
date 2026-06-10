@@ -182,7 +182,7 @@ Want to bring the XENI pipeline to your language?
 
 ```bash
 # 1. Read the contribution guide
-cat LINGUISTIC_CONTRIBUTION_GUIDE.md
+cat docs/LINGUISTIC_CONTRIBUTION_GUIDE.md
 
 # 2. Check which languages are most needed
 cat technical-reports/extensions/INDEX.md
@@ -249,8 +249,8 @@ lila-lab/
 - [`pipelines/README.md`](pipelines/README.md) — full pipeline framework documentation
 - [`pipelines/beni/README.md`](pipelines/beni/README.md) — BENI deep dive
 - [`pipelines/beni/experiment/beni_pilot/README.md`](pipelines/beni/experiment/beni_pilot/README.md) — pilot experiment commands & results
-- [`COLLABORATION.md`](COLLABORATION.md) — full contribution framework
-- [`LINGUISTIC_CONTRIBUTION_GUIDE.md`](LINGUISTIC_CONTRIBUTION_GUIDE.md) — guide for language contributors
+- [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — full contribution framework
+- [`docs/LINGUISTIC_CONTRIBUTION_GUIDE.md`](docs/LINGUISTIC_CONTRIBUTION_GUIDE.md) — guide for language contributors
 
 ---
 
@@ -294,7 +294,7 @@ lila-lab/
 | 🛠️ **Infrastructure** | Build dashboards, APIs, tools | Tool paper co-authorship |
 | 📖 **Education** | Create tutorials, course modules | Educational paper |
 
-**→ Full framework:** [`COLLABORATION.md`](COLLABORATION.md)
+**→ Full framework:** [`docs/COLLABORATION.md`](docs/COLLABORATION.md)
 
 ---
 

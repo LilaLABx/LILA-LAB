@@ -21,7 +21,7 @@ Our target is **10 emerging-economy low-resource languages** with baseline news 
 | 9 | Tagalog (Filipino) | TIENI | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
 | 10 | Indonesian (Bahasa Indonesia) | IDENI | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
 
-**Progress:** 1 / 10 datasets collected. [Contribute a corpus →](../LINGUISTIC_CONTRIBUTION_GUIDE.md)
+**Progress:** 1 / 10 datasets collected. [Contribute a corpus →](../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md)
 
 ### Available Datasets
 
@@ -79,7 +79,7 @@ We accept contributions of:
 2. **Annotations** — Economic/Not Economic labels with cultural context
 3. **Dialectal variants** — Chittagonian, Sylheti, Rangpuri, etc.
 
-See `LINGUISTIC_CONTRIBUTION_GUIDE.md` for submission guidelines.
+See `../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md` for submission guidelines.
 
 ### Distribution Platforms
 
@@ -107,7 +107,7 @@ pipelines/[x]eni/ ──→ data/ ──→ OSF / Zenodo / Hugging Face / Mendel
                               │
                               ▼
                         Citation Funnel
-                      (DISTRIBUTION_STRATEGY.md)
+                      (../communications/DISTRIBUTION_STRATEGY.md)
 ```
 
 The manifests reference content from:

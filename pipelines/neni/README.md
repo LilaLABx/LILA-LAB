@@ -38,4 +38,4 @@ cd pipelines/neni/
 
 A validated NENI pipeline producing narrative indices across one or more domains, with a first-author paper on Nepali economic narratives (or your chosen domain).
 
-**→ Full contribution framework:** [`COLLABORATION.md`](../../COLLABORATION.md)
+**→ Full contribution framework:** [`COLLABORATION.md`](../../docs/COLLABORATION.md)

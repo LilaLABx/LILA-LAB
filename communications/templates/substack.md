@@ -39,7 +39,7 @@ Welcome to the LILA Lab monthly digest. Here's what happened in the LILA ecosyst
 
 ---
 
-*LILA Lab is a collaborative research platform building NLP infrastructure for low-resource languages. Learn more: [COLLABORATION.md link]*
+*LILA Lab is a collaborative research platform building NLP infrastructure for low-resource languages. Learn more: [../../docs/COLLABORATION.md link]*
 ```
 
 ---
@@ -59,7 +59,7 @@ Welcome to the first issue of LILA Lab Monthly. This is where we share what's ha
 
 ## 🛠️ Pipeline Updates
 
-The BENI pipeline now has full documentation for language adaptation. The modulariation means anyone can swap the language data and run the full pipeline with 3 commands (see the tutorial in COLLABORATION.md).
+The BENI pipeline now has full documentation for language adaptation. The modulariation means anyone can swap the language data and run the full pipeline with 3 commands (see the tutorial in ../../docs/COLLABORATION.md).
 
 ## 👥 Community Highlights
 
@@ -79,7 +79,7 @@ This month we launched the LILA Communications Center — this repository is now
 
 We're seeking Assamese, Nepali, and Sylheti native speakers for annotation work. Each contributor receives co-authorship on the resulting paper.
 
-Full details: [COLLABORATION.md link]
+Full details: [../../docs/COLLABORATION.md link]
 
 ---
 

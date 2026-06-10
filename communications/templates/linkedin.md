@@ -24,7 +24,7 @@
 
 [Call to Action]
 We're actively seeking [linguists / NLP researchers / annotators] for [languages].
-Full collaboration framework: [COLLABORATION.md link]
+Full collaboration framework: [../../docs/COLLABORATION.md link]
 Full paper: [OSF/arXiv link]
 
 #LILALab #[field] #[languages]
@@ -51,7 +51,7 @@ The pipeline is language-agnostic. We designed it for easy adaptation — swap t
 **Call to Action:**
 We're actively seeking linguistic experts for Assamese, Nepali, and other South Asian languages to help build the next XENI pipelines. If you speak a language underserved by current NLP, we want to work with you.
 
-Full collaboration framework → [COLLABORATION.md link]
+Full collaboration framework → [../../docs/COLLABORATION.md link]
 Technical report → [OSF/arXiv link]
 Code → [GitHub link]
 

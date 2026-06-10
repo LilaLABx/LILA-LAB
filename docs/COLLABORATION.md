@@ -23,7 +23,7 @@ Your language's news corpus
 **What you get**: First-author publication + your language's first LLM-validated narrative index
 **Innovation**: Every new language reveals something about how economic narratives work differently — you discover that.
 
-**→ Template**: `technical-reports/extensions/EXTENSION_TEMPLATE.md`
+**→ Template**: `../technical-reports/extensions/EXTENSION_TEMPLATE.md`
 
 ---
 
@@ -44,7 +44,7 @@ Your domain's texts (health news, climate reports, education policy)
 **What you get**: First-author publication + opens a new measurement subfield
 **Innovation**: You create the first climate narrative index for a low-resource language. Nobody has done this.
 
-**→ Template**: `technical-reports/extensions/EXTENSION_TEMPLATE.md`
+**→ Template**: `../technical-reports/extensions/EXTENSION_TEMPLATE.md`
 
 ---
 
@@ -82,7 +82,7 @@ cp technical-reports/extensions/REPLICATION_TEMPLATE.md my_replication.md
 **What you get**: Replication report published in this repository + potential co-authorship on a replication paper
 **Innovation**: Science advances when results are independently verified.
 
-**→ Template**: `technical-reports/extensions/REPLICATION_TEMPLATE.md`
+**→ Template**: `../technical-reports/extensions/REPLICATION_TEMPLATE.md`
 
 ---
 
@@ -205,7 +205,7 @@ If you don't use git:
 | Infrastructure/Tooling | Co-authorship on dedicated tool paper |
 | Educational Materials | Co-authorship on educational paper |
 
-**All contributions** are recorded in `technical-reports/contributions/OWNERS.csv` as a permanent scholarly record.
+**All contributions** are recorded in `../technical-reports/contributions/OWNERS.csv` as a permanent scholarly record.
 
 ---
 

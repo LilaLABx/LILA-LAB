@@ -110,7 +110,7 @@ SMTP_PASSWORD=your_app_password
 
 ## Contributing to Infrastructure
 
-Infrastructure contributions are welcome! See [`COLLABORATION.md`](../COLLABORATION.md) for the full framework.
+Infrastructure contributions are welcome! See [`COLLABORATION.md`](../docs/COLLABORATION.md) for the full framework.
 
 **High-need areas:**
 - Dashboard deployment and enhancements

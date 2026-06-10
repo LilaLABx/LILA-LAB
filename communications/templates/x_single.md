@@ -31,7 +31,7 @@ We're looking for [language] speakers to help [task].
 
 [1 sentence what they get in return]
 
-🔗 [Link to COLLABORATION.md / LINGUISTIC_CONTRIBUTION_GUIDE.md]
+🔗 [Link to ../../docs/COLLABORATION.md / ../../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md]
 ```
 
 **Example:**
@@ -41,7 +41,7 @@ We're looking for [language] speakers to help [task].
 >
 > Co-authorship on the resulting paper.
 >
-> 🔗 COLLABORATION.md
+> 🔗 ../../docs/COLLABORATION.md
 
 ---
 

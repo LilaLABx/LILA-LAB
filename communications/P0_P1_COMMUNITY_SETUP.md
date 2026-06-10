@@ -14,7 +14,7 @@ These items block community contribution. Without them, people cannot find, join
 |------|--------|-------|-------|
 | Rename repo from `economic-narrative-indices` to `LILA-LAB` | ✅ Complete | Ann N. Nabil | Redirects auto-created. |
 | Add `README.md` with channel links, contribution guide, and badge | ⏳ Pending | Ann N. Nabil | First thing newcomers see. Must include Discord, OSF, HF links. |
-| Add `CONTRIBUTING.md` with 8 contribution models | ⏳ Pending | Ann N. Nabil | Reference `COLLABORATION.md` content. |
+| Add `CONTRIBUTING.md` with 8 contribution models | ⏳ Pending | Ann N. Nabil | Reference `../docs/COLLABORATION.md` content. |
 | Add `CODE_OF_CONDUCT.md` | ⏳ Pending | Ann N. Nabil | Pull from `communications/COMMUNITY.md` Section "Code of Conduct" |
 | Add `LICENSE` file | ⏳ Pending | Ann N. Nabil | MIT or Apache 2.0 — standard for academic open source |
 | Add `CITATION.cff` | ⏳ Pending | Ann N. Nabil | Enables "Cite this repository" on GitHub |
@@ -29,7 +29,7 @@ These items block community contribution. Without them, people cannot find, join
 |------|--------|-------|-------|
 | Create Discord server at `discord.gg/TrrdKbky` | ⏳ Pending | Ann N. Nabil | — |
 | Set up channels per `COMMUNITY.md`: `#welcome`, `#announcements`, `#general`, `#linguistic-data`, `#pipelines`, `#extensions`, `#paper-writing`, `#monthly-lab-call` | ⏳ Pending | Ann N. Nabil | Match documented structure exactly |
-| Write `#welcome` pinned message with rules + onboarding flow | ⏳ Pending | Ann N. Nabil | Link to `COLLABORATION.md`, `LINGUISTIC_CONTRIBUTION_GUIDE.md` |
+| Write `#welcome` pinned message with rules + onboarding flow | ⏳ Pending | Ann N. Nabil | Link to `../docs/COLLABORATION.md`, `../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md` |
 | Set up role hierarchy: `@Researcher`, `@Contributor`, `@Annotator`, `@Newcomer` | ⏳ Pending | Ann N. Nabil | Enables channel access control |
 | Create Discord invite link with no expiry | ⏳ Pending | Ann N. Nabil | Permanent link for all docs |
 | Add Discord widget to GitHub README | ⏳ Pending | Ann N. Nabil | One-click join from repo |

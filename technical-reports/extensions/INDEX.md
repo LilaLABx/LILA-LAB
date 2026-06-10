@@ -47,7 +47,7 @@ If you are interested in leading an extension, please read the [EXTENSION_TEMPLA
 2. Submit a Pull Request that adds your proposal as a new file in this directory and adds a row to this index.
 3. Alternatively, discuss your idea on Discord and work with the maintainers to formalize a proposal.
 
-Extensions that result in a complete pipeline, validation, and manuscript are eligible for first-author publication under the LILA Lab collaboration framework (see [COLLABORATION.md](../../COLLABORATION.md)).
+Extensions that result in a complete pipeline, validation, and manuscript are eligible for first-author publication under the LILA Lab collaboration framework (see [COLLABORATION.md](../../docs/COLLABORATION.md)).
 
 ---
 

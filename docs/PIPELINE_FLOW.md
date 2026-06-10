@@ -15,7 +15,7 @@ flowchart LR
 
 | Stage | What happens | Code / docs |
 |-------|--------------|-------------|
-| **Article collection** | Contributors submit Bangla news URLs, forms, or corpus files | [dataset/beni-v1/](https://github.com/LilaLABx/LILA-LAB/tree/main/dataset/beni-v1), [LINGUISTIC_CONTRIBUTION_GUIDE.md](../LINGUISTIC_CONTRIBUTION_GUIDE.md) |
+| **Article collection** | Contributors submit Bangla news URLs, forms, or corpus files | [dataset/beni-v1/](https://github.com/LilaLABx/LILA-LAB/tree/main/dataset/beni-v1), [LINGUISTIC_CONTRIBUTION_GUIDE.md](LINGUISTIC_CONTRIBUTION_GUIDE.md) |
 | **Bucket building** | Articles are batched and prepared for annotation | [pipelines/beni/database/beni_p0_pipeline.py](https://github.com/LilaLABx/LILA-LAB/blob/main/pipelines/beni/database/beni_p0_pipeline.py) |
 | **LLM annotation** | Claude, GPT-4o, and ensemble models label economic relevance | [pipelines/beni/annotation/llm_annotate.py](https://github.com/LilaLABx/LILA-LAB/blob/main/pipelines/beni/annotation/llm_annotate.py) |
 | **Human review** | Native speakers verify uncertain or borderline labels | [pipelines/beni/database/P0_P1_EXECUTION.md](https://github.com/LilaLABx/LILA-LAB/blob/main/pipelines/beni/database/P0_P1_EXECUTION.md) |

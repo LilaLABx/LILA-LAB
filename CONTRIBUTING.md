@@ -59,9 +59,9 @@ This log is the source of truth for authorship and acknowledgement decisions.
 
 | Guide | What it covers |
 |-------|---------------|
-| `COLLABORATION.md` | **START HERE** — 8 research contribution models that lead to co-authorship |
-| `LINGUISTIC_CONTRIBUTION_GUIDE.md` | How linguistic experts can contribute native-language data |
-| `SUBREPOS.md` | How to link your independent repository as a git submodule |
+| `docs/COLLABORATION.md` | **START HERE** — 8 research contribution models that lead to co-authorship |
+| `docs/LINGUISTIC_CONTRIBUTION_GUIDE.md` | How linguistic experts can contribute native-language data |
+| `docs/SUBREPOS.md` | How to link your independent repository as a git submodule |
 | `pipelines/template/` | **Pipeline template** — start here to bootstrap a new XENI pipeline for your language |
 | `pipelines/template/README.md` | Step-by-step instructions for copying and adapting the template |
 | `pipelines/template/experiment/train.py` | Training script scaffold (TF-IDF, BERT) |

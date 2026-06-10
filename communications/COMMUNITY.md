@@ -23,7 +23,7 @@ The primary real-time coordination space.
 
 | Channel | Purpose |
 |---------|---------|
-| `#welcome` | Newcomer onboarding, rules, link to `COLLABORATION.md` |
+| `#welcome` | Newcomer onboarding, rules, link to `../docs/COLLABORATION.md` |
 | `#announcements` | New papers, dataset releases, contributor milestones (read-only) |
 | `#general` | Q&A, discussion, ideas — open to all |
 | `#linguistic-data` | Coordinate annotation tasks, ask language-specific questions |
@@ -77,8 +77,8 @@ For active contributors working on papers and extensions.
 ```
 New person arrives (Discord / GitHub / Email)
     │
-    ├── 1. Read COLLABORATION.md — 8 contribution models
-    ├── 2. Read LINGUISTIC_CONTRIBUTION_GUIDE.md (if linguist)
+    ├── 1. Read ../docs/COLLABORATION.md — 8 contribution models
+    ├── 2. Read ../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md (if linguist)
     ├── 3. Browse technical-reports/extensions/INDEX.md — active extensions
     ├── 4. Introduce yourself in Discord #welcome
     ├── 5. Choose contribution model

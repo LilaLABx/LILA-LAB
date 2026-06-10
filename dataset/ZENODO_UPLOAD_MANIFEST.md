@@ -58,7 +58,7 @@
 | `LICENSE` | CC BY 4.0 text |
 | `DATASET_CARD.md` | Formal dataset card (Hugging Face style) |
 | `FILE_SCHEMA.md` | Schema for every file in the dataset |
-| `DISTRIBUTION_STRATEGY.md` | Multi-platform distribution plan |
+| `../communications/DISTRIBUTION_STRATEGY.md` | Multi-platform distribution plan |
 
 ---
 

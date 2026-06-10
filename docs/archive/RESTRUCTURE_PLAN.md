@@ -24,10 +24,10 @@ lila-lab/
 │   ├── CITATION.cff                       # Citation metadata
 │   ├── CONTRIBUTING.md                    # General contribution guide
 │   ├── CODE_OF_CONDUCT.md                 # Community code of conduct
-│   ├── COMMUNICATIONS.md                  # Multi-channel command center
-│   ├── COLLABORATION.md                   # Research collaboration framework
-│   ├── LINGUISTIC_CONTRIBUTION_GUIDE.md   # Language data contribution
-│   ├── SUBREPOS.md                        # Git submodule guide
+│   ├── ../../communications/COMMUNICATIONS.md                  # Multi-channel command center
+│   ├── ../COLLABORATION.md                   # Research collaboration framework
+│   ├── ../LINGUISTIC_CONTRIBUTION_GUIDE.md   # Language data contribution
+│   ├── ../SUBREPOS.md                        # Git submodule guide
 │   ├── .gitignore
 │   └── .env.example                       # Environment template
 │
@@ -202,10 +202,10 @@ lila-lab/
 - `CITATION.cff` → Update repository URL
 - `CONTRIBUTING.md` → Keep as-is
 - `CODE_OF_CONDUCT.md` → Create from COMMUNITY.md
-- `COMMUNICATIONS.md` → Update paths
-- `COLLABORATION.md` → Keep as-is
-- `LINGUISTIC_CONTRIBUTION_GUIDE.md` → Keep as-is
-- `SUBREPOS.md` → Keep as-is
+- `../../communications/COMMUNICATIONS.md` → Update paths
+- `../COLLABORATION.md` → Keep as-is
+- `../LINGUISTIC_CONTRIBUTION_GUIDE.md` → Keep as-is
+- `../SUBREPOS.md` → Keep as-is
 - `.gitignore` → Update paths
 
 ### Move: beni/ → pipelines/beni/

@@ -61,7 +61,7 @@ Key finding: [one line result that surprises people]
 ... [continue thread]
 
 Final/N Want to do this for YOUR language?
-   → COLLABORATION.md in our repo shows how.
+   → ../docs/COLLABORATION.md in our repo shows how.
    → Fork, extend, publish.
 ```
 
@@ -87,7 +87,7 @@ Final/N Want to do this for YOUR language?
 
 [Call to action]
 We're actively seeking linguistic experts for Assamese, Nepali, Sylheti, and more.
-→ Link to COLLABORATION.md
+→ Link to ../docs/COLLABORATION.md
 #LILALab #NLP #LowResourceLanguages #OpenResearch
 
 [Image: pipeline diagram or result chart]
@@ -102,7 +102,7 @@ We're actively seeking linguistic experts for Assamese, Nepali, Sylheti, and mor
 | **Series** | "LILA Lab Pipeline" series: each video walks through one pipeline component |
 | **Audience** | Students, new contributors, visual learners |
 | **SEO** | Title format: "LILA Lab: [What the video covers]" |
-| **Description** | Always include: GitHub link, relevant DOI, COLLABORATION.md link, timestamps |
+| **Description** | Always include: GitHub link, relevant DOI, ../docs/COLLABORATION.md link, timestamps |
 | **Thumbnail** | Text overlay summarizing the key takeaway |
 
 **Video types:**
