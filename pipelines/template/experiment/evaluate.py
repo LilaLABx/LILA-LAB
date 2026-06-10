@@ -50,10 +50,7 @@ def load_test_set(test_path: str) -> pd.DataFrame:
     elif path.suffix == ".csv":
         return read_csv_safe(path)
     else:
-        raise ValueError(
-            f"Unsupported file format: {path.suffix}. "
-            f"Expected .jsonl or .csv"
-        )
+        raise ValueError(f"Unsupported file format: {path.suffix}. Expected .jsonl or .csv")
 
 
 def _infer_columns(df: pd.DataFrame) -> tuple[str, str]:
@@ -65,9 +62,7 @@ def _infer_columns(df: pd.DataFrame) -> tuple[str, str]:
     Returns:
         Tuple of (text_column, label_column).
     """
-    text_col = "text" if "text" in df.columns else df.select_dtypes(
-        include=["object"]
-    ).columns[0]
+    text_col = "text" if "text" in df.columns else df.select_dtypes(include=["object"]).columns[0]
 
     label_col = (
         "label"
@@ -102,7 +97,9 @@ def evaluate_single_model(
     text_col, label_col = _infer_columns(df)
     logger.info(
         "Loaded %d test articles. Text column: '%s', Label column: '%s'",
-        len(df), text_col, label_col,
+        len(df),
+        text_col,
+        label_col,
     )
 
     from pipelines.shared.data import normalize_text
@@ -128,7 +125,8 @@ def evaluate_single_model(
 
     logger.info(
         "Accuracy: %.4f, Macro F1: %.4f",
-        metrics["accuracy"], metrics["macro_f1"],
+        metrics["accuracy"],
+        metrics["macro_f1"],
     )
 
     return metrics
@@ -156,7 +154,8 @@ def compare_models(results_dir: str) -> dict[str, Any]:
 
     if not metrics_files:
         logger.warning(
-            "No evaluation_metrics.json files found in %s", results_dir,
+            "No evaluation_metrics.json files found in %s",
+            results_dir,
         )
         return comparison
 
@@ -218,9 +217,7 @@ def main() -> None:
         parser.print_help()
         return
 
-    logger.info(
-        "Evaluation complete. Deliverable: metrics report + predictions CSV."
-    )
+    logger.info("Evaluation complete. Deliverable: metrics report + predictions CSV.")
 
 
 if __name__ == "__main__":

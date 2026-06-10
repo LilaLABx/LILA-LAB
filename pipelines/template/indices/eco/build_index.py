@@ -32,6 +32,7 @@ logger = logging.getLogger(__name__)
 
 # ── Data loading ──────────────────────────────────────────────────────
 
+
 def load_predictions(path: str) -> pd.DataFrame:
     """Load article-level predictions from a CSV file.
 
@@ -54,7 +55,11 @@ def load_predictions(path: str) -> pd.DataFrame:
 
     # Identify date column
     date_candidates = [
-        "date", "publication_date", "month", "year_month", "timestamp",
+        "date",
+        "publication_date",
+        "month",
+        "year_month",
+        "timestamp",
     ]
     date_col: str | None = next(
         (c for c in df.columns if c.lower() in date_candidates),
@@ -75,7 +80,8 @@ def load_predictions(path: str) -> pd.DataFrame:
     n_invalid = df["date"].isna().sum()
     if n_invalid:
         logger.warning(
-            "%d rows have invalid dates and will be dropped", n_invalid,
+            "%d rows have invalid dates and will be dropped",
+            n_invalid,
         )
         df = df.dropna(subset=["date"])
 
@@ -84,6 +90,7 @@ def load_predictions(path: str) -> pd.DataFrame:
 
 
 # ── Column normalisation ──────────────────────────────────────────────
+
 
 def normalise_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Map variant prediction column names to a standard set.
@@ -117,6 +124,7 @@ def normalise_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ── Index construction ────────────────────────────────────────────────
+
 
 def build_monthly_index(predictions_df: pd.DataFrame) -> pd.DataFrame:
     """Aggregate article-level predictions into a monthly narrative index.
@@ -154,25 +162,18 @@ def build_monthly_index(predictions_df: pd.DataFrame) -> pd.DataFrame:
         agg_spec["n_positive"] = ("prediction", "sum")
 
     # Group and aggregate
-    monthly = (
-        df.groupby("year_month", sort=True)
-        .agg(**agg_spec)
-        .reset_index()
-    )
+    monthly = df.groupby("year_month", sort=True).agg(**agg_spec).reset_index()
 
     # Economic share (fraction of articles predicted as positive)
     if "n_positive" in monthly.columns:
-        monthly["economic_share"] = (
-            monthly["n_positive"] / monthly["n_articles"]
-        ).round(4)
+        monthly["economic_share"] = (monthly["n_positive"] / monthly["n_articles"]).round(4)
 
     # Source-weighting normalisation
-    source_col: str | None = (
-        "source" if "source" in df.columns else None
-    )
+    source_col: str | None = "source" if "source" in df.columns else None
     if source_col is not None and "probability" in df.columns:
         logger.info(
-            "Applying source-weighting normalisation using '%s'", source_col,
+            "Applying source-weighting normalisation using '%s'",
+            source_col,
         )
         # Per-source, per-month mean probability
         source_monthly = (
@@ -204,16 +205,19 @@ def build_monthly_index(predictions_df: pd.DataFrame) -> pd.DataFrame:
 
 # ── CLI ───────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Build Economic Narrative Index",
     )
     parser.add_argument(
-        "--predictions", required=True,
+        "--predictions",
+        required=True,
         help="Article-level predictions CSV",
     )
     parser.add_argument(
-        "--output", default="./",
+        "--output",
+        default="./",
         help="Output directory for index files",
     )
     args = parser.parse_args()
@@ -241,13 +245,16 @@ def main() -> None:
 
     if "economic_share" in index.columns:
         summary["mean_economic_share"] = round(
-            float(index["economic_share"].mean()), 4,
+            float(index["economic_share"].mean()),
+            4,
         )
         summary["min_economic_share"] = round(
-            float(index["economic_share"].min()), 4,
+            float(index["economic_share"].min()),
+            4,
         )
         summary["max_economic_share"] = round(
-            float(index["economic_share"].max()), 4,
+            float(index["economic_share"].max()),
+            4,
         )
 
     summary_path = out_dir / "index_summary.json"

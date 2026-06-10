@@ -32,13 +32,22 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Columns to skip when identifying numeric indicator columns
-_SKIP_COLS = frozenset({
-    "month", "date", "year_month", "n_articles", "n_positive",
-    "n_sources", "id", "article_id",
-})
+_SKIP_COLS = frozenset(
+    {
+        "month",
+        "date",
+        "year_month",
+        "n_articles",
+        "n_positive",
+        "n_sources",
+        "id",
+        "article_id",
+    }
+)
 
 
 # ── Data loading ──────────────────────────────────────────────────────
+
 
 def load_index(path: str) -> pd.DataFrame:
     """Load a monthly narrative index CSV.
@@ -62,7 +71,8 @@ def load_index(path: str) -> pd.DataFrame:
 
     logger.info(
         "Index date range: %s to %s",
-        df["month"].min().date(), df["month"].max().date(),
+        df["month"].min().date(),
+        df["month"].max().date(),
     )
     return df
 
@@ -89,7 +99,8 @@ def load_macro_data(path: str) -> pd.DataFrame:
 
     logger.info(
         "Macro date range: %s to %s",
-        df["month"].min().date(), df["month"].max().date(),
+        df["month"].min().date(),
+        df["month"].max().date(),
     )
     return df
 
@@ -122,6 +133,7 @@ def _resolve_date_column(df: pd.DataFrame) -> str:
 
 # ── Numeric column detection ──────────────────────────────────────────
 
+
 def _numeric_indicator_columns(df: pd.DataFrame) -> list[str]:
     """Return names of numeric columns suitable for correlation analysis.
 
@@ -131,14 +143,11 @@ def _numeric_indicator_columns(df: pd.DataFrame) -> list[str]:
     Returns:
         List of numeric column names, excluding date-like and count columns.
     """
-    return [
-        c for c in df.columns
-        if c not in _SKIP_COLS
-        and pd.api.types.is_numeric_dtype(df[c])
-    ]
+    return [c for c in df.columns if c not in _SKIP_COLS and pd.api.types.is_numeric_dtype(df[c])]
 
 
 # ── Correlation logic ─────────────────────────────────────────────────
+
 
 def compute_correlations(
     index_series: pd.Series,
@@ -207,18 +216,10 @@ def compute_correlations(
         "pearson_p": round(pearson_p, 6),
         "spearman_r": round(spearman_r, 4),
         "spearman_p": round(spearman_p, 6),
-        "pearson_r_diff": (
-            round(pearson_r_diff, 4) if pearson_r_diff is not None else None
-        ),
-        "pearson_p_diff": (
-            round(pearson_p_diff, 6) if pearson_p_diff is not None else None
-        ),
-        "spearman_r_diff": (
-            round(spearman_r_diff, 4) if spearman_r_diff is not None else None
-        ),
-        "spearman_p_diff": (
-            round(spearman_p_diff, 6) if spearman_p_diff is not None else None
-        ),
+        "pearson_r_diff": (round(pearson_r_diff, 4) if pearson_r_diff is not None else None),
+        "pearson_p_diff": (round(pearson_p_diff, 6) if pearson_p_diff is not None else None),
+        "spearman_r_diff": (round(spearman_r_diff, 4) if spearman_r_diff is not None else None),
+        "spearman_p_diff": (round(spearman_p_diff, 6) if spearman_p_diff is not None else None),
         "cross_correlation": cross_corr,
     }
 
@@ -255,15 +256,16 @@ def validate_index(
 
     # Merge on month
     merged = pd.merge(
-        index, macro_data, on="month", how="inner",
+        index,
+        macro_data,
+        on="month",
+        how="inner",
         suffixes=("_index", "_macro"),
     )
     logger.info("Merged dataset: %d months", len(merged))
 
     if len(merged) < 3:
-        raise ValueError(
-            f"Insufficient overlapping observations: {len(merged)} (need ≥3)"
-        )
+        raise ValueError(f"Insufficient overlapping observations: {len(merged)} (need ≥3)")
 
     # Compute correlations for every pair
     correlations: list[dict[str, Any]] = []
@@ -277,10 +279,7 @@ def validate_index(
             correlations.append(result)
 
     # Summary
-    significant = sum(
-        1 for c in correlations
-        if "error" not in c and c.get("pearson_p", 1) < 0.05
-    )
+    significant = sum(1 for c in correlations if "error" not in c and c.get("pearson_p", 1) < 0.05)
     valid_pairs = sum(1 for c in correlations if "error" not in c)
 
     report: dict[str, Any] = {
@@ -308,20 +307,24 @@ def validate_index(
 
 # ── CLI ───────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Validate Economic Narrative Index",
     )
     parser.add_argument(
-        "--index", required=True,
+        "--index",
+        required=True,
         help="Monthly index CSV",
     )
     parser.add_argument(
-        "--macro", required=True,
+        "--macro",
+        required=True,
         help="Macroeconomic indicators CSV",
     )
     parser.add_argument(
-        "--output", default="./",
+        "--output",
+        default="./",
         help="Output directory for validation report",
     )
     args = parser.parse_args()
@@ -353,8 +356,10 @@ def main() -> None:
             logger.info(
                 "  %s: Pearson r=%.4f (p=%.4f), Spearman ρ=%.4f (p=%.4f)",
                 corr["indicator"],
-                corr["pearson_r"], corr["pearson_p"],
-                corr["spearman_r"], corr["spearman_p"],
+                corr["pearson_r"],
+                corr["pearson_p"],
+                corr["spearman_r"],
+                corr["spearman_p"],
             )
 
 

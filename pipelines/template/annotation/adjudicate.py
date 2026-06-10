@@ -32,12 +32,20 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Fields that carry metadata rather than annotation labels
-_META_FIELDS = frozenset({
-    "provider", "model", "error", "raw", "raw_response", "seed",
-})
+_META_FIELDS = frozenset(
+    {
+        "provider",
+        "model",
+        "error",
+        "raw",
+        "raw_response",
+        "seed",
+    }
+)
 
 
 # ── Data loading ──────────────────────────────────────────────────────
+
 
 def load_annotations(input_dir: str) -> list[dict]:
     """Load multi-annotator outputs from a directory.
@@ -59,9 +67,7 @@ def load_annotations(input_dir: str) -> list[dict]:
     jsonl_files = sorted(dir_path.glob("*.jsonl"))
 
     if not jsonl_files:
-        raise FileNotFoundError(
-            f"No JSONL files found in {input_dir}"
-        )
+        raise FileNotFoundError(f"No JSONL files found in {input_dir}")
 
     logger.info("Found %d annotation files", len(jsonl_files))
     records: list[dict[str, Any]] = []
@@ -78,11 +84,7 @@ def load_annotations(input_dir: str) -> list[dict]:
             record: dict[str, Any] = {
                 "article_id": article_id,
                 "annotator_id": annotator_id,
-                "annotations": {
-                    k: v
-                    for k, v in llm_ann.items()
-                    if k not in _META_FIELDS
-                },
+                "annotations": {k: v for k, v in llm_ann.items() if k not in _META_FIELDS},
             }
             # Preserve metadata for later use
             for meta in ("provider", "model"):
@@ -93,7 +95,8 @@ def load_annotations(input_dir: str) -> list[dict]:
 
     logger.info(
         "Loaded %d annotations from %d annotators",
-        len(records), len(jsonl_files),
+        len(records),
+        len(jsonl_files),
     )
     return records
 
@@ -114,6 +117,7 @@ def group_by_article(annotations: list[dict]) -> dict[str, list[dict]]:
 
 
 # ── Agreement statistics ──────────────────────────────────────────────
+
 
 def compute_interrater_agreement(
     grouped: dict[str, list[dict]],
@@ -184,9 +188,7 @@ def compute_interrater_agreement(
             "observed_agreement": fk["observed_agreement"],
             "expected_agreement": fk["expected_agreement"],
             "mean_pairwise_cohens_kappa": (
-                round(sum(pairwise_kappas) / len(pairwise_kappas), 4)
-                if pairwise_kappas
-                else None
+                round(sum(pairwise_kappas) / len(pairwise_kappas), 4) if pairwise_kappas else None
             ),
         }
 
@@ -194,6 +196,7 @@ def compute_interrater_agreement(
 
 
 # ── Adjudication methods ──────────────────────────────────────────────
+
 
 def majority_vote(annotations: list[dict]) -> dict[str, Any]:
     """Resolve annotation disagreements by simple majority voting.
@@ -255,9 +258,7 @@ def majority_vote(annotations: list[dict]) -> dict[str, Any]:
                 if confidence_scores:
                     top_value = max(
                         confidence_scores,
-                        key=lambda v: (
-                            sum(confidence_scores[v]) / len(confidence_scores[v])
-                        ),
+                        key=lambda v: (sum(confidence_scores[v]) / len(confidence_scores[v])),
                     )
 
         adjudicated[field] = top_value
@@ -267,11 +268,7 @@ def majority_vote(annotations: list[dict]) -> dict[str, Any]:
             "vote_distribution": dict(counter),
         }
 
-    ratios = [
-        info["agreement_ratio"]
-        for info in agreement_info.values()
-        if info["n_votes"] > 0
-    ]
+    ratios = [info["agreement_ratio"] for info in agreement_info.values() if info["n_votes"] > 0]
     mean_agreement = round(sum(ratios) / len(ratios), 4) if ratios else 0.0
 
     return {
@@ -344,9 +341,7 @@ def confidence_weighted(annotations: list[dict]) -> dict[str, Any]:
         agreement_info[field] = {
             "n_votes": len(counts),
             "weighted_agreement": (
-                round(counts[top_value] / total_weight, 4)
-                if total_weight > 0
-                else 0.0
+                round(counts[top_value] / total_weight, 4) if total_weight > 0 else 0.0
             ),
             "weight_distribution": dict(counts),
         }
@@ -360,19 +355,23 @@ def confidence_weighted(annotations: list[dict]) -> dict[str, Any]:
 
 # ── CLI ───────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Adjudication Pipeline")
     parser.add_argument(
-        "--input", required=True,
+        "--input",
+        required=True,
         help="Input annotations directory containing JSONL files",
     )
     parser.add_argument(
-        "--method", default="majority",
+        "--method",
+        default="majority",
         choices=["majority", "confidence", "human_review"],
         help="Adjudication method",
     )
     parser.add_argument(
-        "--output", default="refset/",
+        "--output",
+        default="refset/",
         help="Output directory for reference set and report",
     )
     args = parser.parse_args()
@@ -403,17 +402,19 @@ def main() -> None:
         else:
             resolved = majority_vote(records)
 
-        refset.append({
-            "article_id": article_id,
-            "annotators": [
-                {
-                    "annotator_id": r["annotator_id"],
-                    "annotations": r.get("annotations", {}),
-                }
-                for r in records
-            ],
-            **resolved,
-        })
+        refset.append(
+            {
+                "article_id": article_id,
+                "annotators": [
+                    {
+                        "annotator_id": r["annotator_id"],
+                        "annotations": r.get("annotations", {}),
+                    }
+                    for r in records
+                ],
+                **resolved,
+            }
+        )
 
     # Save
     out_dir = Path(args.output)
@@ -431,7 +432,8 @@ def main() -> None:
     n_flagged = sum(1 for r in refset if r.get("needs_human_review"))
     if n_flagged:
         logger.info(
-            "%d articles flagged for human review", n_flagged,
+            "%d articles flagged for human review",
+            n_flagged,
         )
 
     logger.info(

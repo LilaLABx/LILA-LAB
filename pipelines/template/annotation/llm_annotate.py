@@ -58,6 +58,7 @@ USER_PROMPT_TEMPLATE = (
 
 # ── Schema helpers ────────────────────────────────────────────────────
 
+
 def build_fields_prompt(schema: dict) -> str:
     """Build a human-readable description of annotation fields from a schema.
 
@@ -81,6 +82,7 @@ def build_fields_prompt(schema: dict) -> str:
 
 # ── Provider dispatch ─────────────────────────────────────────────────
 
+
 def get_llm_client(provider: str) -> Any:
     """Return the callable for the requested LLM provider.
 
@@ -100,14 +102,12 @@ def get_llm_client(provider: str) -> Any:
         "ollama": call_ollama,
     }
     if provider not in clients:
-        raise ValueError(
-            f"Unknown provider: {provider}. "
-            f"Choose from: {list(clients.keys())}"
-        )
+        raise ValueError(f"Unknown provider: {provider}. Choose from: {list(clients.keys())}")
     return clients[provider]
 
 
 # ── Core annotation logic ─────────────────────────────────────────────
+
 
 def annotate_article(
     article: dict,
@@ -194,16 +194,20 @@ def annotate_article(
         except Exception as exc:
             last_error = str(exc)
             if attempt < 2:
-                wait = 2 ** attempt
+                wait = 2**attempt
                 logger.warning(
                     "Attempt %d/3 failed for article %s, retrying in %ds: %s",
-                    attempt + 1, article_id, wait, exc,
+                    attempt + 1,
+                    article_id,
+                    wait,
+                    exc,
                 )
                 time.sleep(wait)
 
     logger.error(
         "Failed to annotate article %s after 3 attempts: %s",
-        article_id, last_error,
+        article_id,
+        last_error,
     )
     return {
         "id": article_id,
@@ -218,22 +222,27 @@ def annotate_article(
 
 # ── CLI ───────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="LLM Annotation Pipeline")
     parser.add_argument(
-        "--input", required=True,
+        "--input",
+        required=True,
         help="Input JSONL file containing articles",
     )
     parser.add_argument(
-        "--schema", required=True,
+        "--schema",
+        required=True,
         help="Annotation schema JSON file",
     )
     parser.add_argument(
-        "--output", default="annotations/",
+        "--output",
+        default="annotations/",
         help="Output directory for annotation results",
     )
     parser.add_argument(
-        "--provider", default="anthropic",
+        "--provider",
+        default="anthropic",
         choices=["anthropic", "openai", "gemini", "ollama"],
         help="LLM provider to use",
     )
@@ -243,19 +252,25 @@ def main() -> None:
         help="Model name for the chosen provider",
     )
     parser.add_argument(
-        "--language", default="your language",
+        "--language",
+        default="your language",
         help="Target language name (used in prompts)",
     )
     parser.add_argument(
-        "--pipeline-name", default="[X]ENI",
+        "--pipeline-name",
+        default="[X]ENI",
         help="Pipeline name (used in prompts)",
     )
     parser.add_argument(
-        "--max-articles", type=int, default=None,
+        "--max-articles",
+        type=int,
+        default=None,
         help="Limit number of articles to process (for testing)",
     )
     parser.add_argument(
-        "--batch-size", type=int, default=10,
+        "--batch-size",
+        type=int,
+        default=10,
         help="Number of articles between intermediate saves",
     )
     args = parser.parse_args()
@@ -269,7 +284,8 @@ def main() -> None:
 
     logger.info(
         "Loaded %d articles, schema: %s",
-        len(articles), schema.get("domain", "unknown"),
+        len(articles),
+        schema.get("domain", "unknown"),
     )
     logger.info("Provider: %s, Model: %s", args.provider, args.model)
 
@@ -295,7 +311,10 @@ def main() -> None:
         status = "\u2713" if "error" not in ann else "\u2717"
         logger.info(
             "  [%d/%d] %s %s",
-            i + 1, total, status, str(article.get("id", ""))[:20],
+            i + 1,
+            total,
+            status,
+            str(article.get("id", ""))[:20],
         )
 
         # Periodic batch save
@@ -315,10 +334,7 @@ def main() -> None:
 
     # Summary
     primary_field = schema.get("primary_field", "economic_relevance")
-    labels = [
-        r.get("llm_annotation", {}).get(primary_field)
-        for r in results
-    ]
+    labels = [r.get("llm_annotation", {}).get(primary_field) for r in results]
     if labels:
         dist = Counter(labels)
         logger.info("Label distribution: %s", dict(dist))

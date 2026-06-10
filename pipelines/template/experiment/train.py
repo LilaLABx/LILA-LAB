@@ -91,9 +91,7 @@ def _infer_columns(df: pd.DataFrame) -> tuple[str, str]:
     Returns:
         Tuple of (text_column, label_column).
     """
-    text_col = "text" if "text" in df.columns else df.select_dtypes(
-        include=["object"]
-    ).columns[0]
+    text_col = "text" if "text" in df.columns else df.select_dtypes(include=["object"]).columns[0]
 
     label_col = (
         "label"
@@ -128,7 +126,9 @@ def train_tfidf(
     text_col, label_col = _infer_columns(df)
     logger.info(
         "Loaded %d articles. Text column: '%s', Label column: '%s'",
-        len(df), text_col, label_col,
+        len(df),
+        text_col,
+        label_col,
     )
 
     # Normalize text
@@ -152,7 +152,9 @@ def train_tfidf(
 
     logger.info(
         "Split: train=%d, val=%d, test=%d",
-        len(train_df), len(val_df), len(test_df),
+        len(train_df),
+        len(val_df),
+        len(test_df),
     )
 
     # Build and train model
@@ -186,10 +188,14 @@ def train_tfidf(
     }
 
     report["val"] = evaluate_model(
-        model, val_df["text_norm"].tolist(), val_df[label_col].tolist(),
+        model,
+        val_df["text_norm"].tolist(),
+        val_df[label_col].tolist(),
     )
     report["test"] = evaluate_model(
-        model, test_df["text_norm"].tolist(), test_df[label_col].tolist(),
+        model,
+        test_df["text_norm"].tolist(),
+        test_df[label_col].tolist(),
     )
 
     report_path = output_dir / "training_metrics.json"
@@ -256,7 +262,9 @@ def train_bert(
 
     logger.info(
         "Using model: %s with %d classes: %s",
-        model_name, num_labels, label_list,
+        model_name,
+        num_labels,
+        label_list,
     )
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -269,7 +277,10 @@ def train_bert(
 
     def tokenize_fn(examples: list[str]) -> dict[str, Any]:
         return tokenizer(
-            examples, padding=True, truncation=True, max_length=256,
+            examples,
+            padding=True,
+            truncation=True,
+            max_length=256,
             return_tensors="pt",
         )
 
@@ -326,8 +337,7 @@ def train_bert(
         logger.info("BERT training complete.")
     except RuntimeError as exc:
         logger.warning(
-            "BERT training failed (likely no GPU): %s. "
-            "Model saved untrained for later transfer.",
+            "BERT training failed (likely no GPU): %s. Model saved untrained for later transfer.",
             exc,
         )
 
@@ -361,12 +371,13 @@ def train_bert(
     }
 
     report["test_accuracy"] = round(accuracy_score(true_labels, pred_labels), 4)
-    report["test_macro_f1"] = round(
-        f1_score(true_labels, pred_labels, average="macro"), 4
-    )
+    report["test_macro_f1"] = round(f1_score(true_labels, pred_labels, average="macro"), 4)
     report["test_report"] = sk_report(
-        true_labels, pred_labels,
-        target_names=label_list, output_dict=True, zero_division=0,
+        true_labels,
+        pred_labels,
+        target_names=label_list,
+        output_dict=True,
+        zero_division=0,
     )
 
     report_path = output_dir / "bert_training_metrics.json"
@@ -379,23 +390,30 @@ def train_bert(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train Narrative Classifier")
     parser.add_argument(
-        "--refset", required=True,
+        "--refset",
+        required=True,
         help="Annotated reference set (directory or file)",
     )
     parser.add_argument(
-        "--output", default="models/",
+        "--output",
+        default="models/",
         help="Model output directory",
     )
     parser.add_argument(
-        "--model-type", default="tfidf",
+        "--model-type",
+        default="tfidf",
         choices=["tfidf", "bert", "ensemble"],
     )
     parser.add_argument(
-        "--seed", type=int, default=42,
+        "--seed",
+        type=int,
+        default=42,
         help="Random seed",
     )
     parser.add_argument(
-        "--max-features", type=int, default=80000,
+        "--max-features",
+        type=int,
+        default=80000,
         help="Max vocabulary size for TF-IDF",
     )
     args = parser.parse_args()
@@ -419,7 +437,8 @@ def main() -> None:
 
     logger.info(
         "Training complete. Deliverable: %s model in %s",
-        args.model_type, args.output,
+        args.model_type,
+        args.output,
     )
 
 
