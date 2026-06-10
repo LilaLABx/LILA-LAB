@@ -258,7 +258,7 @@ def majority_vote(annotations: list[dict]) -> dict[str, Any]:
                 if confidence_scores:
                     top_value = max(
                         confidence_scores,
-                        key=lambda v: (sum(confidence_scores[v]) / len(confidence_scores[v])),
+                        key=lambda v: sum(confidence_scores[v]) / len(confidence_scores[v]),
                     )
 
         adjudicated[field] = top_value
