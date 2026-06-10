@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LILA Lab Control Room — Research Dashboard</title>
+    <meta name="description" content="LILA Lab research monitoring dashboard. Real-time data from the Language Intelligence for Low-resource Applications pipelines.">
+    <meta property="og:title" content="LILA Lab Control Room">
+    <meta property="og:description" content="Research monitoring dashboard for low-resource language AI pipelines.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lilalab.pro.bd/dashboard.html">
+    <meta property="og:site_name" content="LILA Lab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@LILA_Lab">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="dashboard-styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════════
+         NAVIGATION
+         ═══════════════════════════════════════════════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">LILA</span>
+                <span class="logo-sub">Lab</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="dashboard.html" class="active">Control Room</a>
+                <a href="docs.html">Docs</a>
+                <a href="https://github.com/LilaLABx/LILA-LAB" target="_blank">GitHub ↗</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Switch theme" title="Switch theme">
+                    <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════
+         HERO — Control Room
+         ═══════════════════════════════════════════════════ -->
+    <header class="hero" id="hero">
+        <div class="hero-scanline"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                SYSTEM MONITOR — v2.0.0
+            </div>
+            <h1 class="hero-title">
+                Research<br>
+                <span class="accent-cyan">Control Room</span>
+            </h1>
+            <p class="hero-tagline">
+                Real-time monitoring of LILA Lab's language intelligence pipelines.
+                <span class="terminal-cursor"></span>
+            </p>
+            <p class="hero-subtitle">$ ./monitor --pipelines --live</p>
+            <div class="hero-ctas">
+                <a href="#findings" class="btn btn-primary">View Key Findings</a>
+                <a href="#pipelines" class="btn btn-outline">Pipeline Status</a>
+                <a href="#charts" class="btn btn-outline">Data Visualizations</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Monitor Data</span>
+            <div class="scroll-indicator-line"></div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════
+         STATS — Terminal Data Monitors
+         ═══════════════════════════════════════════════════ -->
+    <section class="section stats-section fade-section" id="stats">
+        <div class="container">
+            <div class="section-label">// PIPELINE METRICS</div>
+            <div class="stats-grid">
+                <div class="stat-card pulse-ring stagger-1">
+                    <span class="stat-icon">📊</span>
+                    <div class="stat-value" data-target="664000">0</div>
+                    <div class="stat-label">Articles Analyzed</div>
+                    <div class="stat-sublabel">Bangla news corpus</div>
+                </div>
+                <div class="stat-card pulse-ring stagger-2">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-value gold" data-target="91.7" data-suffix="%">0</div>
+                    <div class="stat-label">Classification Accuracy</div>
+                    <div class="stat-sublabel">TF-IDF baseline</div>
+                </div>
+                <div class="stat-card pulse-ring stagger-3">
+                    <span class="stat-icon">📈</span>
+                    <div class="stat-value" data-target="79">0</div>
+                    <div class="stat-label">Months Indexed</div>
+                    <div class="stat-sublabel">2014–2020</div>
+                </div>
+                <div class="stat-card pulse-ring stagger-1">
+                    <span class="stat-icon">🔗</span>
+                    <div class="stat-value" data-target="-0.75">0</div>
+                    <div class="stat-label">CPI Correlation</div>
+                    <div class="stat-sublabel">p &lt; 0.001</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════════
+         KEY FINDINGS
+         ═══════════════════════════════════════════════════ -->
+    <section id="findings" class="section findings-section fade-section">
+        <div class="container">
+            <div class="section-label">// KEY RESEARCH FINDINGS</div>
+            <h2 class="section-title">Breakthrough Results</h2>
+            <p class="section-subtitle">Validated evidence that narrative indices work for low-resource languages</p>
+
+            <div class="findings-grid">
+                <!-- Finding 1 — Featured -->
+                <div class="finding-card featured stagger-1">
+                    <div class="finding-badge">★ Breakthrough</div>
+                    <h3>Economic Narratives Track Real Indicators</h3>
+                    <p>Bangla-language economic news narratives show strong negative correlation with CPI and exchange rate movements — the first evidence that narrative indices work for low-resource languages.</p>
+                    <div class="finding-metrics">
+                        <div class="metric">
+                            <span class="metric-value">r = −0.75</span>
+                            <span class="metric-label">CPI Correlation</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">r = −0.72</span>
+                            <span class="metric-label">FX Correlation</span>
+                        </div>
+                    </div>
+                    <a href="#paper3" class="finding-link">Read Paper →</a>
+                </div>
+
+                <!-- Finding 2 -->
+                <div class="finding-card stagger-2">
+                    <div class="finding-badge">Validation</div>
+                    <h3>TF-IDF Outperforms Deep Learning</h3>
+                    <p>Simple TF-IDF + Logistic Regression achieves 91.7% accuracy, outperforming complex deep learning models while requiring no GPU and costing $0.02/article in annotation.</p>
+                    <div class="finding-metrics">
+                        <div class="metric">
+                            <span class="metric-value">91.7%</span>
+                            <span class="metric-label">Accuracy</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$0.02</span>
+                            <span class="metric-label">Per Article</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Finding 3 -->
+                <div class="finding-card stagger-3">
+                    <div class="finding-badge">Scale</div>
+                    <h3>664K Articles Processed</h3>
+                    <p>Complete processing of 664,000+ Bangla news articles from the Potrika corpus, creating the largest low-resource language narrative dataset for economic analysis.</p>
+                    <div class="finding-metrics">
+                        <div class="metric">
+                            <span class="metric-value">664K+</span>
+                            <span class="metric-label">Articles</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">3.3 GB</span>
+                            <span class="metric-label">Corpus Size</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Finding 4 -->
+                <div class="finding-card stagger-1">
+                    <div class="finding-badge">Cost</div>
+                    <h3>LLM Annotation at Scale</h3>
+                    <p>Claude and GPT-4o ensemble achieves human-level annotation quality at $0.02–0.03 per article, making large-scale annotation feasible for low-resource languages.</p>
+                    <div class="finding-metrics">
+                        <div class="metric">
+                            <span class="metric-value">3,200</span>
+                            <span class="metric-label">Labels Created</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$0.03</span>
+                            <span class="metric-label">Max Cost</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════════
+         XENI FRAMEWORK — How It Works
+         ═══════════════════════════════════════════════════ -->
+    <section class="section xeni-section fade-section" id="how-it-works">
+        <div class="container">
+            <div class="section-label">// XENI PIPELINE FRAMEWORK</div>
+            <h2 class="section-title">How the Pipeline Works</h2>
+            <p class="section-subtitle">Every language gets its own <strong>XENI</strong> — proven in Bangla as <strong>BENI</strong>, ready for yours.</p>
+
+            <div class="xeni-steps">
+                <!-- Step 1 -->
+                <div class="xeni-step stagger-1">
+                    <div class="xeni-step-num">01</div>
+                    <span class="xeni-step-icon">📰</span>
+                    <h3>Collect Native News</h3>
+                    <p>Aggregate millions of native-language articles from local sources, preserving linguistic authenticity from day one.</p>
+                </div>
+
+                <div class="xeni-connector">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M13 5l7 7-7 7"/>
+                    </svg>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="xeni-step stagger-2">
+                    <div class="xeni-step-num">02</div>
+                    <span class="xeni-step-icon">🤖</span>
+                    <h3>Annotate &amp; Classify</h3>
+                    <p>LLM ensemble (Claude, GPT-4o) annotates narratives across domains. Multi-model classification achieves <strong>91.7% accuracy</strong>.</p>
+                </div>
+
+                <div class="xeni-connector">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M13 5l7 7-7 7"/>
+                    </svg>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="xeni-step stagger-3">
+                    <div class="xeni-step-num">03</div>
+                    <span class="xeni-step-icon">📊</span>
+                    <h3>Build Validated Index</h3>
+                    <p>Construct monthly narrative indices validated against macroeconomic indicators. CPI correlation at <strong>r = −0.75</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════════
+         CHARTS — Data Visualization
+         ═══════════════════════════════════════════════════ -->
+    <section id="charts" class="section charts-section fade-section">
+        <div class="container">
+            <div class="section-label">// DATA VISUALIZATIONS</div>
+            <h2 class="section-title">Interactive Research Data</h2>
+            <p class="section-subtitle">Live charts from the BENI pipeline analysis</p>
+
+            <div class="charts-grid">
+                <div class="chart-card stagger-1">
+                    <h3>BENI Index vs CPI (2014–2020)</h3>
+                    <p class="chart-description">Inverse correlation between narrative index and inflation</p>
+                    <canvas id="indexVsCpiChart"></canvas>
+                </div>
+
+                <div class="chart-card stagger-2">
+                    <h3>Classification Model Comparison</h3>
+                    <p class="chart-description">TF-IDF baseline vs. deep learning models</p>
+                    <canvas id="modelComparisonChart"></canvas>
+                </div>
+
+                <div class="chart-card stagger-3">
+                    <h3>Monthly Article Volume</h3>
+                    <p class="chart-description">Consistent data collection across 79 months</p>
+                    <canvas id="articleVolumeChart"></canvas>
+                </div>
+
+                <div class="chart-card stagger-1">
+                    <h3>Annotation Cost Breakdown</h3>
+                    <p class="chart-description">Cost per article by annotation method</p>
+                    <canvas id="annotationCostChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════════
+         PIPELINE STATUS — Language Pipeline Monitor
+         ═══════════════════════════════════════════════════ -->
+    <section id="pipelines" class="section pipeline-section fade-section">
+        <div class="container">
+            <div class="section-label">// PIPELINE STATUS MONITOR</div>
+            <h2 class="section-title">XENI Pipeline Status</h2>
+            <p class="section-subtitle">Language pipeline development progress across all targets</p>
+
+            <div class="pipeline-grid">
+                <!-- BENI — Active -->
+                <div class="pipeline-card active stagger-1">
+                    <div class="pipeline-header">
+                        <h3>BENI</h3>
+                        <span class="pipeline-status status-active">Active</span>
+                    </div>
+                    <p class="pipeline-language">Bangla <span style="color:var(--muted);font-weight:400;font-family:var(--font-body);">(বাংলা)</span></p>
+                    <p class="pipeline-speakers">265M speakers</p>
+                    <div class="pipeline-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-text">100% — Complete</span>
+                    </div>
+                    <ul class="pipeline-features">
+                        <li>✓ 664K articles processed</li>
+                        <li>✓ 91.7% accuracy</li>
+                        <li>✓ 79-month index</li>
+                        <li>✓ CPI validated (r = −0.75)</li>
+                    </ul>
+                </div>
+
+                <!-- AENI -->
+                <div class="pipeline-card stagger-2">
+                    <div class="pipeline-header">
+                        <h3>AENI</h3>
+                        <span class="pipeline-status status-planned">Contributors Needed</span>
+                    </div>
+                    <p class="pipeline-language">Assamese <span style="color:var(--muted);font-weight:400;font-family:var(--font-body);">(অসমীয়া)</span></p>
+                    <p class="pipeline-speakers">15M speakers</p>
+                    <div class="pipeline-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 5%"></div>
+                        </div>
+                        <span class="progress-text">5% — Seeking contributors</span>
+                    </div>
+                    <ul class="pipeline-features">
+                        <li>○ Pipeline code reusable</li>
+                        <li>○ Annotation schema ready</li>
+                        <li>○ Awaiting data collection</li>
+                        <li>○ Extension template available</li>
+                    </ul>
+                </div>
+
+                <!-- NENI -->
+                <div class="pipeline-card stagger-3">
+                    <div class="pipeline-header">
+                        <h3>NENI</h3>
+                        <span class="pipeline-status status-planned">Contributors Needed</span>
+                    </div>
+                    <p class="pipeline-language">Nepali <span style="color:var(--muted);font-weight:400;font-family:var(--font-body);">(नेपाली)</span></p>
+                    <p class="pipeline-speakers">25M speakers</p>
+                    <div class="pipeline-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 5%"></div>
+                        </div>
+                        <span class="progress-text">5% — Seeking contributors</span>
+                    </div>
+                    <ul class="pipeline-features">
+                        <li>○ Pipeline code reusable</li>
+                        <li>○ Annotation schema ready</li>
+                        <li>○ Awaiting data collection</li>
+                        <li>○ Extension template available</li>
+                    </ul>
+                </div>
+
+                <!-- SENI -->
+                <div class="pipeline-card stagger-1">
+                    <div class="pipeline-header">
+                        <h3>SENI</h3>
+                        <span class="pipeline-status status-planned">Contributors Needed</span>
+                    </div>
+                    <p class="pipeline-language">Sylheti <span style="color:var(--muted);font-weight:400;font-family:var(--font-body);">(ꠍꠤꠟꠐꠤ)</span></p>
+                    <p class="pipeline-speakers">11M speakers</p>
+                    <div class="pipeline-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 3%"></div>
+                        </div>
+                        <span class="progress-text">3% — Planned</span>
+                    </div>
+                    <ul class="pipeline-features">
+                        <li>○ Pipeline code reusable</li>
+                        <li>○ Annotation schema ready</li>
+                        <li>○ Awaiting data collection</li>
+                        <li>○ Extension template available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════════
+         BLOG — Research Updates
+         ═══════════════════════════════════════════════════ -->
+    <section id="blog" class="section blog-section fade-section">
+        <div class="container">
+            <div class="section-label">// RESEARCH UPDATES</div>
+            <h2 class="section-title">Latest from the Lab</h2>
+            <p class="section-subtitle">Recent findings, publications, and community announcements</p>
+
+            <div class="blog-grid">
+                <!-- Post 1 — Featured -->
+                <article class="blog-card featured stagger-1">
+                    <div class="blog-meta">
+                        <span class="blog-date">2026-06-10</span>
+                        <span class="blog-category">Finding</span>
+                    </div>
+                    <h3>First Evidence: Bangla Economic Narratives Track Real Indicators</h3>
+                    <p>Our validation shows that economic narratives in Bangla news articles correlate strongly with macroeconomic indicators (CPI r = −0.75, FX r = −0.72). This is the first evidence that narrative indices work for low-resource languages.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Ann Naser Nabil</span>
+                        <a href="#paper3" class="blog-readmore">Read Paper →</a>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="blog-card stagger-2">
+                    <div class="blog-meta">
+                        <span class="blog-date">2026-06-08</span>
+                        <span class="blog-category">Pipeline</span>
+                    </div>
+                    <h3>BENI Pipeline Reaches 91.7% Accuracy</h3>
+                    <p>After optimizing the TF-IDF + Logistic Regression pipeline, we've achieved 91.7% classification accuracy on gold-standard human annotations — without any GPU.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Ann Naser Nabil</span>
+                        <a href="#pipeline" class="blog-readmore">View Results →</a>
+                    </div>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="blog-card stagger-3">
+                    <div class="blog-meta">
+                        <span class="blog-date">2026-06-05</span>
+                        <span class="blog-category">Community</span>
+                    </div>
+                    <h3>Calling Assamese, Nepali &amp; Sylheti Speakers</h3>
+                    <p>We're seeking native speakers to help build the next XENI pipelines. Each contributor receives co-authorship on the resulting paper. No coding required.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Ann Naser Nabil</span>
+                        <a href="https://discord.gg/TrrdKbky" class="blog-readmore">Join Discord →</a>
+                    </div>
+                </article>
+
+                <!-- Post 4 -->
+                <article class="blog-card stagger-1">
+                    <div class="blog-meta">
+                        <span class="blog-date">2026-06-01</span>
+                        <span class="blog-category">Publication</span>
+                    </div>
+                    <h3>Systematic Review Submitted to arXiv</h3>
+                    <p>Our systematic review of 20 years of economic narrative indices has been submitted to arXiv. The paper replicates and extends the full ENI methodology literature.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Ann Naser Nabil</span>
+                        <a href="#paper2" class="blog-readmore">View Paper →</a>
+                    </div>
+                </article>
+
+                <!-- Post 5 -->
+                <article class="blog-card stagger-2">
+                    <div class="blog-meta">
+                        <span class="blog-date">2026-05-28</span>
+                        <span class="blog-category">Data</span>
+                    </div>
+                    <h3>LILA-BENI v1.0 Dataset Released</h3>
+                    <p>The complete BENI dataset with 664K articles, annotations, and indices is now available on Zenodo with a permanent DOI for reproducible research.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Ann Naser Nabil</span>
+                        <a href="https://doi.org/10.5281/zenodo.20585401" class="blog-readmore">Download →</a>
+                    </div>
+                </article>
+
+                <!-- Post 6 -->
+                <article class="blog-card stagger-3">
+                    <div class="blog-meta">
+                        <span class="blog-date">2026-05-20</span>
+                        <span class="blog-category">Method</span>
+                    </div>
+                    <h3>LLM Annotation Costs: Claude vs GPT-4o</h3>
+                    <p>We compare annotation costs and quality between Claude and GPT-4o for Bangla economic relevance labeling. Claude achieves comparable quality at lower cost.</p>
+                    <div class="blog-footer">
+                        <span class="blog-author">Ann Naser Nabil</span>
+                        <a href="#costs" class="blog-readmore">View Analysis →</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blog-cta">
+                <a href="https://lila.substack.com" class="btn btn-primary">Subscribe to Newsletter</a>
+                <a href="https://github.com/LilaLABx/LILA-LAB" class="btn btn-ghost">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ═══════════════════════════════════════════════════
+         CTA
+         ═══════════════════════════════════════════════════ -->
+    <section class="cta-section fade-section">
+        <div class="container">
+            <h2>Contribute to LILA Lab</h2>
+            <p>Join our research collective and help build NLP infrastructure for underserved languages.</p>
+            <div class="cta-buttons">
+                <a href="https://discord.gg/TrrdKbky" class="btn btn-primary">Join Discord</a>
+                <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/COLLABORATION.md" class="btn btn-outline">Collaboration Framework</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LILA Lab</h3>
+                <p>Language Intelligence for Low-resource Applications</p>
+                <p class="footer-tagline">Your language. Your stories. Amplified by AI.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Research</h4>
+                <a href="#findings">Key Findings</a>
+                <a href="#blog">Research Updates</a>
+                <a href="https://github.com/LilaLABx/LILA-LAB/tree/main/technical-reports">Papers</a>
+                <a href="https://doi.org/10.5281/zenodo.20585401">Dataset</a>
+            </div>
+            <div class="footer-links">
+                <h4>Community</h4>
+                <a href="https://discord.gg/TrrdKbky">Discord</a>
+                <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/COLLABORATION.md">Collaborate</a>
+                <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/LINGUISTIC_CONTRIBUTION_GUIDE.md">Contribute Data</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="https://x.com/LILA_Lab">X / Twitter</a>
+                <a href="https://linkedin.com/company/lila-lab">LinkedIn</a>
+                <a href="https://youtube.com/@LILA_Lab">YouTube</a>
+                <a href="mailto:lila.lab0x@gmail.com">Email</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LILA Lab &middot; Code: MIT &middot; Data: CC BY 4.0 &middot; Papers: &copy; Ann Naser Nabil</p>
+        </div>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
