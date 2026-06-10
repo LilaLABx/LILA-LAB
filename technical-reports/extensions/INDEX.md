@@ -1,6 +1,6 @@
-# Active Extension Proposals
+# Extension Proposals — 10 Emerging-Economy Languages
 
-This registry tracks all active proposals for extending the XENI pipeline framework to new languages and domains. Extensions can be language extensions (apply the pipeline to a new language) or domain extensions (apply the framework to a new thematic domain such as health, climate, or education).
+This registry tracks all proposals for extending the XENI pipeline framework to **10 emerging-economy low-resource languages** — our target by H1 2027. Extensions can be language extensions (apply the pipeline to a new language) or domain extensions (apply the framework to a new thematic domain such as health, climate, or education).
 
 If you are interested in leading an extension, please read the [EXTENSION_TEMPLATE.md](EXTENSION_TEMPLATE.md) and submit a proposal via Pull Request or Discord.
 
@@ -8,13 +8,28 @@ If you are interested in leading an extension, please read the [EXTENSION_TEMPLA
 
 ## Language Extensions
 
-| Language/Domain | Proposer | Status | Paper Target |
-|-----------------|----------|--------|-------------|
-| AENI — Assamese (অসমীয়া) | Seeking contributor | Seeking contributor | Paper 3 extension |
-| NENI — Nepali (नेपाली) | Seeking contributor | Seeking contributor | Paper 3 extension |
-| SENI — Sylheti (চিটাঙ্গ) | Seeking contributor | Seeking contributor | Paper 3 extension |
-| CENI — Chittagonian (চাঁটগাঁইয়া) | Seeking contributor | Seeking contributor | Paper 3 extension |
-| HENI — Hindi (हिन्दी) | Seeking contributor | Seeking contributor | Paper 3 extension |
+| # | Pipeline | Language | Region | Country | Speakers | Dataset | Pipeline | Status |
+|---|----------|----------|--------|---------|----------|---------|----------|--------|
+| 1 | **BENI** | Bangla (বাংলা) | South Asia | Bangladesh | 265M | ✅ Collected | ✅ Active | ✅ Active |
+| 2 | **AENI** | Assamese (অসমীয়া) | South Asia | India | 15M | 🔴 Not started | 🔴 Not started | 🔜 Seeking contributors |
+| 3 | **NENI** | Nepali (नेपाली) | South Asia | Nepal | 25M | 🔴 Not started | 🔴 Not started | 🔜 Seeking contributors |
+| 4 | **SENI** | Sylheti (চিটাঙ্গ) | South Asia | Bangladesh | 11M | 🔴 Not started | 🔴 Not started | 🔜 Planned |
+| 5 | **CENI** | Chittagonian (চাঁটগাঁইয়া) | South Asia | Bangladesh | 16M | 🔴 Not started | 🔴 Not started | 🔜 Planned |
+| 6 | **HENI** | Hausa | Africa | Nigeria | 80M | 🔴 Not started | 🔴 Not started | 🔜 Planned |
+| 7 | **KIENI** | Kiswahili (Swahili) | Africa | Kenya/Tanzania | 100M | 🔴 Not started | 🔴 Not started | 🔜 Planned |
+| 8 | **VIENI** | Vietnamese (Tiếng Việt) | SE Asia | Vietnam | 100M | 🔴 Not started | 🔴 Not started | 🔜 Planned |
+| 9 | **TIENI** | Tagalog (Filipino) | SE Asia | Philippines | 80M | 🔴 Not started | 🔴 Not started | 🔜 Planned |
+| 10 | **IDENI** | Indonesian (Bahasa Indonesia) | SE Asia | Indonesia | 200M | 🔴 Not started | 🔴 Not started | 🔜 Planned |
+
+**Progress:** 1 / 10 pipelines active. 9 seeking contributors.
+
+### Regional Breakdown
+
+| Region | Languages | Active | Planned |
+|--------|-----------|--------|---------|
+| South Asia | Bangla, Assamese, Nepali, Sylheti, Chittagonian | 1 | 4 |
+| Africa | Hausa, Kiswahili | 0 | 2 |
+| Southeast Asia | Vietnamese, Tagalog, Indonesian | 0 | 3 |
 
 ## Domain Extensions
 

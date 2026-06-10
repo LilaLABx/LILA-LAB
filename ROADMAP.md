@@ -1,6 +1,8 @@
 # LILA Lab Roadmap
 
 > Lab-wide development roadmap. Dates are targets, not guarantees. Items marked "seeking contributors" are open for collaboration.
+>
+> **North Star:** 10 emerging-economy low-resource languages with operational XENI pipelines by H1 2027. [Track progress →](dataset/README.md)
 
 ---
 
@@ -30,6 +32,15 @@
 | Website dashboard v1 | Planned | Deploy an interactive Streamlit dashboard showing the BENI index, macro correlations, and model performance metrics. |
 | Publication bias correction | Planned | Implement trim-and-fill analysis on the 8 replications from the systematic review. Estimate true effect size. |
 
+### 10-Language Collection — Phase 1
+
+| Item | Status | Notes |
+|------|--------|-------|
+| **AENI corpus (Assamese) — 1k+ articles** | Seeking contributors | First new language dataset. Target: 1,000 news articles from Assamese media sources. |
+| **HENI corpus (Hausa) — feasibility** | Seeking contributors | Survey Nigerian Hausa-language news sources. Identify 5+ viable sources for automated collection. |
+| **VIENI corpus (Vietnamese) — feasibility** | Seeking contributors | Survey Vietnamese online news landscape. Document source URLs and accessibility. |
+| Dataset collection protocol | Planned | Write a standard operating procedure for corpus collection: source selection, download, deduplication, formatting. |
+
 ### Community
 
 | Item | Status | Notes |
@@ -49,11 +60,21 @@
 | **Paper 3 final submission** | Target | Submit the BENI pipeline paper to a journal or conference. |
 | **Paper 4 final submission** | Target | Submit the nowcasting paper. Requires successful BanglaBERT results. |
 
+### 10-Language Collection — Phase 2
+
+| Item | Status | Notes |
+|------|--------|-------|
+| **KIENI corpus (Swahili) — 1k+ articles** | Seeking contributors | Collect news corpus from Kenyan/Tanzanian Swahili media. |
+| **TIENI corpus (Tagalog) — 1k+ articles** | Seeking contributors | Collect news corpus from Philippine media sources. |
+| **IDENI corpus (Indonesian) — 1k+ articles** | Seeking contributors | Collect news corpus from Indonesian media. |
+| NENI, SENI, CENI source surveys | Seeking contributors | Identify and document news sources for Nepali, Sylheti, and Chittagonian. |
+| **Milestone: 5 datasets collected** | Target | End of Q4: have at least 5 of 10 language datasets in hand. |
+
 ### New Pipelines
 
 | Item | Status | Notes |
 |------|--------|-------|
-| **AENI pipeline bootstrap** | Seeking contributors | Build the first Assamese news corpus (minimum 1,000 articles). Adapt the BENI annotation schema for Assamese economic narratives. Run the LLM annotation pipeline. |
+| **AENI pipeline bootstrap** | Seeking contributors | Build the first Assamese news corpus. Adapt the BENI annotation schema for Assamese economic narratives. Run the LLM annotation pipeline. |
 | AENI baseline classifier | Seeking contributors | Train initial TF-IDF model on Assamese data. Establish baseline accuracy. |
 | Pipeline template documentation | Planned | Improve the pipeline template with step-by-step instructions, example data, and a getting-started guide. |
 
@@ -83,6 +104,14 @@
 | **Paper 6: LLMs as Measurement Devices** | Proposed | Framework paper on using LLMs for structured narrative extraction in low-resource languages. Methodological and theoretical. |
 | **Paper 5 final submission** | Target | Submit the Text as Data survey. |
 | Cross-language comparison paper | Proposed | Compare narrative indices across Bangla, Assamese, and Nepali. Requires AENI and NENI pipelines to be operational. |
+
+### 10-Language Collection — Phase 3 (Final)
+
+| Item | Status | Notes |
+|------|--------|-------|
+| Complete remaining 5 datasets | Seeking contributors | Fill gaps for Nepali, Sylheti, Chittagonian, and any languages still missing. |
+| **Milestone: all 10 datasets collected** | Target | End of H1 2027: all 10 emerging-economy languages have baseline corpora. |
+| Cross-language comparison paper | Proposed | Compare narrative indices across all operational pipelines. Requires ≥3 pipelines with validated indices. |
 
 ### New Pipelines
 

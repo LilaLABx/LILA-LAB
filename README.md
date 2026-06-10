@@ -4,14 +4,15 @@
 
 Your language. Your stories. Amplified by AI.
 
-> 84% of NLP research is in English. 56% is US-focused. **0% is Bangla. 0% is Assamese. 0% is Sylheti. 0% is Chittagonian.**
+> 84% of NLP research is in English. 56% is US-focused. **0% is Bangla. 0% is Assamese. 0% is Hausa. 0% is Swahili.**
 >
-> We are building the infrastructure that lets every language participate in the LLM revolution — starting with South Asia.
+> We are building the infrastructure that lets every language participate in the LLM revolution — targeting 10 emerging-economy languages by 2027.
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/code-MIT-green)](./LICENSE)
 [![License: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
 [![Discord](https://img.shields.io/badge/discord-join-7289DA?logo=discord)](https://discord.gg/TrrdKbky)
+[![Target](https://img.shields.io/badge/target-10%20emerging%20economies-006D77)](dataset/README.md)
 
 ---
 
@@ -49,7 +50,7 @@ Raw Bangla news articles (664,000+)
     → Published papers + open-source code
 ```
 
-**Proven in Bangla (265M speakers). Ready for your language and domain.**
+**Proven in Bangla (265M speakers). Targeting 10 emerging-economy languages by 2027. Ready for your language and domain.**
 
 See the [pipeline flowchart](docs/PIPELINE_FLOW.md) for a visual walkthrough of each stage.
 
@@ -84,17 +85,22 @@ Every XENI pipeline follows the same structure:
 
 A single pipeline can produce many domain indices. BENI's first index happens to be economic — the same instrument can measure health, climate, or education narratives.
 
-**Active pipelines:**
+**Target: 10 emerging-economy low-resource languages by H1 2027.**
 
-| Pipeline | Language | Speakers | Status |
-|----------|----------|----------|--------|
-| **BENI** | Bangla (বাংলা) | 265M | ✅ Active |
-| **AENI** | Assamese (অসমীয়া) | 15M | 🔜 Seeking contributors |
-| **NENI** | Nepali (नेपाली) | 25M | 🔜 Seeking contributors |
-| **SENI** | Sylheti (চিটাঙ্গ) | 11M | 🔜 Planned |
-| **CENI** | Chittagonian (চাঁটগাঁইয়া) | 16M | 🔜 Planned |
+| Pipeline | Language | Region | Speakers | Dataset | Status |
+|----------|----------|--------|----------|---------|--------|
+| **BENI** | Bangla (বাংলা) | South Asia | 265M | ✅ 664k articles | ✅ Active |
+| **AENI** | Assamese (অসমীয়া) | South Asia | 15M | 🔴 Not started | 🔜 Seeking contributors |
+| **NENI** | Nepali (नेपाली) | South Asia | 25M | 🔴 Not started | 🔜 Seeking contributors |
+| **SENI** | Sylheti (চিটাঙ্গ) | South Asia | 11M | 🔴 Not started | 🔜 Planned |
+| **CENI** | Chittagonian (চাঁটগাঁইয়া) | South Asia | 16M | 🔴 Not started | 🔜 Planned |
+| **HENI** | Hausa | Africa | 80M | 🔴 Not started | 🔜 Planned |
+| **KIENI** | Kiswahili (Swahili) | Africa | 100M | 🔴 Not started | 🔜 Planned |
+| **VIENI** | Vietnamese (Tiếng Việt) | SE Asia | 100M | 🔴 Not started | 🔜 Planned |
+| **TIENI** | Tagalog (Filipino) | SE Asia | 80M | 🔴 Not started | 🔜 Planned |
+| **IDENI** | Indonesian (Bahasa Indonesia) | SE Asia | 200M | 🔴 Not started | 🔜 Planned |
 
-**Don't see your language?** [Start a new pipeline.](#how-to-contribute)
+**Don't see your language?** [Start a new pipeline.](#how-to-contribute) — see the full [dataset tracker](dataset/README.md) for collection progress.
 
 ---
 
@@ -209,12 +215,17 @@ cd infrastructure/website/
 
 ```
 lila-lab/
-├── pipelines/                  # XENI Pipeline Collection
-│   ├── beni/                   # Bangla (active — proven pipeline)
-│   ├── aeni/                   # Assamese (planned)
-│   ├── neni/                   # Nepali (planned)
-│   ├── seni/                   # Sylheti (planned)
-│   ├── ceni/                   # Chittagonian (planned)
+├── pipelines/                  # XENI Pipeline Collection (10 emerging economies)
+│   ├── beni/                   # Bangla ✅ (proven — dataset collected)
+│   ├── aeni/                   # Assamese 🔜
+│   ├── neni/                   # Nepali 🔜
+│   ├── seni/                   # Sylheti 🔜
+│   ├── ceni/                   # Chittagonian 🔜
+│   ├── heni/                   # Hausa 🔜
+│   ├── kieni/                  # Kiswahili 🔜
+│   ├── vieni/                  # Vietnamese 🔜
+│   ├── tieni/                  # Tagalog 🔜
+│   ├── ideni/                  # Indonesian 🔜
 │   ├── template/               # Pipeline template (start here for new languages)
 │   └── shared/                 # Language-agnostic utilities (LLM, stats, config)
 │

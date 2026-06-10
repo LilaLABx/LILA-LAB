@@ -59,15 +59,22 @@ The self-teaching pattern works on **two levels**:
 
 ## Active & Planned Pipelines
 
-| Pipeline | Language | Speakers | Status | Index |
-|----------|----------|----------|--------|-------|
-| **BENI** | Bangla (বাংলা) | 265M | ✅ Active | 79 months (2014–2020) |
-| **AENI** | Assamese (অসমীয়া) | 15M | 🔜 Planned | — |
-| **NENI** | Nepali (नेपाली) | 25M | 🔜 Planned | — |
-| **SENI** | Sylheti (চিটাঙ্গ) | 11M | 🔜 Planned | — |
-| **CENI** | Chittagonian (চাঁটগাঁইয়া) | 16M | 🔜 Planned | — |
+**Target:** 10 emerging-economy low-resource languages by H1 2027. [Track progress →](../dataset/README.md)
 
-**Don't see your language?** Start a new pipeline — we'll help you set it up.
+| Pipeline | Language | Region | Speakers | Dataset | Status |
+|----------|----------|--------|----------|---------|--------|
+| **BENI** | Bangla (বাংলা) | South Asia | 265M | ✅ 664k articles | ✅ Active |
+| **AENI** | Assamese (অসমীয়া) | South Asia | 15M | 🔴 Not started | 🔜 Seeking |
+| **NENI** | Nepali (नेपाली) | South Asia | 25M | 🔴 Not started | 🔜 Seeking |
+| **SENI** | Sylheti (চিটাঙ্গ) | South Asia | 11M | 🔴 Not started | 🔜 Planned |
+| **CENI** | Chittagonian (চাঁটগাঁইয়া) | South Asia | 16M | 🔴 Not started | 🔜 Planned |
+| **HENI** | Hausa | Africa | 80M | 🔴 Not started | 🔜 Planned |
+| **KIENI** | Kiswahili (Swahili) | Africa | 100M | 🔴 Not started | 🔜 Planned |
+| **VIENI** | Vietnamese (Tiếng Việt) | SE Asia | 100M | 🔴 Not started | 🔜 Planned |
+| **TIENI** | Tagalog (Filipino) | SE Asia | 80M | 🔴 Not started | 🔜 Planned |
+| **IDENI** | Indonesian (Bahasa Indonesia) | SE Asia | 200M | 🔴 Not started | 🔜 Planned |
+
+**Don't see your language?** [Start a new pipeline.](../CONTRIBUTING.md) — we'll help you set it up.
 
 ---
 
@@ -114,13 +121,16 @@ The `shared/` directory contains language-agnostic tools:
 
 ### Step 1: Choose Your Language
 
-Any low-resource language with a news ecosystem works. We prioritize:
+Any low-resource language with a news ecosystem works. Our **priority is 10 emerging-economy languages** (see [dataset tracker](../dataset/README.md) for progress):
 
-| Priority | Languages | Status |
-|----------|-----------|--------|
-| 🔴 **High** | Assamese, Nepali, Sylheti, Chittagonian | Seeking contributors |
-| 🟡 **Medium** | Maithili, Odia, Meitei, Rohingya | Open to proposals |
-| 🟢 **Open** | Any underserved language | Welcome anytime |
+| Priority | Languages | Region | Status |
+|----------|-----------|--------|--------|
+| 🔴 **Active** | Bangla (BENI) | South Asia | ✅ Operational |
+| 🔴 **High** | Assamese, Nepali, Sylheti, Chittagonian | South Asia | Seeking contributors |
+| 🔴 **High** | Hausa, Kiswahili | Africa | Seeking contributors |
+| 🔴 **High** | Vietnamese, Tagalog, Indonesian | SE Asia | Seeking contributors |
+| 🟡 **Medium** | Maithili, Odia, Meitei, Rohingya | South Asia | Open to proposals |
+| 🟢 **Open** | Any underserved language | Global | Welcome anytime |
 
 ### Step 2: Fork & Set Up
 
