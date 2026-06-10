@@ -1,43 +1,66 @@
-// LILA Lab Dashboard JavaScript
+// LILA Lab Control Room — Dashboard JavaScript
+// Laboratory aesthetic: data monitoring, network visualization, terminal-style counters
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
+    'use strict';
+
     initNavigation();
     initStatCounters();
     initCharts();
     initScrollAnimations();
+    initNavbarScroll();
+    smoothScroll();
 });
 
-// Navigation Toggle
+// ── Navigation Toggle ──
 function initNavigation() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
 
     if (navToggle && navLinks) {
         navToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
+            this.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
         });
 
-        // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+        navLinks.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+                document.body.style.overflow = '';
             });
         });
     }
 }
 
-// Animated Stat Counters
+// ── Navbar Scroll Effect ──
+function initNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    var lastScroll = 0;
+    window.addEventListener('scroll', function() {
+        var currentScroll = window.pageYOffset;
+        if (currentScroll > 60) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        lastScroll = currentScroll;
+    }, { passive: true });
+}
+
+// ── Animated Stat Counters (Terminal-style) ──
 function initStatCounters() {
     const statValues = document.querySelectorAll('.stat-value');
 
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
+    if (!statValues.length) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    var observerOptions = { threshold: 0.5, rootMargin: '0px' };
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 animateCounter(entry.target);
                 observer.unobserve(entry.target);
@@ -45,27 +68,27 @@ function initStatCounters() {
         });
     }, observerOptions);
 
-    statValues.forEach(stat => observer.observe(stat));
+    statValues.forEach(function(stat) {
+        observer.observe(stat);
+    });
 }
 
 function animateCounter(element) {
-    const target = parseFloat(element.dataset.target);
-    const suffix = element.dataset.suffix || '';
-    const duration = 2000;
-    const start = performance.now();
-    const isNegative = target < 0;
-    const absTarget = Math.abs(target);
-    const isDecimal = target % 1 !== 0;
+    var target = parseFloat(element.getAttribute('data-target'));
+    var suffix = element.getAttribute('data-suffix') || '';
+    var duration = 2000;
+    var start = performance.now();
+    var isNegative = target < 0;
+    var absTarget = Math.abs(target);
+    var isDecimal = target % 1 !== 0;
 
     function update(currentTime) {
-        const elapsed = currentTime - start;
-        const progress = Math.min(elapsed / duration, 1);
+        var elapsed = currentTime - start;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 4);
+        var current = absTarget * eased;
 
-        // Easing function
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const current = absTarget * easeOutQuart;
-
-        let displayValue;
+        var displayValue;
         if (isDecimal) {
             displayValue = current.toFixed(2);
         } else {
@@ -73,7 +96,7 @@ function animateCounter(element) {
         }
 
         if (isNegative) {
-            displayValue = '-' + displayValue;
+            displayValue = 'r = −' + displayValue;
         }
 
         element.textContent = displayValue + suffix;
@@ -86,70 +109,79 @@ function animateCounter(element) {
     requestAnimationFrame(update);
 }
 
-// Initialize Charts
+// ── Charts (Dark Theme) ──
 function initCharts() {
-    // Chart.js defaults
+    // Chart.js dark defaults
     Chart.defaults.font.family = "'Inter', sans-serif";
-    Chart.defaults.color = '#4A5568';
+    Chart.defaults.color = '#8899AA';
 
-    // Color palette
-    const colors = {
-        teal: '#006D77',
-        tealLight: 'rgba(0, 109, 119, 0.1)',
+    var colors = {
+        cyan: '#00D4E0',
+        cyanDim: 'rgba(0, 212, 224, 0.1)',
         gold: '#E29578',
-        goldLight: 'rgba(226, 149, 120, 0.1)',
+        goldDim: 'rgba(226, 149, 120, 0.1)',
         coral: '#E76F51',
-        coralLight: 'rgba(231, 111, 81, 0.1)',
+        coralDim: 'rgba(231, 111, 81, 0.1)',
         sand: '#FFDDD2',
-        gray: '#A0AEC0'
+        gray: '#5A7A8A',
+        gridColor: 'rgba(255, 255, 255, 0.04)',
+        tooltipBg: 'rgba(7, 18, 21, 0.95)'
     };
 
-    // 1. BENI Index vs CPI Chart
-    const indexVsCpiCtx = document.getElementById('indexVsCpiChart');
+    // 1. BENI Index vs CPI
+    var indexVsCpiCtx = document.getElementById('indexVsCpiChart');
     if (indexVsCpiCtx) {
-        // Generate sample data showing inverse correlation
-        const months = [];
-        const beniIndex = [];
-        const cpi = [];
+        var months = [];
+        var beniIndex = [];
+        var cpi = [];
+        var labels = [];
 
-        for (let i = 0; i < 79; i++) {
-            const year = 2014 + Math.floor(i / 12);
-            const month = (i % 12) + 1;
-            months.push(`${year}-${String(month).padStart(2, '0')}`);
+        for (var i = 0; i < 79; i++) {
+            var year = 2014 + Math.floor(i / 12);
+            var month = (i % 12) + 1;
+            months.push(year + '-' + String(month).padStart(2, '0'));
 
-            // Simulated inverse correlation
-            const baseIndex = 50 + Math.sin(i / 12 * Math.PI) * 20 + (Math.random() - 0.5) * 10;
-            const baseCpi = 100 + i * 0.3 + Math.sin(i / 6 * Math.PI) * 5 + (Math.random() - 0.5) * 3;
+            var baseIndex = 50 + Math.sin(i / 12 * Math.PI) * 20 + (Math.random() - 0.5) * 10;
+            var baseCpi = 100 + i * 0.3 + Math.sin(i / 6 * Math.PI) * 5 + (Math.random() - 0.5) * 3;
 
-            beniIndex.push(baseIndex.toFixed(1));
-            cpi.push(baseCpi.toFixed(1));
+            beniIndex.push(parseFloat(baseIndex.toFixed(1)));
+            cpi.push(parseFloat(baseCpi.toFixed(1)));
+
+            if (i % 6 === 0) {
+                labels.push(months[i]);
+            }
         }
+
+        var beniFiltered = beniIndex.filter(function(_, idx) { return idx % 6 === 0; });
+        var cpiFiltered = cpi.filter(function(_, idx) { return idx % 6 === 0; });
 
         new Chart(indexVsCpiCtx, {
             type: 'line',
             data: {
-                labels: months.filter((_, i) => i % 6 === 0), // Show every 6th month
+                labels: labels,
                 datasets: [
                     {
                         label: 'BENI Index',
-                        data: beniIndex.filter((_, i) => i % 6 === 0),
-                        borderColor: colors.teal,
-                        backgroundColor: colors.tealLight,
+                        data: beniFiltered,
+                        borderColor: colors.cyan,
+                        backgroundColor: colors.cyanDim,
                         fill: true,
                         tension: 0.4,
                         pointRadius: 0,
-                        pointHoverRadius: 5,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: colors.cyan,
                         borderWidth: 2
                     },
                     {
                         label: 'CPI',
-                        data: cpi.filter((_, i) => i % 6 === 0),
+                        data: cpiFiltered,
                         borderColor: colors.gold,
-                        backgroundColor: colors.goldLight,
+                        backgroundColor: colors.goldDim,
                         fill: true,
                         tension: 0.4,
                         pointRadius: 0,
-                        pointHoverRadius: 5,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: colors.gold,
                         borderWidth: 2,
                         yAxisID: 'y1'
                     }
@@ -167,29 +199,26 @@ function initCharts() {
                         position: 'top',
                         labels: {
                             usePointStyle: true,
-                            padding: 20
+                            padding: 20,
+                            color: '#E8E6E3'
                         }
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(45, 55, 72, 0.9)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
+                        backgroundColor: colors.tooltipBg,
+                        titleColor: '#00D4E0',
+                        bodyColor: '#E8E6E3',
+                        borderColor: 'rgba(0, 212, 224, 0.2)',
+                        borderWidth: 1,
                         padding: 12,
-                        displayColors: true,
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': ' + context.parsed.y;
-                            }
-                        }
+                        displayColors: true
                     }
                 },
                 scales: {
                     x: {
-                        grid: {
-                            display: false
-                        },
+                        grid: { display: false },
                         ticks: {
-                            maxTicksLimit: 8
+                            maxTicksLimit: 8,
+                            color: '#5A7A8A'
                         }
                     },
                     y: {
@@ -198,11 +227,13 @@ function initCharts() {
                         position: 'left',
                         title: {
                             display: true,
-                            text: 'BENI Index'
+                            text: 'BENI Index',
+                            color: '#00D4E0'
                         },
                         grid: {
-                            color: 'rgba(0, 0, 0, 0.05)'
-                        }
+                            color: colors.gridColor
+                        },
+                        ticks: { color: '#5A7A8A' }
                     },
                     y1: {
                         type: 'linear',
@@ -210,19 +241,21 @@ function initCharts() {
                         position: 'right',
                         title: {
                             display: true,
-                            text: 'CPI'
+                            text: 'CPI',
+                            color: '#E29578'
                         },
                         grid: {
                             drawOnChartArea: false
-                        }
+                        },
+                        ticks: { color: '#5A7A8A' }
                     }
                 }
             }
         });
     }
 
-    // 2. Model Comparison Chart
-    const modelComparisonCtx = document.getElementById('modelComparisonChart');
+    // 2. Model Comparison
+    var modelComparisonCtx = document.getElementById('modelComparisonChart');
     if (modelComparisonCtx) {
         new Chart(modelComparisonCtx, {
             type: 'bar',
@@ -232,14 +265,14 @@ function initCharts() {
                     label: 'Accuracy (%)',
                     data: [91.7, 89.2, 90.5, 89.8, 92.1],
                     backgroundColor: [
-                        colors.teal,
+                        colors.cyan,
                         colors.gold,
                         colors.coral,
-                        '#9CD5F0',
-                        '#88BFFF'
+                        '#5B8DEF',
+                        '#7C6FE0'
                     ],
-                    borderRadius: 8,
-                    barThickness: 40
+                    borderRadius: 6,
+                    barThickness: 36
                 }]
             },
             options: {
@@ -247,11 +280,13 @@ function initCharts() {
                 maintainAspectRatio: true,
                 indexAxis: 'y',
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
                     tooltip: {
-                        backgroundColor: 'rgba(45, 55, 72, 0.9)',
+                        backgroundColor: colors.tooltipBg,
+                        titleColor: '#E8E6E3',
+                        bodyColor: '#00D4E0',
+                        borderColor: 'rgba(0, 212, 224, 0.2)',
+                        borderWidth: 1,
                         callbacks: {
                             label: function(context) {
                                 return context.parsed.x + '%';
@@ -263,51 +298,47 @@ function initCharts() {
                     x: {
                         min: 85,
                         max: 95,
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.05)'
-                        },
+                        grid: { color: colors.gridColor },
                         ticks: {
+                            color: '#5A7A8A',
                             callback: function(value) {
                                 return value + '%';
                             }
                         }
                     },
                     y: {
-                        grid: {
-                            display: false
-                        }
+                        grid: { display: false },
+                        ticks: { color: '#8899AA' }
                     }
                 }
             }
         });
     }
 
-    // 3. Article Volume Chart
-    const articleVolumeCtx = document.getElementById('articleVolumeChart');
+    // 3. Article Volume
+    var articleVolumeCtx = document.getElementById('articleVolumeChart');
     if (articleVolumeCtx) {
-        // Generate monthly volume data
-        const months = [];
-        const volumes = [];
+        var volMonths = [];
+        var volumes = [];
 
-        for (let i = 0; i < 79; i++) {
-            const year = 2014 + Math.floor(i / 12);
-            const month = (i % 12) + 1;
-            if (i % 6 === 0) {
-                months.push(`${year}-${String(month).padStart(2, '0')}`);
-                // Simulated volume with some variation
-                volumes.push(Math.floor(8000 + Math.random() * 4000 + Math.sin(i / 12 * Math.PI) * 1000));
+        for (var j = 0; j < 79; j++) {
+            if (j % 6 === 0) {
+                var vy = 2014 + Math.floor(j / 12);
+                var vm = (j % 12) + 1;
+                volMonths.push(vy + '-' + String(vm).padStart(2, '0'));
+                volumes.push(Math.floor(8000 + Math.random() * 4000 + Math.sin(j / 12 * Math.PI) * 1000));
             }
         }
 
         new Chart(articleVolumeCtx, {
             type: 'bar',
             data: {
-                labels: months,
+                labels: volMonths,
                 datasets: [{
                     label: 'Articles',
                     data: volumes,
-                    backgroundColor: colors.tealLight,
-                    borderColor: colors.teal,
+                    backgroundColor: 'rgba(0, 212, 224, 0.15)',
+                    borderColor: colors.cyan,
                     borderWidth: 1,
                     borderRadius: 4
                 }]
@@ -316,11 +347,13 @@ function initCharts() {
                 responsive: true,
                 maintainAspectRatio: true,
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
                     tooltip: {
-                        backgroundColor: 'rgba(45, 55, 72, 0.9)',
+                        backgroundColor: colors.tooltipBg,
+                        titleColor: '#E8E6E3',
+                        bodyColor: '#00D4E0',
+                        borderColor: 'rgba(0, 212, 224, 0.2)',
+                        borderWidth: 1,
                         callbacks: {
                             label: function(context) {
                                 return context.parsed.y.toLocaleString() + ' articles';
@@ -330,18 +363,16 @@ function initCharts() {
                 },
                 scales: {
                     x: {
-                        grid: {
-                            display: false
-                        },
+                        grid: { display: false },
                         ticks: {
-                            maxTicksLimit: 8
+                            maxTicksLimit: 8,
+                            color: '#5A7A8A'
                         }
                     },
                     y: {
-                        grid: {
-                            color: 'rgba(0, 0, 0, 0.05)'
-                        },
+                        grid: { color: colors.gridColor },
                         ticks: {
+                            color: '#5A7A8A',
                             callback: function(value) {
                                 return (value / 1000).toFixed(0) + 'K';
                             }
@@ -352,8 +383,8 @@ function initCharts() {
         });
     }
 
-    // 4. Annotation Cost Chart
-    const annotationCostCtx = document.getElementById('annotationCostChart');
+    // 4. Annotation Cost
+    var annotationCostCtx = document.getElementById('annotationCostChart');
     if (annotationCostCtx) {
         new Chart(annotationCostCtx, {
             type: 'doughnut',
@@ -362,12 +393,12 @@ function initCharts() {
                 datasets: [{
                     data: [0.02, 0.03, 0.50],
                     backgroundColor: [
-                        colors.teal,
+                        colors.cyan,
                         colors.gold,
                         colors.coral
                     ],
                     borderWidth: 0,
-                    hoverOffset: 10
+                    hoverOffset: 12
                 }]
             },
             options: {
@@ -378,11 +409,16 @@ function initCharts() {
                         position: 'bottom',
                         labels: {
                             usePointStyle: true,
-                            padding: 20
+                            padding: 20,
+                            color: '#E8E6E3'
                         }
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(45, 55, 72, 0.9)',
+                        backgroundColor: colors.tooltipBg,
+                        titleColor: '#E8E6E3',
+                        bodyColor: '#00D4E0',
+                        borderColor: 'rgba(0, 212, 224, 0.2)',
+                        borderWidth: 1,
                         callbacks: {
                             label: function(context) {
                                 return context.label + ' per article';
@@ -396,43 +432,43 @@ function initCharts() {
     }
 }
 
-// Scroll Animations
+// ── Scroll Animations ──
 function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.stat-card, .finding-card, .chart-card, .pipeline-card, .blog-card');
+    var fadeSections = document.querySelectorAll('.fade-section');
 
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    if (!fadeSections.length) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    var sectionObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
+                entry.target.classList.add('visible');
+                sectionObserver.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
 
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+    fadeSections.forEach(function(section) {
+        sectionObserver.observe(section);
     });
 }
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+// ── Smooth Scroll for Anchor Links ──
+function smoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var href = this.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            var target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
-});
+}
