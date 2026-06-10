@@ -1,0 +1,10 @@
+{
+  "domain": "sentiment_analysis",
+  "description": "Sentiment and emotional tone of spoken segments",
+  "primary_field": "sentiment",
+  "fields": [
+    {"name": "sentiment", "description": "Overall emotional tone", "options": ["positive", "negative", "neutral", "mixed", "urgent", "frustrated"], "type": "categorical"},
+    {"name": "intensity", "description": "Emotional intensity", "options": ["high", "medium", "low"], "type": "categorical"},
+    {"name": "certainty", "description": "Speaker's expressed certainty", "options": ["certain", "uncertain", "speculative", "questioning"], "type": "categorical"}
+  ]
+}

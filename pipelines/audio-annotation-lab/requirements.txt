@@ -1,0 +1,19 @@
+# Audio Annotation Lab — Core Dependencies
+openai-whisper>=20231117
+faster-whisper>=1.0.0
+torch>=2.0.0
+transformers>=4.36.0
+datasets>=2.14.0
+soundfile>=0.12.0
+librosa>=0.10.0
+jiwer>=3.0.0
+krippendorff>=0.3.0
+numpy>=1.24.0
+pandas>=2.0.0
+pydantic>=2.0.0
+
+# Optional: Annotation UI
+gradio>=4.0.0
+
+# Optional: Audio playback in UI
+ffmpeg-python>=0.2.0

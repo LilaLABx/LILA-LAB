@@ -1,0 +1,10 @@
+{
+  "domain": "speaker_diarization",
+  "description": "Speaker identification and role classification",
+  "primary_field": "speaker_role",
+  "fields": [
+    {"name": "speaker_role", "description": "Role of the speaker", "options": ["interviewer", "subject_expert", "community_member", "policy_maker", "other"], "type": "categorical"},
+    {"name": "speaker_confidence", "description": "Confidence in identification", "options": ["high", "medium", "low"], "type": "categorical"},
+    {"name": "language_variant", "description": "Language or dialect spoken", "options": ["standard", "regional_dialect", "mixed", "unknown"], "type": "categorical"}
+  ]
+}

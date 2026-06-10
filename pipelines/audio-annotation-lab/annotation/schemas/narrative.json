@@ -1,0 +1,12 @@
+{
+  "domain": "economic_narrative",
+  "description": "Economic narrative signal detection in spoken content",
+  "primary_field": "economic_relevance",
+  "fields": [
+    {"name": "economic_relevance", "description": "Discusses economic/financial topics?", "options": ["relevant", "not_relevant", "tangential"], "type": "categorical"},
+    {"name": "economic_sentiment", "description": "Economic sentiment", "options": ["positive", "negative", "neutral", "mixed", "crisis", "recovery"], "type": "categorical"},
+    {"name": "economic_actor", "description": "Subject of economic discussion", "options": ["individual_household", "farmer_producer", "business_owner", "government_policy", "financial_institution", "worker_laborer", "community_group", "unclear"], "type": "categorical"},
+    {"name": "time_reference", "description": "Temporal frame", "options": ["past", "present", "future", "comparative", "unspecified"], "type": "categorical"},
+    {"name": "lived_experience", "description": "Personal experience vs general observation", "options": ["personal_experience", "community_observation", "general_knowledge", "hearsay", "unclear"], "type": "categorical"}
+  ]
+}

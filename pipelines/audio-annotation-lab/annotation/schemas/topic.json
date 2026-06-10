@@ -1,0 +1,10 @@
+{
+  "domain": "topic_classification",
+  "description": "Topic classification for spoken content segments",
+  "primary_field": "topic",
+  "fields": [
+    {"name": "topic", "description": "Primary topic", "options": ["prices_markets", "agriculture_farming", "employment_livelihoods", "health_wellbeing", "education", "infrastructure", "governance_policy", "social_community", "climate_environment", "finance_banking", "technology", "general"], "type": "categorical"},
+    {"name": "subtopic", "description": "Specific subtopic", "options": [], "type": "free_text"},
+    {"name": "is_actionable", "description": "Does speaker propose/request action?", "options": ["yes", "no", "unsure"], "type": "categorical"}
+  ]
+}
