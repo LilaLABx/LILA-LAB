@@ -101,17 +101,12 @@ def segment_confidence(
         If weights do not sum to 1 (within floating tolerance).
     """
     if abs(asr_weight + annotation_weight - 1.0) > 1e-9:
-        msg = (
-            f"asr_weight ({asr_weight}) + annotation_weight ({annotation_weight}) "
-            f"must sum to 1"
-        )
+        msg = f"asr_weight ({asr_weight}) + annotation_weight ({annotation_weight}) must sum to 1"
         raise ValueError(msg)
 
     asr_conf: float = segment.get("confidence", 0.5) if isinstance(segment, dict) else 0.5
     label_scores = label_confidence(annotation)
-    annotation_conf: float = (
-        statistics.mean(list(label_scores.values())) if label_scores else 0.5
-    )
+    annotation_conf: float = statistics.mean(list(label_scores.values())) if label_scores else 0.5
 
     return asr_weight * asr_conf + annotation_weight * annotation_conf
 

@@ -107,9 +107,7 @@ def get_llm_client(provider: str) -> Any:
         "ollama": call_ollama,
     }
     if provider not in clients:
-        raise ValueError(
-            f"Unknown provider: {provider}. Choose from: {list(clients.keys())}"
-        )
+        raise ValueError(f"Unknown provider: {provider}. Choose from: {list(clients.keys())}")
     return clients[provider]
 
 
@@ -253,9 +251,7 @@ def annotate_segment(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Audio Annotation Lab — LLM Annotation Pipeline"
-    )
+    parser = argparse.ArgumentParser(description="Audio Annotation Lab — LLM Annotation Pipeline")
     parser.add_argument(
         "--input",
         required=True,

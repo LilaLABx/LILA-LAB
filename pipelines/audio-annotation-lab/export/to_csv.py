@@ -177,11 +177,7 @@ def export_summary_csv(store: Store, output_path: str | Path) -> int:
             anns = store.load_annotations(seg.id)
             annotation_count += len(anns)
             annotation_confs.extend(a.confidence for a in anns)
-        avg_ann_conf = (
-            sum(annotation_confs) / len(annotation_confs)
-            if annotation_confs
-            else 0.0
-        )
+        avg_ann_conf = sum(annotation_confs) / len(annotation_confs) if annotation_confs else 0.0
 
         row: dict[str, Any] = {
             "session_id": session.id,

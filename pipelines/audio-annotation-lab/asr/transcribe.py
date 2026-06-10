@@ -50,6 +50,7 @@ def _get_audio_duration(audio_path: Path) -> float:
     """
     try:
         import librosa
+
         return float(librosa.get_duration(path=str(audio_path)))
     except Exception as exc:
         logger.warning("Could not get duration for '%s': %s", audio_path, exc)
@@ -105,7 +106,8 @@ def _transcribe_openai_whisper(
 
     logger.info(
         "Loading openai-whisper model '%s' on %s …",
-        model_name, device,
+        model_name,
+        device,
     )
     model = whisper.load_model(model_name, device=device)
 
@@ -125,15 +127,17 @@ def _transcribe_openai_whisper(
     segments: list[dict[str, Any]] = []
     for seg in result.get("segments", []):
         seg_id = str(uuid.uuid4())
-        segments.append({
-            "id": seg_id,
-            "start_time": round(float(seg.get("start", 0.0)), 3),
-            "end_time": round(float(seg.get("end", 0.0)), 3),
-            "speaker": "SPEAKER_00",
-            "text": seg.get("text", "").strip(),
-            "confidence": round(float(seg.get("confidence", 0.0)), 4),
-            "language": detected_language,
-        })
+        segments.append(
+            {
+                "id": seg_id,
+                "start_time": round(float(seg.get("start", 0.0)), 3),
+                "end_time": round(float(seg.get("end", 0.0)), 3),
+                "speaker": "SPEAKER_00",
+                "text": seg.get("text", "").strip(),
+                "confidence": round(float(seg.get("confidence", 0.0)), 4),
+                "language": detected_language,
+            }
+        )
 
     return segments, detected_language
 
@@ -154,7 +158,9 @@ def _transcribe_faster_whisper(
     compute_type = "float16" if device == "cuda" else "int8"
     logger.info(
         "Loading faster-whisper model '%s' on %s (compute_type=%s) …",
-        model_name, device, compute_type,
+        model_name,
+        device,
+        compute_type,
     )
     model = WhisperModel(model_name, device=device, compute_type=compute_type)
 
@@ -175,15 +181,19 @@ def _transcribe_faster_whisper(
     segments: list[dict[str, Any]] = []
     for seg in seg_generator:
         seg_id = str(uuid.uuid4())
-        segments.append({
-            "id": seg_id,
-            "start_time": round(float(seg.start), 3),
-            "end_time": round(float(seg.end), 3),
-            "speaker": "SPEAKER_00",
-            "text": seg.text.strip(),
-            "confidence": round(float(seg.avg_logprob if hasattr(seg, "avg_logprob") else seg.no_speech_prob), 4),
-            "language": detected_language,
-        })
+        segments.append(
+            {
+                "id": seg_id,
+                "start_time": round(float(seg.start), 3),
+                "end_time": round(float(seg.end), 3),
+                "speaker": "SPEAKER_00",
+                "text": seg.text.strip(),
+                "confidence": round(
+                    float(seg.avg_logprob if hasattr(seg, "avg_logprob") else seg.no_speech_prob), 4
+                ),
+                "language": detected_language,
+            }
+        )
 
     return segments, detected_language
 
@@ -238,18 +248,22 @@ def transcribe_file(
     try:
         if backend == "openai-whisper":
             segments, detected_lang = _transcribe_openai_whisper(
-                audio_path, whisper_model_name, language, device,
+                audio_path,
+                whisper_model_name,
+                language,
+                device,
             )
         elif backend == "faster-whisper":
             segments, detected_lang = _transcribe_faster_whisper(
-                audio_path, whisper_model_name, language, device,
+                audio_path,
+                whisper_model_name,
+                language,
+                device,
             )
         else:
             raise RuntimeError(f"Unsupported backend: {backend}")
     except Exception as exc:
-        raise RuntimeError(
-            f"Transcription failed for '{audio_path.name}': {exc}"
-        ) from exc
+        raise RuntimeError(f"Transcription failed for '{audio_path.name}': {exc}") from exc
 
     # Build session record
     session_id = str(uuid.uuid4())
@@ -310,7 +324,8 @@ def transcribe_batch(
 
     logger.info(
         "Batch processing %d audio files from '%s' …",
-        len(audio_files), input_dir,
+        len(audio_files),
+        input_dir,
     )
 
     sessions: list[dict[str, Any]] = []
@@ -336,7 +351,10 @@ def transcribe_batch(
         except Exception as exc:
             logger.error(
                 "  [%d/%d] ✗ %s — %s",
-                i, total, audio_path.name, exc,
+                i,
+                total,
+                audio_path.name,
+                exc,
             )
             # Continue with next file
             continue
@@ -350,7 +368,8 @@ def transcribe_batch(
 
     logger.info(
         "Batch complete: %d / %d files transcribed successfully",
-        len(sessions), total,
+        len(sessions),
+        total,
     )
     return sessions
 
@@ -421,10 +440,7 @@ def main() -> None:
         )
     else:
         if not input_path.is_file():
-            parser.error(
-                f"Input file not found: {input_path}. "
-                "Use --batch for directories."
-            )
+            parser.error(f"Input file not found: {input_path}. Use --batch for directories.")
         transcribe_file(
             audio_path=input_path,
             output_dir=output_dir,

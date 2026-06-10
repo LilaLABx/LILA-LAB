@@ -57,9 +57,7 @@ def merge_adjacent_segments(
     for i in range(1, len(sorted_segs)):
         seg = sorted_segs[i]
 
-        same_speaker = (
-            str(seg.get("speaker", "")) == str(current.get("speaker", ""))
-        )
+        same_speaker = str(seg.get("speaker", "")) == str(current.get("speaker", ""))
         gap = float(seg.get("start_time", 0)) - float(current.get("end_time", 0))
 
         if same_speaker and 0 <= gap <= max_gap:
@@ -134,12 +132,14 @@ def split_long_segment(
             seg_start = start_time
             seg_end = start_time + total_duration
 
-        sub_segments.append({
-            "text": sent,
-            "start_time": round(seg_start, 3),
-            "end_time": round(seg_end, 3),
-            "speaker": segment.get("speaker", ""),
-        })
+        sub_segments.append(
+            {
+                "text": sent,
+                "start_time": round(seg_start, 3),
+                "end_time": round(seg_end, 3),
+                "speaker": segment.get("speaker", ""),
+            }
+        )
 
         char_offset += sent_length
 
@@ -216,8 +216,7 @@ def format_segment_for_llm(
             ctx_text = str(ctx.get("text", "")).strip()
             marker = ">>>" if str(ctx.get("id", "")) == seg_id else "   "
             parts.append(
-                f'{marker} [{ctx_id}] {ctx_speaker} '
-                f'({ctx_start:.1f}s–{ctx_end:.1f}s): {ctx_text}'
+                f"{marker} [{ctx_id}] {ctx_speaker} ({ctx_start:.1f}s–{ctx_end:.1f}s): {ctx_text}"
             )
         parts.append("--- End Context ---\n")
 

@@ -44,18 +44,21 @@ def _ffmpeg_convert_to_wav(
     cmd = [
         "ffmpeg",
         "-y",  # overwrite output without asking
-        "-i", str(input_path),
-        "-ac", "1",          # mono
-        "-ar", str(target_sr),
-        "-sample_fmt", "s16",
-        "-loglevel", "error",
+        "-i",
+        str(input_path),
+        "-ac",
+        "1",  # mono
+        "-ar",
+        str(target_sr),
+        "-sample_fmt",
+        "s16",
+        "-loglevel",
+        "error",
         str(output_path),
     ]
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
-        raise RuntimeError(
-            f"ffmpeg conversion failed for '{input_path}': {result.stderr.strip()}"
-        )
+        raise RuntimeError(f"ffmpeg conversion failed for '{input_path}': {result.stderr.strip()}")
 
 
 def _spectral_gate_noise_reduction(
@@ -86,12 +89,10 @@ def _spectral_gate_noise_reduction(
     # Estimate noise profile from the first portion
     n_frames = magnitude.shape[1]
     noise_frames_count = max(1, int(n_frames * noise_fraction))
-    noise_profile = np.mean(
-        magnitude[:, :noise_frames_count] ** 2, axis=1, keepdims=True
-    )
+    noise_profile = np.mean(magnitude[:, :noise_frames_count] ** 2, axis=1, keepdims=True)
 
     # Spectral subtraction (half-wave rectification)
-    magnitude_denoised = np.maximum(magnitude ** 2 - noise_profile, 0.0) ** 0.5
+    magnitude_denoised = np.maximum(magnitude**2 - noise_profile, 0.0) ** 0.5
     D_denoised = magnitude_denoised * phase
     return librosa.istft(D_denoised)
 
@@ -126,9 +127,7 @@ def _strip_silence_vad(
     hop_length = frame_length // 2
 
     # Frame energy
-    energy = librosa.feature.rms(
-        y=audio, frame_length=frame_length, hop_length=hop_length
-    )[0]
+    energy = librosa.feature.rms(y=audio, frame_length=frame_length, hop_length=hop_length)[0]
 
     threshold = float(np.percentile(energy, silence_percentile))
     is_speech = energy > threshold

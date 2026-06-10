@@ -85,9 +85,7 @@ def load_annotations(input_dir: str) -> list[dict]:
             record: dict[str, Any] = {
                 "segment_id": segment_id,
                 "annotator_id": annotator_id,
-                "annotations": {
-                    k: v for k, v in llm_ann.items() if k not in _META_FIELDS
-                },
+                "annotations": {k: v for k, v in llm_ann.items() if k not in _META_FIELDS},
             }
             # Preserve metadata for later use
             for meta in ("provider", "model"):
@@ -191,9 +189,7 @@ def compute_interrater_agreement(
             "observed_agreement": fk["observed_agreement"],
             "expected_agreement": fk["expected_agreement"],
             "mean_pairwise_cohens_kappa": (
-                round(sum(pairwise_kappas) / len(pairwise_kappas), 4)
-                if pairwise_kappas
-                else None
+                round(sum(pairwise_kappas) / len(pairwise_kappas), 4) if pairwise_kappas else None
             ),
         }
 
@@ -263,8 +259,7 @@ def majority_vote(annotations: list[dict]) -> dict[str, Any]:
                 if confidence_scores:
                     top_value = max(
                         confidence_scores,
-                        key=lambda v: sum(confidence_scores[v])
-                        / len(confidence_scores[v]),
+                        key=lambda v: sum(confidence_scores[v]) / len(confidence_scores[v]),
                     )
 
         adjudicated[field] = top_value
@@ -274,11 +269,7 @@ def majority_vote(annotations: list[dict]) -> dict[str, Any]:
             "vote_distribution": dict(counter),
         }
 
-    ratios = [
-        info["agreement_ratio"]
-        for info in agreement_info.values()
-        if info["n_votes"] > 0
-    ]
+    ratios = [info["agreement_ratio"] for info in agreement_info.values() if info["n_votes"] > 0]
     mean_agreement = round(sum(ratios) / len(ratios), 4) if ratios else 0.0
 
     return {
@@ -398,9 +389,7 @@ def adjudicate_segment(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Audio Annotation Lab — Adjudication Pipeline"
-    )
+    parser = argparse.ArgumentParser(description="Audio Annotation Lab — Adjudication Pipeline")
     parser.add_argument(
         "--input",
         required=True,

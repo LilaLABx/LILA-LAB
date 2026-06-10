@@ -113,8 +113,7 @@ def export_to_hf(
     dataset_info_path = out_dir / "dataset_info.json"
     dataset_info = {
         "description": (
-            "Audio Annotation Lab — annotated speech segments from "
-            "low-resource languages."
+            "Audio Annotation Lab — annotated speech segments from low-resource languages."
         ),
         "citation": "",
         "homepage": "",

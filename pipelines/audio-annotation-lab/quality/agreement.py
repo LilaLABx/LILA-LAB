@@ -147,12 +147,10 @@ def krippendorff_alpha(
         observed = sum(coinc[c][k] for c in range(n_codes) for k in range(n_codes) if c != k)
 
         # Expected disagreement (chance)
-        expected = sum(
-            totals[c] * totals[k]
-            for c in range(n_codes)
-            for k in range(n_codes)
-            if c != k
-        ) / total_paired
+        expected = (
+            sum(totals[c] * totals[k] for c in range(n_codes) for k in range(n_codes) if c != k)
+            / total_paired
+        )
 
     elif level == "ordinal":
         observed = 0.0
@@ -213,10 +211,7 @@ def cohens_kappa(
         If the two annotation lists differ in length or fewer than 2 items.
     """
     if len(annotations_a) != len(annotations_b):
-        msg = (
-            f"Annotation list length mismatch: "
-            f"{len(annotations_a)} vs {len(annotations_b)}"
-        )
+        msg = f"Annotation list length mismatch: {len(annotations_a)} vs {len(annotations_b)}"
         raise ValueError(msg)
     n = len(annotations_a)
     if n < 2:

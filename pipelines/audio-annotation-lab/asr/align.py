@@ -65,12 +65,14 @@ def _linear_interpolate_words(
     for i, word in enumerate(words):
         w_start = start_time + i * word_duration
         w_end = w_start + word_duration
-        word_list.append({
-            "word": word,
-            "start": round(w_start, 3),
-            "end": round(w_end, 3),
-            "confidence": round(avg_confidence, 4),
-        })
+        word_list.append(
+            {
+                "word": word,
+                "start": round(w_start, 3),
+                "end": round(w_end, 3),
+                "confidence": round(avg_confidence, 4),
+            }
+        )
     return word_list
 
 
@@ -110,12 +112,14 @@ def _try_whisper_timestamped(
         words: list[dict[str, Any]] = []
         for seg in result.get("segments", []):
             for w in seg.get("words", []):
-                words.append({
-                    "word": w.get("text", "").strip(),
-                    "start": round(float(w.get("start", 0.0)), 3),
-                    "end": round(float(w.get("end", 0.0)), 3),
-                    "confidence": round(float(w.get("confidence", 0.0)), 4),
-                })
+                words.append(
+                    {
+                        "word": w.get("text", "").strip(),
+                        "start": round(float(w.get("start", 0.0)), 3),
+                        "end": round(float(w.get("end", 0.0)), 3),
+                        "confidence": round(float(w.get("confidence", 0.0)), 4),
+                    }
+                )
         return words if words else None
     except Exception as exc:
         logger.warning("whisper-timestamped alignment failed: %s", exc)
@@ -160,9 +164,7 @@ def align_words(
     precise = _try_whisper_timestamped(audio_path)
 
     if precise is not None and len(precise) > 0:
-        logger.info(
-            "Precise alignment produced %d word timestamps", len(precise)
-        )
+        logger.info("Precise alignment produced %d word timestamps", len(precise))
         return {"words": precise}
 
     # Fall back: linear interpolation per segment

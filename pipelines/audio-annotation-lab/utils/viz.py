@@ -28,6 +28,7 @@ def _check_matplotlib() -> bool:
     """Return ``True`` if ``matplotlib`` is importable."""
     try:
         import matplotlib  # noqa: F401
+
         return True
     except ImportError:
         return False
@@ -58,6 +59,7 @@ def plot_waveform(
     """
     if not _check_matplotlib():
         import warnings
+
         warnings.warn("matplotlib not installed; skipping plot_waveform()", stacklevel=2)
         return
 
@@ -68,6 +70,7 @@ def plot_waveform(
         import soundfile as sf  # type: ignore[import-untyped]
     except ImportError:
         import warnings
+
         warnings.warn("soundfile not installed; skipping plot_waveform()", stacklevel=2)
         return
 
@@ -75,12 +78,14 @@ def plot_waveform(
         data, sr = sf.read(str(audio_path))
     except Exception as exc:
         import warnings
+
         warnings.warn(f"Failed to read audio: {exc}", stacklevel=2)
         return
 
     # Convert to mono for plotting
     if data.ndim > 1:
         import numpy as np  # type: ignore[import-untyped]
+
         data = np.mean(data, axis=1)
 
     duration = len(data) / sr
@@ -136,7 +141,10 @@ def plot_confidence_histogram(
     """
     if not _check_matplotlib():
         import warnings
-        warnings.warn("matplotlib not installed; skipping plot_confidence_histogram()", stacklevel=2)
+
+        warnings.warn(
+            "matplotlib not installed; skipping plot_confidence_histogram()", stacklevel=2
+        )
         return
 
     import matplotlib.pyplot as plt
@@ -151,6 +159,7 @@ def plot_confidence_histogram(
 
     if not scores:
         import warnings
+
         warnings.warn("No confidence scores to plot", stacklevel=2)
         return
 
@@ -188,6 +197,7 @@ def plot_agreement_heatmap(
     """
     if not _check_matplotlib():
         import warnings
+
         warnings.warn("matplotlib not installed; skipping plot_agreement_heatmap()", stacklevel=2)
         return
 
@@ -195,6 +205,7 @@ def plot_agreement_heatmap(
 
     if matrix.empty:
         import warnings
+
         warnings.warn("Empty agreement matrix; nothing to plot", stacklevel=2)
         return
 
@@ -249,6 +260,7 @@ def plot_timeline(
     """
     if not _check_matplotlib():
         import warnings
+
         warnings.warn("matplotlib not installed; skipping plot_timeline()", stacklevel=2)
         return
 
@@ -257,6 +269,7 @@ def plot_timeline(
 
     if not segments:
         import warnings
+
         warnings.warn("No segments to plot", stacklevel=2)
         return
 
@@ -313,9 +326,7 @@ def plot_timeline(
     ax.set_ylim(-0.5, len(segments) - 0.5)
 
     # Legend
-    legend_patches = [
-        mpatches.Patch(color=cat_to_color[cat], label=cat) for cat in categories
-    ]
+    legend_patches = [mpatches.Patch(color=cat_to_color[cat], label=cat) for cat in categories]
     ax.legend(handles=legend_patches, fontsize="small", loc="upper right")
 
     fig.tight_layout()

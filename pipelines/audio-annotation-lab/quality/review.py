@@ -173,10 +173,7 @@ def priority_sort(
 
     key_fn = strategies.get(strategy)
     if key_fn is None:
-        msg = (
-            f"Unknown strategy '{strategy}'. "
-            f"Choose from: {', '.join(sorted(strategies))}"
-        )
+        msg = f"Unknown strategy '{strategy}'. Choose from: {', '.join(sorted(strategies))}"
         raise ValueError(msg)
 
     reverse = strategy == "confidence_descending"

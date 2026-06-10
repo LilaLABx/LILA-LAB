@@ -33,6 +33,7 @@ def _has_soundfile() -> bool:
     """Check whether ``soundfile`` is installed."""
     try:
         import soundfile  # noqa: F401
+
         return True
     except ImportError:
         return False
@@ -123,8 +124,10 @@ def get_audio_info(path: str | Path) -> dict[str, Any]:
     if _has_ffprobe():
         cmd = [
             "ffprobe",
-            "-v", "quiet",
-            "-print_format", "json",
+            "-v",
+            "quiet",
+            "-print_format",
+            "json",
             "-show_format",
             "-show_streams",
             str(path),
@@ -152,8 +155,7 @@ def get_audio_info(path: str | Path) -> dict[str, Any]:
                 pass
 
     raise RuntimeError(
-        f"Unable to read audio metadata for {path}. "
-        f"Install soundfile or ensure ffprobe is on PATH."
+        f"Unable to read audio metadata for {path}. Install soundfile or ensure ffprobe is on PATH."
     )
 
 
@@ -211,9 +213,11 @@ def convert_format(
             # Convert channels
             if data.ndim == 1 and target_channels > 1:
                 import numpy as np  # type: ignore[import-untyped]
+
                 data = np.column_stack([data] * target_channels)
             elif data.ndim > 1 and target_channels == 1:
                 import numpy as np  # type: ignore[import-untyped]
+
                 data = np.mean(data, axis=1)
 
             sf.write(str(output_path), data, target_sr)
@@ -223,24 +227,24 @@ def convert_format(
 
     # Fallback: ffmpeg
     if not _has_ffmpeg():
-        raise RuntimeError(
-            "Neither soundfile nor ffmpeg is available for format conversion."
-        )
+        raise RuntimeError("Neither soundfile nor ffmpeg is available for format conversion.")
 
     cmd = [
         "ffmpeg",
         "-y",
-        "-i", str(input_path),
-        "-ar", str(target_sr),
-        "-ac", str(target_channels),
-        "-f", target_format,
+        "-i",
+        str(input_path),
+        "-ar",
+        str(target_sr),
+        "-ac",
+        str(target_channels),
+        "-f",
+        target_format,
         str(output_path),
     ]
     result = subprocess.run(cmd, capture_output=True, check=False)
     if result.returncode != 0:
-        raise RuntimeError(
-            f"ffmpeg conversion failed:\n{result.stderr.decode(errors='replace')}"
-        )
+        raise RuntimeError(f"ffmpeg conversion failed:\n{result.stderr.decode(errors='replace')}")
 
     return output_path.resolve()
 
@@ -292,10 +296,14 @@ def extract_segment(
     cmd = [
         "ffmpeg",
         "-y",
-        "-i", str(input_path),
-        "-ss", str(start_time),
-        "-t", str(duration),
-        "-c", "copy",
+        "-i",
+        str(input_path),
+        "-ss",
+        str(start_time),
+        "-t",
+        str(duration),
+        "-c",
+        "copy",
         str(output_path),
     ]
     result = subprocess.run(cmd, capture_output=True, check=False)
@@ -348,7 +356,7 @@ def normalize_audio(
 
             data, sr = sf.read(str(input_path))
             # Current RMS in dB
-            rms = math.sqrt(np.mean(data ** 2))
+            rms = math.sqrt(np.mean(data**2))
             if rms < 1e-10:
                 # Silent file — just copy
                 sf.write(str(output_path), data, sr)
@@ -371,15 +379,15 @@ def normalize_audio(
 
     # Fallback: ffmpeg loudnorm
     if not _has_ffmpeg():
-        raise RuntimeError(
-            "Neither soundfile nor ffmpeg is available for loudness normalisation."
-        )
+        raise RuntimeError("Neither soundfile nor ffmpeg is available for loudness normalisation.")
 
     cmd = [
         "ffmpeg",
         "-y",
-        "-i", str(input_path),
-        "-af", f"loudnorm=I={target_level}:LRA=7:TP=-1.5",
+        "-i",
+        str(input_path),
+        "-af",
+        f"loudnorm=I={target_level}:LRA=7:TP=-1.5",
         str(output_path),
     ]
     result = subprocess.run(cmd, capture_output=True, check=False)

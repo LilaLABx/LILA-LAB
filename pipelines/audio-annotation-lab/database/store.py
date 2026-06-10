@@ -144,10 +144,7 @@ class Store:
             A list of ``AudioSession`` objects in insertion order (oldest
             first).
         """
-        return [
-            AudioSession.from_dict(r)
-            for r in self._read_jsonl(self._sessions_path)
-        ]
+        return [AudioSession.from_dict(r) for r in self._read_jsonl(self._sessions_path)]
 
     def delete_session(self, session_id: str) -> bool:
         """Delete a session and all its associated data.
@@ -181,16 +178,16 @@ class Store:
     def save_segments(self, session_id: str, segments: list[AudioSegment]) -> int:
         """Save (overwrite) all segments for a session.
 
-    This replaces any previously stored segments for the given session
-    with the provided list.  Use this after re-transcription or when
-    importing a fresh set of segments.
+        This replaces any previously stored segments for the given session
+        with the provided list.  Use this after re-transcription or when
+        importing a fresh set of segments.
 
-        Args:
-            session_id: The parent session UUID.
-            segments: One or more ``AudioSegment`` objects.
+            Args:
+                session_id: The parent session UUID.
+                segments: One or more ``AudioSegment`` objects.
 
-        Returns:
-            The number of segments written.
+            Returns:
+                The number of segments written.
         """
         # Ensure session directory exists
         self._session_dir(session_id).mkdir(parents=True, exist_ok=True)
@@ -211,8 +208,7 @@ class Store:
             Empty list if the session has no segments.
         """
         return [
-            AudioSegment.from_dict(r)
-            for r in self._read_jsonl(self._segments_path(session_id))
+            AudioSegment.from_dict(r) for r in self._read_jsonl(self._segments_path(session_id))
         ]
 
     def get_segment(self, segment_id: str) -> AudioSegment | None:
