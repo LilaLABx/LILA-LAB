@@ -59,6 +59,7 @@ This log is the source of truth for authorship and acknowledgement decisions.
 
 | Guide | What it covers |
 |-------|---------------|
+| `docs/GLOSSARY.md` | **Domain jargon** — economic, NLP, and pipeline terms defined in one place |
 | `COLLABORATION.md` | **START HERE** — 8 research contribution models that lead to co-authorship |
 | `LINGUISTIC_CONTRIBUTION_GUIDE.md` | How linguistic experts can contribute native-language data |
 | `SUBREPOS.md` | How to link your independent repository as a git submodule |

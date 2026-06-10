@@ -17,6 +17,7 @@
 - [ ] Ruff lint passes (`ruff check .`)
 - [ ] Ruff format passes (`ruff format --check .`)
 - [ ] New code has docstrings / inline comments explaining the approach
+- [ ] Definitions added/updated in `docs/GLOSSARY.md` (if introducing new domain terms)
 - [ ] If adding a new pipeline: includes `README.md` with results and instructions
 - [ ] Sensitive data (API keys, tokens) is **never** committed — uses `.env` only
 - [ ] Shared utilities in `pipelines/shared/` are reused where applicable

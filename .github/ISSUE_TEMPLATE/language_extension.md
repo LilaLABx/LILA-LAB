@@ -32,3 +32,5 @@ How available are you to contribute?
 
 **Additional context**
 Add any other context about the language here.
+
+Unfamiliar with pipeline terms? See [docs/GLOSSARY.md](../../docs/GLOSSARY.md).

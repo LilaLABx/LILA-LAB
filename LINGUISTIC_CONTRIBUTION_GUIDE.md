@@ -4,6 +4,8 @@
 
 > **You are not a data source. You are a collaborator.** This guide is for linguistic experts, native speakers, and language researchers who want to make LLMs understand their language.
 
+New to project jargon (XENI, BENI, annotation schema)? See [docs/GLOSSARY.md](docs/GLOSSARY.md).
+
 ---
 
 ## What We Need
