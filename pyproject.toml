@@ -21,7 +21,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://nabil0x.github.io/LILA-LAB/"
+Homepage = "https://lilalab.pro.bd/"
 Repository = "https://github.com/LilaLABx/LILA-LAB"
 Discord = "https://discord.gg/TrrdKbky"
 
