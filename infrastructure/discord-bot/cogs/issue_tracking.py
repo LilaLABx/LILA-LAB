@@ -32,10 +32,19 @@ class IssueTracking(commands.Cog):
         self.posted_issues = self._load_posted()
         # Track claim intents: message_id -> {issue_number, claimer_id, claimer_name}
         self.claim_intents = {}
+        # Ensure startup sync fires once
+        self._startup_synced = False
 
         if self.github_token:
             self.sync_issues_to_channel.start()
             self.daily_digest.start()
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        """Trigger an immediate sync when the bot comes online."""
+        if self.github_token and not self._startup_synced:
+            self._startup_synced = True
+            await self.sync_issues_to_channel()
 
     def _load_posted(self):
         if self.posted_issues_file.exists():
@@ -267,6 +276,24 @@ class IssueTracking(commands.Cog):
                         "Could not auto-assign. An admin may need to grant the bot repo permissions.",
                         ephemeral=True,
                     )
+
+    @app_commands.command(name="sync-issues", description="Force sync all pending GitHub issues to this channel (Admin)")
+    @app_commands.default_permissions(administrator=True)
+    async def sync_issues_command(self, interaction: discord.Interaction):
+        """Manually trigger a full issue sync to the tracking channel."""
+        await interaction.response.defer(ephemeral=True)
+        if not self.github_token:
+            await interaction.followup.send("GitHub token not configured.", ephemeral=True)
+            return
+
+        # Clear posted_issues to force re-posting everything
+        self.posted_issues.clear()
+        self._save_posted()
+        await self.sync_issues_to_channel()
+        await interaction.followup.send(
+            f"✅ Sync complete. Check <#{config.ISSUE_TRACKING_CHANNEL_ID}> for new issues.",
+            ephemeral=True,
+        )
 
     @app_commands.command(name="issue-status", description="Get status of a GitHub issue")
     @app_commands.describe(issue_number="The GitHub issue number")
