@@ -386,59 +386,7 @@ class GitHubIntegration(commands.Cog):
         embed.set_footer(text="Thank you to all contributors!")
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
-    @app_commands.command(name="claim", description="Claim an issue for yourself")
-    @app_commands.describe(issue_number="The GitHub issue number to claim")
-    async def claim_command(self, interaction: discord.Interaction, issue_number: int):
-        """Claim a GitHub issue (assigns to you)."""
-        if not self.github_token:
-            await interaction.response.send_message(
-                "GitHub integration not configured. Contact admin.",
-                ephemeral=True,
-            )
-            return
 
-        # Check if issue exists
-        url = f"https://api.github.com/repos/{self.github_repo}/issues/{issue_number}"
-        async with aiohttp.ClientSession() as session, session.get(url, headers=self.headers) as response:
-            if response.status != 200:
-                await interaction.response.send_message(
-                    f"Issue #{issue_number} not found.",
-                    ephemeral=True,
-                )
-                return
-
-            issue = await response.json()
-
-            # Check if already assigned
-            if issue.get("assignee"):
-                await interaction.response.send_message(
-                    f"Issue #{issue_number} is already assigned to {issue['assignee']['login']}.",
-                    ephemeral=True,
-                )
-                return
-
-        # Assign to user
-        # Note: This requires the bot to have push access to the repo
-        # For now, we'll just record the intent
-        embed = discord.Embed(
-            title=f"Issue Claimed: #{issue_number}",
-            description=(
-                f"**{interaction.user.display_name}** wants to work on:\n"
-                f"**{issue['title']}**\n\n"
-                f"[View Issue]({issue['html_url']})\n\n"
-                f"To complete the assignment, an admin must assign the issue on GitHub."
-            ),
-            color=discord.Color.from_str("#006D77"),
-        )
-
-        await interaction.response.send_message(embed=embed)
-
-        # Log to contributors channel
-        log_channel = interaction.guild.get_channel(config.GENERAL_CHANNEL_ID)
-        if log_channel:
-            await log_channel.send(
-                f"📋 **{interaction.user.display_name}** claimed issue #{issue_number}: {issue['title']}"
-            )
 
 
 class TicketSystem(commands.Cog):
