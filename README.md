@@ -51,6 +51,8 @@ Raw Bangla news articles (664,000+)
 
 **Proven in Bangla (265M speakers). Ready for your language and domain.**
 
+See the [pipeline flowchart](docs/PIPELINE_FLOW.md) for a visual walkthrough of each stage.
+
 ---
 
 ## The XENI Pipeline Framework
