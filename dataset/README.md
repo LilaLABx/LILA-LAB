@@ -8,18 +8,18 @@ This directory contains all datasets used and produced by LILA Lab pipelines, al
 
 Our target is **10 emerging-economy low-resource languages** with baseline news corpora by H1 2027. [View the full plan →](../technical-reports/extensions/INDEX.md)
 
-| # | Language | Pipeline | Region | Corpus | Status | Lead |
-|---|----------|----------|--------|--------|--------|------|
+| # | Language | Pipeline | Region | Target Corpus | Status | Lead |
+|---|----------|----------|--------|--------------|--------|--------|------|
 | 1 | Bangla (বাংলা) | BENI | South Asia | ✅ 664k articles | ✅ Active | LILA Lab |
-| 2 | Assamese (অসমীয়া) | AENI | South Asia | 🔴 Not started | 🔜 Seeking | — |
-| 3 | Nepali (नेपाली) | NENI | South Asia | 🔴 Not started | 🔜 Seeking | — |
-| 4 | Sylheti (চিটাঙ্গ) | SENI | South Asia | 🔴 Not started | 🔜 Planned | — |
-| 5 | Chittagonian (চাঁটগাঁইয়া) | CENI | South Asia | 🔴 Not started | 🔜 Planned | — |
-| 6 | Hausa | HENI | Africa | 🔴 Not started | 🔜 Planned | — |
-| 7 | Kiswahili (Swahili) | KIENI | Africa | 🔴 Not started | 🔜 Planned | — |
-| 8 | Vietnamese (Tiếng Việt) | VIENI | SE Asia | 🔴 Not started | 🔜 Planned | — |
-| 9 | Tagalog (Filipino) | TIENI | SE Asia | 🔴 Not started | 🔜 Planned | — |
-| 10 | Indonesian (Bahasa Indonesia) | IDENI | SE Asia | 🔴 Not started | 🔜 Planned | — |
+| 2 | Assamese (অসমীয়া) | AENI | South Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
+| 3 | Nepali (नेपाली) | NENI | South Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
+| 4 | Sylheti (চিটাঙ্গ) | SENI | South Asia | 🎯 Max viable (limited sources) | 🔜 Feasibility | — |
+| 5 | Chittagonian (চাঁটগাঁইয়া) | CENI | South Asia | 🎯 Max viable (limited sources) | 🔜 Feasibility | — |
+| 6 | Hausa | HENI | Africa | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
+| 7 | Kiswahili (Swahili) | KIENI | Africa | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
+| 8 | Vietnamese (Tiếng Việt) | VIENI | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
+| 9 | Tagalog (Filipino) | TIENI | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
+| 10 | Indonesian (Bahasa Indonesia) | IDENI | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
 
 **Progress:** 1 / 10 datasets collected. [Contribute a corpus →](../LINGUISTIC_CONTRIBUTION_GUIDE.md)
 

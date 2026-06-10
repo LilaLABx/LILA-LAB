@@ -36,7 +36,7 @@
 
 | Item | Status | Notes |
 |------|--------|-------|
-| **AENI corpus (Assamese) — 1k+ articles** | Seeking contributors | First new language dataset. Target: 1,000 news articles from Assamese media sources. |
+| **AENI corpus (Assamese) — 100k+ articles (10+ yrs)** | Seeking contributors | First new language dataset. Target: 100k+ articles from Assamese media sources spanning 10+ years. |
 | **HENI corpus (Hausa) — feasibility** | Seeking contributors | Survey Nigerian Hausa-language news sources. Identify 5+ viable sources for automated collection. |
 | **VIENI corpus (Vietnamese) — feasibility** | Seeking contributors | Survey Vietnamese online news landscape. Document source URLs and accessibility. |
 | Dataset collection protocol | Planned | Write a standard operating procedure for corpus collection: source selection, download, deduplication, formatting. |
@@ -64,11 +64,11 @@
 
 | Item | Status | Notes |
 |------|--------|-------|
-| **KIENI corpus (Swahili) — 1k+ articles** | Seeking contributors | Collect news corpus from Kenyan/Tanzanian Swahili media. |
-| **TIENI corpus (Tagalog) — 1k+ articles** | Seeking contributors | Collect news corpus from Philippine media sources. |
-| **IDENI corpus (Indonesian) — 1k+ articles** | Seeking contributors | Collect news corpus from Indonesian media. |
+| **KIENI corpus (Swahili) — 100k+ articles (10+ yrs)** | Seeking contributors | Collect news corpus from Kenyan/Tanzanian Swahili media. |
+| **TIENI corpus (Tagalog) — 100k+ articles (10+ yrs)** | Seeking contributors | Collect news corpus from Philippine media sources. |
+| **IDENI corpus (Indonesian) — 100k+ articles (10+ yrs)** | Seeking contributors | Collect news corpus from Indonesian media. Indonesia has one of the richest online news ecosystems — upside target: 500k+. |
 | NENI, SENI, CENI source surveys | Seeking contributors | Identify and document news sources for Nepali, Sylheti, and Chittagonian. |
-| **Milestone: 5 datasets collected** | Target | End of Q4: have at least 5 of 10 language datasets in hand. |
+| **Milestone: 5 datasets with baseline corpora** | Target | End of Q4: have at least 5 of 10 language datasets with 10k+ article baseline corpora. |
 
 ### New Pipelines
 
