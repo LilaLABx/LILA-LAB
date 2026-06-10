@@ -4,6 +4,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
+    initTheme();
     initNavigation();
     initStatCounters();
     initCharts();
@@ -470,5 +471,25 @@ function smoothScroll() {
                 });
             }
         });
+    });
+}
+
+// ── Theme Toggle ──
+function initTheme() {
+    var html = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    var saved = localStorage.getItem('lila-theme');
+    var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+    var theme = saved || (prefersLight ? 'light' : 'dark');
+    html.setAttribute('data-theme', theme);
+
+    toggle.addEventListener('click', function() {
+        var current = html.getAttribute('data-theme');
+        var next = current === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('lila-theme', next);
     });
 }
