@@ -24,16 +24,9 @@ The Discord bot manages the LILA Lab community with:
 - **Contributor Tracking** — Register, track contributions, integrate with OWNERS.csv
 - **Moderation** — Admin tools for server management
 
-**Setup:**
-```bash
-cd discord-bot/
-cp .env.example .env
-# Edit .env with your bot token
-pip install -r requirements.txt
-python bot.py
-```
+**Source:** The bot code has moved to the **LilaLABx/lila-lab-bot** private repository. Contact the admin team for access.
 
-**Documentation:** See `discord-bot/README.md`
+**Documentation:** See the private repo for full setup and command reference.
 
 ---
 

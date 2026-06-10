@@ -114,5 +114,8 @@ Thumbs.db
 .env.local
 .env.*.local
 
+# ── Discord bot (moved to private repo LilaLABx/lila-lab-bot) ──
+infrastructure/discord-bot/
+
 # ── Personal / non-LILA projects ──
 personal/
