@@ -853,6 +853,418 @@ body {
     }
 }
 
+/* ══════════════════════════════════════
+   Welcome Page — Redesigned (June 2026)
+   ══════════════════════════════════════ */
+
+.welcome-page {
+    max-width: 860px;
+}
+
+/* ── Hero Section ──────────────────── */
+.welcome-hero {
+    text-align: center;
+    padding: var(--space-2xl) 0 var(--space-xl);
+}
+
+.welcome-hero h1 {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: var(--space-sm);
+    line-height: 1.25;
+}
+
+.welcome-hero-sub {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+    line-height: 1.65;
+}
+
+.welcome-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--teal);
+    background: rgba(0, 109, 119, 0.08);
+    border-radius: var(--radius-full);
+    letter-spacing: 0.01em;
+}
+
+/* ── Section Label & Title ─────────── */
+.home-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--teal);
+    margin-bottom: var(--space-xs);
+}
+
+.home-section-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: var(--space-xs);
+}
+
+.home-section-desc {
+    font-size: 0.9rem;
+    color: var(--gray-500);
+    margin-bottom: var(--space-lg);
+}
+
+/* ── Role-Based Path Cards ─────────── */
+.path-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: var(--space-md);
+}
+
+.path-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.path-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gray-200);
+    transition: background 0.25s ease;
+}
+
+.path-card:hover {
+    border-color: var(--teal);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+.path-card:hover::before {
+    background: var(--teal);
+}
+
+.path-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.path-card h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: var(--space-xs);
+}
+
+.path-card p {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+}
+
+.path-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--gray-100);
+    width: 100%;
+}
+
+.path-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.path-arrow {
+    font-size: 1rem;
+    color: var(--gray-400);
+    transition: transform 0.2s, color 0.2s;
+}
+
+.path-card:hover .path-arrow {
+    transform: translateX(4px);
+    color: var(--teal);
+}
+
+/* ── Learning Roadmap ──────────────── */
+.roadmap {
+    position: relative;
+}
+
+.roadmap-track {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.roadmap-step {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    position: relative;
+}
+
+.roadmap-step + .roadmap-step {
+    border-top: 1px solid var(--gray-200);
+}
+
+.step-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 44px;
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.step-line {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    background: var(--gray-300);
+    margin-top: 4px;
+}
+
+.roadmap-step:last-child .step-line {
+    display: none;
+}
+
+.roadmap-step .step-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
+}
+
+.step-header h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.step-level {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+}
+
+.level-beginner {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.level-easy {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.level-intermediate {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.level-advanced {
+    background: #fce4ec;
+    color: #c62828;
+}
+
+.step-content p {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    margin-bottom: var(--space-sm);
+    line-height: 1.55;
+}
+
+.step-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+    font-size: 0.78rem;
+    color: var(--gray-500);
+}
+
+.step-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.step-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--teal);
+    text-decoration: none;
+    padding: 3px 12px;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-full);
+    transition: all 0.2s;
+}
+
+.step-links a:hover {
+    background: var(--teal);
+    color: white;
+    border-color: var(--teal);
+}
+
+/* ── Knowledge & Resources ─────────── */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-md);
+}
+
+.resource-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.resource-card:hover {
+    border-color: var(--teal);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.resource-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.resource-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.resource-info h3 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin: 0 0 4px;
+}
+
+.resource-info p {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ── Quick Links ───────────────────── */
+.quicklinks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: var(--space-sm);
+}
+
+.quicklink-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.quicklink-card:hover {
+    border-color: var(--teal);
+    background: rgba(0, 109, 119, 0.03);
+    box-shadow: var(--shadow-sm);
+}
+
+.quicklink-card .ql-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.quicklink-card .ql-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    flex: 1;
+}
+
+.quicklink-card:hover .ql-text {
+    color: var(--teal);
+}
+
+
 @media (max-width: 480px) {
     .content-header {
         flex-direction: column;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation — LILA Lab</title>
-    <meta name="description" content="LILA Lab documentation: pipelines, collaboration guides, research papers, and framework reference.">
+    <meta name="description" content="LILA Lab documentation: Learn, build, and contribute to language intelligence for low-resource languages. Roadmap, knowledge base, and guides for all skill levels.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@
                 </svg>
             </button>
             <div class="content-wrapper" id="contentWrapper">
-                <div class="content-header">
+                <div class="content-header" id="contentHeader" style="display:none;">
                     <h1 id="docTitle">Documentation</h1>
                     <div class="page-actions">
                         <a href="#" id="editOnGitHub" class="btn-icon" target="_blank" title="Edit on GitHub">
@@ -66,44 +66,293 @@
                         </a>
                     </div>
                 </div>
-                <div class="markdown-body" id="markdownBody">
-                    <div class="welcome-message">
-                        <h2>Welcome to LILA Lab Documentation</h2>
-                        <p>Select a document from the sidebar to get started.</p>
-                        <div class="welcome-grid">
-                            <a href="#" class="welcome-card" data-doc="README.md">
-                                <span class="welcome-icon">📖</span>
-                                <h3>About LILA Lab</h3>
-                                <p>Mission, vision, and project overview</p>
-                            </a>
-                            <a href="#" class="welcome-card" data-doc="ROADMAP.md">
-                                <span class="welcome-icon">🗺️</span>
-                                <h3>Roadmap</h3>
-                                <p>Project milestones and targets</p>
-                            </a>
-                            <a href="#" class="welcome-card" data-doc="FAQ.md">
-                                <span class="welcome-icon">❓</span>
-                                <h3>FAQ</h3>
-                                <p>Common questions answered</p>
-                            </a>
-                            <a href="#" class="welcome-card" data-doc="COLLABORATION.md">
-                                <span class="welcome-icon">🤝</span>
-                                <h3>Collaboration</h3>
-                                <p>How to contribute and partner</p>
-                            </a>
-                            <a href="#" class="welcome-card" data-doc="pipelines/README.md">
-                                <span class="welcome-icon">🔧</span>
-                                <h3>Pipelines</h3>
-                                <p>XENI pipeline framework</p>
-                            </a>
-                            <a href="#" class="welcome-card" data-doc="docs/PIPELINE_FLOW.md">
-                                <span class="welcome-icon">📊</span>
-                                <h3>Pipeline Flow</h3>
-                                <p>Visual walkthrough of stages</p>
-                            </a>
+                <div class="welcome-page">
+                    <!-- Hero -->
+                    <div class="welcome-hero">
+                        <h1>Welcome to LILA Lab</h1>
+                        <p class="welcome-hero-sub">Learn, build, and contribute to language intelligence for underserved languages — whether you're an NLP beginner or a system architect.</p>
+                        <div class="welcome-hero-cta">
+                            <span class="hero-badge">Open Source</span>
+                            <span class="hero-badge">10 Languages Target</span>
+                            <span class="hero-badge">Community-Driven</span>
                         </div>
                     </div>
+
+                    <!-- ═══ Choose Your Path ═══ -->
+                    <section class="home-section" id="paths">
+                        <div class="section-label">Choose Your Path</div>
+                        <h2 class="home-section-title">Start where you are</h2>
+                        <p class="home-section-desc">Pick your profile and we'll guide you to the right resources.</p>
+                        <div class="path-cards">
+                            <a href="#" class="path-card" data-path="beginner" data-doc="docs/CONTRIBUTOR_QUICKSTART.md">
+                                <div class="path-card-icon">🌱</div>
+                                <h3>NLP Beginner</h3>
+                                <p>New to NLP? Start with fundamentals, learn the XENI framework, and understand how LILA Lab works — no coding required.</p>
+                                <div class="path-card-footer">
+                                    <span class="path-tag">No experience needed</span>
+                                    <span class="path-arrow">→</span>
+                                </div>
+                            </a>
+                            <a href="#" class="path-card" data-path="researcher" data-doc="technical-reports/README.md">
+                                <div class="path-card-icon">🔬</div>
+                                <h3>Researcher</h3>
+                                <p>Explore our 6-paper series, methodology, validation results, and collaboration models for academic publishing.</p>
+                                <div class="path-card-footer">
+                                    <span class="path-tag">Papers & methodology</span>
+                                    <span class="path-arrow">→</span>
+                                </div>
+                            </a>
+                            <a href="#" class="path-card" data-path="developer" data-doc="pipelines/README.md">
+                                <div class="path-card-icon">💻</div>
+                                <h3>Developer</h3>
+                                <p>Set up pipelines, run experiments, deploy infrastructure. Clone the repo and build from source.</p>
+                                <div class="path-card-footer">
+                                    <span class="path-tag">Python • CLI • API</span>
+                                    <span class="path-arrow">→</span>
+                                </div>
+                            </a>
+                            <a href="#" class="path-card" data-path="linguist" data-doc="LINGUISTIC_CONTRIBUTION_GUIDE.md">
+                                <div class="path-card-icon">🗣️</div>
+                                <h3>Linguistic Contributor</h3>
+                                <p>Speak a low-resource language? Help annotate data, design schemas, and build pipelines. Co-authorship guaranteed.</p>
+                                <div class="path-card-footer">
+                                    <span class="path-tag">No coding required</span>
+                                    <span class="path-arrow">→</span>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- ═══ Learning Roadmap ═══ -->
+                    <section class="home-section" id="roadmap">
+                        <div class="section-label">Learning Roadmap</div>
+                        <h2 class="home-section-title">From zero to pipeline creator</h2>
+                        <p class="home-section-desc">Follow this path to go from NLP novice to building your own language pipeline.</p>
+
+                        <div class="roadmap">
+                            <div class="roadmap-track">
+                                <!-- Step 1 -->
+                                <div class="roadmap-step">
+                                    <div class="step-marker">
+                                        <span class="step-number">1</span>
+                                        <div class="step-line"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <div class="step-header">
+                                            <h3>NLP Fundamentals</h3>
+                                            <span class="step-level level-beginner">Beginner</span>
+                                        </div>
+                                        <p>Learn what NLP is, how language models work, and why low-resource languages need different approaches. No technical background needed.</p>
+                                        <div class="step-meta">
+                                            <span class="step-time">⏱️ ~2 hours</span>
+                                            <span class="step-skill">No prerequisites</span>
+                                        </div>
+                                        <div class="step-links">
+                                            <a href="#" data-doc="FAQ.md">Start with FAQ →</a>
+                                            <a href="#" data-doc="docs/PIPELINE_FLOW.md">Pipeline Flow →</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2 -->
+                                <div class="roadmap-step">
+                                    <div class="step-marker">
+                                        <span class="step-number">2</span>
+                                        <div class="step-line"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <div class="step-header">
+                                            <h3>LILA Explorer</h3>
+                                            <span class="step-level level-easy">Easy</span>
+                                        </div>
+                                        <p>Understand LILA Lab's mission, the XENI framework, and how pipelines turn raw news into narrative indices. Tour the repository structure.</p>
+                                        <div class="step-meta">
+                                            <span class="step-time">⏱️ ~1 hour</span>
+                                            <span class="step-skill">No prerequisites</span>
+                                        </div>
+                                        <div class="step-links">
+                                            <a href="#" data-doc="README.md">About LILA Lab →</a>
+                                            <a href="#" data-doc="ROADMAP.md">Project Roadmap →</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 3 -->
+                                <div class="roadmap-step">
+                                    <div class="step-marker">
+                                        <span class="step-number">3</span>
+                                        <div class="step-line"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <div class="step-header">
+                                            <h3>Pipeline User</h3>
+                                            <span class="step-level level-intermediate">Intermediate</span>
+                                        </div>
+                                        <p>Install and run the BENI pipeline. Train classifiers, build narrative indices, and validate against macroeconomic indicators using our working Bangla pipeline.</p>
+                                        <div class="step-meta">
+                                            <span class="step-time">⏱️ ~4 hours</span>
+                                            <span class="step-skill">Python basics</span>
+                                        </div>
+                                        <div class="step-links">
+                                            <a href="#" data-doc="docs/CONTRIBUTOR_QUICKSTART.md">Quick Start →</a>
+                                            <a href="#" data-doc="pipelines/beni/README.md">BENI Deep Dive →</a>
+                                            <a href="#" data-doc="pipelines/beni/experiment/beni_pilot/README.md">Pilot Experiment →</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 4 -->
+                                <div class="roadmap-step">
+                                    <div class="step-marker">
+                                        <span class="step-number">4</span>
+                                        <div class="step-line"></div>
+                                    </div>
+                                    <div class="step-content">
+                                        <div class="step-header">
+                                            <h3>Contributor</h3>
+                                            <span class="step-level level-intermediate">Intermediate</span>
+                                        </div>
+                                        <p>Contribute to LILA Lab. Annotate data, improve classifiers, extend pipelines to new domains, or build infrastructure. Multiple paths for different skills.</p>
+                                        <div class="step-meta">
+                                            <span class="step-time">⏱️ Ongoing</span>
+                                            <span class="step-skill">Varies by path</span>
+                                        </div>
+                                        <div class="step-links">
+                                            <a href="#" data-doc="COLLABORATION.md">Collaboration Framework →</a>
+                                            <a href="#" data-doc="LINGUISTIC_CONTRIBUTION_GUIDE.md">Linguistic Guide →</a>
+                                            <a href="#" data-doc="CONTRIBUTING.md">Code Contribution →</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 5 -->
+                                <div class="roadmap-step">
+                                    <div class="step-marker">
+                                        <span class="step-number">5</span>
+                                    </div>
+                                    <div class="step-content">
+                                        <div class="step-header">
+                                            <h3>Pipeline Creator</h3>
+                                            <span class="step-level level-advanced">Advanced</span>
+                                        </div>
+                                        <p>Build your own XENI pipeline for a new language or domain. Use the template, adapt annotation schemas, train models, and publish your findings with co-authorship.</p>
+                                        <div class="step-meta">
+                                            <span class="step-time">⏱️ Weeks–months</span>
+                                            <span class="step-skill">NLP + Python</span>
+                                        </div>
+                                        <div class="step-links">
+                                            <a href="#" data-doc="pipelines/template/README.md">Template Pipeline →</a>
+                                            <a href="#" data-doc="pipelines/README.md">XENI Framework →</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ═══ Knowledge & Resources ═══ -->
+                    <section class="home-section" id="resources">
+                        <div class="section-label">Knowledge &amp; Resources</div>
+                        <h2 class="home-section-title">Everything you need to build</h2>
+                        <p class="home-section-desc">Curated resources — from academic papers to community channels.</p>
+
+                        <div class="resources-grid">
+                            <a href="#" class="resource-card" data-doc="technical-reports/README.md">
+                                <div class="resource-icon">📄</div>
+                                <div class="resource-info">
+                                    <h3>Research Papers</h3>
+                                    <p>6-paper series on narrative indices, LLM annotation, and low-resource NLP methodology.</p>
+                                </div>
+                            </a>
+                            <a href="#" class="resource-card" data-doc="dataset/README.md">
+                                <div class="resource-icon">💾</div>
+                                <div class="resource-info">
+                                    <h3>Datasets</h3>
+                                    <p>BENI v1.0 dataset with 664K Bangla articles, annotations, and narrative indices on Zenodo.</p>
+                                </div>
+                            </a>
+                            <a href="#" class="resource-card" data-doc="pipelines/README.md">
+                                <div class="resource-icon">⚙️</div>
+                                <div class="resource-info">
+                                    <h3>Pipeline Framework</h3>
+                                    <p>Complete XENI framework documentation — annotation, classification, index construction.</p>
+                                </div>
+                            </a>
+                            <a href="https://discord.gg/TrrdKbky" class="resource-card" target="_blank">
+                                <div class="resource-icon">💬</div>
+                                <div class="resource-info">
+                                    <h3>Community Discord</h3>
+                                    <p>Ask questions, find collaborators, and get help from the LILA Lab team and contributors.</p>
+                                </div>
+                            </a>
+                            <a href="https://github.com/LilaLABx/LILA-LAB" class="resource-card" target="_blank">
+                                <div class="resource-icon">⌨️</div>
+                                <div class="resource-info">
+                                    <h3>GitHub Repository</h3>
+                                    <p>Browse the source code, submit issues, fork the repo, and contribute to the project.</p>
+                                </div>
+                            </a>
+                            <a href="https://lila.substack.com" class="resource-card" target="_blank">
+                                <div class="resource-icon">📰</div>
+                                <div class="resource-info">
+                                    <h3>Research Blog</h3>
+                                    <p>Updates, findings, and deep dives published on Substack. Subscribe for the latest.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- ═══ Quick Links ═══ -->
+                    <section class="home-section" id="quicklinks">
+                        <div class="section-label">Quick Links</div>
+                        <h2 class="home-section-title">Popular documentation</h2>
+                        <p class="home-section-desc">Frequently accessed guides and references.</p>
+
+                        <div class="quicklinks-grid">
+                            <a href="#" class="quicklink-card" data-doc="docs/CONTRIBUTOR_QUICKSTART.md">
+                                <span class="ql-icon">🚀</span>
+                                <span class="ql-text">Contributor Quickstart</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="docs/PIPELINE_FLOW.md">
+                                <span class="ql-icon">📊</span>
+                                <span class="ql-text">Pipeline Flowchart</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="COLLABORATION.md">
+                                <span class="ql-icon">🤝</span>
+                                <span class="ql-text">Collaboration Guide</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="FAQ.md">
+                                <span class="ql-icon">❓</span>
+                                <span class="ql-text">Frequently Asked Questions</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="ROADMAP.md">
+                                <span class="ql-icon">🗺️</span>
+                                <span class="ql-text">Project Roadmap</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="pipelines/beni/README.md">
+                                <span class="ql-icon">🔧</span>
+                                <span class="ql-text">BENI Pipeline</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="pipelines/audio-annotation-lab/README.md">
+                                <span class="ql-icon">🎙️</span>
+                                <span class="ql-text">Audio Annotation Lab</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="LINGUISTIC_CONTRIBUTION_GUIDE.md">
+                                <span class="ql-icon">🌍</span>
+                                <span class="ql-text">Contribute Your Language</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="infrastructure/README.md">
+                                <span class="ql-icon">🖥️</span>
+                                <span class="ql-text">Infrastructure Guide</span>
+                            </a>
+                            <a href="#" class="quicklink-card" data-doc="SECURITY.md">
+                                <span class="ql-icon">🔒</span>
+                                <span class="ql-text">Security Policy</span>
+                            </a>
+                        </div>
+                    </section>
                 </div>
+                <div class="markdown-body" id="markdownBody"></div>
             </div>
         </main>
     </div>
@@ -120,9 +369,9 @@
                 <div class="footer-links">
                     <h4>Documentation</h4>
                     <a href="docs.html">Docs Home</a>
-                    <a href="#getting-started">Getting Started</a>
-                    <a href="#pipelines">Pipelines</a>
-                    <a href="#collaboration">Collaboration</a>
+                    <a href="#roadmap">Learning Roadmap</a>
+                    <a href="#paths">Choose Your Path</a>
+                    <a href="#resources">Resources</a>
                 </div>
                 <div class="footer-links">
                     <h4>Community</h4>

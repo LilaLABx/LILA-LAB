@@ -7,55 +7,50 @@ const SITE_PREFIX = 'docs.html?doc=';
 // ── Documentation Index ──────────────────────────────────────────────
 const DOC_SECTIONS = [
     {
-        title: 'LILA Lab',
+        title: '🚀 Getting Started',
         items: [
-            { title: 'About LILA Lab',     path: 'README.md',                   icon: 'book' },
-            { title: 'Roadmap',             path: 'ROADMAP.md',                  icon: 'map' },
-            { title: 'Frequently Asked Questions', path: 'FAQ.md',               icon: 'help' },
+            { title: 'About LILA Lab',       path: 'README.md',                    icon: 'book' },
+            { title: 'Quickstart Guide',     path: 'docs/CONTRIBUTOR_QUICKSTART.md', icon: 'rocket' },
+            { title: 'Pipeline Flow',        path: 'docs/PIPELINE_FLOW.md',        icon: 'flow' },
+            { title: 'FAQ',                  path: 'FAQ.md',                       icon: 'help' },
         ]
     },
     {
-        title: 'Guides',
+        title: '📚 Knowledge Base',
         items: [
-            { title: 'Pipeline Flow',       path: 'docs/PIPELINE_FLOW.md',       icon: 'flow' },
-            { title: 'Contributor Quickstart', path: 'docs/CONTRIBUTOR_QUICKSTART.md',  icon: 'rocket' },
-        ]
-    },
-    {
-        title: 'Pipelines',
-        items: [
-            { title: 'XENI Framework',      path: 'pipelines/README.md',         icon: 'pipeline' },
-            { title: 'Template Pipeline',   path: 'pipelines/template/README.md', icon: 'template' },
-            { title: 'BENI — Bangla',       path: 'pipelines/beni/README.md',    icon: 'lang' },
-            { title: 'BENI Pilot Experiment',path: 'pipelines/beni/experiment/beni_pilot/README.md', icon: 'experiment' },
-            { title: 'AENI — Assamese',     path: 'pipelines/aeni/README.md',    icon: 'lang' },
-            { title: 'NENI — Nepali',       path: 'pipelines/neni/README.md',    icon: 'lang' },
-            { title: 'SENI — Sylheti',      path: 'pipelines/seni/README.md',    icon: 'lang' },
-            { title: 'Audio Annotation Lab',path: 'pipelines/audio-annotation-lab/README.md', icon: 'audio' },
-        ]
-    },
-    {
-        title: 'Collaboration',
-        items: [
-            { title: 'Collaboration Framework', path: 'COLLABORATION.md',        icon: 'handshake' },
-            { title: 'Linguistic Contribution', path: 'LINGUISTIC_CONTRIBUTION_GUIDE.md', icon: 'globe' },
-            { title: 'Contributing (Code)',     path: 'CONTRIBUTING.md',         icon: 'code' },
-            { title: 'Code of Conduct',         path: 'CODE_OF_CONDUCT.md',      icon: 'shield' },
-        ]
-    },
-    {
-        title: 'Research & Data',
-        items: [
-            { title: 'Technical Reports',   path: 'technical-reports/README.md', icon: 'paper' },
-            { title: 'Datasets Overview',   path: 'dataset/README.md',           icon: 'database' },
-        ]
-    },
-    {
-        title: 'Operations',
-        items: [
-            { title: 'Infrastructure',      path: 'infrastructure/README.md',    icon: 'server' },
-            { title: 'Security Policy',     path: 'SECURITY.md',                 icon: 'lock' },
+            { title: 'Research Papers',      path: 'technical-reports/README.md',  icon: 'paper' },
+            { title: 'Datasets',             path: 'dataset/README.md',            icon: 'database' },
+            { title: 'Project Roadmap',      path: 'ROADMAP.md',                   icon: 'map' },
             { title: 'XENI Naming Convention', path: 'docs/adr/ADR-001-xeni-naming-convention.md', icon: 'adr' },
+        ]
+    },
+    {
+        title: '🔧 Pipeline Reference',
+        items: [
+            { title: 'XENI Framework',       path: 'pipelines/README.md',          icon: 'pipeline' },
+            { title: 'BENI — Bangla',        path: 'pipelines/beni/README.md',     icon: 'lang' },
+            { title: 'BENI Pilot Experiment', path: 'pipelines/beni/experiment/beni_pilot/README.md', icon: 'experiment' },
+            { title: 'Template Pipeline',    path: 'pipelines/template/README.md', icon: 'template' },
+            { title: 'AENI — Assamese',      path: 'pipelines/aeni/README.md',     icon: 'lang' },
+            { title: 'NENI — Nepali',        path: 'pipelines/neni/README.md',     icon: 'lang' },
+            { title: 'SENI — Sylheti',       path: 'pipelines/seni/README.md',     icon: 'lang' },
+            { title: 'Audio Annotation Lab', path: 'pipelines/audio-annotation-lab/README.md', icon: 'audio' },
+        ]
+    },
+    {
+        title: '🤝 Contribution',
+        items: [
+            { title: 'Collaboration Framework',  path: 'COLLABORATION.md',         icon: 'handshake' },
+            { title: 'Linguistic Contribution',  path: 'LINGUISTIC_CONTRIBUTION_GUIDE.md', icon: 'globe' },
+            { title: 'Code Contribution',        path: 'CONTRIBUTING.md',          icon: 'code' },
+            { title: 'Code of Conduct',          path: 'CODE_OF_CONDUCT.md',       icon: 'shield' },
+        ]
+    },
+    {
+        title: '📋 Reference',
+        items: [
+            { title: 'Infrastructure',       path: 'infrastructure/README.md',     icon: 'server' },
+            { title: 'Security Policy',      path: 'SECURITY.md',                  icon: 'lock' },
         ]
     }
 ];
@@ -186,6 +181,9 @@ async function loadDoc(path, pushState = true) {
 
     currentPath = path;
     setActiveItem(path);
+
+    // Switch from welcome page to doc view
+    enterDocView();
 
     // Update URL
     if (pushState) {
@@ -361,52 +359,20 @@ function showWelcome() {
     setActiveItem(null);
     currentPath = null;
 
-    markdownBody.innerHTML = `
-        <div class="welcome-message">
-            <h2>Welcome to LILA Lab Documentation</h2>
-            <p>Select a document from the sidebar to get started.</p>
-            <div class="welcome-grid">
-                <a href="#" class="welcome-card" data-doc="README.md">
-                    <span class="welcome-icon">📖</span>
-                    <h3>About LILA Lab</h3>
-                    <p>Mission, vision, and project overview</p>
-                </a>
-                <a href="#" class="welcome-card" data-doc="ROADMAP.md">
-                    <span class="welcome-icon">🗺️</span>
-                    <h3>Roadmap</h3>
-                    <p>Project milestones and targets</p>
-                </a>
-                <a href="#" class="welcome-card" data-doc="FAQ.md">
-                    <span class="welcome-icon">❓</span>
-                    <h3>FAQ</h3>
-                    <p>Common questions answered</p>
-                </a>
-                <a href="#" class="welcome-card" data-doc="COLLABORATION.md">
-                    <span class="welcome-icon">🤝</span>
-                    <h3>Collaboration</h3>
-                    <p>How to contribute and partner</p>
-                </a>
-                <a href="#" class="welcome-card" data-doc="pipelines/README.md">
-                    <span class="welcome-icon">🔧</span>
-                    <h3>Pipelines</h3>
-                    <p>XENI pipeline framework</p>
-                </a>
-                <a href="#" class="welcome-card" data-doc="docs/PIPELINE_FLOW.md">
-                    <span class="welcome-icon">📊</span>
-                    <h3>Pipeline Flow</h3>
-                    <p>Visual walkthrough of stages</p>
-                </a>
-            </div>
-        </div>
-    `;
+    document.getElementById('contentHeader').style.display = 'none';
+    const welcomePage = document.querySelector('.welcome-page');
+    if (welcomePage) welcomePage.style.display = '';
 
-    // Bind welcome cards
-    document.querySelectorAll('.welcome-card[data-doc]').forEach(card => {
-        card.addEventListener('click', (e) => {
-            e.preventDefault();
-            loadDoc(card.dataset.doc, true);
-        });
-    });
+    // Clear rendered markdown
+    const mdBody = document.getElementById('markdownBody');
+    if (mdBody) mdBody.innerHTML = '';
+}
+
+// ── Hide Welcome, Show Doc Content ────────────────────────────────────
+function enterDocView() {
+    document.getElementById('contentHeader').style.display = 'flex';
+    const welcomePage = document.querySelector('.welcome-page');
+    if (welcomePage) welcomePage.style.display = 'none';
 }
 
 // ── Init ─────────────────────────────────────────────────────────────
@@ -424,11 +390,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Re-bind welcome cards on navigation
+// Re-bind all doc links on the welcome page
 document.addEventListener('click', function(e) {
-    const card = e.target.closest('.welcome-card[data-doc]');
-    if (card) {
+    // All doc-link types share data-doc attribute
+    const link = e.target.closest('[data-doc]');
+    if (link && !link.classList.contains('path-card')) {
+        // Quicklinks, resource cards, step links, welcome cards
         e.preventDefault();
-        loadDoc(card.dataset.doc, true);
+        loadDoc(link.dataset.doc, true);
+        return;
+    }
+
+    // Path cards — load the recommended doc + scroll to content
+    const pathCard = e.target.closest('.path-card');
+    if (pathCard && pathCard.dataset.doc) {
+        e.preventDefault();
+        loadDoc(pathCard.dataset.doc, true);
+        return;
+    }
+
+    // Roadmap step links
+    const stepLink = e.target.closest('.step-links a');
+    if (stepLink && stepLink.dataset.doc) {
+        e.preventDefault();
+        loadDoc(stepLink.dataset.doc, true);
     }
 });
