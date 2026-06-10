@@ -216,7 +216,7 @@ The BENI pipeline demonstrates what's possible:
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/nabil0x/LILA-LAB.git
+git clone https://github.com/LilaLABx/LILA-LAB.git
 cd LILA-LAB/pipelines/
 
 # 2. Explore the BENI pipeline
@@ -261,7 +261,7 @@ cd infrastructure/website/
 
 - **Discord:** [discord.gg/TrrdKbky](https://discord.gg/TrrdKbky) — Ask questions, find collaborators, get help
 - **Email:** lila.lab0x@gmail.com — For formal inquiries and partnerships
-- **GitHub Issues:** [github.com/nabil0x/LILA-LAB/issues](https://github.com/nabil0x/LILA-LAB/issues) — Report bugs, request features, propose languages
+- **GitHub Issues:** [github.com/LilaLABx/LILA-LAB/issues](https://github.com/LilaLABx/LILA-LAB/issues) — Report bugs, request features, propose languages
 
 ---
 

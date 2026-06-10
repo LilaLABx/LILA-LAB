@@ -13,7 +13,7 @@ authors:
 date-released: "2026-06"
 version: "1.0"
 license: "MIT"
-repository-code: "https://github.com/nabil0x/LILA-LAB"
+repository-code: "https://github.com/LilaLABx/LILA-LAB"
 abstract: >-
   LILA Lab (Language Intelligence for Low-resource Applications) is a
   collaborative research platform building NLP measurement infrastructure
@@ -30,7 +30,7 @@ identifiers:
     value: "10.5281/zenodo.20585401"
     description: "LILA-BENI v1.0 Dataset (Zenodo)"
   - type: url
-    value: "https://github.com/nabil0x/LILA-LAB"
+    value: "https://github.com/LilaLABx/LILA-LAB"
     description: "GitHub repository — LILA Lab source of truth"
   - type: url
     value: "https://huggingface.co/nabil0x"
@@ -63,7 +63,7 @@ references:
         given-names: "Ann Naser"
     status: "submitted"
     year: 2026
-    repository: "https://github.com/nabil0x/LILA-LAB/tree/main/technical-reports/paper2_systematic_review"
+    repository: "https://github.com/LilaLABx/LILA-LAB/tree/main/technical-reports/paper2_systematic_review"
     keywords: ["systematic review", "economic narrative", "replication", "meta-analysis"]
 
   - type: article
@@ -73,7 +73,7 @@ references:
         given-names: "Ann Naser"
     status: "in preparation"
     year: 2026
-    repository: "https://github.com/nabil0x/LILA-LAB/tree/main/pipelines/beni"
+    repository: "https://github.com/LilaLABx/LILA-LAB/tree/main/pipelines/beni"
 
   - type: article
     title: "LILA Technical Report #4: Nowcasting Inflation with BENI — Local-Language News as a High-Frequency Economic Indicator"

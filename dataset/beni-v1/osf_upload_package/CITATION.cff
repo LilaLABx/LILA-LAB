@@ -14,5 +14,5 @@ keywords:
   - "text as data"
   - "low-resource NLP"
   - "Bangladesh"
-repository-code: "https://github.com/nabil0x/LILA-LAB"
+repository-code: "https://github.com/LilaLABx/LILA-LAB"
 abstract: "BENI v1.0 is a derived Bangla news measurement layer for economic narrative research. It provides harmonised article metadata, source provenance, duplicate metadata, text hashes, economic seed labels, and index-ready fields. Full article text remains subject to upstream corpus and news-source terms."

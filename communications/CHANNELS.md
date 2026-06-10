@@ -19,7 +19,7 @@
 
 | Platform | URL | Purpose | Content | Update Trigger |
 |----------|-----|---------|---------|----------------|
-| **GitHub** | `github.com/nabil0x/LILA-LAB` | **Code of record**, collaboration hub, issue tracking, communications source of truth | All code, papers, docs, communications, templates | Continuous |
+| **GitHub** | `github.com/LilaLABx/LILA-LAB` | **Code of record**, collaboration hub, issue tracking, communications source of truth | All code, papers, docs, communications, templates | Continuous |
 | **OSF** | `osf.io/[project-id]` | Open science project hub — front door for researchers | Preprints, protocols, figures, supplementary materials, links to everything | Paper submission |
 | **Zenodo** | `doi.org/10.5281/zenodo.20585401` | Permanent DOI minting for datasets and code releases | Dataset archives, code snapshots, paper preprints | GitHub release |
 | **Hugging Face** | `huggingface.co/nabil0x` | NLP community discovery — models, datasets, interactive demo | Fine-tuned models, narrative index dataset, Gradio space | Model training |

@@ -87,11 +87,11 @@ widget:
   title = {BENI: Bangla Economic Narrative Index},
   year = {2025},
   doi = {10.5281/zenodo.20585401},
-  url = {https://github.com/nabil0x/LILA-LAB}
+  url = {https://github.com/LilaLABx/LILA-LAB}
 }
 ```
 
-**Links**: [GitHub](https://github.com/nabil0x/LILA-LAB) | [OSF](https://osf.io/[project-id]) | [Dataset](https://huggingface.co/datasets/nabil0x/beni-narrative-index)
+**Links**: [GitHub](https://github.com/LilaLABx/LILA-LAB) | [OSF](https://osf.io/[project-id]) | [Dataset](https://huggingface.co/datasets/nabil0x/beni-narrative-index)
 
 ---
 
@@ -196,7 +196,7 @@ demo = gr.Interface(
         ["রপ্তানি আয় বেড়েছে ১৫ শতাংশ"],
     ],
     article="""## About
-    This model is part of the [LILA Lab](https://github.com/nabil0x/LILA-LAB).
+    This model is part of the [LILA Lab](https://github.com/LilaLABx/LILA-LAB).
     It uses a TF-IDF + Logistic Regression classifier trained on 3,200 human-annotated
     Bangla news sentences from the Potrika corpus.
     

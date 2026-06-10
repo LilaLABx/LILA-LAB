@@ -143,7 +143,7 @@ Pipeline improvement merged to main
 |---------|-------|
 | **Submission header** | "LILA Lab Technical Report #[N]" |
 | **Categories** | cs.CL (Computation and Language), econ.GN (General Economics), stat.AP (Applications) |
-| **Comments** | "N pages, N figures. Part of the LILA Lab Technical Report Series. Code and data: https://github.com/nabil0x/LILA-LAB" |
+| **Comments** | "N pages, N figures. Part of the LILA Lab Technical Report Series. Code and data: https://github.com/LilaLABx/LILA-LAB" |
 
 ---
 

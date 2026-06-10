@@ -17,7 +17,7 @@
 **Example:**
 > LILA-BENI achieves 88.2% accuracy classifying Bangla news as economic/non-economic using only 3,200 training labels — no GPU required.
 >
-> 🔗 github.com/nabil0x/LILA-LAB
+> 🔗 github.com/LilaLABx/LILA-LAB
 > #LILALab #LowResourceNLP
 
 ---

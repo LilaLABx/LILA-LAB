@@ -121,7 +121,7 @@ LILA Lab (OSF Project)
 │   ├── dataset_cards/ (DATASET_CARD.md, FILE_SCHEMA.md)
 │   └── README.md
 └── Links:
-    ├── GitHub: https://github.com/nabil0x/LILA-LAB
+    ├── GitHub: https://github.com/LilaLABx/LILA-LAB
     ├── Zenodo: 10.5281/zenodo.20585401
     ├── HF: hf.co/nabil0x/beni-banglabert
     └── Mendeley: 10.17632/v362rp78dc.4

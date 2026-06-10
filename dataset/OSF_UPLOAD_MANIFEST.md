@@ -76,7 +76,7 @@ Bangla Economic Narrative Indices (BENI)
 │   └── active_learning_sampling_strategy.md
 │
 └── Links
-    ├── GitHub: https://github.com/nabil0x/LILA-LAB
+    ├── GitHub: https://github.com/LilaLABx/LILA-LAB
     ├── Zenodo: https://doi.org/10.5281/zenodo.20585401
     ├── Hugging Face: https://huggingface.co/nabil0x
     └── Mendeley Data: https://data.mendeley.com/datasets/v362rp78dc/4

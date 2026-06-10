@@ -64,7 +64,7 @@ print(f"  Economy CSVs: {len(potrika_files)}")
 # Cell 3 — Clone the repo
 # ──────────────────────────────────────────────────────────────────────
 """
-!git clone --depth 1 https://github.com/nabil0x/LILA-LAB.git /kaggle/working/repo 2>&1 | tail -3
+!git clone --depth 1 https://github.com/LilaLABx/LILA-LAB.git /kaggle/working/repo 2>&1 | tail -3
 %cd /kaggle/working/repo/pipelines/beni/experiment/beni_pilot
 !pwd
 """

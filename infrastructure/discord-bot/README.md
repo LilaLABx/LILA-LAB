@@ -383,7 +383,7 @@ Edit `WELCOME_MESSAGE` in `config.py`.
 
 - [Discord.py Documentation](https://discordpy.readthedocs.io/)
 - [Discord Developer Portal](https://discord.com/developers)
-- [LILA Lab GitHub](https://github.com/nabil0x/LILA-LAB)
+- [LILA Lab GitHub](https://github.com/LilaLABx/LILA-LAB)
 - [LILA Lab Website](https://lila-lab.org)
 
 ---

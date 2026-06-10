@@ -69,7 +69,7 @@ Your domain's texts (health news, climate reports, education policy)
 
 ```bash
 # Fork → reproduce → publish
-git clone https://github.com/nabil0x/LILA-LAB
+git clone https://github.com/LilaLABx/LILA-LAB
 cd technical-reports/paper2_systematic_review/replications/
 python3 run_all_phases.py
 
