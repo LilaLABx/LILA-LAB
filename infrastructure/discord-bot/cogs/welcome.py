@@ -26,11 +26,12 @@ class WelcomeCog(commands.Cog):
         if not channel:
             return
 
-        # Assign Newcomer role
-        newcomer_role = discord.utils.get(member.guild.roles, name=config.ROLES["newcomer"])
-        if newcomer_role:
-            with contextlib.suppress(discord.Forbidden):
-                await member.add_roles(newcomer_role)
+        # Assign Newcomer + Visitor roles on join
+        for role_key in ("newcomer", "visitor"):
+            role = discord.utils.get(member.guild.roles, name=config.ROLES[role_key])
+            if role:
+                with contextlib.suppress(discord.Forbidden):
+                    await member.add_roles(role)
 
         # Send welcome message
         welcome_text = config.WELCOME_MESSAGE.format(

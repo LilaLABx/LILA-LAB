@@ -4,11 +4,14 @@ Tracks issues, PRs, contributors, and syncs with GitHub repository.
 """
 
 import json
+import logging
 import os
 from datetime import datetime
 from pathlib import Path
 
 import aiohttp
+
+logger = logging.getLogger("lila-bot.github")
 import config
 import discord
 from discord import app_commands
@@ -32,33 +35,46 @@ class GitHubIntegration(commands.Cog):
         if self.github_token:
             self.sync_github.start()
 
-        # Track posted PRs to avoid re-posting
-        self.posted_prs_file = Path(__file__).parent.parent / "data" / "posted_prs.json"
-        self.posted_prs = self._load_posted_prs()
-        # Track review reaction messages: message_id -> pr_number
-        self.pr_messages = {}
+        self.pr_store_file = Path(__file__).parent.parent / "data" / "posted_prs.json"
+        self.pr_store: dict[str, str] = {}
+        self.pr_messages: dict[int, int] = {}
+        self._load_pr_store()
         # PR role name for pings
         self.pr_role_name = os.getenv("PR_NOTIFICATION_ROLE", "PR Notification")
 
         if self.github_token:
             self.sync_prs_to_channel.start()
 
-    def _load_posted_prs(self):
-        path = Path(__file__).parent.parent / "data" / "posted_prs.json"
-        if path.exists():
-            try:
-                return json.loads(path.read_text())
-            except Exception:
-                return []
-        return []
+    def _load_pr_store(self):
+        """Load PR store with auto-migration from v1 flat list."""
+        path = self.pr_store_file
+        if not path.exists():
+            return
+        try:
+            raw = json.loads(path.read_text())
+        except Exception:
+            logger.warning("PR store corrupt — starting fresh")
+            return
 
-    def _save_posted_prs(self):
-        path = Path(__file__).parent.parent / "data" / "posted_prs.json"
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(self.posted_prs, indent=2))
+        if isinstance(raw, list):
+            logger.info("Migrating PR store from v1 (flat list) to v2")
+            self.pr_store = {str(i): "UNVERIFIED" for i in raw}
+            self._save_pr_store()
+            return
+
+        if isinstance(raw, dict) and "prs" in raw:
+            self.pr_store = raw["prs"]
+            return
+
+    def _save_pr_store(self):
+        self.pr_store_file.parent.mkdir(parents=True, exist_ok=True)
+        tmp = self.pr_store_file.with_suffix(".tmp")
+        tmp.write_text(json.dumps({"version": 2, "prs": self.pr_store}, indent=2))
+        tmp.rename(self.pr_store_file)
 
     def cog_unload(self):
         """Cleanup when cog is unloaded."""
+        self._save_pr_store()
         if self.sync_github.is_running():
             self.sync_github.cancel()
         if hasattr(self, "sync_prs_to_channel") and self.sync_prs_to_channel.is_running():
@@ -148,10 +164,9 @@ class GitHubIntegration(commands.Cog):
                     return
                 prs = await resp.json()
 
-        new_count = 0
         for pr in prs:
-            pr_number = pr["number"]
-            if pr_number in self.posted_prs:
+            pr_number = str(pr["number"])
+            if pr_number in self.pr_store and self.pr_store[pr_number] != "UNVERIFIED":
                 continue
 
             requested = pr.get("requested_reviewers", [])
@@ -185,22 +200,51 @@ class GitHubIntegration(commands.Cog):
 
             role = discord.utils.get(channel.guild.roles, name=self.pr_role_name)
             ping = role.mention if role else "@here"
-            msg = await channel.send(
-                content=f"{ping} New PR ready for review!",
-                embed=embed,
-            )
-            await msg.add_reaction("✅")
-            await msg.add_reaction("❌")
-            self.posted_prs.append(pr_number)
-            self.pr_messages[msg.id] = pr_number
-            new_count += 1
+            try:
+                msg = await channel.send(
+                    content=f"{ping} New PR ready for review!",
+                    embed=embed,
+                )
+                await msg.add_reaction("✅")
+                await msg.add_reaction("❌")
+            except discord.HTTPException as exc:
+                logger.error("Failed to post PR #%s: %s", pr_number, exc)
+                continue
 
-        if new_count > 0:
-            self._save_posted_prs()
+            self.pr_store[pr_number] = str(msg.id)
+            self.pr_messages[msg.id] = int(pr_number)
+            self._save_pr_store()
+            logger.info("Posted PR #%s → message %s", pr_number, msg.id)
+
+    async def _verify_pr_messages_on_startup(self):
+        """Verify stored PR messages still exist. Remove stale entries."""
+        channel = self.bot.get_channel(config.PR_REVIEW_CHANNEL_ID)
+        if not channel:
+            return
+
+        stale = []
+        for pr_num_str, msg_id_str in self.pr_store.items():
+            if msg_id_str == "UNVERIFIED":
+                stale.append(pr_num_str)
+                continue
+            try:
+                msg = await channel.fetch_message(int(msg_id_str))
+                self.pr_messages[msg.id] = int(pr_num_str)
+            except discord.NotFound:
+                stale.append(pr_num_str)
+            except discord.HTTPException:
+                pass  # skip on transient errors
+
+        if stale:
+            for k in stale:
+                self.pr_store.pop(k, None)
+            self._save_pr_store()
+            logger.info("Removed %d stale PR entries from store", len(stale))
 
     @sync_prs_to_channel.before_loop
     async def before_pr_sync(self):
         await self.bot.wait_until_ready()
+        await self._verify_pr_messages_on_startup()
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):

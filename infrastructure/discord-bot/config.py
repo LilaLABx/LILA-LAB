@@ -21,14 +21,45 @@ SUPPORT_CHANNEL_ID = int(os.getenv("SUPPORT_CHANNEL_ID", "0"))
 JOBS_CHANNEL_ID = int(os.getenv("JOBS_CHANNEL_ID", "0"))
 ISSUE_TRACKING_CHANNEL_ID = int(os.getenv("ISSUE_TRACKING_CHANNEL_ID", "0"))
 PR_REVIEW_CHANNEL_ID = int(os.getenv("PR_REVIEW_CHANNEL_ID", "0"))
+CONTRIBUTIONS_ANNOUNCE_CHANNEL_ID = int(os.getenv("CONTRIBUTIONS_ANNOUNCE_CHANNEL_ID", "0"))
 
 # Role Names (must match Discord server roles)
 ROLES = {
     "newcomer": "Newcomer",
+    "visitor": "Visitor",
     "contributor": "Contributor",
+    "active_contributor": "Active Contributor",
+    "core_contributor": "Core Contributor",
+    "maintainer_candidate": "Maintainer Candidate",
     "annotator": "Annotator",
     "researcher": "Researcher",
     "admin": "Admin",
+}
+
+# Contribution Points per Action
+POINTS = {
+    "pr_merged": 10,
+    "pr_opened": 5,
+    "issue_closed": 5,
+    "issue_created": 2,
+    "comment": 1,
+}
+
+# Role Ladder: (role_name_key, min_points)
+# Roles are assigned in ascending order — crossing a threshold promotes the user.
+ROLE_LADDER = [
+    ("contributor", 0),
+    ("active_contributor", 50),
+    ("core_contributor", 150),
+    ("maintainer_candidate", 300),
+]
+
+# Milestones: triggered when a user hits the required count
+MILESTONES = {
+    "bronze": {"name": "🥉 Bronze Contributor", "prs_merged": 10},
+    "silver": {"name": "🥈 Silver Contributor", "prs_merged": 25},
+    "gold": {"name": "🥇 Gold Contributor", "prs_merged": 50},
+    "platinum": {"name": "💎 Platinum Contributor", "total_contributions": 100},
 }
 
 # Language Roles (for self-assignment)

@@ -444,7 +444,7 @@ class ContributorTracking(commands.Cog):
         except Exception as e:
             print(f"Error updating OWNERS.csv: {e}")
 
-    @app_commands.command(name="leaderboard", description="View contributor leaderboard")
+    @app_commands.command(name="research-leaderboard", description="View research contributor leaderboard")
     async def leaderboard_command(self, interaction: discord.Interaction):
         """Show top contributors."""
         # Sort by number of contributions
