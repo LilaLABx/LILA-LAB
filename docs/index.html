@@ -22,20 +22,22 @@
   <title>LILA Lab — Language Intelligence for Low-resource Applications</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🌍</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🪶</text></svg>">
 </head>
 <body>
 
-  <!-- ═══ NAV ═══ -->
+  <!-- ════════════════════ NAV ════════════════════ -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
         <span class="nav-logo-mark">LILA</span>
         <span class="nav-logo-sub">Lab</span>
       </a>
-      <div class="nav-links">
+      <div class="nav-overlay" id="navOverlay"></div>
+      <div class="nav-links" id="navLinks">
+        <a href="#languages">Languages</a>
         <a href="#pipelines">Pipelines</a>
         <a href="#research">Research</a>
         <a href="#contribute">Contribute</a>
@@ -43,320 +45,498 @@
         <a href="docs.html">Docs</a>
         <a href="https://github.com/LilaLABx/LILA-LAB" class="nav-gh" target="_blank">GitHub ↗</a>
       </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
-  <!-- ═══ HERO ═══ -->
+  <!-- ════════════════════ HERO ════════════════════ -->
   <header class="hero" id="hero">
-    <div class="hero-bg"></div>
+    <!-- Floating script characters -->
+    <div class="hero-scripts">
+      <span class="hero-char" style="font-size:5rem;left:4%;top:12%;">ব</span>
+      <span class="hero-char" style="font-size:3.5rem;left:10%;top:68%;">লা</span>
+      <span class="hero-char" style="font-size:6rem;left:18%;top:28%;">অ</span>
+      <span class="hero-char" style="font-size:3rem;left:25%;top:78%;">মী</span>
+      <span class="hero-char" style="font-size:4.8rem;left:35%;top:8%;">ने</span>
+      <span class="hero-char" style="font-size:3rem;left:42%;top:62%;">पा</span>
+      <span class="hero-char" style="font-size:5.5rem;left:52%;top:22%;">ꠍ</span>
+      <span class="hero-char" style="font-size:3.2rem;left:60%;top:82%;">ꠤ</span>
+      <span class="hero-char" style="font-size:4rem;left:70%;top:42%;">ه</span>
+      <span class="hero-char" style="font-size:3.8rem;left:78%;top:12%;">و</span>
+      <span class="hero-char" style="font-size:4.5rem;left:86%;top:72%;">ệ</span>
+      <span class="hero-char" style="font-size:3rem;left:92%;top:32%;">Vi</span>
+      <span class="hero-char" style="font-size:2.8rem;left:14%;top:52%;">س</span>
+      <span class="hero-char" style="font-size:3.5rem;left:48%;top:92%;">লী</span>
+      <span class="hero-char" style="font-size:2.6rem;left:75%;top:55%;">ng</span>
+    </div>
+
     <div class="hero-content">
+      <div class="hero-badge">🪶 Living Script Lab</div>
       <h1 class="hero-title">
-        <span class="hero-eni">LILA</span>
-        <span class="hero-sub">Lab</span>
+        Language Intelligence<br>
+        for <span class="accent-gold">Low-resource</span> Applications
+        <span class="accent-script">বাংলা · অসমীয়ा · नेपाली</span>
       </h1>
-      <p class="hero-tagline">Your language. Your stories.<br>Amplified by AI.</p>
-      <p class="hero-subtitle">Language Intelligence for Low-resource Applications.</p>
-      <p class="hero-desc">
-        A collaborative platform building AI infrastructure for underserved languages.
-      </p>
+      <p class="hero-tagline">Your language. Your stories. Amplified by AI.</p>
+      <p class="hero-subtitle">A collaborative platform building AI infrastructure for underserved languages.</p>
       <div class="hero-ctas">
-        <a href="#contribute" class="btn btn-primary">Contribute Your Language</a>
-        <a href="#pipelines" class="btn btn-primary">Explore Pipelines</a>
-        <a href="https://discord.gg/TrrdKbky" class="btn btn-primary">Join Discord</a>
-        <a href="https://www.linkedin.com/company/lila-lab/" class="btn btn-outline" target="_blank">Follow on LinkedIn ↗</a>
+        <a href="#pipelines" class="btn btn-primary">Discover Pipelines</a>
+        <a href="#contribute" class="btn btn-outline">Contribute Your Language</a>
+        <a href="https://discord.gg/TrrdKbky" class="btn btn-outline" target="_blank">Join Discord</a>
       </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
     </div>
   </header>
 
-  <!-- ═══ XENI BRAND EXPLAINER ═══ -->
-  <section class="section section-light" id="about">
+  <!-- ════════════════════ LANGUAGES SHOWCASE ════════════════════ -->
+  <section class="section section-languages fade-section" id="languages">
     <div class="section-inner">
-      <div class="xeni-grid">
-        <div class="xeni-card">
-          <div class="xeni-icon">🌍</div>
-          <h3 class="xeni-label">XENI Pipelines</h3>
-          <p class="xeni-desc">Every language gets its own XENI — <strong>[X]</strong>ploration &amp; <strong>E</strong> Native-language <strong>I</strong>ntelligence. The first letter changes per language.</p>
+      <h2 class="section-title">Languages We Serve</h2>
+      <p class="section-sub">Every language deserves to be visible in the data that shapes global decisions. We're building infrastructure for ten underserved languages — and counting.</p>
+
+      <div class="lang-grid">
+        <!-- Bangla -->
+        <div class="lang-card stagger-1">
+          <div class="lang-script">বাংলা</div>
+          <div class="lang-name">Bangla</div>
+          <div class="lang-speakers">265M speakers · BENI pipeline active</div>
+          <div class="lang-status"><span class="badge badge-active">Active</span></div>
         </div>
-        <div class="xeni-card">
-          <div class="xeni-icon">🔬</div>
-          <h3 class="xeni-label">Proven in Bangla</h3>
-          <p class="xeni-desc">664K articles → LLM annotation → 91.7% accuracy → validated index correlating with CPI (r=−0.75). The pipeline works.</p>
+
+        <!-- Assamese -->
+        <div class="lang-card status-seeking stagger-2">
+          <div class="lang-script">অসমীয়া</div>
+          <div class="lang-name">Assamese</div>
+          <div class="lang-speakers">15M speakers</div>
+          <div class="lang-status"><span class="badge badge-seeking">Seeking Contributors</span></div>
         </div>
-        <div class="xeni-card">
-          <div class="xeni-icon">🤝</div>
-          <h3 class="xeni-label">Open & Community-Owned</h3>
-          <p class="xeni-desc">Every pipeline, dataset, and paper stays open source. Built by researchers, for researchers — wherever your language is spoken.</p>
+
+        <!-- Nepali -->
+        <div class="lang-card status-seeking stagger-1">
+          <div class="lang-script">नेपाली</div>
+          <div class="lang-name">Nepali</div>
+          <div class="lang-speakers">25M speakers</div>
+          <div class="lang-status"><span class="badge badge-seeking">Seeking Contributors</span></div>
+        </div>
+
+        <!-- Sylheti -->
+        <div class="lang-card status-seeking stagger-2">
+          <div class="lang-script">ꠍꠤꠟꠐꠤ</div>
+          <div class="lang-name">Sylheti</div>
+          <div class="lang-speakers">11M speakers</div>
+          <div class="lang-status"><span class="badge badge-seeking">Seeking Contributors</span></div>
+        </div>
+
+        <!-- Chittagonian -->
+        <div class="lang-card status-seeking stagger-1">
+          <div class="lang-script">চাঁটগাঁইয়া</div>
+          <div class="lang-name">Chittagonian</div>
+          <div class="lang-speakers">16M speakers</div>
+          <div class="lang-status"><span class="badge badge-seeking">Seeking Contributors</span></div>
+        </div>
+
+        <!-- Hausa -->
+        <div class="lang-card status-planned stagger-2">
+          <div class="lang-script">هَوُسَ</div>
+          <div class="lang-name">Hausa</div>
+          <div class="lang-speakers">80M speakers</div>
+          <div class="lang-status"><span class="badge badge-future">Planned</span></div>
+        </div>
+
+        <!-- Kiswahili -->
+        <div class="lang-card status-planned stagger-1">
+          <div class="lang-script">Kiswahili</div>
+          <div class="lang-name">Swahili</div>
+          <div class="lang-speakers">100M speakers</div>
+          <div class="lang-status"><span class="badge badge-future">Planned</span></div>
+        </div>
+
+        <!-- Vietnamese -->
+        <div class="lang-card status-planned stagger-2">
+          <div class="lang-script">Tiếng Việt</div>
+          <div class="lang-name">Vietnamese</div>
+          <div class="lang-speakers">100M speakers</div>
+          <div class="lang-status"><span class="badge badge-future">Planned</span></div>
+        </div>
+
+        <!-- Tagalog -->
+        <div class="lang-card status-planned stagger-1">
+          <div class="lang-script">Tagalog</div>
+          <div class="lang-name">Filipino</div>
+          <div class="lang-speakers">80M speakers</div>
+          <div class="lang-status"><span class="badge badge-future">Planned</span></div>
+        </div>
+
+        <!-- Indonesian -->
+        <div class="lang-card status-planned stagger-2">
+          <div class="lang-script">Bahasa Indonesia</div>
+          <div class="lang-name">Indonesian</div>
+          <div class="lang-speakers">200M speakers</div>
+          <div class="lang-status"><span class="badge badge-future">Planned</span></div>
+        </div>
+
+        <!-- Your Language -->
+        <div class="lang-card status-placeholder">
+          <div class="lang-placeholder-content">
+            <span class="lang-placeholder-icon">🪶</span>
+            <div class="lang-name">Your Language?</div>
+            <div class="lang-speakers">We're ready when you are</div>
+            <div class="lang-status">
+              <span class="badge badge-yourlang">Be First</span>
+            </div>
+            <a href="#contribute" class="lang-placeholder-link">Start your pipeline →</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ XENI NAMING SYSTEM ═══ -->
-  <section class="section section-dark" id="naming">
+  <!-- ════════════════════ LAB IMPACT STATS ════════════════════ -->
+  <section class="section section-stats fade-section" id="stats">
     <div class="section-inner">
-      <h2 class="section-title">How the XENI System Works</h2>
-      <p class="section-sub">The naming teaches itself on <strong>two axes</strong> — language and domain. Once you see the pattern, you instantly know how your language and research fit.</p>
+      <h2 class="section-title">The Lab in Numbers</h2>
+      <p class="section-sub">Proven in Bangla — scaling to ten languages by 2027</p>
 
-      <div class="naming-grid">
-        <div class="naming-card">
-          <div class="naming-level">Level 1</div>
-          <h3>Language</h3>
-          <p class="naming-desc">See <strong>BENI</strong> and <strong>AENI</strong>? The pattern is obvious:</p>
-          <div class="naming-pattern">
-            <div class="naming-example">
-              <span class="naming-letter">B</span>
-              <span class="naming-eni">ENI</span>
-              <span class="naming-label">= Bangla</span>
-            </div>
-            <div class="naming-example">
-              <span class="naming-letter">A</span>
-              <span class="naming-eni">ENI</span>
-              <span class="naming-label">= Assamese</span>
-            </div>
-            <div class="naming-example">
-              <span class="naming-letter">N</span>
-              <span class="naming-eni">ENI</span>
-              <span class="naming-label">= Nepali</span>
-            </div>
-            <div class="naming-example">
-              <span class="naming-letter">Y</span>
-              <span class="naming-eni">ENI</span>
-              <span class="naming-label">= Yoruba</span>
-            </div>
-            <div class="naming-example">
-              <span class="naming-letter">?</span>
-              <span class="naming-eni">ENI</span>
-              <span class="naming-label">= Your language</span>
-            </div>
-          </div>
-          <p class="naming-cta">Your language's initial goes here →</p>
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-item">
+          <div class="stat-number" data-target="10" data-suffix="">0</div>
+          <div class="stat-label">Languages targeted</div>
         </div>
-
-        <div class="naming-card">
-          <div class="naming-level">Level 2</div>
-          <h3>Domain</h3>
-          <p class="naming-desc">See <strong>BENI Economic Index</strong> and <strong>BENI Health Index</strong>? Same pattern:</p>
-          <div class="naming-pattern">
-            <div class="naming-example">
-              <span class="naming-letter">BENI</span>
-              <span class="naming-domain">Economic</span>
-              <span class="naming-label">= economic narratives</span>
-            </div>
-            <div class="naming-example">
-              <span class="naming-letter">BENI</span>
-              <span class="naming-domain">Health</span>
-              <span class="naming-label">= health discourse</span>
-            </div>
-            <div class="naming-example">
-              <span class="naming-letter">BENI</span>
-              <span class="naming-domain">Climate</span>
-              <span class="naming-label">= climate narratives</span>
-            </div>
-            <div class="naming-example">
-              <span class="naming-letter">AENI</span>
-              <span class="naming-domain">Economic</span>
-              <span class="naming-label">= Assamese economics</span>
-            </div>
-            <div class="naming-example">
-              <span class="naming-letter">[X]ENI</span>
-              <span class="naming-domain">[Domain]</span>
-              <span class="naming-label">= your research</span>
-            </div>
-          </div>
-          <p class="naming-cta">Your research domain goes here →</p>
+        <div class="stat-item">
+          <div class="stat-number" data-target="664" data-suffix="K+">0</div>
+          <div class="stat-label">Articles processed &amp; classified</div>
         </div>
-      </div>
-
-      <div class="naming-summary">
-        <p><strong>The XENI suffix</strong> always refers to the <em>pipeline</em> (the language instrument). The domain is a plain-English qualifier on the index it produces. This keeps every XENI pronounceable while making the domain scope instantly readable.</p>
+        <div class="stat-item">
+          <div class="stat-number" data-target="91.7" data-suffix="%">0</div>
+          <div class="stat-label">Classification accuracy (TF-IDF)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="6" data-suffix="">0</div>
+          <div class="stat-label">Research papers in series</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="-0.75" data-suffix="">0</div>
+          <div class="stat-label">CPI correlation (p &lt; 0.001, validated)</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ PIPELINES ═══ -->
-  <section class="section section-dark" id="pipelines">
+  <!-- ════════════════════ HOW XENI WORKS ════════════════════ -->
+  <section class="section section-xeni fade-section" id="how-it-works">
+    <div class="section-inner">
+      <h2 class="section-title">How XENI Works</h2>
+      <p class="section-sub">Every language gets its own <strong>XENI</strong> — <strong>[X]</strong>ploration &amp; <strong>E</strong> Native-language <strong>I</strong>ntelligence. The first letter changes per language. Proven in Bangla as <strong>BENI</strong>.</p>
+
+      <div class="xeni-steps">
+        <!-- Step 1 -->
+        <div class="xeni-step stagger-1">
+          <div class="xeni-step-num">1</div>
+          <span class="xeni-step-icon">📰</span>
+          <h3>Collect Native News</h3>
+          <p>Aggregate millions of native-language articles from local sources, archives, and feeds — preserving linguistic authenticity from day one.</p>
+        </div>
+
+        <div class="xeni-connector">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="xeni-step stagger-2">
+          <div class="xeni-step-num">2</div>
+          <span class="xeni-step-icon">🤖</span>
+          <h3>Annotate &amp; Classify</h3>
+          <p>LLM ensemble (Claude, GPT-4o) annotates narratives across domains. Multi-model classification achieves <strong>91.7% accuracy</strong> on economic narratives.</p>
+        </div>
+
+        <div class="xeni-connector">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="xeni-step stagger-3">
+          <div class="xeni-step-num">3</div>
+          <span class="xeni-step-icon">📊</span>
+          <h3>Build Validated Index</h3>
+          <p>Construct monthly narrative indices validated against macroeconomic indicators. BENI's Economic Index correlates with CPI at <strong>r=−0.75 (p &lt; 0.001)</strong>.</p>
+        </div>
+      </div>
+
+      <!-- XENI naming compact -->
+      <div class="xeni-naming-compact">
+        <h3>The XENI Naming System</h3>
+        <p style="color:var(--charcoal-light);font-size:0.9rem;margin-bottom:0.75rem;">
+          The pattern teaches itself. First letter = language. XENI = pipeline. Domain = index.
+        </p>
+        <div class="xeni-naming-pattern">
+          <div class="xeni-naming-example">
+            <span class="xeni-naming-letter">B</span><span class="xeni-naming-eni">ENI</span>
+            <span class="xeni-naming-label">= Bangla</span>
+          </div>
+          <div class="xeni-naming-example">
+            <span class="xeni-naming-letter">A</span><span class="xeni-naming-eni">ENI</span>
+            <span class="xeni-naming-label">= Assamese</span>
+          </div>
+          <div class="xeni-naming-example">
+            <span class="xeni-naming-letter">N</span><span class="xeni-naming-eni">ENI</span>
+            <span class="xeni-naming-label">= Nepali</span>
+          </div>
+          <div class="xeni-naming-example">
+            <span class="xeni-naming-letter">Y</span><span class="xeni-naming-eni">ENI</span>
+            <span class="xeni-naming-label">= Yoruba</span>
+          </div>
+          <div class="xeni-naming-example">
+            <span class="xeni-naming-letter" style="color:var(--gold);">?</span><span class="xeni-naming-eni" style="color:var(--gold);">ENI</span>
+            <span class="xeni-naming-label" style="color:var(--gold);font-weight:600;">Your language</span>
+          </div>
+        </div>
+        <p class="xeni-naming-cta">Your language's initial + ENI = your pipeline →</p>
+        <p style="color:var(--charcoal-light);font-size:0.85rem;margin-top:0.75rem;line-height:1.5;">
+          The <strong>XENI suffix</strong> always refers to the pipeline. The domain is a plain-English qualifier on the index it produces — e.g., <strong>BENI Economic Index</strong>, <strong>BENI Health Index</strong>, <strong>BENI Climate Index</strong>. Same pipeline, many indices per language.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ PIPELINE SHOWCASE ════════════════════ -->
+  <section class="section section-pipelines fade-section" id="pipelines">
     <div class="section-inner">
       <h2 class="section-title">The XENI Pipeline Family</h2>
-      <p class="section-sub">Each pipeline is named <strong>[Language initial] + ENI</strong>. The pattern teaches itself.</p>
+      <p class="section-sub">Each pipeline is named <strong>[Language initial] + ENI</strong>. Proven in Bangla, ready for your language.</p>
 
-      <div class="pipeline-showcase">
-        <div class="pipeline-card active">
-          <div class="pipeline-letter">B</div>
-          <div class="pipeline-info">
-            <h3>BENI <span class="pipeline-lang">— Bangla</span></h3>
-            <p class="pipeline-status"><span class="badge badge-active">Active</span> 265M speakers</p>
-            <p>Economic narrative index for Bangla news. Classifies 664K+ articles with 91.7% accuracy. Validated against CPI, FX, reserves.</p>
-            <pre class="pipeline-code"><code>git clone https://github.com/LilaLABx/LILA-LAB
-cd pipelines/beni/experiment/beni_pilot/
-python3 train.py --model-type tfidf</code></pre>
+      <!-- BENI Featured -->
+      <div class="pipeline-featured stagger-1">
+        <div class="pipeline-featured-letter">B</div>
+        <div class="pipeline-featured-info">
+          <h3>BENI <span class="pipeline-featured-lang">— Bangla Exploration &amp; Native-language Intelligence</span></h3>
+          <div style="margin-bottom:0.5rem;"><span class="badge badge-active">Active</span> <span style="font-size:0.85rem;color:var(--muted);margin-left:0.5rem;">265M speakers</span></div>
+          <p class="pipeline-featured-desc">
+            The first complete XENI pipeline. From raw Bangla news to a validated macroeconomic narrative index — proven against CPI, FX, and foreign reserves. Open-source, reproducible, and ready to adapt for your language.
+          </p>
+          <div class="pipeline-featured-stats">
+            <div class="pipeline-featured-stat">
+              <div class="pipeline-featured-stat-num">664K+</div>
+              <div class="pipeline-featured-stat-label">Articles classified</div>
+            </div>
+            <div class="pipeline-featured-stat">
+              <div class="pipeline-featured-stat-num">91.7%</div>
+              <div class="pipeline-featured-stat-label">Accuracy (TF-IDF)</div>
+            </div>
+            <div class="pipeline-featured-stat">
+              <div class="pipeline-featured-stat-num">r=−0.75</div>
+              <div class="pipeline-featured-stat-label">CPI correlation</div>
+            </div>
+            <div class="pipeline-featured-stat">
+              <div class="pipeline-featured-stat-num">79 mo.</div>
+              <div class="pipeline-featured-stat-label">Monthly index span</div>
+            </div>
           </div>
+          <a href="https://github.com/LilaLABx/LILA-LAB" class="btn-link" target="_blank">Explore BENI on GitHub →</a>
         </div>
+      </div>
 
-        <div class="pipeline-card future">
+      <!-- Other pipelines compact grid -->
+      <div class="pipeline-grid">
+        <div class="pipeline-mini-card stagger-1">
           <div class="pipeline-letter">A</div>
-          <div class="pipeline-info">
-            <h3>AENI <span class="pipeline-lang">— Assamese</span></h3>
-            <p class="pipeline-status"><span class="badge badge-future">Seeking Contributors</span> 15M speakers</p>
-            <p>First NLP pipeline for Assamese economic narratives. Pipeline ready — needs native speakers for annotation.</p>
-          </div>
+          <div class="pipeline-lang-name">AENI</div>
+          <div class="pipeline-lang-script">অসমীয়া — Assamese</div>
+          <span class="badge badge-seeking">Seeking Contributors</span>
         </div>
-
-        <div class="pipeline-card future">
+        <div class="pipeline-mini-card stagger-2">
           <div class="pipeline-letter">N</div>
-          <div class="pipeline-info">
-            <h3>NENI <span class="pipeline-lang">— Nepali</span></h3>
-            <p class="pipeline-status"><span class="badge badge-future">Seeking Contributors</span> 25M speakers</p>
-            <p>Nepali economic narrative index. Ready for adaptation with native-language collaboration.</p>
-          </div>
+          <div class="pipeline-lang-name">NENI</div>
+          <div class="pipeline-lang-script">नेपाली — Nepali</div>
+          <span class="badge badge-seeking">Seeking Contributors</span>
         </div>
-
-        <div class="pipeline-card future">
+        <div class="pipeline-mini-card stagger-1">
           <div class="pipeline-letter">S</div>
-          <div class="pipeline-info">
-            <h3>SENI <span class="pipeline-lang">— Sylheti</span></h3>
-            <p class="pipeline-status"><span class="badge badge-future">Seeking Contributors</span> 11M speakers</p>
-            <p>Sylheti language narrative extraction. Currently no NLP infrastructure exists for this language.</p>
-          </div>
+          <div class="pipeline-lang-name">SENI</div>
+          <div class="pipeline-lang-script">ꠍꠤꠟꠐꠤ — Sylheti</div>
+          <span class="badge badge-seeking">Seeking Contributors</span>
         </div>
-
-        <div class="pipeline-card future">
+        <div class="pipeline-mini-card stagger-2">
           <div class="pipeline-letter">C</div>
-          <div class="pipeline-info">
-            <h3>CENI <span class="pipeline-lang">— Chittagonian</span></h3>
-            <p class="pipeline-status"><span class="badge badge-future">Seeking Contributors</span> 16M speakers</p>
-            <p>Chittagonian narrative index. One of the most underserved languages in NLP relative to speaker count.</p>
-          </div>
+          <div class="pipeline-lang-name">CENI</div>
+          <div class="pipeline-lang-script">চাঁটগাঁইয়া — Chittagonian</div>
+          <span class="badge badge-seeking">Seeking Contributors</span>
         </div>
+        <div class="pipeline-mini-card stagger-1">
+          <div class="pipeline-letter">H</div>
+          <div class="pipeline-lang-name">HENI</div>
+          <div class="pipeline-lang-script">هَوُسَ — Hausa</div>
+          <span class="badge badge-future">Planned</span>
+        </div>
+        <div class="pipeline-mini-card stagger-2">
+          <div class="pipeline-letter">KI</div>
+          <div class="pipeline-lang-name">KIENI</div>
+          <div class="pipeline-lang-script">Kiswahili — Swahili</div>
+          <span class="badge badge-future">Planned</span>
+        </div>
+        <div class="pipeline-mini-card stagger-1">
+          <div class="pipeline-letter">VI</div>
+          <div class="pipeline-lang-name">VIENI</div>
+          <div class="pipeline-lang-script">Tiếng Việt — Vietnamese</div>
+          <span class="badge badge-future">Planned</span>
+        </div>
+        <div class="pipeline-mini-card stagger-2">
+          <div class="pipeline-letter">TI</div>
+          <div class="pipeline-lang-name">TIENI</div>
+          <div class="pipeline-lang-script">Tagalog — Filipino</div>
+          <span class="badge badge-future">Planned</span>
+        </div>
+        <div class="pipeline-mini-card stagger-1">
+          <div class="pipeline-letter">ID</div>
+          <div class="pipeline-lang-name">IDENI</div>
+          <div class="pipeline-lang-script">Bahasa Indonesia</div>
+          <span class="badge badge-future">Planned</span>
+        </div>
+      </div>
 
-        <div class="pipeline-card yourlang">
-          <div class="pipeline-letter pipeline-letter-your">?</div>
-          <div class="pipeline-info">
-            <h3>YOUR Language Here</h3>
-            <p class="pipeline-status"><span class="badge badge-yourlang">Be First</span></p>
-            <p>The pipeline is language-agnostic. If you speak it, we can process it. Fork the repo, adapt, publish.</p>
-            <a href="#contribute" class="btn btn-small">Start Your XENI →</a>
-          </div>
-        </div>
+      <!-- Your Language callout -->
+      <div class="pipeline-yourlang">
+        <span class="placeholder-icon">🪶</span>
+        <h3>[?]ENI — Your Language Here</h3>
+        <p>The pipeline is language-agnostic. If you speak it, we can process it. Fork the repo, adapt the template, publish the paper.</p>
+        <a href="#contribute" class="btn btn-primary btn-sm">Start Your XENI →</a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ RESEARCH ═══ -->
-  <section class="section section-light" id="research">
+  <!-- ════════════════════ RESEARCH ════════════════════ -->
+  <section class="section section-research fade-section" id="research">
     <div class="section-inner">
       <h2 class="section-title">LILA Technical Reports</h2>
-      <p class="section-sub">A 6-paper research program on narrative measurement across underserved languages.</p>
+      <p class="section-sub">A 6-paper research program on narrative measurement across underserved languages — from statistical foundations to LLM-based measurement devices.</p>
 
       <div class="papers-grid">
-        <div class="paper-card">
+        <div class="paper-card stagger-1">
           <div class="paper-num">#1</div>
           <h3>Statistical Economics of Narrative</h3>
-          <p>A quantitative framework for narrative-based economic analysis.</p>
+          <p>A quantitative framework for narrative-based economic analysis. Foundations of the methodology.</p>
           <span class="badge badge-done">Complete</span>
         </div>
-        <div class="paper-card">
+        <div class="paper-card stagger-2">
           <div class="paper-num">#2</div>
           <h3>Systematic Review of Economic Narrative Indices</h3>
           <p>Systematic review, replication study, and Bangla extension (2007–2025).</p>
           <span class="badge badge-submitted">Submitted to arXiv</span>
         </div>
-        <div class="paper-card">
+        <div class="paper-card stagger-1">
           <div class="paper-num">#3</div>
           <h3>Building BENI: A Replicable Pipeline</h3>
-          <p>From raw news to validated narrative index — the complete methodology.</p>
+          <p>From raw news to validated narrative index — the complete methodology and technical architecture.</p>
           <span class="badge badge-active">Active (Jul 2026)</span>
         </div>
-        <div class="paper-card">
+        <div class="paper-card stagger-2">
           <div class="paper-num">#4</div>
           <h3>Nowcasting Inflation with BENI</h3>
-          <p>Local-language news as a high-frequency economic indicator.</p>
+          <p>Local-language news as a high-frequency economic indicator for inflation prediction.</p>
           <span class="badge badge-planned">Planned (Aug 2026)</span>
         </div>
-        <div class="paper-card">
+        <div class="paper-card stagger-1">
           <div class="paper-num">#5</div>
           <h3>Text as Data in Social Science</h3>
           <p>110-year survey of language-based methods: from content analysis to LLMs.</p>
           <span class="badge badge-planned">Planned (Oct 2026)</span>
         </div>
-        <div class="paper-card">
+        <div class="paper-card stagger-2">
           <div class="paper-num">#6</div>
           <h3>LLMs as Measurement Devices</h3>
-          <p>Framework for narrative extraction in low-resource languages.</p>
+          <p>Framework for narrative extraction and measurement in low-resource languages.</p>
           <span class="badge badge-proposed">Proposed (Jan 2027)</span>
         </div>
       </div>
+
       <div class="research-cta">
-        <a href="https://github.com/LilaLABx/LILA-LAB/tree/main/technical-reports" class="btn btn-outline" target="_blank">Browse All Reports →</a>
+        <a href="https://github.com/LilaLABx/LILA-LAB/tree/main/technical-reports" class="btn btn-teal" target="_blank">
+          Browse All Reports →
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CONTRIBUTE ═══ -->
-  <section class="section section-accent" id="contribute">
+  <!-- ════════════════════ CONTRIBUTE ════════════════════ -->
+  <section class="section section-teal section-contribute fade-section" id="contribute">
     <div class="section-inner">
       <h2 class="section-title">Eight Ways to Contribute</h2>
       <p class="section-sub">Every contribution model leads to academic authorship. <strong>If you speak an underserved language, you are not a data source — you are a co-author.</strong></p>
 
       <div class="contrib-grid">
-        <div class="contrib-card">
+        <div class="contrib-card stagger-1">
           <span class="contrib-icon">🌍</span>
           <h3>Language Extension</h3>
           <p>Apply the pipeline to YOUR language. First-author paper.</p>
         </div>
-        <div class="contrib-card">
+        <div class="contrib-card stagger-2">
           <span class="contrib-icon">🔬</span>
           <h3>Cross-Domain</h3>
           <p>Apply to health, climate, education. First-author paper.</p>
         </div>
-        <div class="contrib-card">
+        <div class="contrib-card stagger-1">
           <span class="contrib-icon">⚙️</span>
           <h3>Methodological</h3>
           <p>Improve the classifier, reduce cost. Co-authorship.</p>
         </div>
-        <div class="contrib-card">
+        <div class="contrib-card stagger-2">
           <span class="contrib-icon">✅</span>
           <h3>Replication</h3>
           <p>Independently verify results. Published replication report.</p>
         </div>
-        <div class="contrib-card">
+        <div class="contrib-card stagger-1">
           <span class="contrib-icon">🗣️</span>
           <h3>Citizen Annotation</h3>
           <p>Label articles in your language. Acknowledgement in papers.</p>
         </div>
-        <div class="contrib-card">
+        <div class="contrib-card stagger-2">
           <span class="contrib-icon">📊</span>
           <h3>Policy Brief</h3>
           <p>Analyze narratives for policy. Co-authorship.</p>
         </div>
-        <div class="contrib-card">
+        <div class="contrib-card stagger-1">
           <span class="contrib-icon">🛠️</span>
           <h3>Infrastructure</h3>
           <p>Build dashboards, APIs, tools. Tool paper co-authorship.</p>
         </div>
-        <div class="contrib-card">
+        <div class="contrib-card stagger-2">
           <span class="contrib-icon">📖</span>
           <h3>Education</h3>
           <p>Create tutorials, course modules. Educational paper co-authorship.</p>
         </div>
       </div>
+
       <div class="contribute-cta">
         <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/COLLABORATION.md" class="btn btn-primary" target="_blank">Read the Full Framework →</a>
       </div>
     </div>
   </section>
 
-  <!-- ═══ QUOTE / ETHOS ═══ -->
-  <section class="section section-quote">
+  <!-- ════════════════════ ETHOS QUOTE ════════════════════ -->
+  <section class="section section-quote fade-section" id="quote">
+    <div class="quote-decorative left">"</div>
+    <div class="quote-decorative right">"</div>
     <div class="section-inner">
       <blockquote class="ethos-block">
-        <p class="ethos-text">"84% of NLP research is English-only. If your language isn't served, you're invisible in the data that shapes global decisions. We change that — one pipeline at a time."</p>
+        <p class="ethos-text">84% of NLP research is English-only. If your language isn't served, you're invisible in the data that shapes global decisions. We change that — one pipeline at a time.</p>
         <footer class="ethos-attribution">— LILA Lab</footer>
       </blockquote>
     </div>
   </section>
 
-  <!-- ═══ COMMUNITY ═══ -->
-  <section class="section section-light" id="community">
+  <!-- ════════════════════ COMMUNITY ════════════════════ -->
+  <section class="section section-community fade-section" id="community">
     <div class="section-inner">
       <h2 class="section-title">Connect with LILA Lab</h2>
       <p class="section-sub">Follow LILA Lab across platforms — all coordinated from the repository. Join the movement for language infrastructure.</p>
@@ -421,7 +601,7 @@ python3 train.py --model-type tfidf</code></pre>
     </div>
   </section>
 
-  <!-- ═══ FOOTER ═══ -->
+  <!-- ════════════════════ FOOTER ════════════════════ -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-main">
@@ -431,6 +611,7 @@ python3 train.py --model-type tfidf</code></pre>
         </div>
         <div class="footer-links">
           <h4>Navigate</h4>
+          <a href="#languages">Languages</a>
           <a href="#pipelines">Pipelines</a>
           <a href="#research">Research</a>
           <a href="#contribute">Contribute</a>
@@ -450,11 +631,156 @@ python3 train.py --model-type tfidf</code></pre>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>Code: MIT License &middot; Data: CC BY 4.0 &middot; Papers: © Ann Naser Nabil</p>
+        <p>Code: MIT License &middot; Data: CC BY 4.0 &middot; Papers: &copy; Ann Naser Nabil</p>
         <p>Built from Dhaka, Bangladesh &middot; Serving underserved languages worldwide</p>
       </div>
     </div>
   </footer>
+
+  <!-- ════════════════════ JAVASCRIPT ════════════════════ -->
+  <script>
+  (function() {
+    'use strict';
+
+    // ── Mobile nav toggle ──
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+
+    if (navToggle) {
+      navToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('open');
+        navOverlay.classList.toggle('active');
+        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+      });
+    }
+
+    if (navOverlay) {
+      navOverlay.addEventListener('click', function() {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+        navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── Nav scroll effect ──
+    const nav = document.getElementById('nav');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', function() {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      lastScroll = currentScroll;
+    }, { passive: true });
+
+    // ── IntersectionObserver: fade sections ──
+    const fadeSections = document.querySelectorAll('.fade-section');
+
+    const sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    fadeSections.forEach(function(section) {
+      sectionObserver.observe(section);
+    });
+
+    // ── Counter animation ──
+    const statsSection = document.querySelector('.section-stats');
+    let countersAnimated = false;
+
+    function animateCounters() {
+      if (countersAnimated) return;
+      countersAnimated = true;
+
+      const statNumbers = document.querySelectorAll('.stat-number');
+      statNumbers.forEach(function(el) {
+        const target = parseFloat(el.getAttribute('data-target'));
+        const suffix = el.getAttribute('data-suffix') || '';
+        const isNegative = target < 0;
+        const absTarget = Math.abs(target);
+        const hasDecimal = target % 1 !== 0;
+        const decimals = hasDecimal ? 2 : 0;
+
+        let current = 0;
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function updateCounter(timestamp) {
+          const elapsed = timestamp - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          current = eased * absTarget;
+
+          if (isNegative) {
+            if (hasDecimal) {
+              el.textContent = 'r=' + (-current).toFixed(decimals) + suffix;
+            } else {
+              el.textContent = '-' + Math.floor(current).toString() + suffix;
+            }
+          } else {
+            if (hasDecimal) {
+              el.textContent = current.toFixed(decimals).toString() + suffix;
+            } else {
+              el.textContent = Math.floor(current).toString() + suffix;
+            }
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            // Final value
+            if (isNegative) {
+              el.textContent = 'r=' + absTarget.toFixed(decimals) + suffix;
+            } else {
+              el.textContent = (hasDecimal ? absTarget.toFixed(decimals) : absTarget.toString()) + suffix;
+            }
+          }
+        }
+
+        requestAnimationFrame(updateCounter);
+      });
+    }
+
+    const statsObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !countersAnimated) {
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (statsSection) {
+      statsObserver.observe(statsSection);
+    }
+
+  })();
+  </script>
 
 </body>
 </html>
