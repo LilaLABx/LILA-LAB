@@ -1,6 +1,7 @@
 """LILA Lab Discord Bot Configuration."""
 
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()

@@ -1,13 +1,14 @@
 """Welcome and Onboarding Cog.
 
-Handles new member welcome, role assignment, and onboarding flow.
+Handles new member welcome, role assignment, and onboarding guides.
 """
 
-import discord
-from discord.ext import commands
-from discord import app_commands
+import contextlib
 
 import config
+import discord
+from discord import app_commands
+from discord.ext import commands
 
 
 class WelcomeCog(commands.Cog):
@@ -28,10 +29,8 @@ class WelcomeCog(commands.Cog):
         # Assign Newcomer role
         newcomer_role = discord.utils.get(member.guild.roles, name=config.ROLES["newcomer"])
         if newcomer_role:
-            try:
+            with contextlib.suppress(discord.Forbidden):
                 await member.add_roles(newcomer_role)
-            except discord.Forbidden:
-                pass
 
         # Send welcome message
         welcome_text = config.WELCOME_MESSAGE.format(

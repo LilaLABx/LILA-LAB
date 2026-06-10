@@ -3,11 +3,10 @@
 Basic moderation tools for server management.
 """
 
-import discord
-from discord.ext import commands
-from discord import app_commands
-
 import config
+import discord
+from discord import app_commands
+from discord.ext import commands
 
 
 class ModerationCog(commands.Cog):

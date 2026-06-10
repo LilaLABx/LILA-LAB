@@ -7,8 +7,6 @@ import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import Optional
-from datetime import datetime
 
 
 class EmailNotifier:
@@ -72,11 +70,11 @@ class EmailNotifier:
                 </div>
                 <div class="content">
                     <p>Dear {name},</p>
-                    
+
                     <p>Welcome to <strong>LILA Lab</strong> (Language Intelligence for Low-resource Applications)! We're thrilled to have you join our research collective.</p>
-                    
+
                     <p>LILA Lab is building NLP measurement infrastructure for languages underserved by current AI. Your contribution matters.</p>
-                    
+
                     <h3>Getting Started:</h3>
                     <ol>
                         <li>Join our Discord: <a href="{discord_invite}" class="link">discord.gg/TrrdKbky</a></li>
@@ -84,7 +82,7 @@ class EmailNotifier:
                         <li>Check the <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/CONTRIBUTING.md" class="link">Contributing Guide</a></li>
                         <li>Introduce yourself in #general on Discord</li>
                     </ol>
-                    
+
                     <h3>8 Ways to Contribute:</h3>
                     <ul>
                         <li>Language Extension Paper</li>
@@ -96,15 +94,15 @@ class EmailNotifier:
                         <li>Infrastructure & Tooling</li>
                         <li>Teaching Materials</li>
                     </ul>
-                    
+
                     <p>Questions? Reply to this email or ask in #support on Discord.</p>
-                    
+
                     <a href="https://github.com/LilaLABx/LILA-LAB" class="button">View Repository</a>
                 </div>
                 <div class="footer">
                     <p>LILA Lab | Language Intelligence for Low-resource Applications</p>
-                    <p><a href="https://lila-lab.org" style="color: #E29578;">Website</a> | 
-                       <a href="https://github.com/LilaLABx/LILA-LAB" style="color: #E29578;">GitHub</a> | 
+                    <p><a href="https://lila-lab.org" style="color: #E29578;">Website</a> |
+                       <a href="https://github.com/LilaLABx/LILA-LAB" style="color: #E29578;">GitHub</a> |
                        <a href="{discord_invite}" style="color: #E29578;">Discord</a></p>
                 </div>
             </div>
@@ -120,7 +118,7 @@ class EmailNotifier:
         ticket_id: str,
         ticket_title: str,
         status: str,
-        message: Optional[str] = None,
+        message: str | None = None,
     ) -> bool:
         """Send ticket update notification."""
         status_color = "#28a745" if status == "closed" else "#006D77"
@@ -155,19 +153,19 @@ class EmailNotifier:
                 </div>
                 <div class="content">
                     <p>Dear {name},</p>
-                    
+
                     <p>Your ticket <strong>{ticket_id}</strong> has been {status.lower()}.</p>
-                    
+
                     <div style="background: white; padding: 15px; border-radius: 5px; margin: 15px 0;">
                         <p><strong>Ticket ID:</strong> {ticket_id}</p>
                         <p><strong>Title:</strong> {ticket_title}</p>
                         <p><strong>Status:</strong> {status.upper()}</p>
                     </div>
-                    
+
                     {message_html}
-                    
+
                     <p>Thank you for being part of LILA Lab!</p>
-                    
+
                     <a href="https://discord.gg/TrrdKbky" class="button">View on Discord</a>
                 </div>
                 <div class="footer">
@@ -207,23 +205,23 @@ class EmailNotifier:
                 </div>
                 <div class="content">
                     <p>Dear {name},</p>
-                    
+
                     <p>On behalf of the entire LILA Lab team, thank you for your valuable contribution!</p>
-                    
+
                     <div class="highlight">
                         <p><strong>Contribution Type:</strong> {contribution_type}</p>
                         <p><strong>Details:</strong> {contribution_details}</p>
                     </div>
-                    
+
                     <p>Your work helps build NLP infrastructure for languages underserved by current AI. Every contribution matters.</p>
-                    
+
                     <h3>What Happens Next:</h3>
                     <ol>
                         <li>Your contribution will be reviewed by the team</li>
                         <li>You'll be added to our contributors list</li>
                         <li>Depending on the contribution type, you may receive authorship credit</li>
                     </ol>
-                    
+
                     <p>Stay connected:</p>
                     <ul>
                         <li>Discord: <a href="https://discord.gg/TrrdKbky">discord.gg/TrrdKbky</a></li>
@@ -271,25 +269,25 @@ class EmailNotifier:
                 </div>
                 <div class="content">
                     <p>Dear {name},</p>
-                    
+
                     <p>Here's what happened in the LILA Lab ecosystem this month.</p>
-                    
+
                     <h3>Highlights</h3>
                     <ul>{highlights_html}</ul>
-                    
+
                     <h3>Coming Up</h3>
                     <ul>{upcoming_html}</ul>
-                    
+
                     <h3>Get Involved</h3>
                     <p>We're always looking for contributors. Check out open issues on GitHub or join us on Discord.</p>
-                    
+
                     <a href="https://github.com/LilaLABx/LILA-LAB" class="button">View Repository</a>
                     <a href="https://discord.gg/TrrdKbky" class="button">Join Discord</a>
                 </div>
                 <div class="footer">
                     <p>LILA Lab | Language Intelligence for Low-resource Applications</p>
-                    <p><a href="https://lila-lab.org" style="color: #E29578;">Website</a> | 
-                       <a href="https://github.com/LilaLABx/LILA-LAB" style="color: #E29578;">GitHub</a> | 
+                    <p><a href="https://lila-lab.org" style="color: #E29578;">Website</a> |
+                       <a href="https://github.com/LilaLABx/LILA-LAB" style="color: #E29578;">GitHub</a> |
                        <a href="https://discord.gg/TrrdKbky" style="color: #E29578;">Discord</a></p>
                 </div>
             </div>

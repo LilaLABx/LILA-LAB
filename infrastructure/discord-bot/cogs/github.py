@@ -3,21 +3,16 @@
 Tracks issues, PRs, contributors, and syncs with GitHub repository.
 """
 
-import asyncio
-import csv
-import io
 import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
 
 import aiohttp
-import discord
-from discord.ext import commands, tasks
-from discord import app_commands
-
 import config
+import discord
+from discord import app_commands
+from discord.ext import commands, tasks
 
 
 class GitHubIntegration(commands.Cog):
@@ -55,8 +50,7 @@ class GitHubIntegration(commands.Cog):
             return
 
         url = f"https://api.github.com/repos/{self.github_repo}/issues?state=open"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url, headers=self.headers) as response:
+        async with aiohttp.ClientSession() as session, session.get(url, headers=self.headers) as response:
                 if response.status == 200:
                     issues = await response.json()
                     self.issues_cache = [
@@ -77,8 +71,7 @@ class GitHubIntegration(commands.Cog):
             return
 
         url = f"https://api.github.com/repos/{self.github_repo}/pulls?state=open"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url, headers=self.headers) as response:
+        async with aiohttp.ClientSession() as session, session.get(url, headers=self.headers) as response:
                 if response.status == 200:
                     prs = await response.json()
                     self.prs_cache = [
@@ -98,8 +91,7 @@ class GitHubIntegration(commands.Cog):
             return
 
         url = f"https://api.github.com/repos/{self.github_repo}/contributors"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url, headers=self.headers) as response:
+        async with aiohttp.ClientSession() as session, session.get(url, headers=self.headers) as response:
                 if response.status == 200:
                     contributors = await response.json()
                     self.contributors_cache = {
@@ -164,7 +156,7 @@ class GitHubIntegration(commands.Cog):
 
     @app_commands.command(name="issues", description="View open GitHub issues")
     @app_commands.describe(label="Filter by label (extension, bug, contribution, question)")
-    async def issues_command(self, interaction: discord.Interaction, label: Optional[str] = None):
+    async def issues_command(self, interaction: discord.Interaction, label: str | None = None):
         """Show open issues with optional label filter."""
         issues = getattr(self, "issues_cache", [])
 
@@ -280,24 +272,23 @@ class GitHubIntegration(commands.Cog):
 
         # Check if issue exists
         url = f"https://api.github.com/repos/{self.github_repo}/issues/{issue_number}"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url, headers=self.headers) as response:
-                if response.status != 200:
-                    await interaction.response.send_message(
-                        f"Issue #{issue_number} not found.",
-                        ephemeral=True,
-                    )
-                    return
+        async with aiohttp.ClientSession() as session, session.get(url, headers=self.headers) as response:
+            if response.status != 200:
+                await interaction.response.send_message(
+                    f"Issue #{issue_number} not found.",
+                    ephemeral=True,
+                )
+                return
 
-                issue = await response.json()
+            issue = await response.json()
 
-                # Check if already assigned
-                if issue.get("assignee"):
-                    await interaction.response.send_message(
-                        f"Issue #{issue_number} is already assigned to {issue['assignee']['login']}.",
-                        ephemeral=True,
-                    )
-                    return
+            # Check if already assigned
+            if issue.get("assignee"):
+                await interaction.response.send_message(
+                    f"Issue #{issue_number} is already assigned to {issue['assignee']['login']}.",
+                    ephemeral=True,
+                )
+                return
 
         # Assign to user
         # Note: This requires the bot to have push access to the repo
@@ -337,7 +328,7 @@ class TicketSystem(commands.Cog):
         """Load tickets from file."""
         if self.tickets_file.exists():
             try:
-                with open(self.tickets_file, "r") as f:
+                with open(self.tickets_file) as f:
                     data = json.load(f)
                     self.tickets = data.get("tickets", {})
                     self.ticket_counter = data.get("counter", 0)

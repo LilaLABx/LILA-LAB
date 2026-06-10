@@ -8,10 +8,9 @@ import asyncio
 import logging
 from pathlib import Path
 
+import config
 import discord
 from discord.ext import commands
-
-import config
 
 # Configure logging
 logging.basicConfig(

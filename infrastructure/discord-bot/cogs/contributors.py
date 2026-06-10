@@ -3,17 +3,15 @@
 Manages contributor records, integrates with OWNERS.csv, and tracks contributions.
 """
 
+import contextlib
 import csv
-import io
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
-
-import discord
-from discord.ext import commands
-from discord import app_commands
 
 import config
+import discord
+from discord import app_commands
+from discord.ext import commands
 
 
 class ContributorTracking(commands.Cog):
@@ -32,7 +30,7 @@ class ContributorTracking(commands.Cog):
         # Load from OWNERS.csv
         if self.owners_csv_path.exists():
             try:
-                with open(self.owners_csv_path, "r", encoding="utf-8") as f:
+                with open(self.owners_csv_path, encoding="utf-8") as f:
                     reader = csv.DictReader(f)
                     for row in reader:
                         name = row.get("name", "").strip()
@@ -73,7 +71,7 @@ class ContributorTracking(commands.Cog):
         self,
         interaction: discord.Interaction,
         email: str,
-        orcid: Optional[str] = None,
+        orcid: str | None = None,
     ):
         """Register yourself as a LILA Lab contributor."""
         user = interaction.user
@@ -82,7 +80,7 @@ class ContributorTracking(commands.Cog):
         # Check if already registered
         if name in self.contributors:
             await interaction.response.send_message(
-                f"You're already registered! Use `/profile` to view your profile.",
+                "You're already registered! Use `/profile` to view your profile.",
                 ephemeral=True,
             )
             return
@@ -106,10 +104,8 @@ class ContributorTracking(commands.Cog):
         # Assign Newcomer role
         newcomer_role = discord.utils.get(interaction.guild.roles, name="Newcomer")
         if newcomer_role:
-            try:
+            with contextlib.suppress(discord.Forbidden):
                 await user.add_roles(newcomer_role)
-            except discord.Forbidden:
-                pass
 
         # Create welcome embed
         embed = discord.Embed(
@@ -285,7 +281,7 @@ class ContributorTracking(commands.Cog):
 
         # Create task record
         task_id = f"TASK-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
-        
+
         # Add to contributor's record
         self.contributors[name]["contributions"].append({
             "paper": task.value,
@@ -373,7 +369,7 @@ class ContributorTracking(commands.Cog):
 
         # Create embed
         status_emoji = "✅" if status.value == "completed" else "🔄" if status.value == "in_progress" else "🚫"
-        
+
         embed = discord.Embed(
             title=f"Task Updated {status_emoji}",
             description=(
@@ -418,7 +414,7 @@ class ContributorTracking(commands.Cog):
             # Read existing content
             existing_rows = []
             if self.owners_csv_path.exists():
-                with open(self.owners_csv_path, "r", encoding="utf-8") as f:
+                with open(self.owners_csv_path, encoding="utf-8") as f:
                     reader = csv.DictReader(f)
                     existing_rows = list(reader)
 
@@ -470,9 +466,9 @@ class ContributorTracking(commands.Cog):
                 1 for c in contrib.get("contributions", [])
                 if c.get("status") == "completed"
             )
-            
+
             medal = "🥇" if i == 1 else "🥈" if i == 2 else "🥉" if i == 3 else f"#{i}"
-            
+
             embed.add_field(
                 name=f"{medal} {contrib['name']}",
                 value=(
