@@ -32,10 +32,37 @@ class GitHubIntegration(commands.Cog):
         if self.github_token:
             self.sync_github.start()
 
+        # Track posted PRs to avoid re-posting
+        self.posted_prs_file = Path(__file__).parent.parent / "data" / "posted_prs.json"
+        self.posted_prs = self._load_posted_prs()
+        # Track review reaction messages: message_id -> pr_number
+        self.pr_messages = {}
+        # PR role name for pings
+        self.pr_role_name = os.getenv("PR_NOTIFICATION_ROLE", "PR Notification")
+
+        if self.github_token:
+            self.sync_prs_to_channel.start()
+
+    def _load_posted_prs(self):
+        path = Path(__file__).parent.parent / "data" / "posted_prs.json"
+        if path.exists():
+            try:
+                return json.loads(path.read_text())
+            except Exception:
+                return []
+        return []
+
+    def _save_posted_prs(self):
+        path = Path(__file__).parent.parent / "data" / "posted_prs.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(self.posted_prs, indent=2))
+
     def cog_unload(self):
         """Cleanup when cog is unloaded."""
         if self.sync_github.is_running():
             self.sync_github.cancel()
+        if hasattr(self, "sync_prs_to_channel") and self.sync_prs_to_channel.is_running():
+            self.sync_prs_to_channel.cancel()
 
     @tasks.loop(hours=1)
     async def sync_github(self):
@@ -102,6 +129,106 @@ class GitHubIntegration(commands.Cog):
                         }
                         for c in contributors
                     }
+
+    @tasks.loop(minutes=15)
+    async def sync_prs_to_channel(self):
+        """Check for new PRs and post to PR review channel with role ping."""
+        await self.bot.wait_until_ready()
+        if not self.github_token:
+            return
+
+        channel = self.bot.get_channel(config.PR_REVIEW_CHANNEL_ID)
+        if not channel:
+            return
+
+        url = f"https://api.github.com/repos/{self.github_repo}/pulls?state=open&per_page=50"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=self.headers) as resp:
+                if resp.status != 200:
+                    return
+                prs = await resp.json()
+
+        new_count = 0
+        for pr in prs:
+            pr_number = pr["number"]
+            if pr_number in self.posted_prs:
+                continue
+
+            requested = pr.get("requested_reviewers", [])
+            reviewer_names = [r["login"] for r in requested]
+            reviewer_text = ", ".join(f"`{n}`" for n in reviewer_names) if reviewer_names else "None yet"
+
+            embed = discord.Embed(
+                title=f"🔀 PR #{pr_number}: {pr['title']}",
+                url=pr["html_url"],
+                color=discord.Color.from_str("#28a745"),
+            )
+            embed.add_field(
+                name="Author", value=f"`{pr['user']['login']}`", inline=True
+            )
+            embed.add_field(
+                name="Status",
+                value="Draft" if pr.get("draft") else "Ready for Review",
+                inline=True,
+            )
+            embed.add_field(
+                name="Requested Reviewers",
+                value=reviewer_text,
+                inline=False,
+            )
+            embed.add_field(
+                name="Description",
+                value=(pr.get("body") or "_No description_")[:200],
+                inline=False,
+            )
+            embed.set_footer(text=f"Created {pr['created_at'][:10]} • React ✅ to approve, ❌ to request changes")
+
+            role = discord.utils.get(channel.guild.roles, name=self.pr_role_name)
+            ping = role.mention if role else "@here"
+            msg = await channel.send(
+                content=f"{ping} New PR ready for review!",
+                embed=embed,
+            )
+            await msg.add_reaction("✅")
+            await msg.add_reaction("❌")
+            self.posted_prs.append(pr_number)
+            self.pr_messages[msg.id] = pr_number
+            new_count += 1
+
+        if new_count > 0:
+            self._save_posted_prs()
+
+    @sync_prs_to_channel.before_loop
+    async def before_pr_sync(self):
+        await self.bot.wait_until_ready()
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
+        """Handle ✅/❌ reactions on PR review messages."""
+        if payload.guild_id is None:
+            return
+        if payload.emoji.name not in ("✅", "❌"):
+            return
+        if payload.message_id not in self.pr_messages:
+            return
+
+        guild = self.bot.get_guild(payload.guild_id)
+        if not guild:
+            return
+        member = guild.get_member(payload.user_id)
+        if not member or member.bot:
+            return
+
+        pr_number = self.pr_messages[payload.message_id]
+        channel = guild.get_channel(payload.channel_id)
+        if not channel:
+            return
+
+        label = "approved" if payload.emoji.name == "✅" else "requested changes"
+        await channel.send(
+            f"🗳 **{member.display_name}** {label} on PR **#{pr_number}** "
+            f"([View PR](https://github.com/{self.github_repo}/pull/{pr_number}))"
+        )
 
     @app_commands.command(name="github", description="GitHub repository information")
     async def github_command(self, interaction: discord.Interaction):

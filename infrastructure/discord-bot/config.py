@@ -19,6 +19,8 @@ RESEARCH_CHANNEL_ID = int(os.getenv("RESEARCH_CHANNEL_ID", "0"))
 CONTRIBUTIONS_CHANNEL_ID = int(os.getenv("CONTRIBUTIONS_CHANNEL_ID", "0"))
 SUPPORT_CHANNEL_ID = int(os.getenv("SUPPORT_CHANNEL_ID", "0"))
 JOBS_CHANNEL_ID = int(os.getenv("JOBS_CHANNEL_ID", "0"))
+ISSUE_TRACKING_CHANNEL_ID = int(os.getenv("ISSUE_TRACKING_CHANNEL_ID", "0"))
+PR_REVIEW_CHANNEL_ID = int(os.getenv("PR_REVIEW_CHANNEL_ID", "0"))
 
 # Role Names (must match Discord server roles)
 ROLES = {
