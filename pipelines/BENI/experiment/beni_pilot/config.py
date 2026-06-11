@@ -44,6 +44,8 @@ class ExperimentConfig(BaseExperimentConfig):
     banglabert_batch_size: int = 4
     banglabert_max_len: int = 384
     banglabert_learning_rate: float = 2e-5
+    banglabert_accum_steps: int = 1
+    model_name: str = "csebuetnlp/banglabert"
 
 
 ECONOMIC_KEYWORDS = [

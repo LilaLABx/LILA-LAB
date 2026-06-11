@@ -74,12 +74,12 @@ beni/
 ## Dependency Map — How beni/ Feeds Into Each Paper
 
 ```
-beni/annotation/    ──LLM labels──▶  paper3_beni_method/ (trains classifier)
-beni/indices/eco/   ──BENI index──▶  paper4_beni_nowcasting/ (nowcast input)
-beni/data/          ──macro data──▶  paper3_beni_method/, paper4_beni_nowcasting/
-beni/experiment/    ──results─────▶  paper3_beni_method/ (method validation)
-dataset/BENI/raw/   ──corpus──────▶  annotation pipeline (upstream data)
-technical-reports/  ──manuscripts─▶  papers (paper artifacts moved)
+beni/annotation/    ──LLM labels──▶  paper1_systematic_review/ (BENI pilot in Section 4)
+beni/indices/eco/   ──BENI index─────▶  paper3_tfidf_nowcasting/ (nowcasting input)
+beni/data/          ──macro data────▶  paper3_tfidf_nowcasting/ (econometric validation)
+beni/experiment/    ──results───────▶  paper1_systematic_review/, paper3_tfidf_nowcasting/
+dataset/BENI/raw/   ──corpus────────▶  annotation pipeline (upstream data)
+technical-reports/  ──manuscripts──▶  papers (paper artifacts moved)
 ```
 
 ---
@@ -112,8 +112,10 @@ Codes in `experiment/scripts/` run model comparisons, produce outputs in `experi
 
 ## Notes for Research Agents
 
-- **This is the upstream dependency** for Papers 2, 3, and 4. Changes to `beni/annotation/` or `beni/indices/eco/` propagate to those paper directories.
-- `beni/experiment/outputs/` contains the raw prediction files that `paper3_beni_method/` references.
+- **This is the upstream dependency** for Papers 1, 2, and 3. Changes to `beni/annotation/` or `beni/indices/eco/` propagate to those paper directories.
+- `beni/experiment/outputs/` contains the raw prediction files used by `paper1_systematic_review/` (BENI pilot) and `paper3_tfidf_nowcasting/` (econometric validation).
 - The raw Bangla news corpus now lives in [`dataset/BENI/raw/bangla_news_database/`](../../dataset/BENI/raw/bangla_news_database/).
-- Paper 2 manuscript and bibliography moved to [`technical-reports/paper2_systematic_review/`](../../technical-reports/paper2_systematic_review/).
+- Paper 1 (systematic review) manuscript: [`technical-reports/paper1_systematic_review/`](../../technical-reports/paper1_systematic_review/).
+- Paper 2 (BENI v1 dataset) paper: [`dataset/BENI/beni-v1/`](../../dataset/BENI/beni-v1/).
+- Paper 3 (TF-IDF nowcasting) is active in [`technical-reports/paper3_tfidf_nowcasting/`](../../technical-reports/paper3_tfidf_nowcasting/).
 - See [`dataset/BENI/`](../../dataset/BENI/) for dataset releases, manifests, and the dataset card.
