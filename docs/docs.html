@@ -24,6 +24,17 @@
                 <a href="docs.html" class="active">Docs</a>
                 <a href="https://github.com/LilaLABx/LILA-LAB" target="_blank">GitHub</a>
             </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Switch theme" title="Switch theme">
+                    <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
             <button class="nav-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -69,7 +80,7 @@
                 </div>
                 <div class="welcome-page">
                     <!-- Hero -->
-                    <div class="welcome-hero">
+                    <div class="welcome-hero fade-section">
                         <div class="hero-scripts">
                             <span class="hero-char" style="font-size:5rem;left:2%;top:10%;">ব</span>
                             <span class="hero-char" style="font-size:3.5rem;left:8%;top:65%;">লা</span>
@@ -98,7 +109,7 @@
                     </div>
 
                     <!-- ═══ Your First 5 Minutes ═══ -->
-                    <section class="onboarding-section">
+                    <section class="onboarding-section fade-section">
                         <div class="section-label">Start Here</div>
                         <h2 class="home-section-title">Your first 5 minutes</h2>
                         <p class="home-section-desc">A quick tour of the big ideas — no technical background needed.</p>
@@ -139,7 +150,7 @@
                     </section>
 
                     <!-- ═══ How It Works ═══ -->
-                    <section class="concept-section" id="how-it-works">
+                    <section class="concept-section fade-section" id="how-it-works">
                         <div class="section-label">How It Works</div>
                         <h2 class="home-section-title">From text to narrative index</h2>
                         <p class="home-section-desc">Three ideas that make LILA Lab tick — and the pipeline that connects them.</p>
@@ -209,7 +220,7 @@
                     </section>
 
                     <!-- ═══ Choose Your Path ═══ -->
-                    <section class="home-section" id="paths">
+                    <section class="home-section fade-section" id="paths">
                         <div class="section-label">Choose Your Path</div>
                         <h2 class="home-section-title">Start where you are</h2>
                         <p class="home-section-desc">Pick your profile and we'll guide you to the right resources.</p>
@@ -254,7 +265,7 @@
                     </section>
 
                     <!-- ═══ Learning Roadmap ═══ -->
-                    <section class="home-section" id="roadmap">
+                    <section class="home-section fade-section" id="roadmap">
                         <div class="section-label">Learning Roadmap</div>
                         <h2 class="home-section-title">From zero to pipeline creator</h2>
                         <p class="home-section-desc">Follow this path to go from NLP novice to building your own language pipeline.</p>
@@ -381,7 +392,7 @@
                     </section>
 
                     <!-- ═══ Key Concepts — Glossary ═══ -->
-                    <section class="home-section" id="concepts">
+                    <section class="home-section fade-section" id="concepts">
                         <div class="section-label">Key Concepts</div>
                         <h2 class="home-section-title">The LILA Lab lexicon</h2>
                         <p class="home-section-desc">Five terms you'll encounter everywhere — <a href="GLOSSARY.md" data-doc="GLOSSARY.md" style="color:var(--teal);font-weight:500;text-decoration:none;">visit the full glossary →</a></p>
@@ -416,7 +427,7 @@
                     </section>
 
                     <!-- ═══ Knowledge & Resources ═══ -->
-                    <section class="home-section" id="resources">
+                    <section class="home-section fade-section" id="resources">
                         <div class="section-label">Knowledge &amp; Resources</div>
                         <h2 class="home-section-title">Everything you need to build</h2>
                         <p class="home-section-desc">Curated resources — from academic papers to community channels.</p>
@@ -468,7 +479,7 @@
                     </section>
 
                     <!-- ═══ Domain × Language Matrix ═══ -->
-                    <section class="home-section" id="domains">
+                    <section class="home-section fade-section" id="domains">
                         <div class="section-label">Index of Domains</div>
                         <h2 class="home-section-title">One pipeline, many domains</h2>
                         <p class="home-section-desc">Every XENI pipeline can produce indices across multiple domains. Here's what exists, what's planned, and what's possible.</p>
@@ -545,7 +556,7 @@
                     </section>
 
                     <!-- ═══ Quick Links ═══ -->
-                    <section class="home-section" id="quicklinks">
+                    <section class="home-section fade-section" id="quicklinks">
                         <div class="section-label">Quick Links</div>
                         <h2 class="home-section-title">Popular documentation</h2>
                         <p class="home-section-desc">Frequently accessed guides and references.</p>
@@ -638,5 +649,27 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="docs.js"></script>
+    <script>
+        // ── Theme Toggle (shared with dashboard via 'lila-theme') ──
+        function initTheme() {
+            var html = document.documentElement;
+            var toggle = document.getElementById('themeToggle');
+            if (!toggle) return;
+
+            var saved = localStorage.getItem('lila-theme');
+            var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+            var theme = saved || (prefersLight ? 'light' : 'dark');
+            html.setAttribute('data-theme', theme);
+
+            toggle.addEventListener('click', function() {
+                var current = html.getAttribute('data-theme');
+                var next = current === 'light' ? 'dark' : 'light';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('lila-theme', next);
+            });
+        }
+        initTheme();
+    </script>
 </body>
 </html>
