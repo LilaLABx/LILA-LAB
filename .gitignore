@@ -42,28 +42,25 @@ texput.log
 # ── Large data directories (stay local) ──
 
 # BENI pipeline — raw databases, experiment outputs, model weights
-pipelines/beni/Bangla_News_Database/
-pipelines/beni/data/
-pipelines/beni/database/beni_v0_1.sqlite
-pipelines/beni/database/outputs/
-pipelines/beni/experiment/outputs/
-pipelines/beni/experiment/bnlp-resources/
-pipelines/beni/experiment/models/
-pipelines/beni/annotation/outputs/
+# BENI pipeline — raw databases, experiment outputs, model weights
+pipelines/BENI/data/
+pipelines/BENI/database/beni_v0_1.sqlite
+pipelines/BENI/database/outputs/
+pipelines/BENI/experiment/outputs/
+pipelines/BENI/experiment/bnlp-resources/
+pipelines/BENI/experiment/models/
+pipelines/BENI/annotation/outputs/
 
 # BENI-specific — large CSV and JSON data (keep small config JSONs tracked)
-pipelines/beni/**/*.csv
-pipelines/beni/**/*.json
+pipelines/BENI/**/*.csv
+pipelines/BENI/**/*.json
 
 # Dataset — large processed data only
 dataset/**/*.csv
 dataset/**/*.json
 
-# Data paper — large CSV/JSONL data files
-dataset/data/
-
-# Archived OSF upload zip (1.1 GB)
-archive/BENI_v1_data_paper_osf_dataset_upload.zip
+# Archived OSF upload zip (1.1 GB) — see distribution/ for manifests
+# archive/BENI_v1_data_paper_osf_dataset_upload.zip
 
 # ── Model artifacts ──
 *.joblib
@@ -86,10 +83,13 @@ archive/BENI_v1_data_paper_osf_dataset_upload.zip
 *.zip
 *.7z
 *.rar
+*.zst
+*.zst.zst
+*.csv.zst
 
 # ── Logs ──
 *.log
-beni-*-*.log
+BENI-*-*.log
 
 # ── Generated PDFs (source .tex is tracked) ──
 *.pdf
