@@ -14,7 +14,17 @@
       "dataset_articles": 664000,
       "indices": ["economic"],
       "leads": ["Ann Naser Nabil"],
-      "seeking": false
+      "seeking": false,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "AENI",
@@ -28,7 +38,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "NENI",
@@ -42,7 +62,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "SENI",
@@ -56,7 +86,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "CENI",
@@ -70,7 +110,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "HENI",
@@ -84,7 +134,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "KIENI",
@@ -98,7 +158,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "VIENI",
@@ -112,7 +182,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "TIENI",
@@ -126,7 +206,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     },
     {
       "id": "IDENI",
@@ -140,7 +230,17 @@
       "dataset_articles": null,
       "indices": [],
       "leads": [],
-      "seeking": true
+      "seeking": true,
+      "exploration_status": {
+        "framework": "ready",
+        "sample": "not_run",
+        "profile": "not_run",
+        "vocabulary": "not_run",
+        "temporal": "not_run",
+        "schema": "not_run",
+        "report": "not_run",
+        "last_updated": null
+      }
     }
   ]
 }
