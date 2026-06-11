@@ -1,0 +1,56 @@
+{
+  "description": "LILA Lab Annotation Schema Registry — available domain schemas for XENI pipelines.",
+  "updated": "2026-06-11",
+  "schemas": [
+    {
+      "id": "economic",
+      "name": "Economic Narrative Schema",
+      "description": "Labels for economic relevance, topic (inflation/growth/trade/...), sentiment, and narrative frame.",
+      "fields": 12,
+      "status": "stable",
+      "source_pipeline": "BENI",
+      "location": "pipelines/BENI/annotation/schemas/economic.json",
+      "languages": ["BENI"]
+    },
+    {
+      "id": "health",
+      "name": "Health Discourse Schema",
+      "description": "Labels for health relevance, disease category, prevention/treatment framing, and source credibility.",
+      "fields": 8,
+      "status": "planned",
+      "source_pipeline": "BENI",
+      "location": null,
+      "languages": []
+    },
+    {
+      "id": "climate",
+      "name": "Climate Narrative Schema",
+      "description": "Labels for climate relevance, mitigation/adaptation framing, disaster type, and policy mention.",
+      "fields": 8,
+      "status": "planned",
+      "source_pipeline": "BENI",
+      "location": null,
+      "languages": []
+    },
+    {
+      "id": "education",
+      "name": "Education Policy Schema",
+      "description": "Labels for education relevance, access/quality/policy framing, and level (primary/secondary/tertiary).",
+      "fields": 7,
+      "status": "proposed",
+      "source_pipeline": null,
+      "location": null,
+      "languages": []
+    },
+    {
+      "id": "political_discourse",
+      "name": "Political Discourse Schema",
+      "description": "Labels for political relevance, ideology, event type, and actor classification.",
+      "fields": 6,
+      "status": "proposed",
+      "source_pipeline": null,
+      "location": null,
+      "languages": []
+    }
+  ]
+}
