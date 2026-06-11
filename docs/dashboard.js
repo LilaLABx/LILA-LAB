@@ -129,41 +129,23 @@ function initCharts() {
         tooltipBg: 'rgba(7, 18, 21, 0.95)'
     };
 
-    // 1. BENI Index vs CPI
+    // 1. BENI Index vs CPI — Real data from exploration pipeline (79 months, 2014–2020)
+    var months = ["2014-06","2014-07","2014-08","2014-09","2014-10","2014-11","2014-12","2015-01","2015-02","2015-03","2015-04","2015-05","2015-06","2015-07","2015-08","2015-09","2015-10","2015-11","2015-12","2016-01","2016-02","2016-03","2016-04","2016-05","2016-06","2016-07","2016-08","2016-09","2016-10","2016-11","2016-12","2017-01","2017-02","2017-03","2017-04","2017-05","2017-06","2017-07","2017-08","2017-09","2017-10","2017-11","2017-12","2018-01","2018-02","2018-03","2018-04","2018-05","2018-06","2018-07","2018-08","2018-09","2018-10","2018-11","2018-12","2019-01","2019-02","2019-03","2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12"];
+    var beniIndex = [137.6,138.1,135.7,137.1,133.2,135.8,134.0,104.0,103.0,105.0,102.0,105.5,107.1,103.6,100.7,101.2,100.1,100.1,101.0,102.7,102.2,105.1,102.9,101.5,105.5,99.8,101.5,101.8,102.4,103.1,103.0,103.7,102.6,103.9,104.7,102.0,103.3,98.0,98.5,98.7,97.6,100.1,98.5,96.7,97.5,97.4,97.5,97.2,98.8,98.1,95.8,96.8,95.8,94.7,94.4,98.7,98.1,98.4,97.0,100.0,100.8,99.6,97.7,99.4,98.3,98.9,98.4,101.5,102.2,101.1,104.7,102.1,102.1,101.5,98.3,100.0,98.0,96.7,97.8];
+    var cpi = [64.0,65.0,65.8,66.8,67.2,67.2,67.5,68.3,68.5,68.7,68.7,67.9,68.0,69.1,69.9,70.9,71.4,71.3,71.7,72.4,72.3,72.6,72.6,71.6,71.7,72.8,73.6,74.8,75.4,75.1,75.3,76.2,76.2,76.5,76.6,75.7,76.0,76.9,78.0,79.4,79.9,79.6,79.6,80.6,80.5,80.8,80.9,79.9,80.2,81.1,82.3,83.7,84.2,83.9,83.9,85.0,84.9,85.3,85.4,84.4,84.7,85.7,86.8,88.4,88.8,88.9,88.7,89.8,89.6,90.0,90.5,88.9,89.7,90.4,91.7,93.6,94.6,93.8,93.4];
+    var labels = ["2014-06","2014-12","2015-06","2015-12","2016-06","2016-12","2017-06","2017-12","2018-06","2018-12","2019-06","2019-12","2020-06","2020-12"];
+
     var indexVsCpiCtx = document.getElementById('indexVsCpiChart');
     if (indexVsCpiCtx) {
-        var months = [];
-        var beniIndex = [];
-        var cpi = [];
-        var labels = [];
-
-        for (var i = 0; i < 79; i++) {
-            var year = 2014 + Math.floor(i / 12);
-            var month = (i % 12) + 1;
-            months.push(year + '-' + String(month).padStart(2, '0'));
-
-            var baseIndex = 50 + Math.sin(i / 12 * Math.PI) * 20 + (Math.random() - 0.5) * 10;
-            var baseCpi = 100 + i * 0.3 + Math.sin(i / 6 * Math.PI) * 5 + (Math.random() - 0.5) * 3;
-
-            beniIndex.push(parseFloat(baseIndex.toFixed(1)));
-            cpi.push(parseFloat(baseCpi.toFixed(1)));
-
-            if (i % 6 === 0) {
-                labels.push(months[i]);
-            }
-        }
-
-        var beniFiltered = beniIndex.filter(function(_, idx) { return idx % 6 === 0; });
-        var cpiFiltered = cpi.filter(function(_, idx) { return idx % 6 === 0; });
 
         new Chart(indexVsCpiCtx, {
             type: 'line',
             data: {
-                labels: labels,
+                labels: months,
                 datasets: [
                     {
                         label: 'BENI Index',
-                        data: beniFiltered,
+                        data: beniIndex,
                         borderColor: colors.cyan,
                         backgroundColor: colors.cyanDim,
                         fill: true,
@@ -175,7 +157,7 @@ function initCharts() {
                     },
                     {
                         label: 'CPI',
-                        data: cpiFiltered,
+                        data: cpi,
                         borderColor: colors.gold,
                         backgroundColor: colors.goldDim,
                         fill: true,
@@ -255,25 +237,37 @@ function initCharts() {
         });
     }
 
-    // 2. Model Comparison
+    // 2. Model Comparison — Real results + planned benchmarks
     var modelComparisonCtx = document.getElementById('modelComparisonChart');
     if (modelComparisonCtx) {
         new Chart(modelComparisonCtx, {
             type: 'bar',
             data: {
-                labels: ['TF-IDF + LogReg', 'BanglaBERT', 'LLM (Claude)', 'LLM (GPT-4o)', 'Ensemble'],
+                labels: [
+                    'TF-IDF (Unified 933K)',
+                    'TF-IDF (Potrika Pilot)',
+                    'BanglaBERT-small',
+                    'BanglaBERT',
+                    'Bangla-BERT-base',
+                    'sahajBERT',
+                    'mBERT',
+                    'XLM-RoBERTa'
+                ],
                 datasets: [{
                     label: 'Accuracy (%)',
-                    data: [91.7, 89.2, 90.5, 89.8, 92.1],
+                    data: [94.77, 91.7, null, null, null, null, null, null],
                     backgroundColor: [
                         colors.cyan,
-                        colors.gold,
-                        colors.coral,
-                        '#5B8DEF',
-                        '#7C6FE0'
+                        colors.sand,
+                        '#3A5A6A',
+                        '#3A5A6A',
+                        '#3A5A6A',
+                        '#3A5A6A',
+                        '#3A5A6A',
+                        '#3A5A6A'
                     ],
                     borderRadius: 6,
-                    barThickness: 36
+                    barThickness: 28
                 }]
             },
             options: {
@@ -290,6 +284,9 @@ function initCharts() {
                         borderWidth: 1,
                         callbacks: {
                             label: function(context) {
+                                if (context.parsed.x === null) {
+                                    return 'Kaggle GPU training planned';
+                                }
                                 return context.parsed.x + '%';
                             }
                         }
@@ -297,8 +294,8 @@ function initCharts() {
                 },
                 scales: {
                     x: {
-                        min: 85,
-                        max: 95,
+                        min: 80,
+                        max: 100,
                         grid: { color: colors.gridColor },
                         ticks: {
                             color: '#5A7A8A',
@@ -316,28 +313,18 @@ function initCharts() {
         });
     }
 
-    // 3. Article Volume
+    // 3. Article Volume — Real monthly article counts from exploration pipeline
+    var articleVolumes = [85,385,423,433,374,403,413,2066,2113,1984,2351,2271,2137,2768,3146,2916,3050,2836,3055,5624,7256,7442,7190,7854,8382,7465,7924,7632,7482,7166,6642,6943,6398,6396,6021,5923,5609,6609,6814,6156,7136,7229,6775,7246,6673,6759,6868,8197,7925,9122,9148,10173,9856,8585,7090,6327,6172,6569,6266,6121,5960,6409,6115,7118,7028,6673,6229,7813,7048,7457,6086,6130,7905,8103,7446,9487,9068,10421,10853];
+
     var articleVolumeCtx = document.getElementById('articleVolumeChart');
     if (articleVolumeCtx) {
-        var volMonths = [];
-        var volumes = [];
-
-        for (var j = 0; j < 79; j++) {
-            if (j % 6 === 0) {
-                var vy = 2014 + Math.floor(j / 12);
-                var vm = (j % 12) + 1;
-                volMonths.push(vy + '-' + String(vm).padStart(2, '0'));
-                volumes.push(Math.floor(8000 + Math.random() * 4000 + Math.sin(j / 12 * Math.PI) * 1000));
-            }
-        }
-
         new Chart(articleVolumeCtx, {
             type: 'bar',
             data: {
-                labels: volMonths,
+                labels: months,
                 datasets: [{
                     label: 'Articles',
-                    data: volumes,
+                    data: articleVolumes,
                     backgroundColor: 'rgba(0, 212, 224, 0.15)',
                     borderColor: colors.cyan,
                     borderWidth: 1,
