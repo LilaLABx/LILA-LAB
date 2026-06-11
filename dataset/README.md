@@ -1,116 +1,76 @@
 # LILA Lab Datasets
 
-## Data Overview
+**Target:** 10 emerging-economy low-resource languages with baseline news corpora by H1 2027.
 
-This directory contains all datasets used and produced by LILA Lab pipelines, along with distribution manifests for multi-platform release.
+Each pipeline has a dedicated dataset directory with `raw/` and `processed/` subdirectories. Choose a language below to get started.
 
-### 10-Language Collection Progress
+---
 
-Our target is **10 emerging-economy low-resource languages** with baseline news corpora by H1 2027. [View the full plan →](../technical-reports/extensions/INDEX.md)
+## Collection Progress
 
-| # | Language | Pipeline | Region | Target Corpus | Status | Lead |
-|---|----------|----------|--------|--------------|--------|--------|------|
-| 1 | Bangla (বাংলা) | BENI | South Asia | ✅ 664k articles | ✅ Active | LILA Lab |
-| 2 | Assamese (অসমীয়া) | AENI | South Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
-| 3 | Nepali (नेपाली) | NENI | South Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
-| 4 | Sylheti (চিটাঙ্গ) | SENI | South Asia | 🎯 Max viable (limited sources) | 🔜 Feasibility | — |
-| 5 | Chittagonian (চাঁটগাঁইয়া) | CENI | South Asia | 🎯 Max viable (limited sources) | 🔜 Feasibility | — |
-| 6 | Hausa | HENI | Africa | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
-| 7 | Kiswahili (Swahili) | KIENI | Africa | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
-| 8 | Vietnamese (Tiếng Việt) | VIENI | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
-| 9 | Tagalog (Filipino) | TIENI | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
-| 10 | Indonesian (Bahasa Indonesia) | IDENI | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | — |
+| # | Language | Pipeline | Region | Target Corpus | Status | Dataset Directory |
+|---|----------|----------|--------|--------------|--------|-------------------|
+| 1 | Bangla (বাংলা) | **BENI** | South Asia | ✅ 664k articles | ✅ Active | [`BENI/`](./BENI/) |
+| 2 | Assamese (অসমীয়া) | **AENI** | South Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | [`AENI/`](./AENI/) |
+| 3 | Nepali (नेपाली) | **NENI** | South Asia | 🎯 100k+ (10+ yrs) | 🔜 Seeking | [`NENI/`](./NENI/) |
+| 4 | Sylheti (চিটাঙ্গ) | **SENI** | South Asia | 🎯 Max viable | 🔜 Feasibility | [`SENI/`](./SENI/) |
+| 5 | Chittagonian (চাঁটগাঁইয়া) | **CENI** | South Asia | 🎯 Max viable | 🔜 Feasibility | [`CENI/`](./CENI/) |
+| 6 | Hausa | **HENI** | Africa | 🎯 100k+ (10+ yrs) | 🔜 Planned | [`HENI/`](./HENI/) |
+| 7 | Kiswahili (Swahili) | **KIENI** | Africa | 🎯 100k+ (10+ yrs) | 🔜 Planned | [`KIENI/`](./KIENI/) |
+| 8 | Vietnamese (Tiếng Việt) | **VIENI** | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Planned | [`VIENI/`](./VIENI/) |
+| 9 | Tagalog (Filipino) | **TIENI** | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Planned | [`TIENI/`](./TIENI/) |
+| 10 | Indonesian (Bahasa Indonesia) | **IDENI** | SE Asia | 🎯 100k+ (10+ yrs) | 🔜 Planned | [`IDENI/`](./IDENI/) |
 
 **Progress:** 1 / 10 datasets collected. [Contribute a corpus →](../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md)
 
-### Available Datasets
+---
 
-| Dataset | Language | Size | License | Status |
-|---------|----------|------|---------|--------|
-| **BENI v1** | Bangla | — | CC BY 4.0 | ✅ Released |
-| Potrika Corpus | Bangla | 3.3 GB | CC BY 4.0 | ✅ Available |
-| BNLP Resources | Bangla | 56 MB | CC BY-NC-SA 4.0 | ✅ Available |
-
-### Directory Structure
+## Dataset Directory Structure
 
 ```
-data/
-├── beni-v1/              # BENI v1 dataset release
-│   ├── README.md         # Dataset documentation
-│   ├── CITATION.cff      # Citation metadata
-│   └── ...               # Dataset files
-│
-├── raw/                  # Raw upstream data
-│   ├── potrika/          # Potrika Bangla News Corpus
-│   └── bnlp/             # BNLP resources
-│
-├── processed/            # Processed datasets
-│   ├── annotations/      # Human annotations
-│   └── indices/          # Narrative indices
-│
-├── OSF_UPLOAD_MANIFEST.md
-├── ZENODO_UPLOAD_MANIFEST.md
-├── HUGGINGFACE.md
-├── MENDELEY_UPLOAD.md
-└── DATASET_CARD.md
+dataset/
+├── BENI/              # Bangla — ✅ Complete dataset (beni-v1, raw, processed, manifests)
+├── AENI/              # Assamese — 🔜 Ready for contributions
+├── NENI/              # Nepali — 🔜 Ready for contributions
+├── SENI/              # Sylheti — 🔜 Feasibility stage
+├── CENI/              # Chittagonian — 🔜 Feasibility stage
+├── HENI/              # Hausa — 🔜 Ready for contributions
+├── KIENI/             # Kiswahili — 🔜 Ready for contributions
+├── VIENI/             # Vietnamese — 🔜 Ready for contributions
+├── TIENI/             # Tagalog — 🔜 Ready for contributions
+├── IDENI/             # Indonesian — 🔜 Ready for contributions
+└── README.md          # ← You are here
 ```
 
-### BENI v1 Dataset
-
-The BENI v1 dataset contains:
-
-- 664,000+ Bangla news articles
-- 3,200 human-annotated labels (gold standard)
-- Monthly narrative indices (2014–2020)
-- Macroeconomic indicators (CPI, FX, reserves)
-
-**Citation:**
-```
-Nabil, A. N. (2026). LILA-BENI v1.0: A Harmonised Bangla News Dataset 
-for Economic Narrative Measurement. Zenodo. 
-https://doi.org/10.5281/zenodo.20585401
-```
-
-### Contributing Data
-
-We accept contributions of:
-
-1. **Text corpora** — News articles, social media, any text in your language
-2. **Annotations** — Economic/Not Economic labels with cultural context
-3. **Dialectal variants** — Chittagonian, Sylheti, Rangpuri, etc.
-
-See `../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md` for submission guidelines.
-
-### Distribution Platforms
-
-| Platform | Role | URL |
-|----------|------|-----|
-| **OSF** | Discovery + preprint hub | osf.io/ |
-| **Zenodo** | Permanent DOI | doi.org/10.5281/zenodo.20585401 |
-| **Hugging Face** | NLP community | huggingface.co/nabil0x |
-| **Mendeley Data** | Raw corpus | data.mendeley.com/datasets/v362rp78dc |
-
-### Distribution Manifests
-
-| File | Platform | Purpose |
-|------|----------|---------|
-| `OSF_UPLOAD_MANIFEST.md` | OSF | Project hub, preprints, protocols |
-| `ZENODO_UPLOAD_MANIFEST.md` | Zenodo | Dataset DOI + code release archive |
-| `HUGGINGFACE.md` | Hugging Face | Models, datasets, Gradio demo |
-| `MENDELEY_UPLOAD.md` | Mendeley Data | Raw Potrika corpus distribution |
-| `DATASET_CARD.md` | All platforms | Standardised dataset metadata card |
-
-### Citation Funnel
+Each pipeline dataset folder follows a common layout:
 
 ```
-pipelines/[x]eni/ ──→ data/ ──→ OSF / Zenodo / Hugging Face / Mendeley
-                              │
-                              ▼
-                        Citation Funnel
-                      (../communications/DISTRIBUTION_STRATEGY.md)
+[pipeline]/
+├── raw/               # Raw upstream data (scraped articles, corpora)
+├── processed/         # Cleaned, deduplicated, annotated data
+│   ├── annotations/   # Human/LLM-assigned labels
+│   └── indices/       # Narrative index output
+└── README.md          # Language-specific details + contribution guide
 ```
 
-The manifests reference content from:
-- `pipelines/beni/` — trained models, code
-- `data/beni-v1/` — canonical data files, annotation sets, BENI index
-- `technical-reports/` — preprints, manuscripts
+The **BENI** folder is the reference implementation — it includes a full dataset release (`beni-v1/`), distribution manifests (OSF, Zenodo, Hugging Face, Mendeley), and a dataset card.
+
+---
+
+## How to Contribute
+
+1. Pick a language from the table above
+2. Go to its dataset directory and read the `README.md`
+3. Collect raw news articles and place them in `raw/`
+4. Process, annotate, and build indices following the [pipeline docs](../pipelines/README.md)
+5. Open a PR with your dataset
+
+See the [Linguistic Contribution Guide](../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md) for full instructions.
+
+---
+
+## License
+
+- **Code:** MIT License — Use, modify, distribute freely
+- **Data:** CC BY 4.0 — Attribute the source
+- **Papers:** © Authors — Cite properly

@@ -18,6 +18,7 @@ import io
 import json
 import re
 import subprocess
+import sys
 from collections import Counter
 from datetime import datetime
 from contextlib import contextmanager
@@ -284,12 +285,17 @@ def iter_potrika_articles(min_chars: int) -> Iterable[dict]:
 
 def iter_bnad_articles(bnad_dir: Path, min_chars: int) -> Iterable[dict]:
     idx = 0
+    skip_log: dict[str, int] = {}
     for path in sorted(bnad_dir.glob("*.jsonl")):
         with path.open("r", encoding="utf-8", errors="replace") as f:
             for line in f:
                 if not line.strip():
                     continue
-                obj = json.loads(line)
+                try:
+                    obj = json.loads(line)
+                except json.JSONDecodeError:
+                    skip_log[path.name] = skip_log.get(path.name, 0) + 1
+                    continue
                 date = parse_bangla_date(obj.get("Time"))
                 if not date or int(date[:4]) <= 2020:
                     continue
@@ -309,6 +315,8 @@ def iter_bnad_articles(bnad_dir: Path, min_chars: int) -> Iterable[dict]:
                     tags=obj.get("Tags") or "",
                     meta=obj.get("Meta") or "",
                 )
+    for src, count in skip_log.items():
+        print(f"  [WARN] Skipped {count} malformed JSON line(s) in {src}", file=sys.stderr)
 
 
 def write_articles(path: Path, rows: Iterable[dict]) -> Counter:
