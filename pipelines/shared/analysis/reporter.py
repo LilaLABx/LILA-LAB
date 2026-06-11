@@ -113,13 +113,6 @@ def generate_report(
     lines.append("| Phase | Status | Key Metric |")
     lines.append("|-------|--------|------------|")
 
-    phase_metrices: dict[str, tuple[str, str]] = {
-        "profile": ("corpus_profile", ""),
-        "vocabulary": ("vocabulary_analysis", ""),
-        "temporal": ("temporal_diagnostics", ""),
-        "schema": ("schema_validation", ""),
-    }
-
     phase_labels = {
         "profile": "Corpus Profile",
         "vocabulary": "Vocabulary Analysis",
@@ -146,23 +139,31 @@ def generate_report(
         lines.append(f"- **Total articles:** {profile.get('n_articles', '?'):,}")
         dr = profile.get("date_range", {})
         if dr:
-            lines.append(f"- **Date range:** {dr.get('start', '?')} → {dr.get('end', '?')} ({dr.get('n_days', '?')} days)")
+            lines.append(
+                f"- **Date range:** {dr.get('start', '?')} → {dr.get('end', '?')} ({dr.get('n_days', '?')} days)"
+            )
         lines.append(f"- **Sources:** {profile.get('n_sources', '?')}")
         lines.append(f"- **Categories:** {profile.get('n_categories', '?')}")
 
         tl = profile.get("text_length", {})
         if tl:
-            lines.append(f"- **Words/article:** mean={tl.get('mean_words')}, median={tl.get('median_words')}")
+            lines.append(
+                f"- **Words/article:** mean={tl.get('mean_words')}, median={tl.get('median_words')}"
+            )
 
         q = profile.get("quality", {})
         if q:
             lines.append(f"- **Empty texts:** {q.get('empty_texts')} ({q.get('empty_texts_pct')}%)")
             if q.get("missing_dates") is not None:
-                lines.append(f"- **Missing dates:** {q.get('missing_dates')} ({q.get('missing_dates_pct')}%)")
+                lines.append(
+                    f"- **Missing dates:** {q.get('missing_dates')} ({q.get('missing_dates_pct')}%)"
+                )
 
         dc = profile.get("date_coverage", {})
         if dc:
-            lines.append(f"- **Monthly coverage:** {dc.get('n_months', '?')}/{dc.get('n_months', '?') + dc.get('n_gaps', 0)} months")
+            lines.append(
+                f"- **Monthly coverage:** {dc.get('n_months', '?')}/{dc.get('n_months', '?') + dc.get('n_gaps', 0)} months"
+            )
             if dc.get("n_gaps", 0) > 0:
                 lines.append(f"- **Coverage gaps:** {dc['n_gaps']} gaps detected")
 
@@ -190,7 +191,9 @@ def generate_report(
         lines.append(f"- **Tokens:** {vocab.get('tokens', '?'):,}")
         lines.append(f"- **Types:** {vocab.get('types', '?'):,}")
         lines.append(f"- **TTR (type-token ratio):** {vocab.get('ttr', '?')}")
-        lines.append(f"- **Hapax legomena:** {vocab.get('hapax_count', '?')} ({vocab.get('hapax_percentage', '?')}% of types)")
+        lines.append(
+            f"- **Hapax legomena:** {vocab.get('hapax_count', '?')} ({vocab.get('hapax_percentage', '?')}% of types)"
+        )
 
         top_words = vocab.get("top_n_words", [])
         if top_words:
@@ -207,8 +210,14 @@ def generate_report(
             lines.append("| Category | Types | TTR | Top word |")
             lines.append("|----------|-------|-----|----------|")
             for cat_name, cdata in sorted(per_cat.items()):
-                top = cdata.get("top_n_words", [{}])[0].get("word", "—") if cdata.get("top_n_words") else "—"
-                lines.append(f"| {cat_name} | {cdata.get('types', '?'):,} | {cdata.get('ttr', '?')} | {top} |")
+                top = (
+                    cdata.get("top_n_words", [{}])[0].get("word", "—")
+                    if cdata.get("top_n_words")
+                    else "—"
+                )
+                lines.append(
+                    f"| {cat_name} | {cdata.get('types', '?'):,} | {cdata.get('ttr', '?')} | {top} |"
+                )
         lines.append("")
 
     # ── 3. Temporal diagnostics ──────────────────────────────────────
@@ -217,24 +226,34 @@ def generate_report(
         lines.append("")
         cov = temporal.get("coverage", {})
         if cov:
-            lines.append(f"- **Coverage:** {cov.get('n_months_with_data')}/{cov.get('n_months_total')} months ({cov.get('coverage_pct')}%)")
+            lines.append(
+                f"- **Coverage:** {cov.get('n_months_with_data')}/{cov.get('n_months_total')} months ({cov.get('coverage_pct')}%)"
+            )
             if cov.get("n_gaps", 0) > 0:
-                lines.append(f"- **Gaps:** {cov['n_gaps']} gap(s), max {cov.get('max_gap_months')} consecutive months")
+                lines.append(
+                    f"- **Gaps:** {cov['n_gaps']} gap(s), max {cov.get('max_gap_months')} consecutive months"
+                )
             ms = cov.get("monthly_statistics", {})
             if ms:
-                lines.append(f"- **Articles/month:** mean={ms.get('mean_articles_per_month')}, range={ms.get('min_articles_month')}–{ms.get('max_articles_month')}")
+                lines.append(
+                    f"- **Articles/month:** mean={ms.get('mean_articles_per_month')}, range={ms.get('min_articles_month')}–{ms.get('max_articles_month')}"
+                )
 
         boundaries = temporal.get("source_boundaries", [])
         if boundaries:
             sig_count = sum(1 for b in boundaries if b["significant"])
             lines.append("")
-            lines.append(f"**Source transitions:** {len(boundaries)} detected, {sig_count} significant")
+            lines.append(
+                f"**Source transitions:** {len(boundaries)} detected, {sig_count} significant"
+            )
             lines.append("")
             lines.append("| Transition | Year | KS | p-value | Significant |")
             lines.append("|------------|------|----|---------|-------------|")
             for b in boundaries[:10]:
                 sig = "⚠️" if b["significant"] else "✓"
-                lines.append(f"| {b['source_a']}→{b['source_b']} | {b['transition_year']} | {b['ks_statistic']} | {b['p_value']} | {sig} |")
+                lines.append(
+                    f"| {b['source_a']}→{b['source_b']} | {b['transition_year']} | {b['ks_statistic']} | {b['p_value']} | {sig} |"
+                )
         lines.append("")
 
     # ── 4. Schema validation ─────────────────────────────────────────
@@ -295,15 +314,16 @@ def generate_report(
                     "This may create artifacts in temporal indices."
                 )
 
-    if vocab:
-        if vocab.get("hapax_percentage", 0) > 60:
-            recommendations.append(
-                f"- 🟡 **Very high hapax ratio ({vocab['hapax_percentage']}%).** "
-                "Corpus has many rare terms — consider whether stopword or frequency filtering is needed."
-            )
+    if vocab and vocab.get("hapax_percentage", 0) > 60:
+        recommendations.append(
+            f"- 🟡 **Very high hapax ratio ({vocab['hapax_percentage']}%).** "
+            "Corpus has many rare terms — consider whether stopword or frequency filtering is needed."
+        )
 
     if not recommendations:
-        recommendations.append("- ✅ No critical issues detected. Corpus is ready for annotation and indexing.")
+        recommendations.append(
+            "- ✅ No critical issues detected. Corpus is ready for annotation and indexing."
+        )
 
     if profile and schema:
         rec = _annotation_readiness_recommendation(profile, schema)
@@ -316,7 +336,9 @@ def generate_report(
 
     # ── Footer ───────────────────────────────────────────────────────
     lines.append("---")
-    lines.append(f"*Report auto-generated by LILA Lab Data Observatory on {date.today().isoformat()}*")
+    lines.append(
+        f"*Report auto-generated by LILA Lab Data Observatory on {date.today().isoformat()}*"
+    )
     lines.append("")
 
     report = out / "diagnostic_report.md"

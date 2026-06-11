@@ -207,6 +207,8 @@ If you don't use git:
 
 **All contributions** are recorded in `../technical-reports/contributions/OWNERS.csv` as a permanent scholarly record.
 
+All data and annotation contributions also require a review gate before release: license consent, native-speaker review where relevant, schema validation, and release checklist completion in `DATA_RELEASE_CHECKLIST.md`.
+
 ---
 
 ## The Innovation Model

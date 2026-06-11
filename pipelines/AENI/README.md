@@ -16,6 +16,14 @@ AENI will bring the XENI pipeline to Assamese, the official language of Assam. W
 - Annotation: 🔜 Needs native speakers for schema validation
 - Index: First domain (economic) is the recommended starting point
 
+## Validation
+
+```bash
+python -m cli validate
+```
+
+This command proves AENI is a valid scaffold. It does not mean the dataset or index is operational.
+
 ## How to Contribute
 
 | Role | What You Do |

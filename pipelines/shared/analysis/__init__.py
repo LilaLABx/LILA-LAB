@@ -22,14 +22,6 @@ Typical usage::
     pipe = PreprocessingPipeline.preset("bbd")
 """
 
-from .preprocessing import (
-    PreprocessingPipeline,
-    clean_text,
-    load_stopwords,
-    simple_tokenizer,
-    stopword_filtered_tokenizer,
-    tokenizer_for_pipeline,
-)
 from .annotator import (
     compute_agreement,
     field_level_reliability,
@@ -43,8 +35,16 @@ from .index_builder import (
     merge_macro_data,
     normalize_index,
 )
+from .preprocessing import (
+    PreprocessingPipeline,
+    clean_text,
+    load_stopwords,
+    simple_tokenizer,
+    stopword_filtered_tokenizer,
+    tokenizer_for_pipeline,
+)
 from .profiler import corpus_profile, run_profile
-from .reporter import generate_report, generate_registry_update
+from .reporter import generate_registry_update, generate_report
 from .schema_validator import (
     run_schema_validation,
     validate_schema_coverage,

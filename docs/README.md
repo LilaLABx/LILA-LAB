@@ -1,34 +1,44 @@
 # LILA Lab — Documentation & Website
 
-This directory serves **two roles**:
+This directory contains both GitHub Pages assets and the lab operating docs.
 
-## 1. GitHub Pages Website (`docs/` root)
+## Start Here
 
-These files are deployed to **lilalab.pro.bd** via GitHub Actions (see `.github/workflows/pages.yml`):
+| Role | Path |
+| --- | --- |
+| Researchers | `docs/COLLABORATION.md`, `technical-reports/README.md`, `docs/research/RUN_MANIFEST_TEMPLATE.md` |
+| Linguistic contributors | `docs/LINGUISTIC_CONTRIBUTION_GUIDE.md`, `dataset/README.md` |
+| Data releasers | `docs/DATA_RELEASE_CHECKLIST.md`, `dist/README.md` |
+| Infrastructure contributors | `docs/REPOSITORY_OPERATING_MODEL.md`, `cli/README.md`, `infrastructure/README.md` |
+| Maintainers | `docs/REPOSITORY_OPERATING_MODEL.md`, `registry/languages.json`, `registry/xeni_pipeline_contract.json` |
 
-- `index.html` — Main landing page
+## Website Files
+
+These files are deployed to `lilalab.pro.bd` via `.github/workflows/pages.yml`:
+
+- `index.html` — main landing page
 - `beni.html` — BENI pipeline showcase
-- `docs.html` — Documentation viewer (loads markdown from repo)
-- `dashboard.html` — Lab control room dashboard
-- `*.css` / `*.js` — Stylesheets and scripts
-- `CNAME` — Custom domain mapping
-- `robots.txt` — Search engine crawling rules
-- `assets/` — Images and media
-- `research/` — Research-related web pages
+- `docs.html` — documentation viewer
+- `dashboard.html` — lab control room dashboard
+- `*.css` / `*.js` — stylesheets and scripts
+- `CNAME`, `robots.txt`, and `assets/`
 
-## 2. Documentation Content
+## Operating Docs
 
-- `guides/` — Markdown documentation files (guides, reference)
-- `adr/` — Architecture Decision Records
-- `archive/` — Historical/archived docs
+- `REPOSITORY_OPERATING_MODEL.md` defines what belongs in each top-level area.
+- `DATA_RELEASE_CHECKLIST.md` defines FAIR/data-card release gates.
+- `research/RUN_MANIFEST_TEMPLATE.md` defines reproducibility metadata for research runs.
+- `adr/` stores architecture decisions.
+- `archive/` stores historical plans.
 
-## Editing the Website
+## Validation
 
-Website files are plain HTML/CSS/JS. Edit directly and push to `main` — the GitHub Pages workflow auto-deploys.
+Run these before claiming a structural change is complete:
 
-For the documentation viewer (`docs.html`), markdown content is fetched live from the GitHub repository. The sidebar navigation is configured in `docs.js`.
+```bash
+python -m cli validate
+python infrastructure/scripts/validate_schemas.py
+make audit
+```
 
-## Related
-
-- `infrastructure/website/` — Additional dashboard files (legacy)
-- `infrastructure/scripts/` — Deployment/linting scripts
+For the documentation viewer (`docs.html`), markdown content is fetched from the repository and sidebar navigation is configured in `docs.js`.

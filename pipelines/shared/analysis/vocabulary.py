@@ -19,8 +19,9 @@ from __future__ import annotations
 import logging
 import re
 from collections import Counter
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -99,9 +100,7 @@ def log_odds_ratio(
         # Log-odds with prior smoothing
         delta = np.log(
             (y_w + alpha * prior[w]) / (total_target + alpha - (y_w + alpha * prior[w]))
-        ) - np.log(
-            (n_w + alpha * prior[w]) / (total_background + alpha - (n_w + alpha * prior[w]))
-        )
+        ) - np.log((n_w + alpha * prior[w]) / (total_background + alpha - (n_w + alpha * prior[w])))
         # Variance estimate (inverse weighting)
         var = 1 / (y_w + alpha * prior[w]) + 1 / (n_w + alpha * prior[w])
         z = delta / np.sqrt(var) if var > 0 else 0.0
@@ -150,6 +149,7 @@ def vocabulary_profile(
     stopwords: set[str] | None = cfg.get("stopwords")
     if stopwords is not None:
         from .preprocessing import stopword_filtered_tokenizer
+
         tokenizer = stopword_filtered_tokenizer(stopwords, base_tokenizer=tokenizer)
 
     ngram_n = cfg.get("ngram_n", 1)
@@ -167,14 +167,20 @@ def vocabulary_profile(
     for t in texts:
         toks = tokenizer(str(t)) if pd.notna(t) else []
         if ngram_n > 1:
-            toks = ["_".join(toks[i:i + ngram_n]) for i in range(len(toks) - ngram_n + 1)]
+            toks = ["_".join(toks[i : i + ngram_n]) for i in range(len(toks) - ngram_n + 1)]
         all_tokens.extend(toks)
         doc_lengths.append(len(toks))
 
     total_tokens = len(all_tokens)
     if total_tokens == 0:
-        return {"tokens": 0, "types": 0, "ttr": 0.0, "hapax_count": 0,
-                "hapax_percentage": 0.0, "top_n_words": []}
+        return {
+            "tokens": 0,
+            "types": 0,
+            "ttr": 0.0,
+            "hapax_count": 0,
+            "hapax_percentage": 0.0,
+            "top_n_words": [],
+        }
 
     word_counts = Counter(all_tokens)
     types = len(word_counts)
@@ -192,13 +198,16 @@ def vocabulary_profile(
         "hapax_percentage": round(hapax / types * 100, 2) if types else 0.0,
         "mean_doc_length_tokens": round(float(np.mean(doc_lengths)), 1) if doc_lengths else 0,
         "top_n_words": [
-            {"word": w, "frequency": f, "proportion": round(f / total_tokens, 4)}
-            for w, f in top
+            {"word": w, "frequency": f, "proportion": round(f / total_tokens, 4)} for w, f in top
         ],
     }
 
     # ── Per-category vocabulary ─────────────────────────────────────
-    labels = cfg.get("per_category", {}).get("labels") if isinstance(cfg.get("per_category"), dict) else cfg.get("per_category")
+    labels = (
+        cfg.get("per_category", {}).get("labels")
+        if isinstance(cfg.get("per_category"), dict)
+        else cfg.get("per_category")
+    )
     if labels is not None and len(labels) == len(texts):
         logger.info("Computing per-category vocabulary...")
         categories = pd.Series(labels, index=texts.index)
@@ -212,7 +221,7 @@ def vocabulary_profile(
             for t in texts[mask]:
                 toks = tokenizer(str(t)) if pd.notna(t) else []
                 if ngram_n > 1:
-                    toks = ["_".join(toks[i:i + ngram_n]) for i in range(len(toks) - ngram_n + 1)]
+                    toks = ["_".join(toks[i : i + ngram_n]) for i in range(len(toks) - ngram_n + 1)]
                 cat_tokens.extend(toks)
             cat_counts = Counter(cat_tokens)
             cat_total = len(cat_tokens)
@@ -223,9 +232,7 @@ def vocabulary_profile(
                 "tokens": cat_total,
                 "types": cat_types,
                 "ttr": round(cat_ttr, 4),
-                "top_n_words": [
-                    {"word": w, "frequency": f} for w, f in cat_top
-                ],
+                "top_n_words": [{"word": w, "frequency": f} for w, f in cat_top],
             }
             background_counts.update(cat_counts)
             background_total += cat_total
@@ -237,7 +244,7 @@ def vocabulary_profile(
             for t in texts[mask]:
                 toks = tokenizer(str(t)) if pd.notna(t) else []
                 if ngram_n > 1:
-                    toks = ["_".join(toks[i:i + ngram_n]) for i in range(len(toks) - ngram_n + 1)]
+                    toks = ["_".join(toks[i : i + ngram_n]) for i in range(len(toks) - ngram_n + 1)]
                 cat_tokens_list.extend(toks)
             cat_counts = Counter(cat_tokens_list)
             cat_total = len(cat_tokens_list)
@@ -253,14 +260,19 @@ def vocabulary_profile(
             if bg_total > 0 and cat_total > 0:
                 keywords = log_odds_ratio(cat_counts, bg_counts, cat_total, bg_total)
                 cat_stats[cat]["log_odds_keywords"] = [
-                    {"word": w, "z_score": round(z, 2)}
-                    for w, z in keywords[:top_n]
+                    {"word": w, "z_score": round(z, 2)} for w, z in keywords[:top_n]
                 ]
 
         result["per_category"] = cat_stats
 
-    logger.info("Vocabulary profile: %d tokens, %d types, TTR=%.4f, hapax=%d (%.1f%%)",
-                total_tokens, types, ttr, hapax, result["hapax_percentage"])
+    logger.info(
+        "Vocabulary profile: %d tokens, %d types, TTR=%.4f, hapax=%d (%.1f%%)",
+        total_tokens,
+        types,
+        ttr,
+        hapax,
+        result["hapax_percentage"],
+    )
     return result
 
 

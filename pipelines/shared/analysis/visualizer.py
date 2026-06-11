@@ -19,9 +19,9 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any
 
 import matplotlib
+
 matplotlib.use("Agg")  # non-interactive backend
 import matplotlib.pyplot as plt
 import numpy as np
@@ -30,15 +30,17 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 # Global style
-plt.rcParams.update({
-    "figure.dpi": 150,
-    "figure.figsize": (10, 6),
-    "font.size": 11,
-    "axes.titlesize": 13,
-    "axes.labelsize": 11,
-    "savefig.bbox": "tight",
-    "savefig.dpi": 200,
-})
+plt.rcParams.update(
+    {
+        "figure.dpi": 150,
+        "figure.figsize": (10, 6),
+        "font.size": 11,
+        "axes.titlesize": 13,
+        "axes.labelsize": 11,
+        "savefig.bbox": "tight",
+        "savefig.dpi": 200,
+    }
+)
 
 FONT_PATH = Path(__file__).resolve().parent / "fonts"
 
@@ -72,9 +74,13 @@ def plot_category_distribution(
     ax.set_xlabel("Article count")
     ax.set_title(f"Article distribution by {cat_col}")
     for bar, val in zip(bars, counts.values):
-        ax.text(bar.get_width() + max(counts.values) * 0.01,
-                bar.get_y() + bar.get_height() / 2,
-                f"{val:,}", va="center", fontsize=9)
+        ax.text(
+            bar.get_width() + max(counts.values) * 0.01,
+            bar.get_y() + bar.get_height() / 2,
+            f"{val:,}",
+            va="center",
+            fontsize=9,
+        )
     ax.invert_yaxis()
     ax.margins(x=0.15)
     fig.tight_layout()
@@ -99,8 +105,11 @@ def plot_source_distribution(
 ) -> Path:
     """Horizontal bar chart of source/newspaper frequencies."""
     return plot_category_distribution(
-        df, cat_col=source_col, output_dir=output_dir,
-        top_n=top_n, figsize=figsize,
+        df,
+        cat_col=source_col,
+        output_dir=output_dir,
+        top_n=top_n,
+        figsize=figsize,
     )
 
 
@@ -118,8 +127,8 @@ def plot_text_length_distribution(
 ) -> Path:
     """Histogram of article word counts."""
     out = _ensure_output_dir(output_dir)
-    lengths = df[text_column].dropna().apply(
-        lambda t: len(str(t).split()) if isinstance(t, str) else 0
+    lengths = (
+        df[text_column].dropna().apply(lambda t: len(str(t).split()) if isinstance(t, str) else 0)
     )
     lengths = lengths[lengths < max_words]
 
@@ -128,8 +137,9 @@ def plot_text_length_distribution(
     ax1.set_xlabel("Word count")
     ax1.set_ylabel("Frequency")
     ax1.set_title("Text length distribution")
-    ax1.axvline(lengths.median(), color="red", linestyle="--",
-                label=f"Median={lengths.median():.0f}")
+    ax1.axvline(
+        lengths.median(), color="red", linestyle="--", label=f"Median={lengths.median():.0f}"
+    )
     ax1.legend()
 
     # Log scale inset for the long tail
@@ -246,15 +256,14 @@ def plot_wordcloud(
         return None
 
     out = _ensure_output_dir(output_dir)
-    text = " ".join(
-        str(t) for t in texts.dropna() if isinstance(t, str) and t.strip()
-    )
+    text = " ".join(str(t) for t in texts.dropna() if isinstance(t, str) and t.strip())
     if not text.strip():
         logger.warning("No text to generate word cloud")
         return None
 
     wc = WordCloud(
-        width=width, height=height,
+        width=width,
+        height=height,
         max_words=max_words,
         background_color=background_color,
         collocations=False,
@@ -287,8 +296,10 @@ def plot_source_transition_diagnostic(
 ) -> Path:
     """Box plot of metric per source per year — visual source-boundary check."""
     out = _ensure_output_dir(output_dir)
-    metric_col = metric_col if metric_col in df.columns else (
-        next(c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]))
+    metric_col = (
+        metric_col
+        if metric_col in df.columns
+        else (next(c for c in df.columns if pd.api.types.is_numeric_dtype(df[c])))
     )
     dates = pd.to_datetime(df[date_col], errors="coerce")
     years = dates.dt.year

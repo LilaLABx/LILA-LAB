@@ -71,8 +71,10 @@ def read_zst_csv(path: Path, **kwargs) -> pd.DataFrame:
         raise RuntimeError(f"Failed to open zstd stdout for {path}")
     try:
         df = pd.read_csv(
-            proc.stdout, encoding="utf-8",
-            engine="python", on_bad_lines="skip",
+            proc.stdout,
+            encoding="utf-8",
+            engine="python",
+            on_bad_lines="skip",
             **kwargs,
         )
     finally:

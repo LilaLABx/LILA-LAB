@@ -1,6 +1,6 @@
 # AENI — Assamese (অসমীয়া) Dataset
 
-**Pipeline:** [AENI](../../pipelines/aeni/) | **Status:** 🔜 Seeking contributors | **Target:** 100k+ articles (10+ years)
+**Pipeline:** [AENI](../../pipelines/AENI/) | **Status:** 🔜 Seeking contributors | **Target:** 100k+ articles (10+ years)
 
 ## Directory Structure
 

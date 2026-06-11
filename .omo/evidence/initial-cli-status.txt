@@ -1,0 +1,14 @@
+Pipeline | Language | Pipeline status | Dataset status | Seeking
+--- | --- | --- | --- | ---
+BENI | Bangla | active | complete | no
+AENI | Assamese | bootstrapped | not_started | yes
+NENI | Nepali | bootstrapped | not_started | yes
+SENI | Sylheti | bootstrapped | feasibility | yes
+CENI | Chittagonian | bootstrapped | feasibility | yes
+HENI | Hausa | bootstrapped | planned | yes
+KIENI | Kiswahili | bootstrapped | planned | yes
+VIENI | Vietnamese | bootstrapped | planned | yes
+TIENI | Tagalog | bootstrapped | planned | yes
+IDENI | Indonesian | bootstrapped | planned | yes
+
+Total pipelines: 10

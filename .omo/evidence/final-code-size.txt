@@ -1,0 +1,4 @@
+cli/app.py 86
+cli/validation.py 142
+infrastructure/scripts/validate_schemas.py 50
+infrastructure/scripts/audit_repo_hygiene.py 54

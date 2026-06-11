@@ -1,0 +1,5 @@
+python3 infrastructure/scripts/audit_repo_hygiene.py
+Repository hygiene audit
+Tracked forbidden artifacts: 0
+Ignored/local __pycache__ directories: 58
+Ignored/local .env files: 1

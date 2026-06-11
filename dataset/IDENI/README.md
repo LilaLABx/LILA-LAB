@@ -1,6 +1,6 @@
 # IDENI — Indonesian (Bahasa Indonesia) Dataset
 
-**Pipeline:** Not yet created | **Status:** 🔜 Planned | **Target:** 100k+ articles (10+ years)
+**Pipeline:** [IDENI](../../pipelines/IDENI/) | **Status:** 🔜 Planned scaffold | **Target:** 100k+ articles (10+ years)
 
 ## Directory Structure
 

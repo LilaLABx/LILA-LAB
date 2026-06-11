@@ -1,0 +1,18 @@
+OK: template contract paths checked
+OK: 1 registry pipelines checked
+ERROR: BAD: invalid pipeline_status missing
+ERROR: missing required path: pipelines/BAD/README.md
+ERROR: missing required path: pipelines/BAD/exploration/config.yaml
+ERROR: missing required path: pipelines/BAD/annotation
+ERROR: missing required path: pipelines/BAD/annotation/schemas
+ERROR: missing required path: pipelines/BAD/data
+ERROR: missing required path: pipelines/BAD/database
+ERROR: missing required path: pipelines/BAD/experiment
+ERROR: missing required path: pipelines/BAD/exploration
+ERROR: missing required path: pipelines/BAD/indices
+ERROR: missing required path: pipelines/BAD/requirements.txt
+ERROR: missing required path: dataset/BAD/README.md
+ERROR: missing README: pipelines/BAD/README.md
+ERROR: missing README: dataset/BAD/README.md
+
+Validation failed: 14 error(s)

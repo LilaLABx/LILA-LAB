@@ -1,0 +1,13 @@
+docs/DATA_RELEASE_CHECKLIST.md:Use this checklist before calling any LILA Lab dataset release complete. It combines FAIR data principles, reproducible research practice, and dataset-card conventions.
+docs/DATA_RELEASE_CHECKLIST.md:## Findability
+docs/DATA_RELEASE_CHECKLIST.md:- DOI or platform identifier is recorded in `dist/manifests/<PIPELINE>/` when available.
+docs/DATA_RELEASE_CHECKLIST.md:## Accessibility
+docs/DATA_RELEASE_CHECKLIST.md:## Interoperability
+docs/DATA_RELEASE_CHECKLIST.md:## Reuse
+docs/DATA_RELEASE_CHECKLIST.md:- Limitations and bias notes describe source coverage, dialect coverage, annotation uncertainty, and known structural breaks.
+dataset/README.md:Released datasets need a dataset card, license statement, provenance notes, limitations/bias notes, contributor credit, and distribution manifest when a DOI or external platform record exists.
+dist/README.md:**External platform manifests, DOIs, and publication metadata.**
+dist/README.md:│   │   ├── osf.json        # OSF project DOI & file listings
+dist/README.md:│   │   ├── zenodo.json     # Zenodo DOI & metadata
+dist/README.md:3. Complete the FAIR/data-card checklist in `docs/DATA_RELEASE_CHECKLIST.md`
+dist/README.md:5. Update the `CITATION.cff` at repo root with new DOIs

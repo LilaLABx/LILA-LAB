@@ -1,0 +1,22 @@
+CONTRIBUTING.md:This log is the source of truth for authorship and acknowledgement decisions.
+CONTRIBUTING.md:| `docs/REPOSITORY_OPERATING_MODEL.md` | What belongs in each top-level area and which file is source of truth |
+CONTRIBUTING.md:| `pipelines/template/` | **Pipeline template** — start here to bootstrap a new XENI pipeline for your language |
+CONTRIBUTING.md:| `pipelines/template/README.md` | Step-by-step instructions for copying and adapting the template |
+CONTRIBUTING.md:| `pipelines/template/experiment/train.py` | Training script scaffold (TF-IDF, BERT) |
+CONTRIBUTING.md:| `pipelines/template/annotation/llm_annotate.py` | LLM annotation pipeline scaffold |
+README.md:[![Target](https://img.shields.io/badge/target-10%20emerging%20economies-006D77)](dataset/README.md)
+README.md:**Don't see your language?** [Start a new pipeline.](#how-to-contribute) — see the full [dataset tracker](dataset/README.md) for collection progress.
+README.md:cd pipelines/BENI/experiment/beni_pilot
+README.md:cd pipelines/BENI/experiment/beni_pilot
+README.md:**What you'll get:** A monthly narrative index (2014–2020), model artifacts, and correlation reports. See [`pipelines/beni/experiment/beni_pilot/README.md`](pipelines/beni/experiment/beni_pilot/README.md) for full documentation.
+README.md:**Need the Potrika dataset?** Download it from [Mendeley Data](https://data.mendeley.com/datasets/v362rp78dc/4) (3.3 GB, CC BY 4.0) and place it in `pipelines/BENI/data/raw/potrika/`.
+README.md:├── pipelines/                  # XENI Pipeline Collection (10 emerging economies)
+README.md:├── dataset/                    # Raw corpora + processed releases per language
+README.md:- [`pipelines/README.md`](pipelines/README.md) — full pipeline framework documentation
+README.md:- [`pipelines/BENI/README.md`](pipelines/BENI/README.md) — BENI deep dive
+README.md:- [`registry/languages.json`](registry/languages.json) — language registry & pipeline status
+docs/REPOSITORY_OPERATING_MODEL.md:| Area | Owns | Must not contain | Source of truth |
+docs/REPOSITORY_OPERATING_MODEL.md:| `pipelines/` | XENI pipeline code, schemas, configs, small examples | raw corpora, model weights, private credentials | `registry/languages.json`, `registry/xeni_pipeline_contract.json` |
+docs/REPOSITORY_OPERATING_MODEL.md:| `dataset/` | dataset cards, release notes, raw/processed directory placeholders | unpublished private corpora, local scratch files | `dataset/README.md`, per-language `DATASET_CARD.md` |
+docs/REPOSITORY_OPERATING_MODEL.md:| `registry/` | machine-readable language and schema metadata | prose-only status claims | `registry/languages.json`, `registry/schemas.json` |
+docs/REPOSITORY_OPERATING_MODEL.md:Do not describe a pipeline as active unless `registry/languages.json` says it is active and the release/readiness artifacts exist.

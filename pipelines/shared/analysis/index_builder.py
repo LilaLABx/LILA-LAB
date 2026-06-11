@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 
 def build_monthly_index(
-    df: "pd.DataFrame",  # noqa: F821
+    df: pd.DataFrame,  # noqa: F821
     date_col: str = "publication_date",
     prob_col: str = "economic_prob",
     pred_col: str = "economic_pred",
@@ -128,10 +128,10 @@ def build_monthly_index(
 
 
 def apply_calibration(
-    index_df: "pd.DataFrame",  # noqa: F821
+    index_df: pd.DataFrame,  # noqa: F821
     calibration_factors: dict[str, float] | None = None,
     method: str = "base_rate",
-) -> "pd.DataFrame":  # noqa: F821
+) -> pd.DataFrame:  # noqa: F821
     """Apply LLM calibration to a raw narrative index.
 
     The raw ``economic_share`` from TF-IDF classification may over- or
@@ -178,15 +178,14 @@ def apply_calibration(
     logger.info("Applying calibration: method=%s", method)
 
     # TODO: implement calibration logic
-    import pandas as pd  # noqa: F811
     return index_df
 
 
 def normalize_index(
-    index_df: "pd.DataFrame",  # noqa: F821
+    index_df: pd.DataFrame,  # noqa: F821
     method: str = "zscore",
     columns: list[str] | None = None,
-) -> "pd.DataFrame":  # noqa: F821
+) -> pd.DataFrame:  # noqa: F821
     """Normalize index values for comparability.
 
     Parameters
@@ -210,15 +209,14 @@ def normalize_index(
 
     logger.info("Normalizing index: method=%s", method)
 
-    import pandas as pd  # noqa: F811
     return index_df
 
 
 def merge_macro_data(
-    index_df: "pd.DataFrame",  # noqa: F821
+    index_df: pd.DataFrame,  # noqa: F821
     macro_config: list[dict[str, Any]] | None = None,
     macro_dir: str | Path | None = None,
-) -> "pd.DataFrame":  # noqa: F821
+) -> pd.DataFrame:  # noqa: F821
     """Merge macroeconomic time series with the narrative index.
 
     Loads macro series (CPI, FX, reserves) from CSV files and left-joins
@@ -255,7 +253,6 @@ def merge_macro_data(
 
     logger.info("Merging %d macro series", len(macro_config))
 
-    import pandas as pd  # noqa: F811
     return index_df
 
 
@@ -263,7 +260,7 @@ def load_macro_series(
     series_name: str,
     file_path: str | Path,
     column_name: str | None = None,
-) -> "pd.Series":  # noqa: F821
+) -> pd.Series:  # noqa: F821
     """Load a single macroeconomic time series.
 
     Convenience wrapper for loading individual macro series.
@@ -294,4 +291,5 @@ def load_macro_series(
     logger.info("Loading macro series: %s", series_name)
     # TODO: implement
     import pandas as pd  # noqa: F811
+
     return pd.Series(dtype=float)

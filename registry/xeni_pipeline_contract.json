@@ -1,0 +1,19 @@
+{
+  "description": "Machine-checkable contract for LILA Lab XENI pipeline scaffolds and operational pipelines.",
+  "version": "1.0",
+  "required_pipeline_files": ["README.md", "exploration/config.yaml"],
+  "required_scaffold_files": ["requirements.txt"],
+  "required_pipeline_dirs": ["annotation", "annotation/schemas", "data", "database", "experiment", "exploration", "indices"],
+  "required_dataset_files": ["README.md"],
+  "required_schema_keys": ["domain", "version", "description", "fields"],
+  "required_schema_field_keys": ["name", "type", "values", "description"],
+  "pipeline_statuses": ["active", "bootstrapped", "planned", "feasibility"],
+  "dataset_statuses": ["complete", "not_started", "feasibility", "planned"],
+  "release_ready_dataset_statuses": ["complete"],
+  "scaffold_dataset_statuses": ["not_started", "feasibility", "planned"],
+  "source_of_truth": {
+    "pipeline_status": "registry/languages.json",
+    "schema_status": "registry/schemas.json",
+    "dataset_release": "dataset/{PIPELINE}/DATASET_CARD.md and dist/manifests/{PIPELINE}/"
+  }
+}

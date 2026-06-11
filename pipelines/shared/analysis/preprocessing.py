@@ -30,9 +30,10 @@ from __future__ import annotations
 
 import logging
 import re
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import ClassVar, Callable
+from typing import ClassVar
 
 logger = logging.getLogger(__name__)
 
@@ -46,9 +47,7 @@ _DATA_DIR = _HERE / "data"
 # ═════════════════════════════════════════════════════════════════════
 
 # Unicode range for ASCII punctuation (without hyphen/apostrophe)
-_ASCII_PUNCT_RE = re.compile(
-    r"""[!\"#$%&()*,./:;<=>?@[\]^_`{|}~।‹›""''«»–—‐·…]"""
-)
+_ASCII_PUNCT_RE = re.compile(r"""[!\"#$%&()*,./:;<=>?@[\]^_`{|}~।‹›""''«»–—‐·…]""")
 
 
 # ═════════════════════════════════════════════════════════════════════
@@ -282,7 +281,8 @@ def tokenizer_for_pipeline(
             except FileNotFoundError:
                 logger.warning(
                     "No stop words for %s (%s), using simple tokenizer",
-                    pipeline_code, lang,
+                    pipeline_code,
+                    lang,
                 )
                 return simple_tokenizer
         else:
@@ -324,7 +324,7 @@ class PreprocessingPipeline:
     PRESETS: ClassVar[dict[str, dict]] = {
         "bbd": {
             "description": "BBD-style keyword counting — minimal preprocessing",
-            "tokenizer": "raw",            # whitespace split only, no lowercasing
+            "tokenizer": "raw",  # whitespace split only, no lowercasing
             "stopwords": False,
             "stemming": False,
             "ngrams": False,
@@ -337,41 +337,41 @@ class PreprocessingPipeline:
             "tokenizer": "whitespace",
             "stopwords": True,
             "stemming": False,
-            "ngrams": "bigram",            # extract unigrams + bigrams
+            "ngrams": "bigram",  # extract unigrams + bigrams
             "strip_punct": True,
             "strip_digits": True,
             "min_token_length": 2,
         },
         "deep_learning": {
             "description": "Subword embeddings + LSTM/transformer — BPE tokens, entity-preserved",
-            "tokenizer": "bpe",             # subword tokenisation
-            "stopwords": False,             # attention handles function words
+            "tokenizer": "bpe",  # subword tokenisation
+            "stopwords": False,  # attention handles function words
             "stemming": False,
             "ngrams": False,
             "strip_punct": False,
             "strip_digits": False,
             "min_token_length": 1,
-            "preserve_entities": True,       # keep multi-word names
+            "preserve_entities": True,  # keep multi-word names
             "max_seq_length": 256,
         },
         "llm": {
             "description": "LLM annotation — clean text, full context, entity-preserved",
-            "tokenizer": "whitespace",      # return *text*, not tokens
-            "stopwords": False,             # LLM handles function words
+            "tokenizer": "whitespace",  # return *text*, not tokens
+            "stopwords": False,  # LLM handles function words
             "stemming": False,
             "ngrams": False,
             "strip_punct": False,
             "strip_digits": False,
             "min_token_length": 1,
             "preserve_entities": True,
-            "return_text": True,            # pipeline returns str, not list[str]
+            "return_text": True,  # pipeline returns str, not list[str]
         },
     }
 
     # ── Factory methods ───────────────────────────────────────────────
 
     @classmethod
-    def preset(cls, name: str, language: str = "bengali") -> "PreprocessingPipeline":
+    def preset(cls, name: str, language: str = "bengali") -> PreprocessingPipeline:
         """Create a pipeline from a built-in preset.
 
         Parameters
@@ -388,10 +388,7 @@ class PreprocessingPipeline:
         """
         config = cls.PRESETS.get(name)
         if config is None:
-            raise ValueError(
-                f"Unknown preset: {name}. "
-                f"Choose from {set(cls.PRESETS)}"
-            )
+            raise ValueError(f"Unknown preset: {name}. Choose from {set(cls.PRESETS)}")
 
         # Load stop words if the preset uses them
         stopwords = None
@@ -399,9 +396,7 @@ class PreprocessingPipeline:
             try:
                 stopwords = load_stopwords(language)
             except FileNotFoundError:
-                logger.warning(
-                    "No stop words for %s, proceeding without", language
-                )
+                logger.warning("No stop words for %s, proceeding without", language)
 
         return cls(config=config, stopwords=stopwords)
 
@@ -410,7 +405,7 @@ class PreprocessingPipeline:
         cls,
         config: dict,
         language: str | None = None,
-    ) -> "PreprocessingPipeline":
+    ) -> PreprocessingPipeline:
         """Create a pipeline from an arbitrary config dict.
 
         Accepts the same keys as the preset dicts.  If ``config``
@@ -425,9 +420,7 @@ class PreprocessingPipeline:
             try:
                 stopwords = load_stopwords(lang)
             except FileNotFoundError:
-                logger.warning(
-                    "No stop words for %s, proceeding without", lang
-                )
+                logger.warning("No stop words for %s, proceeding without", lang)
 
         return cls(config=config, stopwords=stopwords)
 
@@ -459,9 +452,7 @@ class PreprocessingPipeline:
 
         # 4. Tokenize
         tok_type = self.config.get("tokenizer", "whitespace")
-        if tok_type == "raw":
-            tokens = t.split()
-        elif tok_type == "whitespace":
+        if tok_type == "raw" or tok_type == "whitespace":
             tokens = t.split()
         elif tok_type == "bpe":
             # BPE placeholder — requires a separate subword tokeniser.
@@ -514,9 +505,8 @@ class PreprocessingPipeline:
         total = len(texts)
         for i, t in enumerate(texts):
             results.append(self.process(t))
-            if show_progress and total > 1000:
-                if i % max(1, total // 10) == 0:
-                    logger.info("  preprocessing %d / %d", i, total)
+            if show_progress and total > 1000 and i % max(1, total // 10) == 0:
+                logger.info("  preprocessing %d / %d", i, total)
         return results
 
     # ── Introspection ─────────────────────────────────────────────────
@@ -525,8 +515,9 @@ class PreprocessingPipeline:
     def name(self) -> str:
         """Return the preset name if this pipeline was built from one."""
         for name, cfg in self.PRESETS.items():
-            if self.config.get("tokenizer") == cfg.get("tokenizer") and \
-               self.config.get("stopwords") == cfg.get("stopwords"):
+            if self.config.get("tokenizer") == cfg.get("tokenizer") and self.config.get(
+                "stopwords"
+            ) == cfg.get("stopwords"):
                 return name
         return "custom"
 

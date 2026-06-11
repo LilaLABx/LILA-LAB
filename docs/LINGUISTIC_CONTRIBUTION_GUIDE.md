@@ -72,6 +72,8 @@ Your submission → We review for format → We run through the LLM pipeline
 7. **Publication** — any paper using your data includes you as co-author or in acknowledgements
 8. **You own your data** — licensed CC BY 4.0 (you choose the license)
 
+Before any public release, the submission must pass license, sensitive-data, native-speaker review, and dataset-card checks in `DATA_RELEASE_CHECKLIST.md`.
+
 ---
 
 ## What You Get

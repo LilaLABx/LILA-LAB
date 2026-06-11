@@ -17,11 +17,9 @@ Typical usage::
 from __future__ import annotations
 
 import logging
-from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-import numpy as np
 import pandas as pd
 
 from ..io import write_json
@@ -38,10 +36,7 @@ def _resolve_column(df: pd.DataFrame, candidates: list[str]) -> str | None:
 
 def _normalise_text_col(col: str, config: dict) -> str:
     """Return the effective text column — honour config override, else guess."""
-    return config.get("text_column") or _resolve_column(
-        df := pd.DataFrame(),  # placeholder, unused here
-        []  # caller handles fallback
-    ) or col
+    return config.get("text_column") or col
 
 
 # ── Core profile ──────────────────────────────────────────────────────
@@ -75,7 +70,20 @@ def corpus_profile(
     cfg = config or {}
     text_col = (
         cfg.get("text_column")
-        or _resolve_column(df, ["text", "content", "article", "body", "article_text", "headline", "Title", "Content", "News"])
+        or _resolve_column(
+            df,
+            [
+                "text",
+                "content",
+                "article",
+                "body",
+                "article_text",
+                "headline",
+                "Title",
+                "Content",
+                "News",
+            ],
+        )
         or df.columns[0]
     )
     date_col = cfg.get("date_column") or _resolve_column(
@@ -88,17 +96,22 @@ def corpus_profile(
         df, ["source", "Source", "newspaper", "Newspaper", "publication", "outlet"]
     )
 
-    sample_size = cfg.get("sample_size", 50_000)
     total = len(df)
-    logger.info("Profiling %s rows — text_col=%s date_col=%s cat_col=%s src_col=%s",
-                total, text_col, date_col, cat_col, src_col)
+    logger.info(
+        "Profiling %s rows — text_col=%s date_col=%s cat_col=%s src_col=%s",
+        total,
+        text_col,
+        date_col,
+        cat_col,
+        src_col,
+    )
 
     # ── 1. Basic counts ────────────────────────────────────────────
     result: dict[str, Any] = {"n_articles": total}
 
     # ── 2. Text length ─────────────────────────────────────────────
-    lengths = df[text_col].dropna().apply(
-        lambda t: len(str(t).split()) if isinstance(t, str) else 0
+    lengths = (
+        df[text_col].dropna().apply(lambda t: len(str(t).split()) if isinstance(t, str) else 0)
     )
     result["text_length"] = {
         "mean_words": round(float(lengths.mean()), 1) if len(lengths) else None,
@@ -111,15 +124,15 @@ def corpus_profile(
     }
 
     # ── 3. Quality flags ────────────────────────────────────────────
-    empty_texts = df[text_col].apply(
-        lambda t: not (isinstance(t, str) and t.strip())
-    ).sum()
+    empty_texts = df[text_col].apply(lambda t: not (isinstance(t, str) and t.strip())).sum()
     missing_dates = df[date_col].isna().sum() if date_col else 0
     result["quality"] = {
         "empty_texts": int(empty_texts),
         "empty_texts_pct": round(float(empty_texts / total * 100), 2) if total else 0.0,
         "missing_dates": int(missing_dates) if date_col else None,
-        "missing_dates_pct": round(float(missing_dates / total * 100), 2) if date_col and total else None,
+        "missing_dates_pct": round(float(missing_dates / total * 100), 2)
+        if date_col and total
+        else None,
     }
 
     # ── 4. Date range & temporal coverage ──────────────────────────
@@ -134,9 +147,7 @@ def corpus_profile(
 
         # Per-year breakdown
         years = valid_dates.dt.year.value_counts().sort_index()
-        result["by_year"] = [
-            {"year": int(k), "n_articles": int(v)} for k, v in years.items()
-        ]
+        result["by_year"] = [{"year": int(k), "n_articles": int(v)} for k, v in years.items()]
 
         # Monthly coverage — detect gaps
         monthly = valid_dates.dt.to_period("M").value_counts().sort_index()
@@ -162,8 +173,7 @@ def corpus_profile(
     if src_col and src_col in df.columns:
         src_counts = df[src_col].value_counts()
         result["by_source"] = [
-            {"source": str(k), "n_articles": int(v)}
-            for k, v in src_counts.items()
+            {"source": str(k), "n_articles": int(v)} for k, v in src_counts.items()
         ]
         result["n_sources"] = len(src_counts)
     else:
@@ -174,8 +184,7 @@ def corpus_profile(
     if cat_col and cat_col in df.columns:
         cat_counts = df[cat_col].value_counts()
         result["by_category"] = [
-            {"category": str(k), "n_articles": int(v)}
-            for k, v in cat_counts.items()
+            {"category": str(k), "n_articles": int(v)} for k, v in cat_counts.items()
         ]
         result["n_categories"] = len(cat_counts)
     else:
@@ -199,8 +208,12 @@ def corpus_profile(
     else:
         result["source_overlap"] = None
 
-    logger.info("Profile complete — %d articles, %d sources, %d categories",
-                total, result.get("n_sources", 0), result.get("n_categories", 0))
+    logger.info(
+        "Profile complete — %d articles, %d sources, %d categories",
+        total,
+        result.get("n_sources", 0),
+        result.get("n_categories", 0),
+    )
     return result
 
 
@@ -229,7 +242,9 @@ def run_profile(
         f"  Articles:     {profile['n_articles']:,}",
     ]
     if profile.get("date_range") and profile["date_range"].get("start"):
-        lines.append(f"  Period:       {profile['date_range']['start']} → {profile['date_range']['end']}")
+        lines.append(
+            f"  Period:       {profile['date_range']['start']} → {profile['date_range']['end']}"
+        )
         lines.append(f"  Span:         {profile['date_range']['n_days']} days")
     if profile.get("n_sources"):
         lines.append(f"  Sources:      {profile['n_sources']}")
@@ -242,7 +257,9 @@ def run_profile(
         q = profile["quality"]
         lines.append(f"  Empty texts:  {q.get('empty_texts')} ({q.get('empty_texts_pct')}%)")
         if q.get("missing_dates") is not None:
-            lines.append(f"  Missing dates: {q.get('missing_dates')} ({q.get('missing_dates_pct')}%)")
+            lines.append(
+                f"  Missing dates: {q.get('missing_dates')} ({q.get('missing_dates_pct')}%)"
+            )
     lines.append(f"  Output:       {out / 'profile_summary.json'}")
     lines.append("═" * 60)
     out.joinpath("profile_report.md").write_text("\n".join(lines) + "\n")

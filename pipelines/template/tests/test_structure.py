@@ -2,8 +2,6 @@
 
 from pathlib import Path
 
-import pytest
-
 REQUIRED_DIRS = ["annotation", "data", "database", "experiment", "indices"]
 REQUIRED_FILES = ["README.md", "requirements.txt"]
 
@@ -37,6 +35,7 @@ def test_annotation_schemas_are_json():
         json_files = list(schemas_dir.glob("*.json"))
         if json_files:
             import json
+
             for f in json_files:
                 data = json.loads(f.read_text())
                 assert isinstance(data, dict), f"{f.name} is not a valid JSON object"

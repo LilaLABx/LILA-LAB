@@ -30,7 +30,7 @@ Optional extras:
 If you are running the BENI pilot experiment, install its additional dependencies separately:
 
 ```bash
-cd pipelines/beni/experiment/beni_pilot
+cd pipelines/BENI/experiment/beni_pilot
 pip install -r requirements.txt
 ```
 
@@ -59,7 +59,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 OPENAI_API_KEY=sk-proj-...
 ```
 
-The pipeline degrades gracefully. You can still run classification and index construction without API keys. See [`pipelines/beni/annotation/llm_annotate.py`](../pipelines/beni/annotation/llm_annotate.py).
+The pipeline degrades gracefully. You can still run classification and index construction without API keys. See [`pipelines/BENI/annotation/llm_annotate.py`](../pipelines/BENI/annotation/llm_annotate.py).
 
 ---
 
@@ -79,7 +79,7 @@ The Potrika Bangla news corpus is hosted on Mendeley Data:
 - **Period:** 2014 to 2020
 - **Sources:** Jugantor, Ittefaq, Kaler Kontho, Inqilab, Jaijaidin, Somoyer Alo
 
-After downloading, place the files in `pipelines/beni/data/raw/potrika/`. The pipeline expects them there.
+After downloading, place the files in `pipelines/BENI/data/raw/potrika/`. The pipeline expects them there.
 
 ---
 
@@ -132,7 +132,7 @@ The XENI pipeline is designed to be language-agnostic. To train a model for a ne
 
 1. **Copy the template:** `cp -r pipelines/template/ pipelines/[your-lang]/`
 2. **Collect data:** Gather at least 1,000 news articles in your language
-3. **Define a schema:** Adapt [`pipelines/beni/annotation/ANNOTATION_SCHEMA.md`](../pipelines/beni/annotation/ANNOTATION_SCHEMA.md) for your domain
+3. **Define a schema:** Adapt [`pipelines/BENI/annotation/ANNOTATION_SCHEMA.md`](../pipelines/BENI/annotation/ANNOTATION_SCHEMA.md) for your domain
 4. **Annotate:** Use the LLM annotation scripts or Label Studio for human annotation
 5. **Train:** Run `train.py --model-type tfidf --data-source your-data`
 6. **Build your index:** Run `build_index.py`
@@ -257,7 +257,7 @@ For BanglaBERT fine-tuning, a GPU is recommended. The full 70,000-article, 3-epo
 
 The index is built in two steps. First, the trained classifier predicts an "economic probability" for each article in the corpus. Second, articles are grouped by month, and the index is the proportion of articles with probability above 0.5. The result is a monthly time series showing the share of economic news in the language's media.
 
-The BENI Economic Index contains 79 monthly observations from June 2014 to December 2020, with a mean economic news share of 38.9%. See [`pipelines/beni/experiment/beni_pilot/README.md`](../pipelines/beni/experiment/beni_pilot/README.md).
+The BENI Economic Index contains 79 monthly observations from June 2014 to December 2020, with a mean economic news share of 38.9%. See [`pipelines/BENI/experiment/beni_pilot/README.md`](../pipelines/BENI/experiment/beni_pilot/README.md).
 
 ---
 
@@ -265,7 +265,7 @@ The BENI Economic Index contains 79 monthly observations from June 2014 to Decem
 
 Each article is annotated independently by multiple LLMs (Claude and GPT-4o). When the models disagree, adjudication uses majority voting. If there is a tie, the higher-confidence label wins. The adjudicated labels become the ground truth for classifier training.
 
-The ensemble approach improves label reliability and provides natural confidence estimates. See [`pipelines/beni/annotation/adjudicate.py`](../pipelines/beni/annotation/adjudicate.py) and the [annotation schema](../pipelines/beni/annotation/ANNOTATION_SCHEMA.md).
+The ensemble approach improves label reliability and provides natural confidence estimates. See [`pipelines/BENI/annotation/adjudicate.py`](../pipelines/BENI/annotation/adjudicate.py) and the [annotation schema](../pipelines/BENI/annotation/ANNOTATION_SCHEMA.md).
 
 ---
 

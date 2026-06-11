@@ -2,7 +2,7 @@
 
 **Self-service pipeline bootstrap and project management.**
 
-The LILA CLI (`lila`) will let contributors bootstrap new pipelines, validate datasets, and publish indices — all from the command line. This directory is a **planning stub**.
+The LILA CLI (`lila`) gives contributors a self-service way to inspect pipeline status and validate repository metadata. Bootstrap and publishing commands remain planned.
 
 ## Target Commands
 
@@ -33,11 +33,18 @@ lila list
 
 | Component | Status |
 |-----------|--------|
-| CLI scaffold (click/typer) | 📋 Planned |
+| CLI scaffold | ✅ Implemented |
 | `lila init` command | 📋 Planned |
-| `lila validate` command | 📋 Planned |
+| `lila validate` command | ✅ Implemented |
 | `lila publish` command | 🔜 Future |
-| `lila status` command | 🔜 Future |
+| `lila status` command | ✅ Implemented |
+
+## Current Commands
+
+```bash
+python -m cli status
+python -m cli validate
+```
 
 ## Related
 

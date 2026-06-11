@@ -38,9 +38,23 @@ logger = logging.getLogger(__name__)
 # These are deliberately generic — per-language overrides go in config.
 DEFAULT_FIELD_KEYWORDS: dict[str, list[str]] = {
     "economic_relevance": [
-        "economy", "economic", "market", "price", "inflation", "trade",
-        "bank", "finance", "budget", "tax", "revenue", "currency",
-        "economy", "money", "business", "investment", "loan",
+        "economy",
+        "economic",
+        "market",
+        "price",
+        "inflation",
+        "trade",
+        "bank",
+        "finance",
+        "budget",
+        "tax",
+        "revenue",
+        "currency",
+        "economy",
+        "money",
+        "business",
+        "investment",
+        "loan",
     ],
     "economic_topic:inflation": ["inflation", "price", "cpi", "cost of living", "inflation rate"],
     "economic_topic:exchange_rate": ["exchange rate", "forex", "currency", "dollar", "taka", "fx"],
@@ -49,24 +63,77 @@ DEFAULT_FIELD_KEYWORDS: dict[str, list[str]] = {
     "economic_topic:fiscal_policy": ["budget", "fiscal", "tax", "revenue", "spending", "deficit"],
     "economic_topic:trade": ["trade", "export", "import", "tariff", "customs"],
     "economic_topic:employment": ["employment", "unemployment", "job", "labour", "labor"],
-    "economic_topic:growth_investment": ["growth", "gdp", "investment", "development", "infrastructure"],
+    "economic_topic:growth_investment": [
+        "growth",
+        "gdp",
+        "investment",
+        "development",
+        "infrastructure",
+    ],
     "narrative_force:crisis": ["crisis", "crash", "collapse", "emergency", "turmoil"],
     "narrative_force:burden": ["burden", "pressure", "strain", "struggle", "hardship"],
     "narrative_force:blame": ["blame", "failure", "mismanagement", "corruption", "scandal"],
     "narrative_force:reform": ["reform", "policy change", "new law", "regulation", "initiative"],
     "narrative_force:stability": ["stable", "stability", "steady", "balanced", "sustainable"],
-    "narrative_force:uncertainty": ["uncertainty", "unpredictable", "volatile", "risk", "instability"],
+    "narrative_force:uncertainty": [
+        "uncertainty",
+        "unpredictable",
+        "volatile",
+        "risk",
+        "instability",
+    ],
     "narrative_force:resilience": ["resilient", "resilience", "recovery", "rebound", "rebuilding"],
     "valuation_target:government": ["government", "ministry", "authority", "official"],
-    "valuation_target:central_bank": ["central bank", "bangladesh bank", "monetary authority", "fed", "reserve bank"],
-    "valuation_target:businesses": ["business", "company", "corporation", "industry", "sector", "firm"],
+    "valuation_target:central_bank": [
+        "central bank",
+        "bangladesh bank",
+        "monetary authority",
+        "fed",
+        "reserve bank",
+    ],
+    "valuation_target:businesses": [
+        "business",
+        "company",
+        "corporation",
+        "industry",
+        "sector",
+        "firm",
+    ],
     "valuation_target:market_actors": ["investor", "trader", "market", "shareholder", "speculator"],
-    "valuation_target:households": ["household", "family", "consumer", "citizen", "people", "public"],
+    "valuation_target:households": [
+        "household",
+        "family",
+        "consumer",
+        "citizen",
+        "people",
+        "public",
+    ],
     "sentiment:negative": ["crisis", "decline", "loss", "damage", "threat", "risk", "worry"],
     "sentiment:positive": ["growth", "recovery", "improvement", "gain", "success", "opportunity"],
-    "health_relevance": ["health", "hospital", "disease", "patient", "medical", "treatment", "vaccine"],
-    "health_topic:public_health": ["public health", "outbreak", "epidemic", "pandemic", "hygiene", "sanitation"],
-    "health_topic:healthcare_system": ["healthcare", "hospital", "clinic", "health service", "health insurance"],
+    "health_relevance": [
+        "health",
+        "hospital",
+        "disease",
+        "patient",
+        "medical",
+        "treatment",
+        "vaccine",
+    ],
+    "health_topic:public_health": [
+        "public health",
+        "outbreak",
+        "epidemic",
+        "pandemic",
+        "hygiene",
+        "sanitation",
+    ],
+    "health_topic:healthcare_system": [
+        "healthcare",
+        "hospital",
+        "clinic",
+        "health service",
+        "health insurance",
+    ],
 }
 
 
@@ -117,11 +184,7 @@ def validate_schema_coverage(
     fields = schema.get("fields", [])
     domain = schema.get("domain", "unknown")
 
-    # Sample
-    if len(df) > sample_size:
-        df_sample = df.sample(n=sample_size, random_state=42)
-    else:
-        df_sample = df
+    df_sample = df.sample(n=sample_size, random_state=42) if len(df) > sample_size else df
 
     flags = re.IGNORECASE if case_insensitive else 0
     kw_overrides = keyword_overrides or {}
@@ -142,9 +205,6 @@ def validate_schema_coverage(
             "n_values": len(values),
         }
 
-        # Collect keywords for this field
-        field_kw = kw_overrides.get(field_name) or DEFAULT_FIELD_KEYWORDS.get(field_name, [])
-
         # Per-value keywords
         per_value: dict[str, dict] = {}
         total_matches_field = 0
@@ -163,7 +223,9 @@ def validate_schema_coverage(
 
             pattern = re.compile("|".join(re.escape(k) for k in kw), flags)
             matches = df_sample[text_column].apply(
-                lambda t: bool(isinstance(t, str) and pattern.search(t))
+                lambda t, current_pattern=pattern: bool(
+                    isinstance(t, str) and current_pattern.search(t)
+                )
             )
             match_count = int(matches.sum())
             match_pct = round(match_count / len(df_sample) * 100, 2)
@@ -195,7 +257,9 @@ def validate_schema_coverage(
                 flags,
             )
             matched_idx = df_sample[text_column].apply(
-                lambda t: bool(isinstance(t, str) and pattern_all.search(t))
+                lambda t, current_pattern=pattern_all: bool(
+                    isinstance(t, str) and current_pattern.search(t)
+                )
             )
             all_matched.update(df_sample.index[matched_idx])
 
@@ -217,11 +281,18 @@ def validate_schema_coverage(
     }
 
     if dead_fields:
-        logger.warning("DEAD FIELDS: %d fields below %.0f%% coverage — %s",
-                       len(dead_fields), min_coverage * 100, dead_fields)
-    logger.info("Schema coverage: %.1f%% overall, %d/%d fields pass",
-                overall_coverage, sum(1 for f in per_field.values()
-                                      if f.get("passes_min_coverage")), len(fields))
+        logger.warning(
+            "DEAD FIELDS: %d fields below %.0f%% coverage — %s",
+            len(dead_fields),
+            min_coverage * 100,
+            dead_fields,
+        )
+    logger.info(
+        "Schema coverage: %.1f%% overall, %d/%d fields pass",
+        overall_coverage,
+        sum(1 for f in per_field.values() if f.get("passes_min_coverage")),
+        len(fields),
+    )
     return result
 
 

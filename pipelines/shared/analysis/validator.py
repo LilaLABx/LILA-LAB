@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
 
 
 def correlate_with_macro(
-    df: "pd.DataFrame",  # noqa: F821
+    df: pd.DataFrame,  # noqa: F821
     index_col: str = "economic_share",
     macro_cols: dict[str, str] | None = None,
     methods: list[str] | None = None,
@@ -114,7 +114,7 @@ def correlate_with_macro(
 
 
 def first_differenced_correlation(
-    df: "pd.DataFrame",  # noqa: F821
+    df: pd.DataFrame,  # noqa: F821
     index_col: str = "economic_share",
     macro_cols: dict[str, str] | None = None,
     methods: list[str] | None = None,
@@ -160,7 +160,7 @@ def first_differenced_correlation(
 
 
 def lead_lag_analysis(
-    df: "pd.DataFrame",  # noqa: F821
+    df: pd.DataFrame,  # noqa: F821
     macro_col: str = "cpi",
     index_col: str = "economic_share",
     lags: list[int] | None = None,
@@ -212,7 +212,7 @@ def lead_lag_analysis(
 
 
 def annual_correlation(
-    df: "pd.DataFrame",  # noqa: F821
+    df: pd.DataFrame,  # noqa: F821
     index_col: str = "economic_share",
     reserves_col: str = "reserves_usd",
 ) -> dict[str, Any]:
@@ -282,7 +282,6 @@ def generate_validation_report(
     out.mkdir(parents=True, exist_ok=True)
 
     logger.info("Generating validation report")
-    report_path = out / "validation_report.md"
 
     # TODO: write formatted Markdown report
     report_lines = [

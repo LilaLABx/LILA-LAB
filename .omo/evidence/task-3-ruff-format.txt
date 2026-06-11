@@ -1,0 +1,17 @@
+Would reformat: cli/app.py
+Would reformat: cli/validation.py
+Would reformat: pipelines/shared/analysis/annotator.py
+Would reformat: pipelines/shared/analysis/bengali_economic_keywords.py
+Would reformat: pipelines/shared/analysis/index_builder.py
+Would reformat: pipelines/shared/analysis/preprocessing.py
+Would reformat: pipelines/shared/analysis/profiler.py
+Would reformat: pipelines/shared/analysis/reporter.py
+Would reformat: pipelines/shared/analysis/schema_validator.py
+Would reformat: pipelines/shared/analysis/temporal.py
+Would reformat: pipelines/shared/analysis/visualizer.py
+Would reformat: pipelines/shared/analysis/vocabulary.py
+Would reformat: pipelines/shared/io.py
+Would reformat: pipelines/template/exploration/run_phase0.py
+Would reformat: pipelines/template/tests/test_structure.py
+Would reformat: tests/test_xeni_pipeline_contract.py
+16 files would be reformatted, 33 files already formatted

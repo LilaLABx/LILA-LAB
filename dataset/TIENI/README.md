@@ -1,6 +1,6 @@
 # TIENI — Tagalog (Filipino) Dataset
 
-**Pipeline:** Not yet created | **Status:** 🔜 Planned | **Target:** 100k+ articles (10+ years)
+**Pipeline:** [TIENI](../../pipelines/TIENI/) | **Status:** 🔜 Planned scaffold | **Target:** 100k+ articles (10+ years)
 
 ## Directory Structure
 

@@ -27,7 +27,7 @@ To build a custom keyword set for a specific index variant::
 from __future__ import annotations
 
 import re
-from typing import Pattern
+from re import Pattern
 
 # ═══════════════════════════════════════════════════════════════════════
 #  Category Keywords
@@ -105,7 +105,6 @@ ECONOMY_KEYWORDS: set[str] = {
     "সম্প্রসারণ",
     # Sectors
     "কৃষি",
-    "শিল্প",
     "পরিষেবা খাত",
     "ব্যাংক খাত",
     "পোশাক শিল্প",
@@ -402,13 +401,9 @@ NEGATIVE_SENTIMENT: set[str] = {
 #  Convenience: full sets and combinators
 # ═══════════════════════════════════════════════════════════════════════
 
-ALL_ECONOMIC_KEYWORDS: set[str] = (
-    ECONOMY_KEYWORDS | POLICY_KEYWORDS | NARRATIVE_KEYWORDS
-)
+ALL_ECONOMIC_KEYWORDS: set[str] = ECONOMY_KEYWORDS | POLICY_KEYWORDS | NARRATIVE_KEYWORDS
 
-ALL_SENTIMENT_KEYWORDS: set[str] = (
-    POSITIVE_SENTIMENT | NEGATIVE_SENTIMENT
-)
+ALL_SENTIMENT_KEYWORDS: set[str] = POSITIVE_SENTIMENT | NEGATIVE_SENTIMENT
 
 # ═══════════════════════════════════════════════════════════════════════
 #  Category mapping (for BBD-style triple indexing)
@@ -540,7 +535,7 @@ def classify_bbd_triple(text: str) -> dict[str, bool]:
 # ═══════════════════════════════════════════════════════════════════════
 
 
-def keyword_frame() -> "pd.DataFrame":  # noqa: F821
+def keyword_frame() -> pd.DataFrame:  # noqa: F821
     """Return a DataFrame summarising all keywords by category.
 
     Useful for auditing the dictionary and for visualisation.

@@ -1,6 +1,6 @@
 # HENI — Hausa Dataset
 
-**Pipeline:** Not yet created | **Status:** 🔜 Planned | **Target:** 100k+ articles (10+ years)
+**Pipeline:** [HENI](../../pipelines/HENI/) | **Status:** 🔜 Planned scaffold | **Target:** 100k+ articles (10+ years)
 
 ## Directory Structure
 

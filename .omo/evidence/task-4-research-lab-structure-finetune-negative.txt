@@ -1,0 +1,1 @@
+invalid schema rejected: /tmp/tmpyp4mrli5/bad.json: missing version

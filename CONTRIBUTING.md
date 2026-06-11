@@ -11,6 +11,8 @@ Thank you for contributing to this project. Every contribution — whether scree
 3. **Record decisions** → Use the CSV templates in `technical-reports/contributions/` to log each paper you screen or extract
 4. **Submit** → Commit your changes with a descriptive message
 
+Before adding new directories, release records, or pipeline status claims, read `docs/REPOSITORY_OPERATING_MODEL.md`. Dataset releases must also follow `docs/DATA_RELEASE_CHECKLIST.md`.
+
 ---
 
 ## Contribution Types
@@ -61,6 +63,8 @@ This log is the source of truth for authorship and acknowledgement decisions.
 |-------|---------------|
 | `docs/COLLABORATION.md` | **START HERE** — 8 research contribution models that lead to co-authorship |
 | `docs/LINGUISTIC_CONTRIBUTION_GUIDE.md` | How linguistic experts can contribute native-language data |
+| `docs/REPOSITORY_OPERATING_MODEL.md` | What belongs in each top-level area and which file is source of truth |
+| `docs/DATA_RELEASE_CHECKLIST.md` | FAIR/data-card checklist for public dataset releases |
 | `docs/SUBREPOS.md` | How to link your independent repository as a git submodule |
 | `pipelines/template/` | **Pipeline template** — start here to bootstrap a new XENI pipeline for your language |
 | `pipelines/template/README.md` | Step-by-step instructions for copying and adapting the template |

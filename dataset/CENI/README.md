@@ -1,6 +1,6 @@
 # CENI — Chittagonian (চাঁটগাঁইয়া) Dataset
 
-**Pipeline:** [CENI](../../pipelines/ceni/) | **Status:** 🔜 Feasibility study | **Target:** Max viable corpus (limited sources)
+**Pipeline:** [CENI](../../pipelines/CENI/) | **Status:** 🔜 Feasibility study | **Target:** Max viable corpus (limited sources)
 
 ## Directory Structure
 

@@ -18,6 +18,14 @@ KIENI will bring the XENI pipeline to Kiswahili, the most widely spoken language
 | Annotation | 🔜 Needs native speakers for schema validation |
 | Index | First domain (economic) is the recommended starting point |
 
+## Validation
+
+```bash
+python -m cli validate
+```
+
+This command proves KIENI is a valid scaffold. It does not mean the dataset or index is operational.
+
 ## How to Contribute
 
 | Role | What You Do |

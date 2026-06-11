@@ -31,9 +31,9 @@ const DOC_SECTIONS = [
             { title: 'BENI — Bangla',        path: 'pipelines/BENI/README.md',     icon: 'lang' },
             { title: 'BENI Pilot Experiment', path: 'pipelines/BENI/experiment/beni_pilot/README.md', icon: 'experiment' },
             { title: 'Template Pipeline',    path: 'pipelines/template/README.md', icon: 'template' },
-            { title: 'AENI — Assamese',      path: 'pipelines/aeni/README.md',     icon: 'lang' },
-            { title: 'NENI — Nepali',        path: 'pipelines/neni/README.md',     icon: 'lang' },
-            { title: 'SENI — Sylheti',       path: 'pipelines/seni/README.md',     icon: 'lang' },
+            { title: 'AENI — Assamese',      path: 'pipelines/AENI/README.md',     icon: 'lang' },
+            { title: 'NENI — Nepali',        path: 'pipelines/NENI/README.md',     icon: 'lang' },
+            { title: 'SENI — Sylheti',       path: 'pipelines/SENI/README.md',     icon: 'lang' },
             { title: 'Audio Annotation Lab', path: 'pipelines/audio-annotation-lab/README.md', icon: 'audio' },
         ]
     },

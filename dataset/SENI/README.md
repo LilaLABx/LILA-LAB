@@ -1,6 +1,6 @@
 # SENI — Sylheti (চিটাঙ্গ) Dataset
 
-**Pipeline:** [SENI](../../pipelines/seni/) | **Status:** 🔜 Feasibility study | **Target:** Max viable corpus (limited sources)
+**Pipeline:** [SENI](../../pipelines/SENI/) | **Status:** 🔜 Feasibility study | **Target:** Max viable corpus (limited sources)
 
 ## Directory Structure
 

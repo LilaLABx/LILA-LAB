@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.7, pytest-8.4.2, pluggy-1.6.0
+benchmark: 5.2.3 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: /mnt/data/Projects/nabilox
+configfile: pyproject.toml
+plugins: langsmith-0.4.38, Faker-20.1.0, mock-3.15.1, anyio-4.12.1, xdist-3.8.0, env-1.2.0, benchmark-5.2.3, cov-4.1.0, hydra-core-1.3.2, locust-2.43.3, asyncio-0.24.0, requests-mock-1.12.1
+asyncio: mode=Mode.STRICT, default_loop_scope=None
+collected 7 items
+
+tests/test_xeni_pipeline_contract.py F.                                  [ 28%]
+tests/test_registry_consistency.py ...                                   [ 71%]
+tests/test_cli.py .F                                                     [100%]
+
+=================================== FAILURES ===================================
+____________ test_xeni_pipeline_contract_accepts_current_repository ____________
+tests/test_xeni_pipeline_contract.py:13: in test_xeni_pipeline_contract_accepts_current_repository
+    assert report.errors == ()
+E   AssertionError: assert ('missing req...rements.txt',) == ()
+E
+E     Left contains one more item: 'missing required path: pipelines/BENI/requirements.txt'
+E     Use -v to get more diff
+___________________ test_validate_accepts_current_repository ___________________
+tests/test_cli.py:17: in test_validate_accepts_current_repository
+    assert exit_code == 0
+E   assert 1 == 0
+=========================== short test summary info ============================
+FAILED tests/test_xeni_pipeline_contract.py::test_xeni_pipeline_contract_accepts_current_repository
+FAILED tests/test_cli.py::test_validate_accepts_current_repository - assert 1...
+========================= 2 failed, 5 passed in 0.23s ==========================

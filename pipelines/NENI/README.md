@@ -18,6 +18,14 @@ NENI will bring the XENI pipeline to Nepali, the official language of Nepal. Wit
 | Annotation | 🔜 Needs native speakers for schema validation |
 | Index | First domain (economic) is the recommended starting point |
 
+## Validation
+
+```bash
+python -m cli validate
+```
+
+This command proves NENI is a valid scaffold. It does not mean the dataset or index is operational.
+
 ## How to Contribute
 
 | Role | What You Do |

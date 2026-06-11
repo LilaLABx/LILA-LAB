@@ -48,7 +48,7 @@ logger = logging.getLogger(__name__)
 
 
 def run_pilot_annotation(
-    df: "pd.DataFrame",  # noqa: F821 — pandas type hint
+    df: pd.DataFrame,  # noqa: F821 — pandas type hint
     schema_path: str | Path,
     output_dir: str | Path,
     sample_size: int = 200,
@@ -124,7 +124,9 @@ def run_pilot_annotation(
     if not schema_path.exists():
         raise FileNotFoundError(f"Schema not found: {schema_path}")
     schema = json.loads(schema_path.read_text(encoding="utf-8"))
-    logger.info("Schema: %s v%s (%d fields)", schema["domain"], schema["version"], len(schema["fields"]))
+    logger.info(
+        "Schema: %s v%s (%d fields)", schema["domain"], schema["version"], len(schema["fields"])
+    )
 
     # ── 2. Sample articles ─────────────────────────────────────
     # TODO: replace with actual sampling logic
@@ -151,7 +153,11 @@ def run_pilot_annotation(
     #   user_prompt = f"Article: {row[text_col]}\n\nAnnotate with: {json.dumps(schema)}"
     #   response = call_anthropic(model="claude-3-5-sonnet-20241022", system=system_prompt, messages=[{"role": "user", "content": user_prompt}])
     #   parsed = parse_llm_response(response)
-    logger.info("Annotating %d articles with %d provider(s)", len(sample), len(providers) if providers else 2)
+    logger.info(
+        "Annotating %d articles with %d provider(s)",
+        len(sample),
+        len(providers) if providers else 2,
+    )
     annotations = []  # TODO: populate
 
     # ── 4. Compute agreement ───────────────────────────────────
@@ -166,7 +172,8 @@ def run_pilot_annotation(
         "n_providers": len(providers) if providers else 0,
         "overall_agreement": agreement.get("overall", None),
         "fields_below_threshold": [
-            f for f, m in field_reliability.items()
+            f
+            for f, m in field_reliability.items()
             if m.get("cohens_kappa", 1.0) < 0.6  # TODO: make threshold configurable
         ],
     }
@@ -286,7 +293,7 @@ def field_level_reliability(
 
 
 def run_batch_annotation(
-    df: "pd.DataFrame",  # noqa: F821
+    df: pd.DataFrame,  # noqa: F821
     schema_path: str | Path,
     output_dir: str | Path,
     llm_config: dict[str, Any] | None = None,
@@ -352,7 +359,9 @@ def run_batch_annotation(
     out.mkdir(parents=True, exist_ok=True)
 
     total = min(max_articles, len(df)) if max_articles else len(df)
-    logger.info("Batch annotating %d articles (batch_size=%d, n_workers=%d)", total, batch_size, n_workers)
+    logger.info(
+        "Batch annotating %d articles (batch_size=%d, n_workers=%d)", total, batch_size, n_workers
+    )
 
     # TODO: implement batch annotation loop
     #   1. Load checkpoint if exists (skip already-annotated articles)
@@ -367,5 +376,7 @@ def run_batch_annotation(
         "n_annotated": 0,
         "predictions_path": str(out / "full_predictions.parquet"),
         "consensus_path": str(out / "consensus_labels.parquet"),
-        "checkpoint_path": str(out / "checkpoint.parquet") if not checkpoint_path else str(checkpoint_path),
+        "checkpoint_path": str(out / "checkpoint.parquet")
+        if not checkpoint_path
+        else str(checkpoint_path),
     }

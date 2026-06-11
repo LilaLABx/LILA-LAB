@@ -17,7 +17,6 @@ Typical usage::
 from __future__ import annotations
 
 import logging
-from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -98,8 +97,12 @@ def coverage_diagnostics(
             str(src): {
                 "years_active": int((cross[src] > 0).sum()),
                 "total_articles": int(cross[src].sum()),
-                "first_year": int(cross[src][cross[src] > 0].index.min()) if (cross[src] > 0).any() else None,
-                "last_year": int(cross[src][cross[src] > 0].index.max()) if (cross[src] > 0).any() else None,
+                "first_year": int(cross[src][cross[src] > 0].index.min())
+                if (cross[src] > 0).any()
+                else None,
+                "last_year": int(cross[src][cross[src] > 0].index.max())
+                if (cross[src] > 0).any()
+                else None,
             }
             for src in cross.columns
         }
@@ -114,9 +117,9 @@ def coverage_diagnostics(
                 trends[m] = {
                     "overall_mean": round(float(grouped["mean"].mean()), 2),
                     "overall_std": round(float(grouped["mean"].std()), 2),
-                    "trend_direction": "increasing" if _is_trending(grouped["mean"]) else (
-                        "decreasing" if _is_trending(-grouped["mean"]) else "stable"
-                    ),
+                    "trend_direction": "increasing"
+                    if _is_trending(grouped["mean"])
+                    else ("decreasing" if _is_trending(-grouped["mean"]) else "stable"),
                 }
         result["metric_trends"] = trends
 
@@ -190,9 +193,7 @@ def detect_source_boundary(
     # Find year-over-year source transitions
     transitions: list[dict[str, Any]] = []
     sources_by_year = (
-        df_temp.groupby("_year")[source_col]
-        .apply(lambda x: set(x.dropna().unique()))
-        .to_dict()
+        df_temp.groupby("_year")[source_col].apply(lambda x: set(x.dropna().unique())).to_dict()
     )
 
     sorted_years = sorted(sources_by_year.keys())
@@ -213,22 +214,26 @@ def detect_source_boundary(
                 if len(data1) < min_samples or len(data2) < min_samples:
                     continue
                 stat, p = ks_2samp(data1, data2)
-                transitions.append({
-                    "source_a": str(s1),
-                    "source_b": str(s2),
-                    "transition_year": int(y2),
-                    "ks_statistic": round(stat, 4),
-                    "p_value": round(p, 6),
-                    "significant": bool(p < alpha),
-                    "n_a": int(len(data1)),
-                    "n_b": int(len(data2)),
-                    "mean_a": round(float(data1.mean()), 2),
-                    "mean_b": round(float(data2.mean()), 2),
-                })
+                transitions.append(
+                    {
+                        "source_a": str(s1),
+                        "source_b": str(s2),
+                        "transition_year": int(y2),
+                        "ks_statistic": round(stat, 4),
+                        "p_value": round(p, 6),
+                        "significant": bool(p < alpha),
+                        "n_a": int(len(data1)),
+                        "n_b": int(len(data2)),
+                        "mean_a": round(float(data1.mean()), 2),
+                        "mean_b": round(float(data2.mean()), 2),
+                    }
+                )
 
     if transitions:
         n_sig = sum(1 for t in transitions if t["significant"])
-        logger.info("Found %d source transitions, %d significant (p<%.2f)", len(transitions), n_sig, alpha)
+        logger.info(
+            "Found %d source transitions, %d significant (p<%.2f)", len(transitions), n_sig, alpha
+        )
     else:
         logger.info("No source transitions detected (check source_col='%s')", source_col)
 
@@ -268,8 +273,17 @@ def _is_trending(series: pd.Series, threshold: float = 0.3) -> bool:
 
 def _resolve_metric(df: pd.DataFrame) -> str:
     """Find a reasonable numeric column for metric analysis."""
-    candidates = ["article_length", "text_length", "length", "n_tokens",
-                   "word_count", "words", "sentiment", "probability", "score"]
+    candidates = [
+        "article_length",
+        "text_length",
+        "length",
+        "n_tokens",
+        "word_count",
+        "words",
+        "sentiment",
+        "probability",
+        "score",
+    ]
     for c in candidates:
         if c in df.columns and pd.api.types.is_numeric_dtype(df[c]):
             return c
@@ -297,8 +311,12 @@ def run_temporal(
     out.mkdir(parents=True, exist_ok=True)
 
     coverage = coverage_diagnostics(df, date_col=date_col, source_col=source_col)
-    boundaries = detect_source_boundary(df, date_col=date_col, source_col=source_col or "",
-                                        metric_col=metric_col or "article_length")
+    boundaries = detect_source_boundary(
+        df,
+        date_col=date_col,
+        source_col=source_col or "",
+        metric_col=metric_col or "article_length",
+    )
 
     result = {"coverage": coverage, "source_boundaries": boundaries}
     write_json(out / "temporal_diagnostics.json", result)
@@ -310,16 +328,24 @@ def run_temporal(
         "═" * 60,
     ]
     cov = coverage
-    lines.append(f"  Period:       {cov.get('date_range', {}).get('start')} → {cov.get('date_range', {}).get('end')}")
-    lines.append(f"  Coverage:     {cov.get('n_months_with_data')}/{cov.get('n_months_total')} months ({cov.get('coverage_pct')}%)")
-    lines.append(f"  Gaps:         {cov.get('n_gaps')} (max consecutive: {cov.get('max_gap_months')})")
+    lines.append(
+        f"  Period:       {cov.get('date_range', {}).get('start')} → {cov.get('date_range', {}).get('end')}"
+    )
+    lines.append(
+        f"  Coverage:     {cov.get('n_months_with_data')}/{cov.get('n_months_total')} months ({cov.get('coverage_pct')}%)"
+    )
+    lines.append(
+        f"  Gaps:         {cov.get('n_gaps')} (max consecutive: {cov.get('max_gap_months')})"
+    )
     if boundaries:
         lines.append(f"  Source transitions: {len(boundaries)}")
         sig_count = sum(1 for b in boundaries if b["significant"])
         lines.append(f"  Significant shifts: {sig_count}")
         for b in boundaries[:5]:
-            lines.append(f"    {b['source_a']}→{b['source_b']} ({b['transition_year']}): "
-                         f"KS={b['ks_statistic']} p={b['p_value']} {'⚠️' if b['significant'] else '✓'}")
+            lines.append(
+                f"    {b['source_a']}→{b['source_b']} ({b['transition_year']}): "
+                f"KS={b['ks_statistic']} p={b['p_value']} {'⚠️' if b['significant'] else '✓'}"
+            )
     lines.append("═" * 60)
     out.joinpath("temporal_report.md").write_text("\n".join(lines) + "\n")
 

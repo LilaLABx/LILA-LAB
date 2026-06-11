@@ -18,6 +18,14 @@ SENI aims to bring the XENI pipeline to Sylheti, a minority language of Banglade
 | Annotation | 🔜 Needs native speakers |
 | Index | First domain TBD based on available data |
 
+## Validation
+
+```bash
+python -m cli validate
+```
+
+This command proves SENI is a valid scaffold. It does not mean the dataset or index is operational.
+
 ## Background
 
 Sylheti is a minority language spoken primarily in the Sylhet region of Bangladesh and the Bangladeshi diaspora. Digital news presence is limited — feasibility work is needed to identify viable sources before full pipeline construction.

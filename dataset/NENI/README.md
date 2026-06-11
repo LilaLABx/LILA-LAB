@@ -1,6 +1,6 @@
 # NENI — Nepali (नेपाली) Dataset
 
-**Pipeline:** [NENI](../../pipelines/neni/) | **Status:** 🔜 Seeking contributors | **Target:** 100k+ articles (10+ years)
+**Pipeline:** [NENI](../../pipelines/NENI/) | **Status:** 🔜 Seeking contributors | **Target:** 100k+ articles (10+ years)
 
 ## Directory Structure
 

@@ -24,6 +24,9 @@ Homepage = "https://lilalab.pro.bd/"
 Repository = "https://github.com/LilaLABx/LILA-LAB"
 Discord = "https://discord.gg/TrrdKbky"
 
+[project.scripts]
+lila = "cli.app:main"
+
 # --------------------------------------------------------------------------- #
 #  Core pipeline dependencies (what template/ and shared/ actually import)
 # --------------------------------------------------------------------------- #
@@ -62,6 +65,7 @@ line-length = 100
 #   ruff check pipelines/BENI/ --no-cache --select E,W,F,I
 exclude = [
     "pipelines/BENI/**",
+    "infrastructure/discord-bot/**",
     "personal/",
 ]
 

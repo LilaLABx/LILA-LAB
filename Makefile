@@ -16,7 +16,7 @@ SHELL := /bin/bash
 PYTHON := python3
 
 .PHONY: install install-core install-llm install-dev install-all
-.PHONY: lint format test docker clean help
+.PHONY: lint format test audit validate-schemas docker clean help
 
 # ── Install ────────────────────────────────────────────
 
@@ -38,21 +38,21 @@ install-all:
 # ── Lint & Format ─────────────────────────────────────
 
 lint:
-	ruff check pipelines/shared/ pipelines/template/ infrastructure/ tests/
+	ruff check pipelines/shared/ pipelines/template/ infrastructure/scripts/ cli/ tests/
 	ruff check --no-cache pipelines/BENI/ --select E,W,F,I --ignore E501,E741 || \
 		echo "Note: BENI/ linting is advisory (run separately)"
 
 format:
-	ruff format pipelines/shared/ pipelines/template/ infrastructure/ tests/ --check
+	ruff format pipelines/shared/ pipelines/template/ infrastructure/scripts/ cli/ tests/ --check
 	ruff format pipelines/BENI/ --check || \
 		echo "Note: BENI/ formatting check is advisory (run separately)"
 
 format-fix:
-	ruff format pipelines/shared/ pipelines/template/ infrastructure/ tests/
+	ruff format pipelines/shared/ pipelines/template/ infrastructure/scripts/ cli/ tests/
 	ruff format pipelines/BENI/ 2>/dev/null || true
 
 lint-fix:
-	ruff check --fix pipelines/shared/ pipelines/template/ infrastructure/ tests/
+	ruff check --fix pipelines/shared/ pipelines/template/ infrastructure/scripts/ cli/ tests/
 
 # ── Tests ──────────────────────────────────────────────
 
@@ -61,6 +61,12 @@ test:
 
 test-cov:
 	$(PYTHON) -m pytest --cov=pipelines --cov-report=term-missing $(ARGS)
+
+validate-schemas:
+	$(PYTHON) infrastructure/scripts/validate_schemas.py
+
+audit:
+	$(PYTHON) infrastructure/scripts/audit_repo_hygiene.py
 
 # ── Docker ────────────────────────────────────────────
 
@@ -98,6 +104,8 @@ help:
 	@echo "lint-fix          Apply lint fixes"
 	@echo "test              Run pytest"
 	@echo "test-cov          Run pytest with coverage"
+	@echo "validate-schemas  Validate annotation schema JSON files"
+	@echo "audit             Run read-only repository hygiene audit"
 	@echo "docker            Build pipeline Docker image"
 	@echo "docker-compose-up Start all services via docker compose"
 	@echo "clean             Remove build artifacts"

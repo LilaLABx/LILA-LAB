@@ -10,7 +10,7 @@
 The process of resolving disagreements between multiple LLM annotators (or between LLM and human annotators) on the same article. In the BENI pipeline, adjudication uses majority voting across a Claude/GPT-4o ensemble, with tiebreakers going to the higher-confidence label. The adjudicated labels become the ground truth for classifier training. See [`pipelines/BENI/annotation/ADJUDICATION_PROTOCOL.md`](pipelines/BENI/annotation/ADJUDICATION_PROTOCOL.md).
 
 **AENI (Assamese Exploration & Native-language Intelligence)**
-The planned XENI pipeline for Assamese (অসমীয়া), spoken by approximately 15 million people. AENI follows the same structure as BENI but targets Assamese-language news sources. The pipeline is in early development and seeking contributors. See [AENI pipeline](pipelines/aeni/).
+The planned XENI pipeline for Assamese (অসমীয়া), spoken by approximately 15 million people. AENI follows the same structure as BENI but targets Assamese-language news sources. The pipeline is in early development and seeking contributors. See [AENI pipeline](../pipelines/AENI/).
 
 **Annotation schema**
 The structured set of fields and labels used to classify each news article. The current BENI schema uses a binary economic relevance label (Economic / Not Economic) with confidence and difficulty flags. A planned Phase 2 expansion adds fields for economic topic, narrative force, valuation target, and sentiment polarity. See [`pipelines/BENI/annotation/ANNOTATION_SCHEMA.md`](pipelines/BENI/annotation/ANNOTATION_SCHEMA.md).

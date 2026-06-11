@@ -1,0 +1,5 @@
+OK: template contract paths checked
+OK: 10 registry pipelines checked
+ERROR: missing required path: pipelines/BENI/requirements.txt
+
+Validation failed: 1 error(s)

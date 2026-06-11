@@ -2,7 +2,7 @@
 
 **Target:** 10 emerging-economy low-resource languages with baseline news corpora by H1 2027.
 
-Each pipeline has a dedicated dataset directory with `raw/` and `processed/` subdirectories. Choose a language below to get started.
+Each pipeline has a dedicated dataset directory with `raw/` and `processed/` subdirectories. Public releases must follow [`../docs/DATA_RELEASE_CHECKLIST.md`](../docs/DATA_RELEASE_CHECKLIST.md).
 
 ---
 
@@ -66,6 +66,8 @@ The **BENI** folder is the reference implementation — it includes a full datas
 5. Open a PR with your dataset
 
 See the [Linguistic Contribution Guide](../docs/LINGUISTIC_CONTRIBUTION_GUIDE.md) for full instructions.
+
+Released datasets need a dataset card, license statement, provenance notes, limitations/bias notes, contributor credit, and distribution manifest when a DOI or external platform record exists.
 
 ---
 

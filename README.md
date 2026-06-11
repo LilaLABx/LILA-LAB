@@ -172,7 +172,7 @@ python3 build_index.py
 python3 correlate.py
 ```
 
-**What you'll get:** A monthly narrative index (2014–2020), model artifacts, and correlation reports. See [`pipelines/beni/experiment/beni_pilot/README.md`](pipelines/beni/experiment/beni_pilot/README.md) for full documentation.
+**What you'll get:** A monthly narrative index (2014–2020), model artifacts, and correlation reports. See [`pipelines/BENI/experiment/beni_pilot/README.md`](pipelines/BENI/experiment/beni_pilot/README.md) for full documentation.
 
 **Need the Potrika dataset?** Download it from [Mendeley Data](https://data.mendeley.com/datasets/v362rp78dc/4) (3.3 GB, CC BY 4.0) and place it in `pipelines/BENI/data/raw/potrika/`.
 
@@ -244,6 +244,8 @@ lila-lab/
 - [`pipelines/BENI/README.md`](pipelines/BENI/README.md) — BENI deep dive
 - [`registry/languages.json`](registry/languages.json) — language registry & pipeline status
 - [`registry/publications.bib`](registry/publications.bib) — full publication bibliography
+- [`docs/REPOSITORY_OPERATING_MODEL.md`](docs/REPOSITORY_OPERATING_MODEL.md) — lab monorepo source-of-truth map
+- [`docs/DATA_RELEASE_CHECKLIST.md`](docs/DATA_RELEASE_CHECKLIST.md) — FAIR/data-card release checklist
 - [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — full contribution framework
 - [`docs/LINGUISTIC_CONTRIBUTION_GUIDE.md`](docs/LINGUISTIC_CONTRIBUTION_GUIDE.md) — guide for language contributors
 

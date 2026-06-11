@@ -1,0 +1,64 @@
+CONTRIBUTING.md:2. **Log your contribution** → Add a row to `technical-reports/contributions/OWNERS.csv` with your name and what you're working on
+CONTRIBUTING.md:| **Linguistic data** | Submit native-language text, annotations, dialect expertise | `technical-reports/contributions/linguistic_data/` + `OWNERS.csv` |
+CONTRIBUTING.md:| **Replication** | Running or validating replication code | `technical-reports/contributions/OWNERS.csv` |
+CONTRIBUTING.md:| **Writing** | Drafting or editing manuscript sections | `technical-reports/contributions/OWNERS.csv` |
+CONTRIBUTING.md:| **Code** | Writing/modifying analysis scripts | `technical-reports/contributions/OWNERS.csv` |
+CONTRIBUTING.md:| **Review** | Commenting on drafts or results | `technical-reports/contributions/OWNERS.csv` |
+CONTRIBUTING.md:Every contribution is recorded in `technical-reports/contributions/OWNERS.csv`:
+CONTRIBUTING.md:| `name` | Your name (as you want it in acknowledgements) |
+CONTRIBUTING.md:This log is the source of truth for authorship and acknowledgement decisions.
+CONTRIBUTING.md:| `docs/COLLABORATION.md` | **START HERE** — 8 research contribution models that lead to co-authorship |
+CONTRIBUTING.md:| `technical-reports/contributions/OWNERS.csv` | Who owns what |
+technical-reports/extensions/REPLICATION_TEMPLATE.md:Accepted replication reports earn the replicator an authorship credit or formal acknowledgment, depending on the scope of work (see [COLLABORATION.md](../../docs/COLLABORATION.md)).
+docs/index.html:        <span class="dir-card-desc">Eight ways to contribute — all lead to authorship</span>
+docs/index.html:      <p class="section-sub">Every contribution model leads to academic authorship. <strong>If you speak an underserved language, you are not a data source — you are a co-author.</strong></p>
+docs/index.html:          <p>Improve the classifier, reduce cost. Co-authorship.</p>
+docs/index.html:          <p>Analyze narratives for policy. Co-authorship.</p>
+docs/index.html:          <p>Build dashboards, APIs, tools. Tool paper co-authorship.</p>
+docs/index.html:          <p>Create tutorials, course modules. Educational paper co-authorship.</p>
+docs/index.html:            <li><strong>Contribution Model</strong> — fork &amp; PR workflow. All contributors credited in the registry. Academic co-authorship guaranteed for substantive contributions.</li>
+docs/research/BENI_PILOT_RUN_MANIFEST.md:- License: CC BY 4.0 for released data, upstream license where applicable
+technical-reports/README.md:│   └── OWNERS.csv                    # Who owns what
+technical-reports/README.md:- **Contributors**: See [extensions/INDEX.md](extensions/INDEX.md) for active extension opportunities, and [contributions/OWNERS.csv](contributions/OWNERS.csv) to record your participation.
+docs/SUBREPOS.md:- **You keep full control** of your repository, license, and contribution history
+docs/SUBREPOS.md:**Q: Do I need to match your license?**
+docs/SUBREPOS.md:A: No. Your repo can have its own license. We will note it in the registry.
+docs/DATA_RELEASE_CHECKLIST.md:- Contributor credit is recorded in `technical-reports/contributions/OWNERS.csv`.
+docs/docs.html:                                <p>Speak a low-resource language? Help annotate data, design schemas, and build pipelines. Co-authorship guaranteed.</p>
+docs/docs.html:                                        <p>Build your own XENI pipeline for a new language or domain. Use the template, adapt annotation schemas, train models, and publish your findings with co-authorship.</p>
+docs/REPOSITORY_OPERATING_MODEL.md:| `technical-reports/` | papers, extension templates, replication templates, contributor records | generated build artifacts as canonical records | `technical-reports/README.md`, `technical-reports/contributions/OWNERS.csv` |
+docs/REPOSITORY_OPERATING_MODEL.md:- Public releases need a dataset card, license statement, DOI/platform manifest when available, provenance notes, limitations, and contributor credit.
+docs/adr/template.md:*What trade-offs, risks, or costs does this decision introduce? What edge cases or limitations should be acknowledged?*
+docs/ROADMAP.md:- Update contributor records in `technical-reports/contributions/OWNERS.csv`
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:    → We publish results with your co-authorship → Your language gets LLM infrastructure
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:3. **You are recorded** in `technical-reports/contributions/OWNERS.csv` as a contributor
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:7. **Publication** — any paper using your data includes you as co-author or in acknowledgements
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:8. **You own your data** — licensed CC BY 4.0 (you choose the license)
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:Before any public release, the submission must pass license, sensitive-data, native-speaker review, and dataset-card checks in `DATA_RELEASE_CHECKLIST.md`.
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:| 10,000+ articles + annotations | Co-authorship on papers using your data |
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:| Dialectal expertise + validation | Co-authorship + credit on model releases |
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:Your row in `OWNERS.csv` serves as your permanent scholarly record for this contribution.
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:A: Only if you choose a permissive license. You control the license. Default is CC BY 4.0 (attribution required).
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:A: Yes. You license it to the project under your chosen open license. You can revoke future use at any time (published works already using it will keep their license).
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:A: Yes — we actively support student contributors. Your contribution can form part of a dissertation chapter, and we provide letters confirming your role for ethics boards and supervisors.
+docs/LINGUISTIC_CONTRIBUTION_GUIDE.md:echo "Your Full Name,Linguist,paper3,Contribute Assamese news corpus,in_progress,2026-06-10," >> technical-reports/contributions/OWNERS.csv
+docs/archive/RESTRUCTURE_PLAN.md:│   │   ├── OWNERS.csv                     # Contribution log
+docs/COLLABORATION.md:**What you get**: Methodological co-authorship + citation from every paper using your method
+docs/COLLABORATION.md:**What you get**: Replication report published in this repository + potential co-authorship on a replication paper
+docs/COLLABORATION.md:**What you get**: Co-authorship on an infrastructure paper + your tool used by researchers across South Asia
+docs/COLLABORATION.md:**What you get**: Co-authorship on educational paper + your materials used in universities
+docs/COLLABORATION.md:| Methodological Improvement | Shared co-authorship based on contribution |
+docs/COLLABORATION.md:| Policy Brief | Co-authorship |
+docs/COLLABORATION.md:| Infrastructure/Tooling | Co-authorship on dedicated tool paper |
+docs/COLLABORATION.md:| Educational Materials | Co-authorship on educational paper |
+docs/COLLABORATION.md:**All contributions** are recorded in `../technical-reports/contributions/OWNERS.csv` as a permanent scholarly record.
+docs/COLLABORATION.md:All data and annotation contributions also require a review gate before release: license consent, native-speaker review where relevant, schema validation, and release checklist completion in `DATA_RELEASE_CHECKLIST.md`.
+docs/COLLABORATION.md:echo "Your Name,Extension Author,technical-reports/extensions,Apply BENI to Assamese,in_progress,2026-06-10," >> technical-reports/contributions/OWNERS.csv
+docs/FAQ.md:All contributions are recorded in [`technical-reports/contributions/OWNERS.csv`](../technical-reports/contributions/OWNERS.csv) and lead to co-authorship or acknowledgement in publications.
+docs/FAQ.md:4. **Register your intent:** Add a row to `technical-reports/contributions/OWNERS.csv`
+docs/FAQ.md:We provide templates, code, mentorship, and co-authorship opportunities.
+docs/FAQ.md:## What license applies to the code and data?
+docs/FAQ.md:Linguistic contributors retain ownership of their language data and choose the license.
+docs/CONTRIBUTOR_QUICKSTART.md:Open a pull request on GitHub. Mention the issue number (e.g. `closes #27`). For linguistic data, add a row to [OWNERS.csv](../technical-reports/contributions/OWNERS.csv) with your name and task.
+docs/CONTRIBUTOR_QUICKSTART.md:- **Credit** — Every merged contribution is recorded in `OWNERS.csv` and acknowledged in publications.
+docs/dashboard.html:                    <p>We're seeking native speakers to help build the next XENI pipelines. Each contributor receives co-authorship on the resulting paper. No coding required.</p>

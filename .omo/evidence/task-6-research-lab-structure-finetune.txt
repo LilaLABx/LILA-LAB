@@ -1,0 +1,1 @@
+all registry pipelines have status-aware docs
