@@ -141,6 +141,12 @@ img { max-width: 100%; height: auto; }
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
   --shadow-glow: 0 0 30px rgba(0, 109, 119, 0.1);
+
+  /* Mobile typography contrast boost */
+  @media (max-width: 768px) {
+    --charcoal-light: #9AB0C0;
+    --muted: #6A8A9A;
+  }
 }
 
 [data-theme="light"] body::before {
@@ -421,6 +427,24 @@ h1, h2, h3, h4 {
   color: var(--muted);
 }
 
+/* Search status indicator */
+.search-status {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+  padding: 0 0.25rem;
+  min-height: 1.1em;
+  transition: color 0.2s ease;
+}
+
+.search-status.has-content-match {
+  color: var(--cyan);
+}
+
+.search-status.no-match {
+  color: var(--coral);
+}
+
 .sidebar-nav {
   padding: var(--space-md) 0;
 }
@@ -500,6 +524,43 @@ h1, h2, h3, h4 {
 
 .sidebar-item.active .sidebar-item-icon {
   opacity: 1;
+}
+
+/* Sidebar item disabled state (not-started pipelines) */
+.sidebar-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sidebar-item.disabled:hover {
+  background: transparent;
+  color: var(--charcoal-light);
+}
+
+.sidebar-item.disabled .sidebar-item-icon {
+  opacity: 0.3;
+}
+
+/* Sidebar item status badge */
+.sidebar-item-badge {
+  display: inline-block;
+  margin-left: auto;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  background: var(--gold-dim);
+  color: var(--gold);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+[data-theme="light"] .sidebar-item-badge {
+  background: rgba(226, 149, 120, 0.15);
+  color: var(--gold-dark);
 }
 
 /* Search highlight */
@@ -1811,6 +1872,35 @@ h1, h2, h3, h4 {
   box-shadow: 0 0 20px rgba(0, 212, 224, 0.3);
 }
 
+.doc-error-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-lg);
+}
+
+.btn-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.625rem 1.25rem;
+  background: var(--bg-surface);
+  color: var(--cyan);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btn-repo:hover {
+  background: var(--cyan-dim);
+  box-shadow: 0 0 20px rgba(0, 212, 224, 0.2);
+}
+
 /* ═══════════════════════════════════════════════════════════
    FOOTNOTES
    ═══════════════════════════════════════════════════════════ */
@@ -2416,5 +2506,98 @@ h1, h2, h3, h4 {
 
   .footer-links {
     display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE CONTRAST & UX FIXES
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Boost text contrast on dark background */
+  body {
+    color: #D0D8E0;
+  }
+
+  .docs-content {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .content-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1rem;
+  }
+
+  /* Ensure sidebar items are tappable */
+  .sidebar-item {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  /* Welcome page sections padding */
+  .welcome-hero {
+    padding: var(--space-xl) 0 var(--space-lg);
+  }
+
+  .welcome-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .home-section-title {
+    font-size: 1.4rem;
+  }
+
+  .home-section-desc {
+    font-size: 0.9rem;
+  }
+
+  .onboarding-step {
+    padding: 0.75rem;
+  }
+
+  .concept-card {
+    padding: 1rem;
+  }
+
+  .glossary-card {
+    padding: 1rem;
+  }
+
+  .path-card {
+    padding: 1rem;
+  }
+
+  /* Roadmap step content */
+  .step-content {
+    padding: 1rem;
+  }
+
+  /* Domain matrix - make scrollable */
+  .domain-matrix-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 calc(-1 * var(--space-md));
+    padding: 0 var(--space-md);
+  }
+
+  .domain-matrix {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .docs-content {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .welcome-hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .welcome-hero-sub {
+    font-size: 0.9rem;
   }
 }

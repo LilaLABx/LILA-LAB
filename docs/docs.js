@@ -31,9 +31,9 @@ const DOC_SECTIONS = [
             { title: 'BENI — Bangla',        path: 'pipelines/BENI/README.md',     icon: 'lang' },
             { title: 'BENI Pilot Experiment', path: 'pipelines/BENI/experiment/beni_pilot/README.md', icon: 'experiment' },
             { title: 'Template Pipeline',    path: 'pipelines/template/README.md', icon: 'template' },
-            { title: 'AENI — Assamese',      path: 'pipelines/AENI/README.md',     icon: 'lang' },
-            { title: 'NENI — Nepali',        path: 'pipelines/NENI/README.md',     icon: 'lang' },
-            { title: 'SENI — Sylheti',       path: 'pipelines/SENI/README.md',     icon: 'lang' },
+            { title: 'AENI — Assamese',      path: 'pipelines/AENI/README.md',     icon: 'lang', status: 'coming-soon' },
+            { title: 'NENI — Nepali',        path: 'pipelines/NENI/README.md',     icon: 'lang', status: 'coming-soon' },
+            { title: 'SENI — Sylheti',       path: 'pipelines/SENI/README.md',     icon: 'lang', status: 'coming-soon' },
             { title: 'Audio Annotation Lab', path: 'pipelines/audio-annotation-lab/README.md', icon: 'audio' },
         ]
     },
@@ -94,6 +94,7 @@ const docsSidebar = document.getElementById('docsSidebar');
 // ── State ────────────────────────────────────────────────────────────
 let allDocItems = [];
 let currentPath = null;
+let renderedContentCache = '';
 
 // ── Build Sidebar ────────────────────────────────────────────────────
 function buildSidebar() {
@@ -125,13 +126,19 @@ function buildSidebar() {
             a.className = 'sidebar-item';
             a.href = SITE_PREFIX + encodeURIComponent(item.path);
             a.dataset.path = item.path;
+            a.dataset.status = item.status || '';
             a.innerHTML = getIconSVG(item.icon) + item.title;
+            if (item.status === 'coming-soon') {
+                a.classList.add('disabled');
+                a.innerHTML += '<span class="sidebar-item-badge">Coming Soon</span>';
+            }
 
             item._element = a;
             allDocItems.push(a);
 
             a.addEventListener('click', (e) => {
                 e.preventDefault();
+                if (item.status === 'coming-soon') return;
                 loadDoc(item.path, true);
             });
 
@@ -146,6 +153,12 @@ function buildSidebar() {
 
     // Handle search
     docSearch.addEventListener('input', filterSidebar);
+
+    // Add search status indicator
+    const searchStatus = document.createElement('div');
+    searchStatus.id = 'searchStatus';
+    searchStatus.className = 'search-status';
+    docSearch.parentNode.insertBefore(searchStatus, docSearch.nextSibling);
 }
 
 // ── Sidebar Search ───────────────────────────────────────────────────
@@ -166,6 +179,31 @@ function filterSidebar() {
         const visibleItems = section.querySelectorAll('.sidebar-item:not(.hidden)');
         section.style.display = visibleItems.length === 0 && query ? 'none' : '';
     });
+
+    // Update search status
+    const searchStatus = document.getElementById('searchStatus');
+    if (!searchStatus) return;
+    if (!query) {
+        searchStatus.textContent = '';
+        searchStatus.className = 'search-status';
+        return;
+    }
+
+    // Count visible items
+    const visibleItems = document.querySelectorAll('.sidebar-item:not(.hidden)');
+    const totalItems = document.querySelectorAll('.sidebar-item');
+    let statusText = `${visibleItems.length} of ${totalItems.length} in sidebar`;
+
+    // Check rendered content
+    if (renderedContentCache.toLowerCase().includes(query)) {
+        statusText += ' · Content match in current doc';
+        searchStatus.className = 'search-status has-content-match';
+    } else if (visibleItems.length === 0 && renderedContentCache) {
+        statusText = 'No matches found';
+        searchStatus.className = 'search-status no-match';
+    }
+
+    searchStatus.textContent = statusText;
 }
 
 // ── Activate Sidebar Item ────────────────────────────────────────────
@@ -207,8 +245,9 @@ async function loadDoc(path, pushState = true) {
     // Use raw URL to fetch markdown from GitHub (strip hash)
     const rawUrl = GITHUB_RAW_BASE + docPath;
 
+    let response;
     try {
-        const response = await fetch(rawUrl, { cache: 'no-cache' });
+        response = await fetch(rawUrl, { cache: 'no-cache' });
 
         if (!response.ok) {
             throw new Error(`Failed to load (${response.status})`);
@@ -227,14 +266,20 @@ async function loadDoc(path, pushState = true) {
         }
 
     } catch (err) {
+        const statusCode = response ? response.status : 0;
+        const notFound = statusCode === 404;
         markdownBody.innerHTML = `
             <div class="doc-error">
-                <div class="doc-error-icon">⚠️</div>
-                <h3>Failed to load document</h3>
-                <p>${err.message}</p>
-                <button class="btn-retry" onclick="loadDoc('${path}', false)">
-                    Retry
-                </button>
+                <div class="doc-error-icon">📄</div>
+                <h3>Document not found</h3>
+                <p>The document <strong>${docPath}</strong> could not be loaded.</p>
+                ${notFound
+                    ? '<p>This document may not exist yet. Check the repository directly for available documentation.</p>'
+                    : `<p>${err.message}</p>`}
+                <div class="doc-error-actions">
+                    <button class="btn-retry" onclick="loadDoc('${path}', false)">Retry</button>
+                    <a href="${GITHUB_BLOB_BASE + docPath}" target="_blank" class="btn-repo">View on GitHub →</a>
+                </div>
             </div>
         `;
     }
@@ -276,6 +321,10 @@ function renderDoc(markdown, path) {
             </span>
         </div>
     `;
+
+    // Cache rendered text for search
+    const textContent = markdownBody.textContent || '';
+    renderedContentCache = textContent;
 
     // Rewrite relative links to GitHub
     rewriteRelativeLinks(path);
