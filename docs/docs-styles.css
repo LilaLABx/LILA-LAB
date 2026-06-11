@@ -3342,31 +3342,26 @@ h1, h2, h3, h4 {
 /* ═══════════════════════════════════════════════════════════════════════
    BADGE ROWS — shields.io badges should stay horizontal
    ═══════════════════════════════════════════════════════════════════════ */
-/* Handles both cases: badges in one <p> (flex row) or each in its own <p> (inline-flex side by side) */
-.markdown-body p:has(a > img[src*="shields.io"]) {
-  display: inline-flex;
+.badge-row {
+  display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
   align-items: center;
-  margin: 0 0.15rem;
-  padding: 0;
+  margin: var(--space-lg) 0;
 }
 
-.markdown-body a > img[src*="shields.io"] {
+.badge-row a {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.badge-row a > img {
   display: inline-block;
   vertical-align: middle;
   margin: 0;
   border: none;
   border-radius: 0;
-  line-height: 1;
-}
-
-/* Fallback for browsers without :has() support */
-@supports not selector(:has(*)) {
-  .markdown-body img[src*="shields.io"] {
-    display: inline-block !important;
-    vertical-align: middle;
-  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════

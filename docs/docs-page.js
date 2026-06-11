@@ -297,6 +297,7 @@ function renderDoc(markdown, path) {
 
     renderedContentCache = markdownBody.textContent || '';
 
+    wrapBadgeRow();
     rewriteRelativeLinks(path);
 
     if (typeof hljs !== 'undefined') {
@@ -316,6 +317,35 @@ function renderDoc(markdown, path) {
     addHeadingAnchors();
     addCopyButtons();
     buildToc();
+}
+
+// ── Wrap shields.io badges in a horizontal row ──
+function wrapBadgeRow() {
+    var inner = document.querySelector('#markdownBody > .markdown-body');
+    if (!inner) return;
+    var badgeParagraphs = [];
+    inner.querySelectorAll('p').forEach(function(p) {
+        if (p.querySelector('a > img[src*="shields.io"]') && p.textContent.trim() === '') {
+            badgeParagraphs.push(p);
+        }
+    });
+    if (!badgeParagraphs.length) return;
+
+    var ref = badgeParagraphs[0].previousElementSibling || inner.firstChild;
+    var parent = ref.parentNode;
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'badge-row';
+    badgeParagraphs.forEach(function(p) {
+        p.querySelectorAll('a').forEach(function(a) { wrapper.appendChild(a); });
+        p.remove();
+    });
+
+    if (parent) {
+        parent.insertBefore(wrapper, ref.nextSibling);
+    } else {
+        inner.insertBefore(wrapper, inner.firstChild);
+    }
 }
 
 // ── Rewrite Relative Links ──
