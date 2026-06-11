@@ -20,6 +20,7 @@
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
+                <a href="beni.html">BENI</a>
                 <a href="docs.html" class="active">Docs</a>
                 <a href="https://github.com/LilaLABx/LILA-LAB" target="_blank">GitHub</a>
             </div>
@@ -73,10 +74,122 @@
                         <p class="welcome-hero-sub">Learn, build, and contribute to language intelligence for underserved languages — whether you're an NLP beginner or a system architect.</p>
                         <div class="welcome-hero-cta">
                             <span class="hero-badge">Open Source</span>
+                            <span class="hero-badge">Text as Data</span>
                             <span class="hero-badge">10 Languages Target</span>
                             <span class="hero-badge">Community-Driven</span>
                         </div>
                     </div>
+
+                    <!-- ═══ Your First 5 Minutes ═══ -->
+                    <section class="onboarding-section">
+                        <div class="section-label">Start Here</div>
+                        <h2 class="home-section-title">Your first 5 minutes</h2>
+                        <p class="home-section-desc">A quick tour of the big ideas — no technical background needed.</p>
+                        <div class="onboarding-strip">
+                            <a href="#how-it-works" class="onboarding-step" data-scroll="how-it-works">
+                                <span class="onboarding-step-num">1</span>
+                                <div class="onboarding-step-content">
+                                    <div class="onboarding-step-label">Concept</div>
+                                    <div class="onboarding-step-title">What is Text as Data?</div>
+                                </div>
+                                <span class="onboarding-step-arrow">→</span>
+                            </a>
+                            <a href="#how-it-works" class="onboarding-step" data-scroll="how-it-works">
+                                <span class="onboarding-step-num">2</span>
+                                <div class="onboarding-step-content">
+                                    <div class="onboarding-step-label">Process</div>
+                                    <div class="onboarding-step-title">How a narrative index is built</div>
+                                </div>
+                                <span class="onboarding-step-arrow">→</span>
+                            </a>
+                            <a href="#" class="onboarding-step" data-doc="pipelines/beni/experiment/beni_pilot/README.md">
+                                <span class="onboarding-step-num">3</span>
+                                <div class="onboarding-step-content">
+                                    <div class="onboarding-step-label">Result</div>
+                                    <div class="onboarding-step-title">See the BENI Economic Index</div>
+                                </div>
+                                <span class="onboarding-step-arrow">→</span>
+                            </a>
+                            <a href="#paths" class="onboarding-step" data-scroll="paths">
+                                <span class="onboarding-step-num">4</span>
+                                <div class="onboarding-step-content">
+                                    <div class="onboarding-step-label">Your Role</div>
+                                    <div class="onboarding-step-title">Pick your path</div>
+                                </div>
+                                <span class="onboarding-step-arrow">→</span>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- ═══ How It Works ═══ -->
+                    <section class="concept-section" id="how-it-works">
+                        <div class="section-label">How It Works</div>
+                        <h2 class="home-section-title">From text to narrative index</h2>
+                        <p class="home-section-desc">Three ideas that make LILA Lab tick — and the pipeline that connects them.</p>
+
+                        <div class="concept-flow">
+                            <a href="GLOSSARY.md" class="concept-card" data-doc="GLOSSARY.md">
+                                <div class="concept-card-icon">📄→📊</div>
+                                <h3>Text as Data</h3>
+                                <p>Newspaper articles aren't just words — they're measurements of what a society pays attention to. LILA Lab builds instruments to turn this text into quantitative signals.</p>
+                                <span class="concept-card-tag">Foundation →</span>
+                            </a>
+                            <a href="FAQ.md#what-is-a-xeni-pipeline" class="concept-card" data-doc="FAQ.md#what-is-a-xeni-pipeline">
+                                <div class="concept-card-icon">📈</div>
+                                <h3>Narrative Index</h3>
+                                <p>A monthly score tracking how much a topic (like "the economy") appears in news. Like an economic indicator — but built from text instead of numbers.</p>
+                                <span class="concept-card-tag">Measurement →</span>
+                            </a>
+                            <a href="FAQ.md#whats-the-difference-between-a-pipeline-and-an-index" class="concept-card" data-doc="FAQ.md#whats-the-difference-between-a-pipeline-and-an-index">
+                                <div class="concept-card-icon">🎯</div>
+                                <h3>Domain Indices</h3>
+                                <p>One pipeline, many indices. BENI starts with Economic. The same instrument can measure Health, Climate, Education — each domain just needs its own annotation schema.</p>
+                                <span class="concept-card-tag">Scale →</span>
+                            </a>
+                            <a href="docs/PIPELINE_FLOW.md" class="concept-card" data-doc="docs/PIPELINE_FLOW.md">
+                                <div class="concept-card-icon">⚙️</div>
+                                <h3>XENI Framework</h3>
+                                <p>A reproducible pipeline pattern for any language: collect news → LLM annotate → train classifier → build index → validate against real-world data.</p>
+                                <span class="concept-card-tag">Blueprint →</span>
+                            </a>
+                        </div>
+
+                        <!-- Pipeline visual schematic -->
+                        <div class="pipeline-schematic">
+                            <div class="pipeline-schematic-title">Pipeline → Index Flow</div>
+                            <div class="pipeline-schematic-flow">
+                                <div class="schematic-node active">
+                                    <span class="schematic-node-icon">📰</span>
+                                    <span class="schematic-node-label">664K Bangla<br>News Articles</span>
+                                    <span class="schematic-node-stat">2014–2020</span>
+                                </div>
+                                <span class="schematic-arrow">→</span>
+                                <div class="schematic-node active">
+                                    <span class="schematic-node-icon">🤖</span>
+                                    <span class="schematic-node-label">LLM Annotation<br>Claude + GPT-4o</span>
+                                    <span class="schematic-node-stat">Ensemble</span>
+                                </div>
+                                <span class="schematic-arrow">→</span>
+                                <div class="schematic-node active">
+                                    <span class="schematic-node-icon">🧠</span>
+                                    <span class="schematic-node-label">Classifier<br>TF-IDF / BanglaBERT</span>
+                                    <span class="schematic-node-stat">91.7% Accuracy</span>
+                                </div>
+                                <span class="schematic-arrow">→</span>
+                                <div class="schematic-node active">
+                                    <span class="schematic-node-icon">📊</span>
+                                    <span class="schematic-node-label">Monthly Index<br>79 Months</span>
+                                    <span class="schematic-node-stat">38.9% Mean</span>
+                                </div>
+                                <span class="schematic-arrow">→</span>
+                                <div class="schematic-node active">
+                                    <span class="schematic-node-icon">✅</span>
+                                    <span class="schematic-node-label">Macro Validation<br>CPI · FX · Reserves</span>
+                                    <span class="schematic-node-stat">r = −0.75</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
                     <!-- ═══ Choose Your Path ═══ -->
                     <section class="home-section" id="paths">
@@ -250,6 +363,41 @@
                         </div>
                     </section>
 
+                    <!-- ═══ Key Concepts — Glossary ═══ -->
+                    <section class="home-section" id="concepts">
+                        <div class="section-label">Key Concepts</div>
+                        <h2 class="home-section-title">The LILA Lab lexicon</h2>
+                        <p class="home-section-desc">Five terms you'll encounter everywhere — <a href="GLOSSARY.md" data-doc="GLOSSARY.md" style="color:var(--teal);font-weight:500;text-decoration:none;">visit the full glossary →</a></p>
+
+                        <div class="glossary-cards">
+                            <a href="GLOSSARY.md#b" class="glossary-card" data-doc="GLOSSARY.md#b">
+                                <div class="glossary-card-term">BENI</div>
+                                <p class="glossary-card-def"><strong>B</strong>angla <strong>E</strong>xploration &amp; <strong>N</strong>ative-language <strong>I</strong>ntelligence — the first proven XENI pipeline, built for Bangla (265M speakers).</p>
+                                <span class="glossary-card-link">Full definition →</span>
+                            </a>
+                            <a href="GLOSSARY.md#x" class="glossary-card" data-doc="GLOSSARY.md#x">
+                                <div class="glossary-card-term">XENI</div>
+                                <p class="glossary-card-def">The naming convention for every LILA Lab pipeline: <strong>[Language initial] + ENI</strong>. BENI, AENI, NENI, SENI, and more.</p>
+                                <span class="glossary-card-link">Full definition →</span>
+                            </a>
+                            <a href="GLOSSARY.md#n" class="glossary-card" data-doc="GLOSSARY.md#n">
+                                <div class="glossary-card-term">Narrative Index</div>
+                                <p class="glossary-card-def">A monthly time series measuring how much a society talks about a topic — built by classifying every article in a language's news corpus.</p>
+                                <span class="glossary-card-link">Full definition →</span>
+                            </a>
+                            <a href="GLOSSARY.md#a" class="glossary-card" data-doc="GLOSSARY.md#a">
+                                <div class="glossary-card-term">Annotation Schema</div>
+                                <p class="glossary-card-def">The structured labels used to classify each article (e.g., "Economic" vs. "Not Economic"). Different domains = different schemas.</p>
+                                <span class="glossary-card-link">Full definition →</span>
+                            </a>
+                            <a href="GLOSSARY.md#m" class="glossary-card" data-doc="GLOSSARY.md#m">
+                                <div class="glossary-card-term">Macro Validation</div>
+                                <p class="glossary-card-def">Comparing the narrative index against real economic indicators (CPI, FX, reserves) to prove it captures meaningful signal.</p>
+                                <span class="glossary-card-link">Full definition →</span>
+                            </a>
+                        </div>
+                    </section>
+
                     <!-- ═══ Knowledge & Resources ═══ -->
                     <section class="home-section" id="resources">
                         <div class="section-label">Knowledge &amp; Resources</div>
@@ -299,6 +447,83 @@
                                     <p>Updates, findings, and deep dives published on Substack. Subscribe for the latest.</p>
                                 </div>
                             </a>
+                        </div>
+                    </section>
+
+                    <!-- ═══ Domain × Language Matrix ═══ -->
+                    <section class="home-section" id="domains">
+                        <div class="section-label">Index of Domains</div>
+                        <h2 class="home-section-title">One pipeline, many domains</h2>
+                        <p class="home-section-desc">Every XENI pipeline can produce indices across multiple domains. Here's what exists, what's planned, and what's possible.</p>
+
+                        <div class="domain-matrix-wrapper">
+                            <table class="domain-matrix">
+                                <thead>
+                                    <tr>
+                                        <th>Domain</th>
+                                        <th>BENI<br><small>Bangla</small></th>
+                                        <th>AENI<br><small>Assamese</small></th>
+                                        <th>NENI<br><small>Nepali</small></th>
+                                        <th>SENI<br><small>Sylheti</small></th>
+                                        <th>CENI<br><small>Chittagonian</small></th>
+                                        <th>HENI<br><small>Hausa</small></th>
+                                        <th>KIENI<br><small>Swahili</small></th>
+                                        <th>More…</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Economic</td>
+                                        <td><span class="domain-status active">✅ Active</span></td>
+                                        <td><span class="domain-status planned">🔜 Planned</span></td>
+                                        <td><span class="domain-status planned">🔜 Planned</span></td>
+                                        <td><span class="domain-status proposed">💡 TBD</span></td>
+                                        <td><span class="domain-status proposed">💡 TBD</span></td>
+                                        <td><span class="domain-status proposed">💡 TBD</span></td>
+                                        <td><span class="domain-status proposed">💡 TBD</span></td>
+                                        <td><span class="domain-status proposed">💡 TBD</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Health</td>
+                                        <td><span class="domain-status planned">🔜 Planned</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status proposed">💡 TBD</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Climate</td>
+                                        <td><span class="domain-status planned">🔜 Planned</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status proposed">💡 TBD</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Education</td>
+                                        <td><span class="domain-status proposed">💡 Proposed</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status na">—</span></td>
+                                        <td><span class="domain-status proposed">💡 TBD</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="matrix-legend">
+                            <span class="matrix-legend-item"><span class="matrix-legend-dot active"></span> Active — index published</span>
+                            <span class="matrix-legend-item"><span class="matrix-legend-dot planned"></span> Planned — pipeline in development</span>
+                            <span class="matrix-legend-item"><span class="matrix-legend-dot proposed"></span> Proposed — awaiting contributors</span>
+                            <span class="matrix-legend-item"><span class="matrix-legend-dot na"></span> Not started</span>
                         </div>
                     </section>
 
@@ -369,9 +594,10 @@
                 <div class="footer-links">
                     <h4>Documentation</h4>
                     <a href="docs.html">Docs Home</a>
+                    <a href="#how-it-works">How It Works</a>
                     <a href="#roadmap">Learning Roadmap</a>
                     <a href="#paths">Choose Your Path</a>
-                    <a href="#resources">Resources</a>
+                    <a href="#domains">Domain Index</a>
                 </div>
                 <div class="footer-links">
                     <h4>Community</h4>

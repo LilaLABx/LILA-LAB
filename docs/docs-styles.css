@@ -854,6 +854,424 @@ body {
 }
 
 /* ══════════════════════════════════════
+   Onboarding Strip — "Your First 5 Minutes"
+   ══════════════════════════════════════ */
+
+.onboarding-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.onboarding-strip {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.onboarding-step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    text-decoration: none;
+    color: var(--charcoal);
+    position: relative;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    min-width: 0;
+}
+
+.onboarding-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: var(--gray-200);
+}
+
+.onboarding-step:hover {
+    background: rgba(0, 109, 119, 0.03);
+}
+
+.onboarding-step:hover .onboarding-step-arrow {
+    transform: translateX(4px);
+    color: var(--teal);
+}
+
+.onboarding-step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.onboarding-step-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.onboarding-step-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--teal);
+    margin-bottom: 2px;
+}
+
+.onboarding-step-title {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.onboarding-step-arrow {
+    font-size: 1.1rem;
+    color: var(--gray-400);
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s;
+}
+
+/* ══════════════════════════════════════
+   How It Works — Concept Explainer
+   ══════════════════════════════════════ */
+
+.concept-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.concept-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.concept-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.concept-card:hover {
+    border-color: var(--teal);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+}
+
+.concept-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 109, 119, 0.08);
+    margin-bottom: var(--space-md);
+    font-size: 1.25rem;
+    color: var(--teal);
+}
+
+.concept-card h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: var(--space-xs);
+}
+
+.concept-card p {
+    font-size: 0.82rem;
+    color: var(--gray-500);
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+}
+
+.concept-card-tag {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Flow connectors between concept cards */
+.concept-flow-connector {
+    display: none;
+}
+
+/* Pipeline visual schematic */
+.pipeline-schematic {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg) var(--space-xl);
+    margin-top: var(--space-md);
+}
+
+.pipeline-schematic-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-500);
+    margin-bottom: var(--space-md);
+}
+
+.pipeline-schematic-flow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.schematic-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    min-width: 100px;
+    text-align: center;
+}
+
+.schematic-node.active {
+    background: rgba(0, 109, 119, 0.06);
+    border-color: var(--teal);
+}
+
+.schematic-node-icon {
+    font-size: 1.1rem;
+}
+
+.schematic-node-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gray-600);
+    line-height: 1.3;
+}
+
+.schematic-node.active .schematic-node-label {
+    color: var(--teal);
+}
+
+.schematic-node-stat {
+    font-size: 0.6rem;
+    color: var(--gray-400);
+    font-weight: 500;
+}
+
+.schematic-arrow {
+    font-size: 1rem;
+    color: var(--gray-400);
+    flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   Concept Cards — Glossary Terms
+   ══════════════════════════════════════ */
+
+.glossary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+}
+
+.glossary-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.glossary-card:hover {
+    border-color: var(--teal);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+.glossary-card-term {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: var(--space-xs);
+}
+
+.glossary-card-def {
+    font-size: 0.82rem;
+    color: var(--gray-500);
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+}
+
+.glossary-card-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--gold);
+    margin-top: var(--space-sm);
+    transition: color 0.2s;
+}
+
+.glossary-card:hover .glossary-card-link {
+    color: var(--teal);
+}
+
+/* ══════════════════════════════════════
+   Domain × Language Matrix
+   ══════════════════════════════════════ */
+
+.domain-matrix-wrapper {
+    overflow-x: auto;
+    margin: var(--space-lg) 0;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--gray-200);
+}
+
+.domain-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    background: var(--white);
+}
+
+.domain-matrix th {
+    padding: 0.75rem 1rem;
+    background: var(--charcoal);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.domain-matrix th:first-child {
+    background: var(--teal);
+}
+
+.domain-matrix td {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-700);
+}
+
+.domain-matrix tr:last-child td {
+    border-bottom: none;
+}
+
+.domain-matrix tr:hover td {
+    background: var(--sand-light);
+}
+
+.domain-matrix td:first-child {
+    font-weight: 600;
+    color: var(--charcoal);
+    white-space: nowrap;
+}
+
+.domain-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.domain-status.active {
+    color: #2e7d32;
+}
+
+.domain-status.planned {
+    color: #e65100;
+}
+
+.domain-status.proposed {
+    color: #718096;
+}
+
+.domain-status.na {
+    color: var(--gray-400);
+}
+
+.matrix-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    margin-top: var(--space-sm);
+    font-size: 0.78rem;
+    color: var(--gray-500);
+}
+
+.matrix-legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.matrix-legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.matrix-legend-dot.active {
+    background: #2e7d32;
+}
+
+.matrix-legend-dot.planned {
+    background: #e65100;
+}
+
+.matrix-legend-dot.proposed {
+    background: var(--gray-400);
+}
+
+.matrix-legend-dot.na {
+    background: var(--gray-200);
+}
+
+/* ══════════════════════════════════════
    Welcome Page — Redesigned (June 2026)
    ══════════════════════════════════════ */
 
@@ -1264,6 +1682,65 @@ body {
     color: var(--teal);
 }
 
+
+/* ── New Section Responsive Styles ─── */
+
+@media (max-width: 900px) {
+    .concept-flow {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .onboarding-strip {
+        flex-direction: column;
+    }
+
+    .onboarding-step:not(:last-child)::after {
+        display: none;
+    }
+
+    .onboarding-step {
+        border-bottom: 1px solid var(--gray-200);
+    }
+
+    .onboarding-step:last-child {
+        border-bottom: none;
+    }
+
+    .concept-flow {
+        grid-template-columns: 1fr;
+    }
+
+    .pipeline-schematic-flow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .schematic-node {
+        flex-direction: row;
+        gap: var(--space-sm);
+        min-width: unset;
+    }
+
+    .schematic-arrow {
+        transform: rotate(90deg);
+        text-align: center;
+    }
+
+    .glossary-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .domain-matrix {
+        font-size: 0.75rem;
+    }
+
+    .domain-matrix th,
+    .domain-matrix td {
+        padding: 0.5rem 0.625rem;
+    }
+}
 
 @media (max-width: 480px) {
     .content-header {

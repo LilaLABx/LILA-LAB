@@ -179,16 +179,21 @@ function setActiveItem(path) {
 async function loadDoc(path, pushState = true) {
     if (!path) return;
 
-    currentPath = path;
-    setActiveItem(path);
+    // Extract hash fragment for scrolling after render
+    const hashIndex = path.indexOf('#');
+    const docPath = hashIndex >= 0 ? path.substring(0, hashIndex) : path;
+    const hashFragment = hashIndex >= 0 ? path.substring(hashIndex) : '';
+
+    currentPath = docPath;
+    setActiveItem(docPath);
 
     // Switch from welcome page to doc view
     enterDocView();
 
     // Update URL
     if (pushState) {
-        const url = SITE_PREFIX + encodeURIComponent(path);
-        history.pushState({ path }, '', url);
+        const url = SITE_PREFIX + encodeURIComponent(docPath) + hashFragment;
+        history.pushState({ path: docPath, hash: hashFragment }, '', url);
     }
 
     // Show loading
@@ -199,8 +204,8 @@ async function loadDoc(path, pushState = true) {
         </div>
     `;
 
-    // Use raw URL to fetch markdown from GitHub
-    const rawUrl = GITHUB_RAW_BASE + path;
+    // Use raw URL to fetch markdown from GitHub (strip hash)
+    const rawUrl = GITHUB_RAW_BASE + docPath;
 
     try {
         const response = await fetch(rawUrl, { cache: 'no-cache' });
@@ -210,7 +215,16 @@ async function loadDoc(path, pushState = true) {
         }
 
         const markdown = await response.text();
-        renderDoc(markdown, path);
+        renderDoc(markdown, docPath);
+
+        // Scroll to hash fragment if present, after render
+        if (hashFragment) {
+            setTimeout(() => {
+                const targetId = hashFragment.replace('#', '');
+                const el = document.getElementById(targetId);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
 
     } catch (err) {
         markdownBody.innerHTML = `
@@ -229,8 +243,9 @@ async function loadDoc(path, pushState = true) {
     docsSidebar.classList.remove('open');
     sidebarOverlay.classList.remove('active');
 
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!hashFragment) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 }
 
 // ── Render Markdown ──────────────────────────────────────────────────
@@ -346,7 +361,10 @@ sidebarOverlay.addEventListener('click', () => {
 // ── Handle Browser Back/Forward ──────────────────────────────────────
 window.addEventListener('popstate', (e) => {
     if (e.state && e.state.path) {
-        loadDoc(e.state.path, false);
+        const pathWithHash = e.state.hash
+            ? e.state.path + e.state.hash
+            : e.state.path;
+        loadDoc(pathWithHash, false);
     } else {
         showWelcome();
     }
@@ -392,6 +410,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Re-bind all doc links on the welcome page
 document.addEventListener('click', function(e) {
+    // Scroll-to-section links (onboarding strip)
+    const scrollLink = e.target.closest('[data-scroll]');
+    if (scrollLink) {
+        e.preventDefault();
+        const targetId = scrollLink.dataset.scroll;
+        const target = document.getElementById(targetId);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        return;
+    }
+
     // All doc-link types share data-doc attribute
     const link = e.target.closest('[data-doc]');
     if (link && !link.classList.contains('path-card')) {
