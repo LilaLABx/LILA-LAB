@@ -42,6 +42,7 @@
         <a href="beni.html">BENI</a>
         <a href="#research">Research</a>
         <a href="#contribute">Contribute</a>
+        <a href="#join">Join the Lab</a>
         <a href="#community">Community</a>
         <a href="docs.html">Docs</a>
         <a href="dashboard.html">Control Room</a>
@@ -522,6 +523,153 @@
       <div class="contribute-cta">
         <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/COLLABORATION.md" class="btn btn-primary" target="_blank">Read the Full Framework →</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ JOIN THE LAB ════════════════════ -->
+  <section class="section section-join fade-section" id="join">
+    <div class="section-inner">
+      <h2 class="section-title">Join the Lab</h2>
+      <p class="section-sub">A contributor knowledge base spanning economics, linguistics, and Git — with a clear roadmap for getting involved.</p>
+
+      <!-- Knowledge Pillars -->
+      <div class="join-pillars">
+
+        <div class="pillar-card stagger-1">
+          <div class="pillar-icon">📈</div>
+          <h3 class="pillar-title">Economic Foundations</h3>
+          <p class="pillar-summary">Why narratives matter for economic measurement and policy.</p>
+          <ul class="pillar-list">
+            <li><strong>Narrative Economics</strong> (Shiller, 2017) — how stories spread like viruses and drive economic fluctuations. The theoretical basis for why we track narrative prevalence in news.</li>
+            <li><strong>Text as Data</strong> (Gentzkow, Kelly &amp; Taddy, 2019) — converting unstructured text into quantitative measures. From bag-of-words to LLM-based embeddings.</li>
+            <li><strong>Nowcasting</strong> — using high-frequency non-traditional data (news, search trends) to predict official statistics before they're released.</li>
+            <li><strong>Economic Complexity &amp; Fingerprint</strong> — each economy leaves a distinctive narrative fingerprint. The BENI approach captures that fingerprint through domain-specific narrative classification.</li>
+          </ul>
+        </div>
+
+        <div class="pillar-card stagger-2">
+          <div class="pillar-icon">🗣️</div>
+          <h3 class="pillar-title">Linguistics &amp; NLP</h3>
+          <p class="pillar-summary">How we process low-resource languages at scale.</p>
+          <ul class="pillar-list">
+            <li><strong>Low-Resource NLP</strong> — languages with limited labeled data, tools, and pre-trained models. 7,000+ languages worldwide; fewer than 100 have any NLP support.</li>
+            <li><strong>Multilingual Transformers</strong> — mBERT, XLM-R, BanglaBERT, sahajBERT. Cross-lingual transfer learning enables progress where direct data is scarce.</li>
+            <li><strong>Annotation Theory</strong> — schema design, inter-annotator agreement, adjudication. Our LLM ensemble (Claude + GPT-4o) achieves human-level reliability at 5–20× lower cost.</li>
+            <li><strong>Script &amp; Tokenization</strong> — Bangla script (Bengali-Assamese), Sylheti Nagri, Devanagari, Arabic script variations. Each writing system presents unique tokenization challenges for transformer models.</li>
+          </ul>
+        </div>
+
+        <div class="pillar-card stagger-3">
+          <div class="pillar-icon">⌨️</div>
+          <h3 class="pillar-title">Git &amp; GitHub Management</h3>
+          <p class="pillar-summary">How we organize, version, and collaborate across pipelines.</p>
+          <ul class="pillar-list">
+            <li><strong>Monorepo Structure</strong> — all pipelines, datasets, and documentation in one repository. Every XENI pipeline follows the same directory template for discoverability.</li>
+            <li><strong>Branch Strategy</strong> — feature branches from <code>main</code>, CI/CD via GitHub Actions, auto-deploy to GitHub Pages. Pre-commit hooks enforce linting and formatting.</li>
+            <li><strong>Issue &amp; Project Boards</strong> — each pipeline tracked as a GitHub Project. Labels: <code>language/*</code>, <code>domain/*</code>, <code>paper/*</code>, <code>good first issue</code>.</li>
+            <li><strong>Contribution Model</strong> — fork &amp; PR workflow. All contributors credited in the registry. Academic co-authorship guaranteed for substantive contributions.</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Roadmap -->
+      <div class="join-roadmap">
+        <h3 class="join-roadmap-heading">Project Roadmap</h3>
+        <p class="join-roadmap-sub">LILA Lab builds toward 10 underserved languages by H1 2027. Here is the path.</p>
+
+        <div class="roadmap-timeline">
+
+          <div class="roadmap-item roadmap-complete">
+            <div class="roadmap-marker"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-badge">Complete</div>
+              <h4>BENI Pipeline &amp; Baseline Papers</h4>
+              <p>664K Bangla articles collected, annotated (Claude + GPT-4o ensemble), and classified. TF-IDF baseline: 91.7% accuracy. BENI Economic Index validated against CPI (r = −0.75, p &lt; 0.001). Papers #1 and #2 complete, #3 active.</p>
+            </div>
+          </div>
+
+          <div class="roadmap-item roadmap-active">
+            <div class="roadmap-marker"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-badge">Active</div>
+              <h4>Unified Corpus &amp; 6-Model Benchmark</h4>
+              <p>Unified 933K-article corpus built. TF-IDF on unified corpus: 94.77% accuracy. Six BanglaBERT models queued for Kaggle GPU training. Paper #3 (Building BENI) in progress.</p>
+            </div>
+          </div>
+
+          <div class="roadmap-item roadmap-planned">
+            <div class="roadmap-marker"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-badge">Q3 2026</div>
+              <h4>Multi-Domain Expansion</h4>
+              <p>Extend BENI beyond Economics: Health (BENI Health Index), Climate (BENI Climate Index), Education (BENI Education Index). Each domain needs annotation schema design and validation data. Paper #4 (Nowcasting) and #5 (Text as Data survey).</p>
+            </div>
+          </div>
+
+          <div class="roadmap-item roadmap-planned">
+            <div class="roadmap-marker"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-badge">Q4 2026</div>
+              <h4>Sister Pipelines: AENI, NENI, SENI, CENI</h4>
+              <p>Bootstraps for Assamese, Nepali, Sylheti, and Chittagonian pipelines. Each requires native-speaking contributors, dataset collection, annotation schema adaptation, and local validation. GitHub Project boards created for each.</p>
+            </div>
+          </div>
+
+          <div class="roadmap-item roadmap-planned">
+            <div class="roadmap-marker"></div>
+            <div class="roadmap-content">
+              <div class="roadmap-badge">H1 2027</div>
+              <h4>African &amp; Southeast Asian Expansion</h4>
+              <p>HENI (Hausa, 80M speakers), KIENI (Swahili, 100M), VIENI (Vietnamese, 100M), TIENI (Filipino, 80M), IDENI (Indonesian, 200M). Target: 10-language XENI family complete. Paper #6 (LLMs as Measurement Devices).</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Getting Started -->
+      <div class="join-getting-started">
+        <h3 class="join-roadmap-heading">First Steps</h3>
+        <p class="join-roadmap-sub">Start contributing today — no prior NLP experience required.</p>
+
+        <div class="join-steps">
+          <div class="join-step stagger-1">
+            <div class="join-step-num">1</div>
+            <div class="join-step-body">
+              <h4>Fork the Repository</h4>
+              <p>Fork <a href="https://github.com/LilaLABx/LILA-LAB" target="_blank">LilaLABx/LILA-LAB</a> on GitHub, clone locally, and run <code>pip install -e ".[all]"</code>. Read the <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/CONTRIBUTING.md" target="_blank">Contributing Guide</a> for environment setup.</p>
+            </div>
+          </div>
+          <div class="join-step stagger-2">
+            <div class="join-step-num">2</div>
+            <div class="join-step-body">
+              <h4>Pick an Entry Point</h4>
+              <p>Browse the <a href="https://github.com/LilaLABx/LILA-LAB/issues?q=is:issue+is:open+label:%22good+first+issue%22" target="_blank">good first issues</a> or choose a <a href="#languages">language pipeline</a> that matches your background. Linguists can contribute annotation schemas; developers can build infrastructure; economists can design validation frameworks.</p>
+            </div>
+          </div>
+          <div class="join-step stagger-3">
+            <div class="join-step-num">3</div>
+            <div class="join-step-body">
+              <h4>Read the Knowledge Base</h4>
+              <p>Study the three pillars above. The <a href="https://github.com/LilaLABx/LILA-LAB/tree/main/technical-reports" target="_blank">technical reports</a> provide full methodological depth. The <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/registry/languages.json" target="_blank">language registry</a> tracks all pipeline statuses.</p>
+            </div>
+          </div>
+          <div class="join-step stagger-4">
+            <div class="join-step-num">4</div>
+            <div class="join-step-body">
+              <h4>Join the Community</h4>
+              <p>Introduce yourself on <a href="https://discord.gg/TrrdKbky" target="_blank">Discord</a>. Tell us your language, your domain interest, and how you'd like to contribute. Every contributor — technical or not — is credited in our registry.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="join-cta">
+          <a href="https://github.com/LilaLABx/LILA-LAB/fork" class="btn btn-primary" target="_blank">Fork the Repo →</a>
+          <a href="https://discord.gg/TrrdKbky" class="btn btn-outline" target="_blank">Join Discord</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
