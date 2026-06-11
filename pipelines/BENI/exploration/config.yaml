@@ -1,0 +1,135 @@
+# BENI — Exploration Phase Configuration
+# =========================================
+# Controls how the 5 exploration phases run.
+# Phase 0: Sample selection
+# Phase 1: Corpus profile
+# Phase 2: Vocabulary analysis
+# Phase 3: Temporal diagnostics
+# Phase 4: Schema validation
+
+pipeline: BENI
+
+# ── Preprocessing ───────────────────────────────────────────────────
+# Text preprocessing options applied across all phases (where applicable).
+# The ``pipeline_preset`` selects a built-in pipeline configuration from
+# PreprocessingPipeline.PRESETS.  See shared/analysis/preprocessing.py
+# for available presets and their full configurations.
+preprocessing:
+  # Pipeline preset: "bbd", "classical_ml", "deep_learning", "llm".
+  # Vocabulary analysis uses "classical_ml" (stop words + punctuation clean).
+  pipeline_preset: "classical_ml"
+  # Individual overrides (optional — any field set here overrides the preset).
+  # Example:
+  #   stopwords:
+  #     path: "../../shared/data/bengali_stopwords.txt"
+  #     enabled: true
+  #   min_token_length: 2
+  #   strip_digits: true
+
+# ── Corpus ──────────────────────────────────────────────────────────
+corpus:
+  # The canonical deduped BENI v1 corpus
+  path: "../../../dataset/BENI/beni-v1/data/processed/beni_unified_articles_deduped.csv.zst"
+  # Fallback if deduped is missing
+  fallback: "../../../dataset/BENI/beni-v1/data/processed/beni_unified_articles.csv.zst"
+  compression: "zst"
+  format: "csv"
+  encoding: "utf-8"
+  # Column names in the corpus CSV
+  fieldnames:
+    id: "article_id"
+    source: "dataset_source"
+    newspaper: "newspaper"
+    date: "publication_date"
+    year_month: "year_month"
+    category_original: "category_original"
+    category: "category_harmonised"
+    headline: "headline"
+    text: "text_clean"            # prefer clean text; fallback to "text"
+    text_raw: "text"
+    language: "language"
+
+# ── Outputs ─────────────────────────────────────────────────────────
+output:
+  base_dir: "outputs"
+  # Individual phase output directories (relative to exploration/)
+  phases:
+    sample: "00_sample"
+    profile: "01_profile"
+    vocabulary: "02_vocabulary"
+    temporal: "03_temporal"
+    schema: "04_schema"
+    report: "05_diagnostic"
+    figures: "06_figures"
+
+# ── Phase 0: Sample Selection ──────────────────────────────────────
+sampling:
+  # Number of articles to sample for detailed analysis
+  sample_size: 200_000
+  # Random seed for reproducible sampling
+  seed: 42
+  # Strategy: "random", "stratified" (by category), "temporal" (by year_month)
+  strategy: "stratified"
+  stratify_by: "category_harmonised"
+  # Output formats
+  formats: ["csv", "jsonl"]
+
+# ── Phase 1: Corpus Profile ───────────────────────────────────────
+profile:
+  # Number of rows to load for detailed text-length analysis (sampled)
+  sample_n: 200_000
+  # Which quality metrics to compute
+  quality_metrics:
+    - empty_text
+    - empty_headline
+    - short_text_50
+    - short_text_100
+  # Character length thresholds for "short" classification
+  short_thresholds:
+    text: 50
+    headline: 10
+
+# ── Phase 2: Vocabulary Analysis ──────────────────────────────────
+vocabulary:
+  max_rows: 500_000
+  max_rows_ngram: 200_000
+  # English + Bangla stopwords file (optional, relative to exploration/)
+  stopwords: null
+  top_n_words: 50
+  ngram_sizes: [2, 3]
+  top_n_ngrams: 30
+  # Log-odds prior (additive smoothing)
+  log_odds_prior: 0.01
+  top_n_keywords: 50
+
+# ── Phase 3: Temporal Diagnostics ────────────────────────────────
+temporal:
+  # Temporal unit: "year", "year_month"
+  granularity: "year_month"
+  # Min articles per temporal unit to include
+  min_articles_per_unit: 10
+  # Source-boundary KS test
+  source_boundary:
+    enabled: true
+    sources: ["potrika", "bnad"]
+    transition_months: 6  # compare N months before vs after boundary
+    alpha: 0.05
+
+# ── Phase 4: Schema Validation ────────────────────────────────────
+schema:
+  # Path to annotation schema JSON (relative to exploration/)
+  schema_path: "../annotation/schemas/economic.json"
+  # Sample size for schema coverage estimation
+  sample_size: 10_000
+  # Minimum keyword match rate to consider a field "covered"
+  coverage_threshold_pct: 50.0
+  # Keyword lists per field (will be read from schema)
+  # Fallback: if schema doesn't define keywords, check field name + values
+
+# ── Visualization ─────────────────────────────────────────────────
+visualization:
+  dpi: 150
+  figure_format: "png"
+  matplotlib_style: "default"
+  max_categories_plot: 15
+  palette: "Set2"

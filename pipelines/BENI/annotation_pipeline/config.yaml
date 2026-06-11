@@ -1,0 +1,160 @@
+# BENI — Annotation Pipeline Configuration
+# ==========================================
+# Controls the 4-phase annotation → index → validation pipeline.
+# Each phase has its own config section under `phases`.
+#
+# How to use:
+#   1. Set your LLM API keys as environment variables:
+#      ANTHROPIC_API_KEY, OPENAI_API_KEY (or in .env)
+#   2. Adjust phase-specific parameters below
+#   3. Run: python run_all.py [--force] [--skip PHASE ...]
+#
+# Community contribution guide:
+#   - Phase 1 (pilot) is the fastest to implement — start there
+#   - Phase 2 (annotate) depends on Phase 1's validated prompt
+#   - Phase 3 (index) can run with synthetic prediction data for testing
+#   - Phase 4 (validate) requires macro data from download_macro.py
+
+pipeline: BENI
+
+# ── Corpus ──────────────────────────────────────────────────────────
+# Reuses the same corpus as the exploration pipeline
+corpus:
+  path: "../../../dataset/BENI/beni-v1/data/processed/beni_unified_articles_deduped.csv.zst"
+  fallback: "../../../dataset/BENI/beni-v1/data/processed/beni_unified_articles.csv.zst"
+  compression: "zst"
+  format: "csv"
+  encoding: "utf-8"
+  fieldnames:
+    id: "article_id"
+    source: "dataset_source"
+    newspaper: "newspaper"
+    date: "publication_date"
+    year_month: "year_month"
+    category: "category_harmonised"
+    headline: "headline"
+    text: "text_clean"
+    text_raw: "text"
+
+# ── LLM Configuration ──────────────────────────────────────────────
+llm:
+  # Providers to use for annotation ensemble
+  # Each provider reads its API key from environment variables:
+  #   anthropic → ANTHROPIC_API_KEY
+  #   openai    → OPENAI_API_KEY
+  #   gemini    → GEMINI_API_KEY
+  providers:
+    - name: "claude"
+      model: "claude-3-5-sonnet-20241022"
+      max_tokens: 1024
+      temperature: 0.0
+    - name: "gpt4o"
+      model: "gpt-4o"
+      max_tokens: 1024
+      temperature: 0.0
+  # Self-consistency: number of independent runs per article per LLM
+  n_runs: 2
+  # Max retries per API call before skipping
+  max_retries: 3
+  # Delay between API calls (seconds)
+  request_delay: 0.5
+
+# ── Schema ─────────────────────────────────────────────────────────
+schema:
+  # Path to annotation schema JSON (relative to annotation_pipeline/)
+  path: "../annotation/schemas/economic.json"
+  # Sampling config for schema keyword pre-check
+  keyword_check_sample: 500
+
+# ── Outputs ─────────────────────────────────────────────────────────
+output:
+  base_dir: "outputs"
+  phases:
+    pilot: "01_pilot"
+    annotate: "02_annotations"
+    index: "03_index"
+    validate: "04_validation"
+    report: "05_report"
+    figures: "06_figures"
+
+# ── Phase 1: Pilot Annotation ──────────────────────────────────────
+pilot:
+  # Number of articles for the pilot annotation run
+  # Start with 50 to validate the prompt, then scale to 500
+  sample_size: 200
+  # Random seed for reproducible sampling
+  seed: 42
+  # Sampling strategy: "random" or "stratified" (by category)
+  strategy: "stratified"
+  stratify_by: "category_harmonised"
+  # Agreement thresholds
+  # Fields below min_agreement (Cohen's κ) should be revised
+  min_agreement: 0.6
+  # Output formats: "json", "jsonl"
+  formats: ["json", "jsonl"]
+
+# ── Phase 2: Full Corpus Annotation ───────────────────────────────
+annotate:
+  # Batch size for LLM annotation (articles per batch)
+  batch_size: 100
+  # Max articles to annotate (set to null for full corpus)
+  # Start with 10000 for testing, then remove to run full corpus
+  max_articles: null
+  # Checkpoint every N articles (allows resume on failure)
+  checkpoint_every: 500
+  # Path to save/load checkpoint (relative to annotation_pipeline/)
+  checkpoint_path: "outputs/02_annotations/checkpoint.parquet"
+  # Number of parallel workers for API calls
+  # Set to 1 to avoid rate limits, increase with API tier
+  n_workers: 1
+  # Consensus strategy: "majority_vote", "confidence_weighted", "llm_only"
+  consensus: "majority_vote"
+
+# ── Phase 3: Index Construction ────────────────────────────────────
+index:
+  # Prediction threshold for binary economic relevance
+  relevance_threshold: 0.5
+  # Calibration method: "base_rate", "llm_precision", "none"
+  calibration: "base_rate"
+  # Normalization: "zscore", "minmax", "none"
+  normalization: "zscore"
+  # Minimum articles per month to include in index
+  min_articles_per_month: 10
+  # Macro data directory (relative to BENI pipeline root)
+  macro_dir: "../data/raw/macro"
+  # Macro series to merge
+  macro_series:
+    - name: "fx_bis"
+      path: "../data/raw/macro/fx_bdt_usd_bis_eop_monthly.csv"
+      column: "fx_bis"
+    - name: "cpi"
+      path: "../data/raw/macro/cpi_imf_bgd_index_monthly.csv"
+      column: "cpi"
+    - name: "fx_imf"
+      path: "../data/raw/macro/fx_bdt_usd_imf_eop_monthly.csv"
+      column: "fx_imf"
+    - name: "reserves"
+      path: "../data/raw/macro/reserves_wb_annual.csv"
+      column: "reserves_usd"
+
+# ── Phase 4: Validation ────────────────────────────────────────────
+validation:
+  # Correlation methods to compute
+  methods: ["pearson", "spearman"]
+  # Lead/lag months to test (narrative leads macro by N months)
+  lead_lags: [0, 1, 3, 6]
+  # Significance threshold
+  alpha: 0.05
+  # Plot settings
+  plots:
+    dpi: 150
+    format: "png"
+    style: "default"
+    palette: "Set2"
+
+# ── Visualization ───────────────────────────────────────────────────
+visualization:
+  dpi: 150
+  figure_format: "png"
+  matplotlib_style: "default"
+  palette: "Set2"
