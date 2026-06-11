@@ -49,6 +49,38 @@ def read_jsonl(path: Path) -> list[dict]:
     return items
 
 
+def read_zst_csv(path: Path, **kwargs) -> pd.DataFrame:
+    """Read a zstd-compressed CSV file into a DataFrame.
+
+    Uses a subprocess pipe to ``zstd`` for decompression.
+
+    Any extra keyword arguments are forwarded to ``pd.read_csv()``,
+    so you can pass ``usecols``, ``dtype``, ``nrows``, etc.
+
+    Examples
+    --------
+    >>> df = read_zst_csv(path, usecols=["year_month", "text_clean"], nrows=1000)
+    """
+    import subprocess
+
+    proc = subprocess.Popen(
+        ["zstd", "-q", "-dc", str(path)],
+        stdout=subprocess.PIPE,
+    )
+    if proc.stdout is None:
+        raise RuntimeError(f"Failed to open zstd stdout for {path}")
+    try:
+        df = pd.read_csv(
+            proc.stdout, encoding="utf-8",
+            engine="python", on_bad_lines="skip",
+            **kwargs,
+        )
+    finally:
+        proc.stdout.close()
+        proc.wait()
+    return df
+
+
 def read_csv_safe(path: Path) -> pd.DataFrame:
     """Read a CSV file, trying multiple encodings.
 

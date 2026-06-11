@@ -8,7 +8,7 @@ Explicit re-exports:
     from pipelines.shared.stats import confusion_matrix, classification_report
 """
 
-from pipelines.shared.stats.agreement import (
+from .agreement import (
     classification_report,
     cohens_kappa,
     confusion_matrix,
