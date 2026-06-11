@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BENI — Bangla Exploration & Native-language Intelligence. LILA Lab's flagship pipeline: 91.7% accuracy, 79-month narrative index, validated against CPI and FX.">
+  <meta property="og:title" content="BENI — Bangla Exploration & Native-language Intelligence">
+  <meta property="og:description" content="LILA Lab's flagship NLP pipeline. From 664K Bangla news articles to a validated monthly narrative index. 91.7% classification accuracy. r = −0.75 with CPI.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lilalab.pro.bd/beni.html">
+  <meta property="og:image" content="https://lilalab.pro.bd/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@LILA_Lab">
+  <title>BENI — LILA Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="beni.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🪶</text></svg>">
+</head>
+<body>
+
+  <!-- ════════════════════ NAV ════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mark">LILA</span>
+        <span class="nav-logo-sub">Lab</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="beni.html" class="active">BENI</a>
+        <a href="docs.html">Docs</a>
+        <a href="dashboard.html">Control Room</a>
+        <a href="https://github.com/LilaLABx/LILA-LAB" class="nav-gh" target="_blank">GitHub ↗</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ════════════════════ HERO ════════════════════ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-breadcrumb">
+        <a href="index.html">LILA Lab</a> / <a href="beni.html">BENI</a>
+      </div>
+      <div class="hero-badge-row">
+        <span class="hero-badge teal">✅ Proven Pipeline</span>
+        <span class="hero-badge gold">🔤 Bangla (265M speakers)</span>
+        <span class="hero-badge green">📊 79-month index</span>
+      </div>
+      <h1>
+        <span class="accent">B</span>angla
+        <span class="accent">E</span>xploration &amp;
+        <span class="accent">N</span>ative-language
+        <span class="accent-gold">I</span>ntelligence
+      </h1>
+      <p class="hero-sub">
+        The first proven XENI pipeline — from 664,000 Bangla news articles to a validated
+        monthly narrative index that correlates with macroeconomic indicators.
+      </p>
+      <div class="hero-metrics">
+        <span class="hero-metric"><strong>91.7%</strong> classification accuracy</span>
+        <span class="hero-metric"><strong>79</strong> monthly observations</span>
+        <span class="hero-metric"><strong>r = −0.75</strong> correlation with CPI</span>
+        <span class="hero-metric"><strong>2</strong> papers published</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ WHAT IS BENI ════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">About</div>
+        <h2>What is BENI?</h2>
+        <p>BENI is the first end-to-end XENI pipeline — an instrument that measures economic narratives in the Bangla language by turning news articles into quantitative data.</p>
+      </div>
+
+      <div class="beni-definition">
+        <div class="beni-definition-text">
+          <h3>The Bangla Narrative Observatory</h3>
+          <p>BENI collects news articles from six major Bangladeshi newspapers, annotates them for economic relevance using an LLM ensemble (Claude, GPT-4o), trains a classifier, and constructs a monthly narrative index.</p>
+          <p>The index is then validated against real-world macroeconomic indicators — CPI inflation, exchange rates, and foreign exchange reserves — proving that narrative measurements capture economically meaningful signal.</p>
+          <div class="beni-expand">
+            <strong>B</strong>angla &nbsp;·&nbsp; <strong>E</strong>xploration &nbsp;·&nbsp; <strong>N</strong>ative-language &nbsp;·&nbsp; <strong>I</strong>ntelligence<br>
+            <span style="font-size:0.85rem;color:var(--muted);">The first of many XENI pipelines targeting 10 emerging-economy languages by 2027</span>
+          </div>
+        </div>
+
+        <div class="beni-quick-facts">
+          <div class="beni-fact">
+            <div class="beni-fact-value">664K</div>
+            <div class="beni-fact-label">Bangla news articles collected</div>
+          </div>
+          <div class="beni-fact">
+            <div class="beni-fact-value">6</div>
+            <div class="beni-fact-label">Major newspapers sourced</div>
+          </div>
+          <div class="beni-fact">
+            <div class="beni-fact-value">2014–2020</div>
+            <div class="beni-fact-label">Full date range of the corpus</div>
+          </div>
+          <div class="beni-fact">
+            <div class="beni-fact-value">265M</div>
+            <div class="beni-fact-label">Bangla speakers served</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ PIPELINE ════════════════════ -->
+  <section class="section alt" id="pipeline">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Pipeline</div>
+        <h2>How BENI works</h2>
+        <p>Six stages turn raw Bangla news into a validated economic narrative index.</p>
+      </div>
+
+      <div class="pipeline-showcase">
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">1</span>
+          <div class="pipeline-step-content">
+            <div class="pipeline-step-title">Article Collection</div>
+            <div class="pipeline-step-desc">Contributors submit Bangla news URLs, forms, or corpus files. The Potrika corpus provides 664K articles from six major dailies — Jugantor, Ittefaq, Kaler Kontho, Inqilab, Jaijaidin, Somoyer Alo.</div>
+          </div>
+          <span class="pipeline-step-stat">39 CSV files · 3.3 GB</span>
+        </div>
+
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">2</span>
+          <div class="pipeline-step-content">
+            <div class="pipeline-step-title">Bucket Building</div>
+            <div class="pipeline-step-desc">Articles are batched into 120,707-article timeseries (Economy + sampled National/Politics/Worldnews), preserving publication dates for time-series-aware evaluation.</div>
+          </div>
+          <span class="pipeline-step-stat">120K articles processed</span>
+        </div>
+
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">3</span>
+          <div class="pipeline-step-content">
+            <div class="pipeline-step-title">LLM Annotation</div>
+            <div class="pipeline-step-desc">Each article is independently annotated by Claude and GPT-4o. Disagreements are resolved via majority voting (adjudication). The ensemble approach improves reliability and provides natural confidence estimates.</div>
+          </div>
+          <span class="pipeline-step-stat">Claude + GPT-4o ensemble</span>
+        </div>
+
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">4</span>
+          <div class="pipeline-step-content">
+            <div class="pipeline-step-title">Human Review</div>
+            <div class="pipeline-step-desc">Native speakers verify uncertain or borderline labels. A 300-article locked reference set serves as the gold standard for all future classifier evaluation.</div>
+          </div>
+          <span class="pipeline-step-stat">300-article reference set</span>
+        </div>
+
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">5</span>
+          <div class="pipeline-step-content">
+            <div class="pipeline-step-title">Classification &amp; Index</div>
+            <div class="pipeline-step-desc">A TF-IDF + logistic regression classifier (91.7% accuracy, 0.894 macro F1) predicts economic relevance for every article. Monthly aggregation produces the BENI Economic Index — 79 months of narrative data.</div>
+          </div>
+          <span class="pipeline-step-stat">91.7% accuracy</span>
+        </div>
+
+        <div class="pipeline-step">
+          <span class="pipeline-step-num">6</span>
+          <div class="pipeline-step-content">
+            <div class="pipeline-step-title">Macroeconomic Validation</div>
+            <div class="pipeline-step-desc">The index is tested against CPI inflation (r = −0.75), BDT/USD exchange rate (r = −0.72), and foreign exchange reserves (r = −0.77) — all statistically significant at p &lt; 0.001.</div>
+          </div>
+          <span class="pipeline-step-stat">p &lt; 0.001</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ KEY RESULTS ════════════════════ -->
+  <section class="section" id="results">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Benchmarks</div>
+        <h2>Key results</h2>
+        <p>What BENI has achieved so far — and what it makes possible for every language that follows.</p>
+      </div>
+
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-card-icon">🎯</div>
+          <div class="result-card-value">91.7%</div>
+          <div class="result-card-label">Classification accuracy (TF-IDF + logistic regression)</div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-icon">📊</div>
+          <div class="result-card-value">79</div>
+          <div class="result-card-label">Monthly observations in the narrative index (2014–2020)</div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-icon">📈</div>
+          <div class="result-card-value">−0.75</div>
+          <div class="result-card-label">Level correlation with CPI (p &lt; 0.001)</div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-icon">💱</div>
+          <div class="result-card-value">−0.72</div>
+          <div class="result-card-label">Level correlation with BDT/USD FX (p &lt; 0.001)</div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-icon">🏦</div>
+          <div class="result-card-value">−0.77</div>
+          <div class="result-card-label">Level correlation with FX reserves (p &lt; 0.05)</div>
+        </div>
+        <div class="result-card">
+          <div class="result-card-icon">📄</div>
+          <div class="result-card-value">2</div>
+          <div class="result-card-label">Papers published (4 more in the pipeline)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ THE INDEX ════════════════════ -->
+  <section class="section alt" id="index">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">The Index</div>
+        <h2>BENI Economic Index</h2>
+        <p>A monthly time series measuring the share of economic news in Bangla-language media.</p>
+      </div>
+
+      <div class="index-showcase">
+        <div class="index-description">
+          <h3>What it measures</h3>
+          <p>The BENI Economic Index tracks what proportion of Bangla news articles discuss the economy each month. At its core, it answers a simple question: <em>how much is Bangladesh talking about the economy?</em></p>
+          <p>The classifier predicts an "economic probability" for every article in the corpus. Articles are grouped by month, and the index is the proportion with probability above 0.5. The result is a 79-month time series from June 2014 to December 2020.</p>
+          <p><strong>Mean economic news share:</strong> 38.9% — meaning roughly 2 in 5 Bangla news articles carry economic relevance.</p>
+          <p style="margin-top:1rem;">
+            <a href="pipelines/beni/experiment/beni_pilot/README.md" class="btn-outline" style="font-size:0.82rem;padding:7px 18px;">Explore the pilot experiment →</a>
+          </p>
+        </div>
+
+        <div class="index-stats">
+          <div class="index-stat">
+            <div class="index-stat-value">38.9%</div>
+            <div class="index-stat-label">Mean economic news share</div>
+          </div>
+          <div class="index-stat">
+            <div class="index-stat-value">79 mo.</div>
+            <div class="index-stat-label">Index duration (Jun 2014 – Dec 2020)</div>
+          </div>
+          <div class="index-stat">
+            <div class="index-stat-value">120,707</div>
+            <div class="index-stat-label">Articles classified for the timeseries</div>
+          </div>
+          <div class="index-stat">
+            <div class="index-stat-value">0.894</div>
+            <div class="index-stat-label">Macro F1 score (TF-IDF classifier)</div>
+          </div>
+          <div class="correlation-note">
+            <strong>On correlations:</strong> Level correlations are strong and significant (r = −0.75 with CPI, −0.72 with FX). Month-to-month (detrended) correlations are near zero — suggesting the TF-IDF index captures long-run structural shifts, not short-term noise. The planned BanglaBERT upgrade may improve short-run signal.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ GET STARTED ════════════════════ -->
+  <section class="section" id="start">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Get Started</div>
+        <h2>Run BENI yourself</h2>
+        <p>Clone the repo and be up and running in minutes.</p>
+      </div>
+
+      <div class="get-started-grid">
+        <div class="start-card">
+          <div class="start-card-icon">🔬</div>
+          <h3>For Researchers</h3>
+          <p>Train the baseline classifier and build the 79-month narrative index from scratch.</p>
+          <code>git clone https://github.com/LilaLABx/LILA-LAB.git<br>cd LILA-LAB<br>pip install -e ".[core]"<br>cd pipelines/beni/experiment/beni_pilot<br>python3 train.py --task economic --model-type tfidf<br>python3 build_index.py<br>python3 correlate.py</code>
+        </div>
+
+        <div class="start-card">
+          <div class="start-card-icon">💻</div>
+          <h3>For Developers</h3>
+          <p>Explore the full annotation pipeline, run LLM annotation, or fine-tune BanglaBERT.</p>
+          <code>cd pipelines/beni/annotation<br>python3 llm_annotate.py --help<br>python3 run_model_comparison.py --help<br><br># Set up the Discord bot<br>cd infrastructure/discord-bot<br>pip install -r requirements.txt<br>python bot.py</code>
+        </div>
+
+        <div class="start-card">
+          <div class="start-card-icon">🗣️</div>
+          <h3>For Linguistic Contributors</h3>
+          <p>No coding required. Help annotate Bangla articles, design schemas, or validate LLM outputs.</p>
+          <code># Read the contribution guide<br>cat docs/LINGUISTIC_CONTRIBUTION_GUIDE.md<br><br># Join the community<br># discord.gg/TrrdKbky</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ ROADMAP ════════════════════ -->
+  <section class="section alt" id="roadmap">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Roadmap</div>
+        <h2>BENI milestones</h2>
+        <p>Where BENI has been and where it's going.</p>
+      </div>
+
+      <div class="roadmap-timeline">
+        <div class="roadmap-item">
+          <div class="roadmap-dot">
+            <div class="roadmap-dot-inner done"></div>
+          </div>
+          <div class="roadmap-item-content">
+            <div class="roadmap-item-header">
+              <h3>Pilot Complete</h3>
+              <span class="roadmap-status done">Complete</span>
+            </div>
+            <p>TF-IDF baseline trained, 79-month index built, correlations with CPI and FX validated. Proof of concept established.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-dot">
+            <div class="roadmap-dot-inner done"></div>
+          </div>
+          <div class="roadmap-item-content">
+            <div class="roadmap-item-header">
+              <h3>Papers 1 &amp; 2 Published</h3>
+              <span class="roadmap-status done">Complete</span>
+            </div>
+            <p>Statistical Economics of Narrative and Economic Narrative Indices: Systematic Review — both complete and submitted.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-dot">
+            <div class="roadmap-dot-inner active"></div>
+          </div>
+          <div class="roadmap-item-content">
+            <div class="roadmap-item-header">
+              <h3>Paper 3 — BENI Method</h3>
+              <span class="roadmap-status active-now">Active</span>
+            </div>
+            <p>Building the full BENI pipeline paper. Documents the annotation methodology, classifier training, and index construction.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-dot">
+            <div class="roadmap-dot-inner" style="border-color:var(--gold);"></div>
+          </div>
+          <div class="roadmap-item-content">
+            <div class="roadmap-item-header">
+              <h3>Paper 4 — Nowcasting with BENI</h3>
+              <span class="roadmap-status planned">Planned</span>
+            </div>
+            <p>Using the narrative index to nowcast inflation. Scheduled for August 2026.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-dot">
+            <div class="roadmap-dot-inner" style="border-color:var(--muted);"></div>
+          </div>
+          <div class="roadmap-item-content">
+            <div class="roadmap-item-header">
+              <h3>Domain Expansion</h3>
+              <span class="roadmap-status planned">Planned</span>
+            </div>
+            <p>Extend BENI to Health, Climate, and Education domains. Each domain needs its own annotation schema and validation data.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-dot">
+            <div class="roadmap-dot-inner" style="border-color:var(--muted);"></div>
+          </div>
+          <div class="roadmap-item-content">
+            <div class="roadmap-item-header">
+              <h3>BanglaBERT Upgrade</h3>
+              <span class="roadmap-status planned">Planned</span>
+            </div>
+            <p>Full fine-tuning of BanglaBERT on the 70K-article training set (Kaggle GPU). Expected to improve short-run signal and classification accuracy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ PAPERS ════════════════════ -->
+  <section class="section" id="papers">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Research</div>
+        <h2>Papers &amp; publications</h2>
+        <p>BENI is the engine behind a 6-paper research series. Here's where its data and methodology appear.</p>
+      </div>
+
+      <div class="papers-grid">
+        <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/technical-reports/paper1_economics_of_narrative/README.md" class="paper-card" target="_blank">
+          <span class="paper-card-num">1</span>
+          <div class="paper-card-content">
+            <div class="paper-card-title">Statistical Economics of Narrative</div>
+            <div class="paper-card-desc">Foundations of narrative measurement and the case for text-as-data in economics</div>
+          </div>
+          <span class="paper-card-status done">✅ Published</span>
+        </a>
+
+        <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/technical-reports/paper2_systematic_review/README.md" class="paper-card" target="_blank">
+          <span class="paper-card-num">2</span>
+          <div class="paper-card-content">
+            <div class="paper-card-title">Economic Narrative Indices: Systematic Review</div>
+            <div class="paper-card-desc">BENI pilot results, literature review, and framework positioning</div>
+          </div>
+          <span class="paper-card-status done">✅ Submitted</span>
+        </a>
+
+        <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/technical-reports/paper3_beni_method/README.md" class="paper-card" target="_blank">
+          <span class="paper-card-num">3</span>
+          <div class="paper-card-content">
+            <div class="paper-card-title">Building BENI Pipeline</div>
+            <div class="paper-card-desc">Full methodology: annotation, classification, index construction, and validation</div>
+          </div>
+          <span class="paper-card-status active-status">🔄 Active</span>
+        </a>
+
+        <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/technical-reports/paper4_beni_nowcasting/README.md" class="paper-card" target="_blank">
+          <span class="paper-card-num">4</span>
+          <div class="paper-card-content">
+            <div class="paper-card-title">Nowcasting Inflation with BENI</div>
+            <div class="paper-card-desc">Using the narrative index as a nowcasting input for CPI inflation</div>
+          </div>
+          <span class="paper-card-status planned">📋 Planned</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ CONTRIBUTE ════════════════════ -->
+  <section class="section alt" id="contribute">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Contribute</div>
+        <h2>Help build BENI</h2>
+        <p>Multiple ways to contribute — no coding required for linguistic contributions.</p>
+      </div>
+
+      <div class="contribute-flex">
+        <div class="contribute-card">
+          <div class="contribute-card-icon">🗣️</div>
+          <h3>Linguistic Contributor</h3>
+          <p>Annotate Bangla articles, design schemas, review LLM outputs. Your language expertise is the core ingredient.</p>
+          <a href="LINGUISTIC_CONTRIBUTION_GUIDE.md" class="btn-sm">Get started →</a>
+        </div>
+
+        <div class="contribute-card">
+          <div class="contribute-card-icon">⚙️</div>
+          <h3>Methodological</h3>
+          <p>Improve the classifier, reduce LLM costs, or design better validation approaches.</p>
+          <a href="COLLABORATION.md" class="btn-sm">Collaboration →</a>
+        </div>
+
+        <div class="contribute-card">
+          <div class="contribute-card-icon">🌍</div>
+          <h3>Cross-Domain</h3>
+          <p>Extend BENI to Health, Climate, or Education domains. New annotation schema = new index.</p>
+          <a href="COLLABORATION.md" class="btn-sm">Propose a domain →</a>
+        </div>
+
+        <div class="contribute-card">
+          <div class="contribute-card-icon">✅</div>
+          <h3>Replication</h3>
+          <p>Independently verify BENI's results using the open-source code and published data.</p>
+          <a href="pipelines/beni/experiment/beni_pilot/README.md" class="btn-sm">Replicate →</a>
+        </div>
+
+        <div class="contribute-card">
+          <div class="contribute-card-icon">📊</div>
+          <h3>Policy Brief</h3>
+          <p>Analyze BENI's narrative data for policy insights and real-world applications.</p>
+          <a href="ROADMAP.md" class="btn-sm">Explore data →</a>
+        </div>
+
+        <div class="contribute-card">
+          <div class="contribute-card-icon">🛠️</div>
+          <h3>Infrastructure</h3>
+          <p>Build dashboards, APIs, or visualization tools for the BENI index.</p>
+          <a href="CONTRIBUTING.md" class="btn-sm">Code →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ CTA ════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-strip">
+        <h2>Ready to explore BENI?</h2>
+        <p>Clone the repository, run the pipeline, or join the community.</p>
+        <div class="cta-buttons">
+          <a href="https://github.com/LilaLABx/LILA-LAB" class="btn-primary" target="_blank">
+            GitHub Repository ↗
+          </a>
+          <a href="docs/CONTRIBUTOR_QUICKSTART.md" class="btn-outline">
+            Quickstart Guide →
+          </a>
+          <a href="https://discord.gg/TrrdKbky" class="btn-outline" target="_blank">
+            Join Discord ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>LILA Lab</h3>
+          <p>Language Intelligence for Low-resource Applications.<br>Your language. Your stories. Amplified by AI.</p>
+        </div>
+        <div class="footer-col">
+          <h4>BENI</h4>
+          <a href="beni.html">Overview</a>
+          <a href="#pipeline">Pipeline</a>
+          <a href="#results">Results</a>
+          <a href="#index">The Index</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="docs.html">Documentation</a>
+          <a href="dashboard.html">Control Room</a>
+          <a href="https://github.com/LilaLABx/LILA-LAB">GitHub</a>
+          <a href="https://lila.substack.com">Research Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Community</h4>
+          <a href="https://discord.gg/TrrdKbky">Discord</a>
+          <a href="https://x.com/LILA_Lab">X / Twitter</a>
+          <a href="https://linkedin.com/company/lila-lab">LinkedIn</a>
+          <a href="mailto:lila.lab0x@gmail.com">Email</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 LILA Lab. Code: MIT | Data: CC BY 4.0 | Papers: © Ann Naser Nabil</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Close nav on link click
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
