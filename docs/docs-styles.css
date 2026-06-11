@@ -2601,3 +2601,795 @@ h1, h2, h3, h4 {
     font-size: 0.9rem;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PAGE HERO — Rich header for individual doc pages
+   ═══════════════════════════════════════════════════════════════════════ */
+.page-hero {
+  position: relative;
+  padding: var(--space-2xl) 0 var(--space-xl);
+  margin-bottom: var(--space-2xl);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  border-radius: 1px;
+}
+
+.page-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem;
+  margin-bottom: var(--space-md);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  border: 1px solid var(--border-cyan);
+  border-radius: var(--radius-full);
+}
+
+.page-hero-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1.2;
+  margin: 0 0 var(--space-sm);
+  font-variation-settings: 'SOFT' 30;
+}
+
+.page-hero-desc {
+  font-size: 1.1rem;
+  color: var(--charcoal-light);
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 0 var(--space-lg);
+}
+
+.page-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.page-hero-section {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+}
+
+.page-hero-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.page-hero-edit:hover {
+  color: var(--cyan);
+  background: var(--bg-surface);
+}
+
+.page-hero-edit svg {
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BREADCRUMB
+   ═══════════════════════════════════════════════════════════════════════ */
+.doc-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--space-md) 0 var(--space-xs);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.doc-breadcrumb a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.doc-breadcrumb a:hover {
+  color: var(--cyan);
+}
+
+.breadcrumb-sep {
+  color: var(--muted);
+  opacity: 0.5;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.breadcrumb-current {
+  color: var(--charcoal-light);
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ENHANCED MARKDOWN — Callouts / Admonitions
+   ═══════════════════════════════════════════════════════════════════════
+   Use blockquote with a special first line to create styled callouts:
+     > **Info:** text     → blue info box
+     > **Tip:** text      → green tip box
+     > **Warning:** text  → amber warning box
+     > **Danger:** text   → red danger box
+   ═══════════════════════════════════════════════════════════════════════ */
+.markdown-body blockquote {
+  position: relative;
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg) var(--space-lg) var(--space-lg) 3.2rem;
+  border-left: none;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  color: var(--charcoal-light);
+  overflow: hidden;
+}
+
+.markdown-body blockquote::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--cyan);
+  border-radius: 2px 0 0 2px;
+}
+
+.markdown-body blockquote strong:first-child {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-xs);
+}
+
+/* Info callout (default) */
+.markdown-body blockquote strong:first-child:matches(Info) {
+  color: var(--cyan);
+}
+
+/* Tip callout */
+.markdown-body blockquote:has(> strong:first-child:matches(Tip))::before {
+  background: #66BB6A;
+}
+.markdown-body blockquote:has(> strong:first-child:matches(Tip)) {
+  border-color: rgba(102, 187, 106, 0.2);
+}
+.markdown-body blockquote strong:first-child:matches(Tip) {
+  color: #66BB6A;
+}
+
+/* Warning callout */
+.markdown-body blockquote:has(> strong:first-child:matches(Warning))::before {
+  background: #FFA726;
+}
+.markdown-body blockquote:has(> strong:first-child:matches(Warning)) {
+  border-color: rgba(255, 167, 38, 0.2);
+}
+.markdown-body blockquote strong:first-child:matches(Warning) {
+  color: #FFA726;
+}
+
+/* Danger callout */
+.markdown-body blockquote:has(> strong:first-child:matches(Danger))::before {
+  background: #EF5350;
+}
+.markdown-body blockquote:has(> strong:first-child:matches(Danger)) {
+  border-color: rgba(239, 83, 80, 0.2);
+}
+.markdown-body blockquote strong:first-child:matches(Danger) {
+  color: #EF5350;
+}
+
+/* Icon decoration for callouts */
+.markdown-body blockquote::after {
+  position: absolute;
+  top: var(--space-lg);
+  left: var(--space-md);
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.markdown-body blockquote:has(> strong:first-child:matches(Info))::after {
+  content: '\2139\FE0F';
+}
+.markdown-body blockquote:has(> strong:first-child:matches(Tip))::after {
+  content: '\1F4A1';
+}
+.markdown-body blockquote:has(> strong:first-child:matches(Warning))::after {
+  content: '\26A0\FE0F';
+}
+.markdown-body blockquote:has(> strong:first-child:matches(Danger))::after {
+  content: '\26D4';
+}
+
+/* Plain blockquote (no special first word) */
+.markdown-body blockquote:not(:has(strong:first-child))::before {
+  background: var(--cyan);
+  opacity: 0.5;
+}
+
+.markdown-body blockquote:not(:has(strong:first-child)) {
+  padding-left: var(--space-lg);
+}
+
+.markdown-body blockquote:not(:has(strong:first-child))::after {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ENHANCED MARKDOWN — Code blocks with language label
+   ═══════════════════════════════════════════════════════════════════════ */
+.markdown-body pre {
+  position: relative;
+  margin: var(--space-lg) 0;
+  padding: var(--space-lg) var(--space-lg);
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+[data-theme="light"] .markdown-body pre {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Language label */
+.markdown-body pre[class*="language-"]::before,
+.markdown-body pre code[class*="language-"] {
+  /* handled by highlight.js, but we add our own label for generic <pre> with <code> */
+}
+
+.markdown-body pre::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-glass);
+  border-left: 1px solid var(--border-glass);
+  border-radius: 0 var(--radius-md) 0 var(--radius-sm);
+  opacity: 0.8;
+}
+
+/* Better copy button positioning */
+.copy-code-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s, color 0.2s;
+  z-index: 2;
+  line-height: 1.5;
+}
+
+.copy-code-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--cyan);
+  border-color: var(--border-cyan);
+}
+
+.copy-code-btn.copied {
+  color: #66BB6A;
+  border-color: #66BB6A;
+  background: rgba(102, 187, 106, 0.12);
+}
+
+/* When pre has a language label, shift copy button to avoid overlap */
+.markdown-body pre[data-language] .copy-code-btn {
+  top: 1.8rem;
+}
+
+/* Inline code */
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 0.15em 0.45em;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: 4px;
+  color: var(--coral);
+}
+
+[data-theme="light"] .markdown-body code {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.markdown-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ENHANCED MARKDOWN — Headings
+   ═══════════════════════════════════════════════════════════════════════ */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  position: relative;
+}
+
+.markdown-body h2 {
+  margin-top: var(--space-3xl);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.markdown-body h2:first-child {
+  margin-top: 0;
+}
+
+.markdown-body h3 {
+  margin-top: var(--space-2xl);
+}
+
+.markdown-body h4 {
+  margin-top: var(--space-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ENHANCED MARKDOWN — Tables
+   ═══════════════════════════════════════════════════════════════════════ */
+.markdown-body table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: var(--space-xl) 0;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 0.7rem 1rem;
+  border: none;
+  border-bottom: 1px solid var(--border-glass);
+  text-align: left;
+}
+
+.markdown-body table th {
+  background: var(--bg-surface);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--charcoal-light);
+}
+
+.markdown-body table td {
+  color: var(--charcoal);
+}
+
+.markdown-body table tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-body table tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.markdown-body table tr:hover td {
+  background: var(--bg-surface-hover);
+}
+
+[data-theme="light"] .markdown-body table tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ENHANCED MARKDOWN — Misc
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Horizontal rules: decorative */
+.markdown-body hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+  margin: var(--space-3xl) 0;
+}
+
+/* Lists */
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.5rem;
+  margin-bottom: var(--space-lg);
+}
+
+.markdown-body li {
+  margin-bottom: var(--space-sm);
+  line-height: 1.6;
+}
+
+.markdown-body li > ul,
+.markdown-body li > ol {
+  margin-top: var(--space-sm);
+  margin-bottom: 0;
+}
+
+/* Task list (checkboxes) */
+.markdown-body ul.task-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.markdown-body .task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.markdown-body .task-list-item input[type="checkbox"] {
+  margin-top: 0.3em;
+  accent-color: var(--cyan);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Definition lists */
+.markdown-body dl {
+  margin: var(--space-lg) 0;
+}
+
+.markdown-body dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-top: var(--space-md);
+}
+
+.markdown-body dd {
+  margin-left: var(--space-lg);
+  color: var(--charcoal-light);
+  font-size: 0.95rem;
+}
+
+/* Keyboard shortcuts */
+.markdown-body kbd {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--charcoal);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 var(--border-glass);
+  line-height: 1.4;
+}
+
+/* Details / summary */
+.markdown-body details {
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease;
+}
+
+.markdown-body details:hover {
+  border-color: var(--border-cyan);
+}
+
+.markdown-body summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--charcoal);
+  padding: 0.25rem 0;
+  user-select: none;
+}
+
+.markdown-body summary:hover {
+  color: var(--cyan);
+}
+
+.markdown-body details[open] summary {
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+/* Mark / highlight */
+.markdown-body mark {
+  background: rgba(226, 149, 120, 0.25);
+  color: var(--charcoal);
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+}
+
+/* Abbreviations */
+.markdown-body abbr[title] {
+  cursor: help;
+  text-decoration: underline dotted var(--muted);
+  text-underline-offset: 2px;
+}
+
+/* Subscript / superscript */
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 0.75em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PAGE FOOTER NAVIGATION — Prev / Next
+   ═══════════════════════════════════════════════════════════════════════ */
+.page-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-glass);
+}
+
+.page-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  min-width: 0;
+  flex: 1;
+}
+
+.page-nav-link:hover {
+  border-color: var(--border-cyan);
+  background: var(--bg-surface-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.page-nav-prev {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.page-nav-next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.page-nav-up {
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: var(--space-md);
+  color: var(--muted);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+}
+
+.page-nav-up:hover {
+  color: var(--cyan);
+  border-color: var(--border-cyan);
+}
+
+.page-nav-disabled {
+  visibility: hidden;
+  flex: 1;
+}
+
+.page-nav-direction {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.page-nav-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.3;
+  transition: color 0.2s ease;
+}
+
+.page-nav-link:hover .page-nav-title {
+  color: var(--cyan);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COMING SOON PAGE — Enhanced
+   ═══════════════════════════════════════════════════════════════════════ */
+.coming-soon-page {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.coming-soon-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  color: var(--gold);
+  margin-bottom: var(--space-xl);
+}
+
+.coming-soon-page h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: var(--space-md);
+  border: none;
+  padding: 0;
+}
+
+.coming-soon-message {
+  font-size: 1rem;
+  color: var(--charcoal-light);
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+}
+
+.coming-soon-detail {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: var(--space-xl);
+}
+
+.coming-soon-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+}
+
+.coming-soon-steps {
+  text-align: left;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+}
+
+.coming-soon-steps h3 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: var(--space-md);
+}
+
+.coming-soon-steps ol {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.coming-soon-steps li {
+  font-size: 0.85rem;
+  color: var(--charcoal-light);
+  line-height: 1.55;
+  margin-bottom: var(--space-sm);
+}
+
+.coming-soon-steps li:last-child {
+  margin-bottom: 0;
+}
+
+.coming-soon-steps li a {
+  color: var(--cyan);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE — Enhanced components
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .page-hero-title {
+    font-size: 1.8rem;
+  }
+
+  .page-hero-desc {
+    font-size: 0.95rem;
+  }
+
+  .page-hero {
+    padding: var(--space-lg) 0;
+    margin-bottom: var(--space-lg);
+  }
+
+  .doc-breadcrumb {
+    font-size: 0.75rem;
+    padding: var(--space-sm) 0;
+  }
+
+  .page-nav {
+    flex-direction: column;
+  }
+
+  .page-nav-link {
+    width: 100%;
+  }
+
+  .page-nav-up {
+    order: -1;
+    align-self: center;
+  }
+
+  .page-nav-prev,
+  .page-nav-next {
+    align-items: center;
+    text-align: center;
+  }
+
+  .coming-soon-page {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .markdown-body blockquote {
+    padding: var(--space-md) var(--space-md) var(--space-md) 2.8rem;
+  }
+
+  .markdown-body pre::before {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.5rem;
+  }
+}

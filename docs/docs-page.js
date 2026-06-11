@@ -263,12 +263,29 @@ async function loadDoc(path) {
 function renderDoc(markdown, path) {
     marked.setOptions({ breaks: true, gfm: true });
 
-    var html = marked.parse(markdown);
-
+    // Extract the first h1 from markdown for the page hero title
     var titleMatch = markdown.match(/^#\s+(.+)/m);
     var title = titleMatch ? titleMatch[1].trim() : path.split('/').pop().replace('.md', '').replace(/_/g, ' ');
+
+    // Update the static hero title from the actual markdown content
     docTitle.textContent = title;
+    document.title = title + ' — LILA Lab';
     editOnGitHub.href = GITHUB_BLOB_BASE + path;
+
+    // Update hero description — use first paragraph after h1 if available
+    var descMatch = markdown.match(/^#\s+.+\n+([^#\n][\s\S]*?)(?=\n##|\n#|\n$)/);
+    var heroDesc = document.querySelector('.page-hero-desc');
+    if (descMatch && heroDesc) {
+        var firstPara = descMatch[1].trim().replace(/\n+/g, ' ').slice(0, 200);
+        if (firstPara) heroDesc.textContent = firstPara;
+    }
+
+    // Strip the first h1 and its following content up to the first h2 from the HTML
+    // to avoid duplicating the hero title
+    var html = marked.parse(markdown);
+
+    // Remove the first h1 from the rendered HTML (it's in the page hero)
+    html = html.replace(/^<h1[^>]*>.*?<\/h1>\s*/i, '');
 
     markdownBody.innerHTML = (
         '<div class="markdown-body">' + html + '</div>' +
@@ -285,6 +302,14 @@ function renderDoc(markdown, path) {
     if (typeof hljs !== 'undefined') {
         document.querySelectorAll('.markdown-body pre code').forEach(function(el) {
             hljs.highlightElement(el);
+            // Add language label from highlight.js detected class
+            var pre = el.closest('pre');
+            if (pre && !pre.getAttribute('data-language')) {
+                var langMatch = el.className.match(/language-(\w+)/);
+                if (langMatch) {
+                    pre.setAttribute('data-language', langMatch[1]);
+                }
+            }
         });
     }
 
