@@ -70,21 +70,54 @@ print(f"  Economy CSVs: {len(potrika_files)}")
 """
 
 # ──────────────────────────────────────────────────────────────────────
-# Cell 4 — TRAINING: BanglaBERT on T4 (~2–3 hours)
+# Cell 4 — TRAINING: BanglaBERT on T4 (~2–3 hours per model)
 # ──────────────────────────────────────────────────────────────────────
-# Saves model to: /kaggle/working/outputs/models/banglabert_economic_potrika-timeseries/
-# Zips outputs so you can download the trained model immediately.
+# Saves model to: /kaggle/working/outputs/models/{short_name}_economic_potrika-timeseries/
+# Zips model weights and reports separately for easy download.
+#   beni_model_{short_name}_*.zip     — model weights (download and keep)
+#   beni_reports_{short_name}_*.zip   — training metrics
+# Change BANGLA_MODEL below to switch to a different HuggingFace model.
 """
+BANGLA_MODEL = "csebuetnlp/banglabert"  # ← change for different models
+
 !python3 train.py \
     --task economic \
     --model-type banglabert \
     --data-source potrika-timeseries \
     --data-dir "{DATA_DIR}" \
-    --banglabert-batch-size 32 \
-    --banglabert-epochs 3 \
+    --banglabert-model-name {BANGLA_MODEL} \
+    --banglabert-batch-size 8 \
+    --banglabert-accum-steps 4 \
+    --banglabert-epochs 10 \
     --zip
 
-# ⬇️ DOWNLOAD THIS ZIP: go to Data → Output → find beni_economic_potrika-timeseries_*.zip
+# ⬇️ DOWNLOAD: beni_model_{short_name}_*.zip (weights) and beni_reports_{short_name}_*.zip (metrics)
+"""
+
+# ──────────────────────────────────────────────────────────────────────
+# Cell 4a — Option B: Train ALL 6 Benchmark Models sequentially
+# ──────────────────────────────────────────────────────────────────────
+# Total: ~10-15 hours on T4. Run overnight.
+"""
+MODELS = [
+    "csebuetnlp/banglabert_small",
+    "csebuetnlp/banglabert",
+    "sagorsarker/bangla-bert-base",
+    "neuropark/sahajBERT",
+    "xlm-roberta-base",
+    "bert-base-multilingual-cased",
+]
+
+for MODEL in MODELS:
+    !python3 train.py \
+        --task economic \
+        --model-type banglabert \
+        --data-source potrika-timeseries \
+        --data-dir "{DATA_DIR}" \
+        --banglabert-model-name {MODEL} \
+        --banglabert-epochs 10 \
+        --banglabert-accum-steps 4 \
+        --zip
 """
 
 # ──────────────────────────────────────────────────────────────────────
@@ -93,18 +126,21 @@ print(f"  Economy CSVs: {len(potrika_files)}")
 # Depends on: Cell 4 (trained model must exist)
 # Tests if BanglaBERT's accuracy improvement over TF-IDF is statistically
 # significant using McNemar's paired chi-square test.
+# Set BANGLA_MODEL to match the model trained in Cell 4.
 """
 import sys, joblib, torch, numpy as np
 from pathlib import Path
 from sklearn.metrics import accuracy_score, f1_score
 from scipy.stats import chi2
 from torch.utils.data import DataLoader
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 sys.path.insert(0, "/kaggle/working/repo/pipelines/beni/experiment/beni_pilot")
 from data import load_potrika_timeseries
 from config import ExperimentConfig
-from banglabert import BanglaBERTDataset
-from transformers import ElectraForSequenceClassification, ElectraTokenizerFast
+from banglabert import BanglaBERTDataset, get_model_short_name
+
+BANGLA_MODEL = "csebuetnlp/banglabert"  # ← must match Cell 4
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"McNemar test device: {device}", flush=True)
@@ -125,10 +161,11 @@ tfidf_acc = accuracy_score(labels, tfidf_preds)
 tfidf_f1 = f1_score(labels, tfidf_preds, average="macro")
 
 # --- BanglaBERT predictions ---
-model_path = "/kaggle/working/outputs/models/banglabert_economic_potrika-timeseries"
-print(f"Loading BanglaBERT from {model_path}...", flush=True)
-tokenizer = ElectraTokenizerFast.from_pretrained(str(model_path))
-model = ElectraForSequenceClassification.from_pretrained(str(model_path))
+short_name = get_model_short_name(BANGLA_MODEL)
+model_path = f"/kaggle/working/outputs/models/{short_name}_economic_potrika-timeseries"
+print(f"Loading {short_name} from {model_path}...", flush=True)
+tokenizer = AutoTokenizer.from_pretrained(str(model_path))
+model = AutoModelForSequenceClassification.from_pretrained(str(model_path))
 model.to(device)
 model.eval()
 
@@ -178,16 +215,41 @@ print("=" * 72)
 """
 
 # ──────────────────────────────────────────────────────────────────────
-# Cell 5 — BUILD INDEX: Predict all 120k articles with BanglaBERT (~45 min)
+# Cell 5 — BUILD INDEX: Predict all 120k articles with BanglaBERT (~45 min per model)
 # ──────────────────────────────────────────────────────────────────────
 # Depends on: Cell 4 (trained model must exist)
+# Set BANGLA_MODEL to match the model trained in Cell 4.
 """
+BANGLA_MODEL = "csebuetnlp/banglabert"  # ← must match Cell 4
+
 !python3 build_index.py \
     --data-dir "{DATA_DIR}" \
     --model-type banglabert \
+    --banglabert-model-name {BANGLA_MODEL} \
     --zip
 
-# ⬇️ DOWNLOAD THIS ZIP: beni_index_*.zip → contains narrative_index.csv + full_predictions.parquet
+# ⬇️ DOWNLOAD: beni_artifacts_*.zip → contains reports/ + index/ (narrative index + predictions)
+"""
+
+# ──────────────────────────────────────────────────────────────────────
+# Cell 5a — BUILD INDEX for ALL benchmark models (run after Cell 4a)
+# ──────────────────────────────────────────────────────────────────────
+"""
+MODELS = [
+    "csebuetnlp/banglabert_small",
+    "csebuetnlp/banglabert",
+    "sagorsarker/bangla-bert-base",
+    "neuropark/sahajBERT",
+    "xlm-roberta-base",
+    "bert-base-multilingual-cased",
+]
+
+for MODEL in MODELS:
+    !python3 build_index.py \
+        --data-dir "{DATA_DIR}" \
+        --model-type banglabert \
+        --banglabert-model-name {MODEL} \
+        --zip
 """
 
 # ──────────────────────────────────────────────────────────────────────
@@ -199,26 +261,40 @@ print("=" * 72)
     --data-dir "{DATA_DIR}" \
     --zip
 
-# ⬇️ DOWNLOAD THIS ZIP: beni_correlate_*.zip → contains correlations.csv
+# ⬇️ DOWNLOAD: beni_artifacts_*.zip → now includes index/correlations.csv
 """
 
 # ──────────────────────────────────────────────────────────────────────
-# Cell 7 — COMPARE: BanglaBERT vs TF-IDF correlations
+# Cell 7 — COMPARE: Model vs TF-IDF correlations
 # ──────────────────────────────────────────────────────────────────────
+# Set BANGLA_MODEL to match the model from Cell 4 / Cell 5.
 """
 import pandas as pd
+import sys
+from pathlib import Path
 
-# Load the new BanglaBERT correlations
-bangla_corr = pd.read_csv("/kaggle/working/outputs/index/correlations.csv")
+sys.path.insert(0, "/kaggle/working/repo/pipelines/beni/experiment/beni_pilot")
+from banglabert import get_model_short_name
+
+BANGLA_MODEL = "csebuetnlp/banglabert"  # ← must match Cell 4
+short_name = get_model_short_name(BANGLA_MODEL)
+
+# Load the new model correlations
+index_prefix = f"narrative_index_{short_name}"
+model_corr = pd.read_csv(f"/kaggle/working/outputs/index/{index_prefix}.csv")
+
+# Also run correlate to get the correlations from this index
+!python3 correlate.py --data-dir "{DATA_DIR}" --zip
 
 # Load the old TF-IDF correlations (backed up in the dataset)
 tfidf_corr = pd.read_csv(DATA_DIR / "outputs" / "index" / "correlations.csv")
 
 print("=" * 72)
-print("TF-IDF vs BanglaBERT — Correlation Comparison")
+print(f"TF-IDF vs {short_name} — Correlation Comparison")
 print("=" * 72)
 
-for _, row in bangla_corr.iterrows():
+model_corr_csv = pd.read_csv("/kaggle/working/outputs/index/correlations.csv")
+for _, row in model_corr_csv.iterrows():
     freq = row["frequency"]
     x = row["x"]
     y = row["y"]
@@ -237,12 +313,12 @@ for _, row in bangla_corr.iterrows():
         diff = r_new - r_old
         marker = " *** IMPROVED ***" if abs(r_new) > abs(r_old) and p_new < 0.1 else ""
         print(f"  [{freq:20s}] {x:15s} vs {y:12s}  "
-              f"TF-IDF r={r_old:7.4f} → BanglaBERT r={r_new:7.4f} (Δ={diff:+.4f}){marker}")
+              f"TF-IDF r={r_old:7.4f} → {short_name} r={r_new:7.4f} (Δ={diff:+.4f}){marker}")
     else:
-        print(f"  [{freq:20s}] {x:15s} vs {y:12s}  r={r_new:7.4f}  (BanglaBERT only)")
+        print(f"  [{freq:20s}] {x:15s} vs {y:12s}  r={r_new:7.4f}  ({short_name} only)")
 
 print("")
-print("Key question: Did BanglaBERT improve the differenced (short-run) correlations?")
+print(f"Key question: Did {short_name} improve the differenced (short-run) correlations?")
 """
 
 # ──────────────────────────────────────────────────────────────────────

@@ -4,6 +4,9 @@ import argparse
 from pathlib import Path
 
 import joblib
+import numpy as np
+import torch
+from sklearn.utils.class_weight import compute_class_weight
 
 from config import ExperimentConfig
 from data import (
@@ -17,7 +20,7 @@ from data import (
 )
 from eval import evaluate_model
 from models import build_tfidf_logreg
-from utils import ensure_dirs, set_seed, write_json, zip_outputs
+from utils import ensure_dirs, set_seed, write_json, zip_outputs, zip_subdirs
 
 
 def parse_args() -> argparse.Namespace:
@@ -49,7 +52,13 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--banglabert-epochs", type=int, default=3)
     parser.add_argument("--banglabert-batch-size", type=int, default=16)
+    parser.add_argument("--banglabert-accum-steps", type=int, default=None,
+                        help="Gradient accumulation steps. Default: config value (1). Set >1 for effective large batch on small GPU.")
     parser.add_argument("--banglabert-lr", type=float, default=2e-5)
+    parser.add_argument("--banglabert-model-name", default="csebuetnlp/banglabert",
+                        help="HuggingFace model name. Use --list-models to see available.")
+    parser.add_argument("--list-models", action="store_true",
+                        help="Print available models and exit.")
     parser.add_argument(
         "--data-dir",
         type=Path,
@@ -67,6 +76,14 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
 
+    if args.list_models:
+        from banglabert import MODEL_REGISTRY, get_model_short_name
+        print("Available models for --banglabert-model-name:")
+        for name, meta in MODEL_REGISTRY.items():
+            short = get_model_short_name(name)
+            print(f"  {name:45s} \u2192 {short:20s}  ({meta['params']/1e6:.0f}M params, default_batch={meta['default_batch']})")
+        return
+
     if args.data_dir is not None:
         # Kaggle mode: override all data paths
         dd = args.data_dir
@@ -74,11 +91,13 @@ def main() -> None:
             seed=args.seed,
             max_features=args.max_features,
             target_task=args.task,
+            model_name=args.banglabert_model_name,
             potrika_train_end=args.train_end,
             potrika_val_end=args.val_end,
             banglabert_epochs=args.banglabert_epochs,
             banglabert_batch_size=args.banglabert_batch_size,
             banglabert_learning_rate=args.banglabert_lr,
+            banglabert_accum_steps=args.banglabert_accum_steps or 1,
             potrika_dir=dd / "potrika",
             macro_dir=dd / "macro",
             model_dir=Path("/kaggle/working/outputs/models"),  # writable: save trained models here
@@ -90,11 +109,13 @@ def main() -> None:
             seed=args.seed,
             max_features=args.max_features,
             target_task=args.task,
+            model_name=args.banglabert_model_name,
             potrika_train_end=args.train_end,
             potrika_val_end=args.val_end,
             banglabert_epochs=args.banglabert_epochs,
             banglabert_batch_size=args.banglabert_batch_size,
             banglabert_learning_rate=args.banglabert_lr,
+            banglabert_accum_steps=args.banglabert_accum_steps or 1,
         )
     set_seed(config.seed)
     ensure_dirs(config.output_dir, config.report_dir)
@@ -129,16 +150,29 @@ def main() -> None:
         raise ValueError(f"Unknown data source: {args.data_source}")
 
     if args.model_type == "banglabert" and args.data_source in ("potrika-timeseries",):
-        from banglabert import evaluate_banglabert, train_banglabert
+        from banglabert import evaluate_banglabert, get_model_short_name, train_banglabert
 
-        print(f"\nTraining BanglaBERT on {len(train)} articles...")
+        short_name = get_model_short_name(args.banglabert_model_name)
+        output_name = f"{short_name}_{args.task}_{args.data_source}"
+
+        # Compute class weights for 3:1 imbalance (roughly 40% econ / 60% non-econ)
+        train_labels_list = train["economic_relevance"].tolist()
+        classes = np.array([0, 1])
+        cw = compute_class_weight("balanced", classes=classes, y=train_labels_list)
+        class_weight_tensor = torch.tensor(cw, dtype=torch.float)
+        imbalance_ratio = (sum(train_labels_list) / len(train_labels_list))
+        print(f"\nTraining {short_name} on {len(train)} articles...")
+        print(f"  label 1 (economic) proportion: {imbalance_ratio:.3f}  class_weights: {cw}", flush=True)
         result = train_banglabert(
             config,
             train_texts=train["text_norm"].tolist(),
-            train_labels=train["economic_relevance"].tolist(),
+            train_labels=train_labels_list,
             val_texts=dev["text_norm"].tolist() if dev is not None else None,
             val_labels=dev["economic_relevance"].tolist() if dev is not None else None,
-            output_name=f"banglabert_{args.task}_{args.data_source}",
+            output_name=output_name,
+            class_weights=class_weight_tensor,
+            gradient_accumulation_steps=args.banglabert_accum_steps,
+            model_name=args.banglabert_model_name,
         )
 
         if test is not None and len(test) > 0:
@@ -150,7 +184,7 @@ def main() -> None:
             )
             result["test"] = eval_result
 
-        report_path = config.report_dir / f"{args.task}_{args.data_source}_banglabert_metrics.json"
+        report_path = config.report_dir / f"{args.task}_{args.data_source}_{short_name}_metrics.json"
         write_json(report_path, result)
         print(f"saved_report={report_path}")
 
@@ -197,7 +231,14 @@ def main() -> None:
         print("Use --task economic --data-source potrika-timeseries for training with dates.")
 
     if args.zip:
-        zip_outputs(config.output_dir, f"beni_{args.task}_{args.data_source}")
+        if args.model_type == "banglabert":
+            # Model weights zip (large, per-model)
+            zip_subdirs(config.output_dir, ["models"], f"beni_model_{short_name}")
+            # Reports zip (small, metrics only)
+            zip_subdirs(config.output_dir, ["reports"], f"beni_reports_{short_name}")
+        else:
+            # TF-IDF: model is small enough to keep reports together
+            zip_outputs(config.output_dir, f"beni_{args.task}_{args.data_source}")
 
 
 if __name__ == "__main__":

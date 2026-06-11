@@ -7,7 +7,7 @@ import pandas as pd
 from scipy.stats import pearsonr, spearmanr
 
 from config import ExperimentConfig
-from utils import zip_outputs
+from utils import zip_outputs, zip_subdirs
 
 
 def _parse_imf_period(period: str) -> str:
@@ -197,7 +197,7 @@ def main() -> None:
         )
 
     if do_zip:
-        zip_outputs(config.output_dir, "beni_correlate")
+        zip_subdirs(config.output_dir, ["reports", "index"], "beni_artifacts")
 
 
 if __name__ == "__main__":

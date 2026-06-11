@@ -8,13 +8,12 @@ import numpy as np
 import pandas as pd
 import torch
 from torch.utils.data import DataLoader
-from transformers import ElectraForSequenceClassification, ElectraTokenizerFast
 
 from config import ExperimentConfig
-from utils import zip_outputs
+from utils import zip_outputs, zip_subdirs
 
 
-def parse_index_args() -> tuple[ExperimentConfig, bool, str]:
+def parse_index_args() -> tuple[ExperimentConfig, bool, str, str]:
     parser = argparse.ArgumentParser(description="Build BENI narrative index.")
     parser.add_argument(
         "--data-dir",
@@ -29,6 +28,10 @@ def parse_index_args() -> tuple[ExperimentConfig, bool, str]:
         help="Model to use: tfidf (baseline) or banglabert (fine-tuned transformer, must be trained first).",
     )
     parser.add_argument(
+        "--banglabert-model-name", default="csebuetnlp/banglabert",
+        help="HuggingFace model name (used only with --model-type banglabert).",
+    )
+    parser.add_argument(
         "--zip",
         action="store_true",
         help="Zip outputs/ directory on completion (for easy download from Kaggle).",
@@ -38,6 +41,7 @@ def parse_index_args() -> tuple[ExperimentConfig, bool, str]:
         dd = args.data_dir
         if args.model_type == "banglabert":
             cfg = ExperimentConfig(
+                model_name=args.banglabert_model_name,
                 potrika_dir=dd / "potrika",
                 model_dir=Path("/kaggle/working/outputs/models"),
                 output_dir=Path("/kaggle/working/outputs"),
@@ -53,7 +57,7 @@ def parse_index_args() -> tuple[ExperimentConfig, bool, str]:
             )
     else:
         cfg = ExperimentConfig()
-    return cfg, args.zip, args.model_type
+    return cfg, args.zip, args.model_type, args.banglabert_model_name
 
 
 def _predict_tfidf(df: pd.DataFrame, config: ExperimentConfig) -> pd.DataFrame:
@@ -65,19 +69,22 @@ def _predict_tfidf(df: pd.DataFrame, config: ExperimentConfig) -> pd.DataFrame:
     return df
 
 
-def _predict_banglabert(df: pd.DataFrame, config: ExperimentConfig) -> pd.DataFrame:
+def _predict_banglabert(df: pd.DataFrame, config: ExperimentConfig, model_name: str = "csebuetnlp/banglabert") -> pd.DataFrame:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"device={device}", flush=True)
 
-    model_name = "banglabert_economic_potrika-timeseries"
-    model_path = config.model_dir / model_name
-    print(f"Loading fine-tuned BanglaBERT from: {model_path}", flush=True)
-    tokenizer = ElectraTokenizerFast.from_pretrained(str(model_path))
-    model = ElectraForSequenceClassification.from_pretrained(str(model_path))
+    from banglabert import BanglaBERTDataset, get_model_short_name
+
+    short_name = get_model_short_name(model_name)
+    model_dir_name = f"{short_name}_economic_potrika-timeseries"
+    model_path = config.model_dir / model_dir_name
+    print(f"Loading fine-tuned model from: {model_path}", flush=True)
+
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer
+    tokenizer = AutoTokenizer.from_pretrained(str(model_path))
+    model = AutoModelForSequenceClassification.from_pretrained(str(model_path))
     model.to(device)
     model.eval()
-
-    from banglabert import BanglaBERTDataset
 
     dataset = BanglaBERTDataset(
         texts=df["text_norm"].tolist(),
@@ -94,7 +101,7 @@ def _predict_banglabert(df: pd.DataFrame, config: ExperimentConfig) -> pd.DataFr
 
     all_probs: list[np.ndarray] = []
     n_batches = len(loader)
-    print(f"Running BanglaBERT predictions on {len(df)} articles ({n_batches} batches)...", flush=True)
+    print(f"Running predictions on {len(df)} articles ({n_batches} batches)...", flush=True)
     with torch.no_grad():
         for i, batch in enumerate(loader):
             input_ids = batch["input_ids"].to(device)
@@ -110,7 +117,7 @@ def _predict_banglabert(df: pd.DataFrame, config: ExperimentConfig) -> pd.DataFr
 
 
 def main() -> None:
-    config, do_zip, model_type = parse_index_args()
+    config, do_zip, model_type, banglabert_model_name = parse_index_args()
     output_dir = config.output_dir / "index"
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -127,7 +134,7 @@ def main() -> None:
     # --- Predict ---
     print(f"Running predictions with {model_type}...", flush=True)
     if model_type == "banglabert":
-        df = _predict_banglabert(df, config)
+        df = _predict_banglabert(df, config, model_name=banglabert_model_name)
     else:
         df = _predict_tfidf(df, config)
 
@@ -136,8 +143,16 @@ def main() -> None:
     n_economic = df["economic_pred"].sum()
     print(f"Predicted economic: {n_economic}/{len(df)} ({n_economic / len(df) * 100:.1f}%)", flush=True)
 
-    # --- Save full predictions ---
-    full_out = output_dir / "full_predictions.parquet"
+    # --- Save full predictions (model-specific prefix for banglabert) ---
+    if model_type == "banglabert":
+        from banglabert import get_model_short_name
+        naming_prefix = get_model_short_name(banglabert_model_name)
+        full_out = output_dir / f"full_predictions_{naming_prefix}.parquet"
+        index_path = output_dir / f"narrative_index_{naming_prefix}.csv"
+    else:
+        full_out = output_dir / "full_predictions.parquet"
+        index_path = output_dir / "narrative_index.csv"
+
     cols_out = ["publication_date", "economic_prob", "economic_pred"]
     df[cols_out].to_parquet(str(full_out), index=False)
     print(f"Full predictions saved: {full_out}", flush=True)
@@ -161,7 +176,6 @@ def main() -> None:
     print(monthly.tail(), flush=True)
 
     # --- Save monthly index ---
-    index_path = output_dir / "narrative_index.csv"
     monthly.to_csv(index_path, index=False)
     print(f"Narrative index saved: {index_path}", flush=True)
 
@@ -174,7 +188,7 @@ def main() -> None:
     print(f"  Max share: {monthly['economic_share'].max():.3f} ({monthly.loc[monthly['economic_share'].idxmax(), 'month'].date()})", flush=True)
 
     if do_zip:
-        zip_outputs(config.output_dir, "beni_index")
+        zip_subdirs(config.output_dir, ["reports", "index"], "beni_artifacts")
 
 
 if __name__ == "__main__":
