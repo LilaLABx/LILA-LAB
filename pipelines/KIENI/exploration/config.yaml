@@ -1,0 +1,96 @@
+# [LANG]ENI — Exploration Phase Configuration
+# ==============================================
+# Template for new pipelines. Copy to pipelines/YOUR_LANG/exploration/
+# and adjust paths and parameters.
+
+pipeline: KIENI
+
+# ── Corpus ──────────────────────────────────────────────────────────
+corpus:
+  # Path to the deduped corpus file (relative to exploration/)
+  path: "../../dataset/KIENI/processed/corpus.csv"
+  # Fallback if primary is missing
+  fallback: null
+  compression: "none"   # "zst" or "none" or "gzip"
+  format: "csv"
+  encoding: "utf-8"
+  # Column names — adjust to match your corpus schema
+  fieldnames:
+    id: "article_id"
+    source: "dataset_source"
+    newspaper: "newspaper"
+    date: "publication_date"
+    year_month: "year_month"
+    category_original: "category_original"
+    category: "category_harmonised"
+    headline: "headline"
+    text: "text_clean"
+    text_raw: "text"
+    language: "language"
+
+# ── Outputs ─────────────────────────────────────────────────────────
+output:
+  base_dir: "outputs"
+  phases:
+    sample: "00_sample"
+    profile: "01_profile"
+    vocabulary: "02_vocabulary"
+    temporal: "03_temporal"
+    schema: "04_schema"
+    report: "05_diagnostic"
+    figures: "06_figures"
+
+# ── Phase 0: Sample Selection ──────────────────────────────────────
+sampling:
+  sample_size: 200_000
+  seed: 42
+  strategy: "stratified"   # "random", "stratified", "temporal"
+  stratify_by: "category_harmonised"
+  formats: ["csv", "jsonl"]
+
+# ── Phase 1: Corpus Profile ───────────────────────────────────────
+profile:
+  sample_n: 200_000
+  quality_metrics:
+    - empty_text
+    - empty_headline
+    - short_text_50
+    - short_text_100
+  short_thresholds:
+    text: 50
+    headline: 10
+
+# ── Phase 2: Vocabulary Analysis ──────────────────────────────────
+vocabulary:
+  max_rows: 500_000
+  max_rows_ngram: 200_000
+  stopwords: null
+  top_n_words: 50
+  ngram_sizes: [2, 3]
+  top_n_ngrams: 30
+  log_odds_prior: 0.01
+  top_n_keywords: 50
+
+# ── Phase 3: Temporal Diagnostics ────────────────────────────────
+temporal:
+  granularity: "year_month"
+  min_articles_per_unit: 10
+  source_boundary:
+    enabled: false
+    sources: []
+    transition_months: 6
+    alpha: 0.05
+
+# ── Phase 4: Schema Validation ────────────────────────────────────
+schema:
+  schema_path: "../annotation/schemas/economic.json"
+  sample_size: 10_000
+  coverage_threshold_pct: 50.0
+
+# ── Visualization ─────────────────────────────────────────────────
+visualization:
+  dpi: 150
+  figure_format: "png"
+  matplotlib_style: "default"
+  max_categories_plot: 15
+  palette: "Set2"
