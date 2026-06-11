@@ -1,60 +1,62 @@
-// LILA Lab Documentation — Markdown Renderer & Sidebar Navigation
+// LILA Lab Documentation — Shared Page Script
+// Each individual doc page defines a PAGE_CONFIG object that tells this
+// script which markdown file to load from GitHub.
 
 const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/LilaLABx/LILA-LAB/main/';
 const GITHUB_BLOB_BASE = 'https://github.com/LilaLABx/LILA-LAB/blob/main/';
-const SITE_PREFIX = 'docs.html?doc=';
 
 // ── Documentation Index ──────────────────────────────────────────────
 const DOC_SECTIONS = [
     {
         title: '🚀 Getting Started',
         items: [
-            { slug: 'about-lila-lab',   title: 'About LILA Lab',       path: 'README.md',                    icon: 'book' },
-            { slug: 'quickstart-guide',  title: 'Quickstart Guide',     path: 'docs/CONTRIBUTOR_QUICKSTART.md', icon: 'rocket' },
-            { slug: 'pipeline-flow',     title: 'Pipeline Flow',        path: 'docs/PIPELINE_FLOW.md',        icon: 'flow' },
-            { slug: 'faq',               title: 'FAQ',                  path: 'FAQ.md',                       icon: 'help' },
+            { slug: 'about-lila-lab',   title: 'About LILA Lab',       path: 'README.md',                                          icon: 'book' },
+            { slug: 'quickstart-guide',  title: 'Quickstart Guide',     path: 'docs/CONTRIBUTOR_QUICKSTART.md',                      icon: 'rocket' },
+            { slug: 'pipeline-flow',     title: 'Pipeline Flow',        path: 'docs/PIPELINE_FLOW.md',                               icon: 'flow' },
+            { slug: 'faq',               title: 'FAQ',                  path: 'FAQ.md',                                              icon: 'help' },
         ]
     },
     {
         title: '📚 Knowledge Base',
         items: [
-            { slug: 'research-papers',        title: 'Research Papers',             path: 'technical-reports/README.md',  icon: 'paper' },
-            { slug: 'datasets',               title: 'Datasets',                    path: 'dataset/README.md',            icon: 'database' },
-            { slug: 'project-roadmap',        title: 'Project Roadmap',             path: 'ROADMAP.md',                   icon: 'map' },
-            { slug: 'xeni-naming-convention', title: 'XENI Naming Convention',      path: 'docs/adr/ADR-001-xeni-naming-convention.md', icon: 'adr' },
+            { slug: 'research-papers',        title: 'Research Papers',            path: 'technical-reports/README.md',                            icon: 'paper' },
+            { slug: 'datasets',               title: 'Datasets',                   path: 'dataset/README.md',                                      icon: 'database' },
+            { slug: 'project-roadmap',        title: 'Project Roadmap',            path: 'ROADMAP.md',                                             icon: 'map' },
+            { slug: 'xeni-naming-convention', title: 'XENI Naming Convention',     path: 'docs/adr/ADR-001-xeni-naming-convention.md',             icon: 'adr' },
         ]
     },
     {
         title: '🔧 Pipeline Reference',
         items: [
-            { slug: 'xeni-framework',        title: 'XENI Framework',            path: 'pipelines/README.md',          icon: 'pipeline' },
-            { slug: 'beni-bangla',           title: 'BENI — Bangla',            path: 'pipelines/BENI/README.md',     icon: 'lang' },
-            { slug: 'beni-pilot-experiment', title: 'BENI Pilot Experiment',     path: 'pipelines/BENI/experiment/beni_pilot/README.md', icon: 'experiment' },
-            { slug: 'template-pipeline',     title: 'Template Pipeline',         path: 'pipelines/template/README.md', icon: 'template' },
-            { slug: 'aeni-assamese',         title: 'AENI — Assamese',           path: 'pipelines/AENI/README.md',     icon: 'lang', status: 'coming-soon' },
-            { slug: 'neni-nepali',           title: 'NENI — Nepali',             path: 'pipelines/NENI/README.md',     icon: 'lang', status: 'coming-soon' },
-            { slug: 'seni-sylheti',          title: 'SENI — Sylheti',            path: 'pipelines/SENI/README.md',     icon: 'lang', status: 'coming-soon' },
-            { slug: 'audio-annotation-lab',  title: 'Audio Annotation Lab',      path: 'pipelines/audio-annotation-lab/README.md', icon: 'audio' },
+            { slug: 'xeni-framework',        title: 'XENI Framework',           path: 'pipelines/README.md',                                       icon: 'pipeline' },
+            { slug: 'beni-bangla',           title: 'BENI — Bangla',           path: 'pipelines/BENI/README.md',                                  icon: 'lang' },
+            { slug: 'beni-pilot-experiment', title: 'BENI Pilot Experiment',    path: 'pipelines/BENI/experiment/beni_pilot/README.md',            icon: 'experiment' },
+            { slug: 'template-pipeline',     title: 'Template Pipeline',        path: 'pipelines/template/README.md',                              icon: 'template' },
+            { slug: 'aeni-assamese',         title: 'AENI — Assamese',          path: 'pipelines/AENI/README.md',                                  icon: 'lang', status: 'coming-soon' },
+            { slug: 'neni-nepali',           title: 'NENI — Nepali',            path: 'pipelines/NENI/README.md',                                  icon: 'lang', status: 'coming-soon' },
+            { slug: 'seni-sylheti',          title: 'SENI — Sylheti',           path: 'pipelines/SENI/README.md',                                  icon: 'lang', status: 'coming-soon' },
+            { slug: 'audio-annotation-lab',  title: 'Audio Annotation Lab',     path: 'pipelines/audio-annotation-lab/README.md',                 icon: 'audio' },
         ]
     },
     {
         title: '🤝 Contribution',
         items: [
-            { slug: 'collaboration-framework', title: 'Collaboration Framework',  path: 'COLLABORATION.md',         icon: 'handshake' },
+            { slug: 'collaboration-framework', title: 'Collaboration Framework',  path: 'COLLABORATION.md',                icon: 'handshake' },
             { slug: 'linguistic-contribution', title: 'Linguistic Contribution',  path: 'LINGUISTIC_CONTRIBUTION_GUIDE.md', icon: 'globe' },
-            { slug: 'code-contribution',       title: 'Code Contribution',        path: 'CONTRIBUTING.md',          icon: 'code' },
-            { slug: 'code-of-conduct',         title: 'Code of Conduct',          path: 'CODE_OF_CONDUCT.md',       icon: 'shield' },
+            { slug: 'code-contribution',       title: 'Code Contribution',        path: 'CONTRIBUTING.md',                  icon: 'code' },
+            { slug: 'code-of-conduct',         title: 'Code of Conduct',          path: 'CODE_OF_CONDUCT.md',               icon: 'shield' },
         ]
     },
     {
         title: '📋 Reference',
         items: [
-            { slug: 'infrastructure',  title: 'Infrastructure',   path: 'infrastructure/README.md',     icon: 'server' },
-            { slug: 'security-policy', title: 'Security Policy',  path: 'SECURITY.md',                  icon: 'lock' },
+            { slug: 'infrastructure',  title: 'Infrastructure',   path: 'infrastructure/README.md',  icon: 'server' },
+            { slug: 'security-policy', title: 'Security Policy',  path: 'SECURITY.md',               icon: 'lock' },
         ]
     }
 ];
 
+// ── Path → Slug Mapping (for rewriting in-doc links) ──
 const PATH_TO_SLUG = {};
 DOC_SECTIONS.forEach(function(section) {
     section.items.forEach(function(item) {
@@ -62,9 +64,9 @@ DOC_SECTIONS.forEach(function(section) {
     });
 });
 
-// SVG icons for sidebar
+// ── SVG Icons ──
 function getIconSVG(type) {
-    const icons = {
+    var icons = {
         book: '<svg class="sidebar-item-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.828c.885-.37 2.154-.769 4-.9 1.71-.12 3.372.09 5 .73V13.5a7.36 7.36 0 00-5-.7c-1.3-.12-2.47-.16-4-.25V2.828zm11 .4c1.71.27 2.93.54 4 .73V4.8c-.82-.13-1.7-.24-2.59-.33l-.63-.05-1.16-.22-1.38-.54v-1.1l.52.19c.42.16.85.32 1.28.46.66.22 1.28.41 1.83.53z"/><path d="M15 12.87c-.5-.08-1.13-.18-2-.28-1.41-.16-2.67-.04-3.86.26-1.2.3-2.25.66-3.14 1.02V4.66c1.04-.38 2.21-.65 3.5-.82 1.5-.2 2.82-.03 3.96.43.32.13.59.27.79.4.13.08.25.16.35.24.03.02.06.05.1.08.26.22.44.47.56.67.08.14.14.27.18.38.08.23.12.44.12.62v6.33z"/></svg>',
         map: '<svg class="sidebar-item-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C5.2 0 3 2.2 3 5c0 3.4 5 11 5 11s5-7.6 5-11c0-2.8-2.2-5-5-5zm0 8c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/></svg>',
         help: '<svg class="sidebar-item-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zm.75 12.25h-1.5v-1.5h1.5v1.5zM9.5 8.5c-.5.31-.75.62-.75 1.25h-1.5c0-1 .42-1.56 1.06-2 .56-.39 1.19-.78 1.19-1.5 0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5H5A3 3 0 018 3.5c1.66 0 3 1.34 3 3 0 1.06-.58 1.56-1.5 2z"/></svg>',
@@ -88,48 +90,43 @@ function getIconSVG(type) {
     return icons[type] || icons.book;
 }
 
-// ── DOM References ───────────────────────────────────────────────────
-const sidebarNav = document.getElementById('sidebarNav');
-const markdownBody = document.getElementById('markdownBody');
-const docTitle = document.getElementById('docTitle');
-const editOnGitHub = document.getElementById('editOnGitHub');
-const sidebarToggle = document.getElementById('sidebarToggle');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-const docSearch = document.getElementById('docSearch');
-const docsSidebar = document.getElementById('docsSidebar');
+// ── DOM References ──
+var sidebarNav = document.getElementById('sidebarNav');
+var markdownBody = document.getElementById('markdownBody');
+var docTitle = document.getElementById('docTitle');
+var editOnGitHub = document.getElementById('editOnGitHub');
+var sidebarToggle = document.getElementById('sidebarToggle');
+var sidebarOverlay = document.getElementById('sidebarOverlay');
+var docSearch = document.getElementById('docSearch');
+var docsSidebar = document.getElementById('docsSidebar');
 
-// ── State ────────────────────────────────────────────────────────────
-let allDocItems = [];
-let currentPath = null;
-let renderedContentCache = '';
+// ── State ──
+var allDocItems = [];
+var currentPath = null;
+var renderedContentCache = '';
 
-// ── Build Sidebar ────────────────────────────────────────────────────
+// ── Build Sidebar ──
 function buildSidebar() {
     sidebarNav.innerHTML = '';
     allDocItems = [];
 
-    DOC_SECTIONS.forEach((section, idx) => {
-        const sectionEl = document.createElement('div');
+    DOC_SECTIONS.forEach(function(section, idx) {
+        var sectionEl = document.createElement('div');
         sectionEl.className = 'sidebar-section expanded';
 
-        const header = document.createElement('div');
+        var header = document.createElement('div');
         header.className = 'sidebar-section-header';
-        header.innerHTML = `
-            ${section.title}
-            <svg class="chevron" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M6.5 3.5l4 4.5-4 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            </svg>
-        `;
-        header.addEventListener('click', () => {
+        header.innerHTML = section.title + '<svg class="chevron" viewBox="0 0 16 16" fill="currentColor"><path d="M6.5 3.5l4 4.5-4 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>';
+        header.addEventListener('click', function() {
             sectionEl.classList.toggle('expanded');
         });
 
-        const list = document.createElement('ul');
+        var list = document.createElement('ul');
         list.className = 'sidebar-items';
 
-        section.items.forEach(item => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
+        section.items.forEach(function(item) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
             a.className = 'sidebar-item';
             a.href = item.slug + '.html';
             a.dataset.path = item.path;
@@ -141,15 +138,15 @@ function buildSidebar() {
                 a.innerHTML += '<span class="sidebar-item-badge">Coming Soon</span>';
             }
 
-            item._element = a;
-            allDocItems.push(a);
-
-            a.addEventListener('click', (e) => {
+            a.addEventListener('click', function(e) {
                 if (item.status === 'coming-soon') {
                     e.preventDefault();
                 }
-                // Otherwise let browser navigate to the HTML page
+                // Otherwise let the browser navigate naturally
             });
+
+            item._element = a;
+            allDocItems.push(a);
 
             li.appendChild(a);
             list.appendChild(li);
@@ -160,37 +157,34 @@ function buildSidebar() {
         sidebarNav.appendChild(sectionEl);
     });
 
-    // Handle search
+    // Sidebar search
     docSearch.addEventListener('input', filterSidebar);
 
-    // Add search status indicator
-    const searchStatus = document.createElement('div');
+    var searchStatus = document.createElement('div');
     searchStatus.id = 'searchStatus';
     searchStatus.className = 'search-status';
     docSearch.parentNode.insertBefore(searchStatus, docSearch.nextSibling);
 }
 
-// ── Sidebar Search ───────────────────────────────────────────────────
+// ── Sidebar Search ──
 function filterSidebar() {
-    const query = docSearch.value.toLowerCase().trim();
+    var query = docSearch.value.toLowerCase().trim();
 
-    allDocItems.forEach(el => {
+    allDocItems.forEach(function(el) {
         if (!query) {
             el.classList.remove('hidden');
             return;
         }
-        const match = el.textContent.toLowerCase().includes(query);
+        var match = el.textContent.toLowerCase().includes(query);
         el.classList.toggle('hidden', !match);
     });
 
-    // Show/hide sections based on whether they have visible items
-    document.querySelectorAll('.sidebar-section').forEach(section => {
-        const visibleItems = section.querySelectorAll('.sidebar-item:not(.hidden)');
+    document.querySelectorAll('.sidebar-section').forEach(function(section) {
+        var visibleItems = section.querySelectorAll('.sidebar-item:not(.hidden)');
         section.style.display = visibleItems.length === 0 && query ? 'none' : '';
     });
 
-    // Update search status
-    const searchStatus = document.getElementById('searchStatus');
+    var searchStatus = document.getElementById('searchStatus');
     if (!searchStatus) return;
     if (!query) {
         searchStatus.textContent = '';
@@ -198,14 +192,12 @@ function filterSidebar() {
         return;
     }
 
-    // Count visible items
-    const visibleItems = document.querySelectorAll('.sidebar-item:not(.hidden)');
-    const totalItems = document.querySelectorAll('.sidebar-item');
-    let statusText = `${visibleItems.length} of ${totalItems.length} in sidebar`;
+    var visibleItems = document.querySelectorAll('.sidebar-item:not(.hidden)');
+    var totalItems = document.querySelectorAll('.sidebar-item');
+    var statusText = visibleItems.length + ' of ' + totalItems.length + ' in sidebar';
 
-    // Check rendered content
     if (renderedContentCache.toLowerCase().includes(query)) {
-        statusText += ' · Content match in current doc';
+        statusText += ' \u00b7 Content match in current doc';
         searchStatus.className = 'search-status has-content-match';
     } else if (visibleItems.length === 0 && renderedContentCache) {
         statusText = 'No matches found';
@@ -215,160 +207,108 @@ function filterSidebar() {
     searchStatus.textContent = statusText;
 }
 
-// ── Activate Sidebar Item ────────────────────────────────────────────
+// ── Activate Sidebar Item ──
 function setActiveItem(path) {
-    allDocItems.forEach(el => {
+    allDocItems.forEach(function(el) {
         el.classList.toggle('active', el.dataset.path === path);
     });
 }
 
-// ── Load Document ────────────────────────────────────────────────────
-async function loadDoc(path, pushState = true) {
+// ── Load Document ──
+async function loadDoc(path) {
     if (!path) return;
 
-    // Extract hash fragment for scrolling after render
-    const hashIndex = path.indexOf('#');
-    const docPath = hashIndex >= 0 ? path.substring(0, hashIndex) : path;
-    const hashFragment = hashIndex >= 0 ? path.substring(hashIndex) : '';
+    currentPath = path;
+    setActiveItem(path);
 
-    currentPath = docPath;
-    setActiveItem(docPath);
+    markdownBody.innerHTML = '<div class="doc-loading"><div class="doc-loading-spinner"></div><span>Loading document\u2026</span></div>';
 
-    // Switch from welcome page to doc view
-    enterDocView();
+    var rawUrl = GITHUB_RAW_BASE + path;
 
-    // Update URL
-    if (pushState) {
-        const url = SITE_PREFIX + encodeURIComponent(docPath) + hashFragment;
-        history.pushState({ path: docPath, hash: hashFragment }, '', url);
-    }
-
-    // Show loading
-    markdownBody.innerHTML = `
-        <div class="doc-loading">
-            <div class="doc-loading-spinner"></div>
-            <span>Loading document…</span>
-        </div>
-    `;
-
-    // Use raw URL to fetch markdown from GitHub (strip hash)
-    const rawUrl = GITHUB_RAW_BASE + docPath;
-
-    let response;
     try {
-        response = await fetch(rawUrl, { cache: 'no-cache' });
-
+        var response = await fetch(rawUrl, { cache: 'no-cache' });
         if (!response.ok) {
-            throw new Error(`Failed to load (${response.status})`);
+            throw new Error('Failed to load (' + response.status + ')');
         }
-
-        const markdown = await response.text();
-        renderDoc(markdown, docPath);
-
-        // Scroll to hash fragment if present, after render
-        if (hashFragment) {
-            setTimeout(() => {
-                const targetId = hashFragment.replace('#', '');
-                const el = document.getElementById(targetId);
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-        }
-
+        var markdown = await response.text();
+        renderDoc(markdown, path);
     } catch (err) {
-        const statusCode = response ? response.status : 0;
-        const notFound = statusCode === 404;
-        markdownBody.innerHTML = `
-            <div class="doc-error">
-                <div class="doc-error-icon">📄</div>
-                <h3>Document not found</h3>
-                <p>The document <strong>${docPath}</strong> could not be loaded.</p>
-                ${notFound
+        var statusMatch = err.message.match(/\((\d+)\)/);
+        var statusCode = statusMatch ? parseInt(statusMatch[1]) : 0;
+        var notFound = statusCode === 404;
+        markdownBody.innerHTML = (
+            '<div class="doc-error">' +
+                '<div class="doc-error-icon">\ud83d\udcc4</div>' +
+                '<h3>Document not found</h3>' +
+                '<p>The document <strong>' + path + '</strong> could not be loaded.</p>' +
+                (notFound
                     ? '<p>This document may not exist yet. Check the repository directly for available documentation.</p>'
-                    : `<p>${err.message}</p>`}
-                <div class="doc-error-actions">
-                    <button class="btn-retry" onclick="loadDoc('${path}', false)">Retry</button>
-                    <a href="${GITHUB_BLOB_BASE + docPath}" target="_blank" class="btn-repo">View on GitHub →</a>
-                </div>
-            </div>
-        `;
+                    : '<p>' + err.message + '</p>') +
+                '<div class="doc-error-actions">' +
+                    '<button class="btn-retry" onclick="loadDoc(\'' + path + '\')">Retry</button>' +
+                    '<a href="' + GITHUB_BLOB_BASE + path + '" target="_blank" class="btn-repo">View on GitHub \u2192</a>' +
+                '</div>' +
+            '</div>'
+        );
     }
 
     // Close sidebar on mobile
     docsSidebar.classList.remove('open');
     sidebarOverlay.classList.remove('active');
 
-    if (!hashFragment) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── Render Markdown ──────────────────────────────────────────────────
+// ── Render Markdown ──
 function renderDoc(markdown, path) {
-    // Configure marked for security
-    marked.setOptions({
-        breaks: true,
-        gfm: true,
-    });
+    marked.setOptions({ breaks: true, gfm: true });
 
-    const html = marked.parse(markdown);
+    var html = marked.parse(markdown);
 
-    // Extract title from first h1
-    const titleMatch = markdown.match(/^#\s+(.+)/m);
-    const title = titleMatch ? titleMatch[1].trim() : path.split('/').pop().replace('.md', '').replace(/_/g, ' ');
+    var titleMatch = markdown.match(/^#\s+(.+)/m);
+    var title = titleMatch ? titleMatch[1].trim() : path.split('/').pop().replace('.md', '').replace(/_/g, ' ');
     docTitle.textContent = title;
-
-    // Update Edit on GitHub link
     editOnGitHub.href = GITHUB_BLOB_BASE + path;
 
-    // Wrap in content div
-    markdownBody.innerHTML = `
-        <div class="markdown-body">${html}</div>
-        <div class="doc-source">
-            <span>Source: <a href="${GITHUB_BLOB_BASE + path}" target="_blank">${path}</a></span>
-            <span>
-                <a href="${editOnGitHub.href}" target="_blank">Edit on GitHub</a>
-            </span>
-        </div>
-    `;
+    markdownBody.innerHTML = (
+        '<div class="markdown-body">' + html + '</div>' +
+        '<div class="doc-source">' +
+            '<span>Source: <a href="' + GITHUB_BLOB_BASE + path + '" target="_blank">' + path + '</a></span>' +
+            '<span><a href="' + editOnGitHub.href + '" target="_blank">Edit on GitHub</a></span>' +
+        '</div>'
+    );
 
-    // Cache rendered text for search
-    const textContent = markdownBody.textContent || '';
-    renderedContentCache = textContent;
+    renderedContentCache = markdownBody.textContent || '';
 
-    // Rewrite relative links to GitHub
     rewriteRelativeLinks(path);
 
-    // Post-render enhancements
     if (typeof hljs !== 'undefined') {
         document.querySelectorAll('.markdown-body pre code').forEach(function(el) {
             hljs.highlightElement(el);
         });
     }
+
     addHeadingAnchors();
     addCopyButtons();
     buildToc();
 }
 
-// ── Rewrite Relative Links ───────────────────────────────────────────
+// ── Rewrite Relative Links ──
 function rewriteRelativeLinks(currentPath) {
-    const baseDir = currentPath.includes('/')
+    var baseDir = currentPath.includes('/')
         ? currentPath.substring(0, currentPath.lastIndexOf('/') + 1)
         : '';
 
-    document.querySelectorAll('.markdown-body a').forEach(a => {
-        const href = a.getAttribute('href');
+    document.querySelectorAll('.markdown-body a').forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:')) return;
 
-        if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:')) {
-            return;
-        }
-
-        // Resolve relative to the base directory of the current doc
-        let resolved;
+        var resolved;
         if (href.startsWith('./')) {
             resolved = baseDir + href.slice(2);
         } else if (href.startsWith('../')) {
-            let dir = baseDir;
-            let rest = href;
+            var dir = baseDir;
+            var rest = href;
             while (rest.startsWith('../')) {
                 dir = dir.replace(/\/?[^/]+\/?$/, '');
                 if (!dir) dir = '';
@@ -376,13 +316,13 @@ function rewriteRelativeLinks(currentPath) {
             }
             resolved = dir ? dir + '/' + rest : rest;
         } else if (href.startsWith('/')) {
-            resolved = href.slice(1); // absolute from repo root
+            resolved = href.slice(1);
         } else {
             resolved = baseDir + href;
         }
 
         if (resolved.endsWith('.md')) {
-            const slug = PATH_TO_SLUG[resolved];
+            var slug = PATH_TO_SLUG[resolved];
             if (slug) {
                 a.href = slug + '.html';
                 a.target = '';
@@ -397,10 +337,10 @@ function rewriteRelativeLinks(currentPath) {
     });
 
     // Fix image sources
-    document.querySelectorAll('.markdown-body img').forEach(img => {
-        const src = img.getAttribute('src');
+    document.querySelectorAll('.markdown-body img').forEach(function(img) {
+        var src = img.getAttribute('src');
         if (src && !src.startsWith('http')) {
-            let resolved;
+            var resolved;
             if (src.startsWith('./')) {
                 resolved = baseDir + src.slice(2);
             } else if (src.startsWith('/')) {
@@ -413,57 +353,18 @@ function rewriteRelativeLinks(currentPath) {
     });
 }
 
-// ── Mobile Sidebar Toggle ────────────────────────────────────────────
-sidebarToggle.addEventListener('click', () => {
+// ── Mobile Sidebar Toggle ──
+sidebarToggle.addEventListener('click', function() {
     docsSidebar.classList.toggle('open');
     sidebarOverlay.classList.toggle('active');
 });
 
-sidebarOverlay.addEventListener('click', () => {
+sidebarOverlay.addEventListener('click', function() {
     docsSidebar.classList.remove('open');
     sidebarOverlay.classList.remove('active');
 });
 
-// ── Handle Browser Back/Forward ──────────────────────────────────────
-window.addEventListener('popstate', (e) => {
-    if (e.state && e.state.path) {
-        const pathWithHash = e.state.hash
-            ? e.state.path + e.state.hash
-            : e.state.path;
-        loadDoc(pathWithHash, false);
-    } else {
-        showWelcome();
-    }
-});
-
-// ── Show Welcome Page ────────────────────────────────────────────────
-function showWelcome() {
-    docTitle.textContent = 'Documentation';
-    editOnGitHub.href = '#';
-    setActiveItem(null);
-    currentPath = null;
-
-    document.getElementById('contentHeader').style.display = 'none';
-    const welcomePage = document.querySelector('.welcome-page');
-    if (welcomePage) welcomePage.style.display = '';
-
-    // Clear rendered markdown
-    const mdBody = document.getElementById('markdownBody');
-    if (mdBody) mdBody.innerHTML = '';
-
-    // Hide TOC
-    const tocContainer = document.getElementById('sidebarToc');
-    if (tocContainer) tocContainer.style.display = 'none';
-}
-
-// ── Hide Welcome, Show Doc Content ────────────────────────────────────
-function enterDocView() {
-    document.getElementById('contentHeader').style.display = 'flex';
-    const welcomePage = document.querySelector('.welcome-page');
-    if (welcomePage) welcomePage.style.display = 'none';
-}
-
-// ── Add Heading Anchors ───────────────────────────────────────────────
+// ── Heading Anchors ──
 function addHeadingAnchors() {
     document.querySelectorAll('.markdown-body h1[id], .markdown-body h2[id], .markdown-body h3[id], .markdown-body h4[id], .markdown-body h5[id], .markdown-body h6[id]').forEach(function(heading) {
         var anchor = document.createElement('a');
@@ -476,7 +377,7 @@ function addHeadingAnchors() {
     });
 }
 
-// ── Copy-Code Buttons ─────────────────────────────────────────────────
+// ── Copy-Code Buttons ──
 function addCopyButtons() {
     document.querySelectorAll('.markdown-body pre').forEach(function(pre) {
         if (pre.querySelector('.copy-code-btn')) return;
@@ -502,7 +403,7 @@ function addCopyButtons() {
     });
 }
 
-// ── Build Table of Contents ──────────────────────────────────────────
+// ── Build Table of Contents ──
 function buildToc() {
     var tocContainer = document.getElementById('sidebarToc');
     var tocLinks = document.getElementById('sidebarTocLinks');
@@ -540,7 +441,7 @@ function buildToc() {
     updateTocActive();
 }
 
-// ── Toc Scroll-Spy ────────────────────────────────────────────────────
+// ── TOC Scroll-Spy ──
 function updateTocActive() {
     var tocItems = document.querySelectorAll('.toc-item');
     if (!tocItems.length) return;
@@ -568,11 +469,10 @@ function updateTocActive() {
     onScroll();
 }
 
-// ── Reading Progress Bar ──────────────────────────────────────────────
+// ── Reading Progress ──
 function updateReadingProgress() {
     var progressBar = document.getElementById('readingProgress');
     if (!progressBar) return;
-
     var scrollTop = window.scrollY;
     var docHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (docHeight <= 0) {
@@ -584,71 +484,46 @@ function updateReadingProgress() {
     progressBar.setAttribute('aria-valuenow', Math.round(progress));
 }
 
-// ── Init ─────────────────────────────────────────────────────────────
+// ── Theme Init ──
+function initTheme() {
+    var html = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    var saved = localStorage.getItem('lila-theme');
+    var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    var theme = saved || (prefersLight ? 'light' : 'dark');
+    html.setAttribute('data-theme', theme);
+
+    toggle.addEventListener('click', function() {
+        var current = html.getAttribute('data-theme');
+        var next = current === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('lila-theme', next);
+    });
+}
+
+// ── Init ──
 document.addEventListener('DOMContentLoaded', function() {
+    initTheme();
     buildSidebar();
 
     // Reading progress bar
     window.addEventListener('scroll', updateReadingProgress);
 
-    // Load from URL query param
-    const params = new URLSearchParams(window.location.search);
-    const docParam = params.get('doc');
-
-    if (docParam) {
-        loadDoc(decodeURIComponent(docParam), false);
-    } else {
-        showWelcome();
-    }
-});
-
-function navigateToDoc(docPath) {
-    const hashIndex = docPath.indexOf('#');
-    const path = hashIndex >= 0 ? docPath.substring(0, hashIndex) : docPath;
-    const hash = hashIndex >= 0 ? docPath.substring(hashIndex) : '';
-
-    const slug = PATH_TO_SLUG[path];
-    if (slug) {
-        window.location.href = slug + '.html' + hash;
-    } else {
-        window.location.href = GITHUB_BLOB_BASE + path;
-    }
-}
-
-// Re-bind all doc links on the welcome page
-document.addEventListener('click', function(e) {
-    // Scroll-to-section links (onboarding strip)
-    const scrollLink = e.target.closest('[data-scroll]');
-    if (scrollLink) {
-        e.preventDefault();
-        const targetId = scrollLink.dataset.scroll;
-        const target = document.getElementById(targetId);
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Load doc from PAGE_CONFIG (defined in each HTML page)
+    if (typeof PAGE_CONFIG !== 'undefined' && PAGE_CONFIG.path) {
+        if (PAGE_CONFIG.title) {
+            document.title = PAGE_CONFIG.title + ' \u2014 LILA Lab';
         }
-        return;
-    }
-
-    // All doc-link types share data-doc attribute
-    const link = e.target.closest('[data-doc]');
-    if (link && !link.classList.contains('path-card')) {
-        e.preventDefault();
-        navigateToDoc(link.dataset.doc);
-        return;
-    }
-
-    // Path cards — load the recommended doc + scroll to content
-    const pathCard = e.target.closest('.path-card');
-    if (pathCard && pathCard.dataset.doc) {
-        e.preventDefault();
-        navigateToDoc(pathCard.dataset.doc);
-        return;
-    }
-
-    // Roadmap step links
-    const stepLink = e.target.closest('.step-links a');
-    if (stepLink && stepLink.dataset.doc) {
-        e.preventDefault();
-        navigateToDoc(stepLink.dataset.doc);
+        if (PAGE_CONFIG.status === 'coming-soon') {
+            setActiveItem(PAGE_CONFIG.path);
+            docTitle.textContent = PAGE_CONFIG.title;
+            editOnGitHub.href = GITHUB_BLOB_BASE + PAGE_CONFIG.path;
+            var tocContainer = document.getElementById('sidebarToc');
+            if (tocContainer) tocContainer.style.display = 'none';
+        } else {
+            loadDoc(PAGE_CONFIG.path);
+        }
     }
 });

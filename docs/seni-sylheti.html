@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENI — Sylheti — LILA Lab</title>
+    <meta name="description" content="SENI (Sylheti Exploration & Native-language Intelligence) pipeline.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="docs-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#071215" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#FFFBF5" media="(prefers-color-scheme: light)">
+</head>
+<body>
+    <!-- Reading progress bar -->
+    <div class="reading-progress" id="readingProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-text">LILA</span>
+                <span class="logo-sub">Lab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#languages">Languages</a>
+                <a href="index.html#pipelines">Pipelines</a>
+                <a href="beni.html">BENI</a>
+                <a href="index.html#research">Research</a>
+                <a href="index.html#contribute">Contribute</a>
+                <a href="index.html#join">Join the Lab</a>
+                <a href="index.html#community">Community</a>
+                <a href="docs.html" class="active">Docs</a>
+                <a href="dashboard.html">Control Room</a>
+                <a href="https://github.com/LilaLABx/LILA-LAB" target="_blank">GitHub ↗</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Switch theme" title="Switch theme">
+                    <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+        <!-- Sidebar -->
+        <aside class="docs-sidebar" id="docsSidebar">
+            <div class="sidebar-header">
+                <h2>Documentation</h2>
+                <div class="sidebar-search">
+                    <input type="text" id="docSearch" placeholder="Search docs..." aria-label="Search documentation">
+                </div>
+            </div>
+            <nav class="sidebar-nav" id="sidebarNav">
+                <!-- Populated by JS -->
+            </nav>
+            <div class="sidebar-toc" id="sidebarToc" style="display:none;">
+                <div class="sidebar-toc-header">On this page</div>
+                <nav class="sidebar-toc-links" id="sidebarTocLinks"></nav>
+            </div>
+        </aside>
+
+        <!-- Overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Main Content -->
+        <main class="docs-content" id="docsContent">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="content-wrapper" id="contentWrapper">
+                <div class="content-header" id="contentHeader">
+                    <h1 id="docTitle">SENI — Sylheti</h1>
+                    <div class="page-actions">
+                        <a href="#" id="editOnGitHub" class="btn-icon" target="_blank" title="Edit on GitHub">
+                            <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M7.98 0C3.57 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8.02-8z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="markdown-body" id="markdownBody">
+                    
+<div class="doc-coming-soon">
+    <div class="coming-soon-graphic">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v8M8 12h8"/>
+        </svg>
+    </div>
+    <h2>SENI — Sylheti</h2>
+    <p class="coming-soon-subtitle">This pipeline is in development and seeking contributors.</p>
+    <div class="coming-soon-details">
+        <p>We are actively looking for native speakers of Sylheti to help build the annotation schema, collect data, and validate results. If you or your network can contribute, please reach out — co-authorship is guaranteed.</p>
+    </div>
+    <div class="coming-soon-actions">
+        <a href="https://discord.gg/TrrdKbky" target="_blank" class="btn btn-primary">Join the Discussion</a>
+        <a href="https://github.com/LilaLABx/LILA-LAB" target="_blank" class="btn btn-ghost">View Repository</a>
+    </div>
+    <div class="coming-soon-steps">
+        <h3>How to contribute</h3>
+        <ol>
+            <li><strong>Read</strong> the <a href="linguistic-contribution.html">Linguistic Contribution Guide</a> for an overview of what's needed.</li>
+            <li><strong>Register</strong> your interest via Discord or email at <a href="mailto:lila.lab0x@gmail.com">lila.lab0x@gmail.com</a>.</li>
+            <li><strong>Use</strong> the <a href="template-pipeline.html">Pipeline Template</a> to bootstrap your language pipeline.</li>
+            <li><strong>Collaborate</strong> with the LILA Lab team on annotation schema design and data collection.</li>
+        </ol>
+    </div>
+</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer docs-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>LILA Lab</h3>
+                    <p>Language Intelligence for Low-resource Applications</p>
+                    <p class="footer-tagline">Your language. Your stories. Amplified by AI.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Documentation</h4>
+                    <a href="docs.html">Docs Home</a>
+                    <a href="about-lila-lab.html">About LILA Lab</a>
+                    <a href="quickstart-guide.html">Quickstart Guide</a>
+                    <a href="pipeline-flow.html">Pipeline Flow</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <a href="https://discord.gg/TrrdKbky">Discord</a>
+                    <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/COLLABORATION.md">Collaborate</a>
+                    <a href="https://github.com/LilaLABx/LILA-LAB/blob/main/LINGUISTIC_CONTRIBUTION_GUIDE.md">Contribute Data</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <a href="https://x.com/LILA_Lab">X / Twitter</a>
+                    <a href="https://linkedin.com/company/lila-lab">LinkedIn</a>
+                    <a href="https://youtube.com/@LILA_Lab">YouTube</a>
+                    <a href="mailto:lila.lab0x@gmail.com">Email</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LILA Lab. Code: MIT | Data: CC BY 4.0 | Papers: &copy; Ann Naser Nabil</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        var PAGE_CONFIG = {
+            slug: 'seni-sylheti',
+            path: 'pipelines/SENI/README.md',
+            title: 'SENI — Sylheti',
+            icon: 'lang',
+            section: 'Pipeline Reference'
+        };
+        PAGE_CONFIG.status = 'coming-soon';
+    </script>
+    <script src="docs-page.js"></script>
+</body>
+</html>
