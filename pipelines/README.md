@@ -61,18 +61,18 @@ The self-teaching pattern works on **two levels**:
 
 **Target:** 10 emerging-economy low-resource languages by H1 2027. [Track progress →](../dataset/README.md)
 
-| Pipeline | Language | Region | Speakers | Dataset | Status |
-|----------|----------|--------|----------|---------|--------|
-| **BENI** | Bangla (বাংলা) | South Asia | 265M | ✅ 664k articles | ✅ Active |
-| **AENI** | Assamese (অসমীয়া) | South Asia | 15M | 🔴 Not started | 🔜 Seeking |
-| **NENI** | Nepali (नेपाली) | South Asia | 25M | 🔴 Not started | 🔜 Seeking |
-| **SENI** | Sylheti (চিটাঙ্গ) | South Asia | 11M | 🔴 Not started | 🔜 Planned |
-| **CENI** | Chittagonian (চাঁটগাঁইয়া) | South Asia | 16M | 🔴 Not started | 🔜 Planned |
-| **HENI** | Hausa | Africa | 80M | 🔴 Not started | 🔜 Planned |
-| **KIENI** | Kiswahili (Swahili) | Africa | 100M | 🔴 Not started | 🔜 Planned |
-| **VIENI** | Vietnamese (Tiếng Việt) | SE Asia | 100M | 🔴 Not started | 🔜 Planned |
-| **TIENI** | Tagalog (Filipino) | SE Asia | 80M | 🔴 Not started | 🔜 Planned |
-| **IDENI** | Indonesian (Bahasa Indonesia) | SE Asia | 200M | 🔴 Not started | 🔜 Planned |
+| Pipeline | Language | Region | Speakers | Dataset | Pipeline Code | Status |
+|----------|----------|--------|----------|---------|---------------|--------|
+| **BENI** | Bangla (বাংলা) | South Asia | 265M | ✅ 664k articles | ✅ Full pipeline | ✅ Active |
+| **AENI** | Assamese (অসমীয়া) | South Asia | 15M | 🔴 Not started | ✅ Bootstrapped | 🔜 Seeking |
+| **NENI** | Nepali (नेपाली) | South Asia | 25M | 🔴 Not started | ✅ Bootstrapped | 🔜 Seeking |
+| **SENI** | Sylheti (চিটাঙ্গ) | South Asia | 11M | 🔴 Not started | ✅ Bootstrapped | 🔜 Feasibility |
+| **CENI** | Chittagonian (চাঁটগাঁইয়া) | South Asia | 16M | 🔴 Not started | ✅ Bootstrapped | 🔜 Feasibility |
+| **HENI** | Hausa | Africa | 80M | 🔴 Not started | ✅ Bootstrapped | 🔜 Planned |
+| **KIENI** | Kiswahili (Swahili) | Africa | 100M | 🔴 Not started | ✅ Bootstrapped | 🔜 Planned |
+| **VIENI** | Vietnamese (Tiếng Việt) | SE Asia | 100M | 🔴 Not started | ✅ Bootstrapped | 🔜 Planned |
+| **TIENI** | Tagalog (Filipino) | SE Asia | 80M | 🔴 Not started | ✅ Bootstrapped | 🔜 Planned |
+| **IDENI** | Indonesian (Bahasa Indonesia) | SE Asia | 200M | 🔴 Not started | ✅ Bootstrapped | 🔜 Planned |
 
 **Don't see your language?** [Start a new pipeline.](../CONTRIBUTING.md) — we'll help you set it up.
 
@@ -81,6 +81,31 @@ The self-teaching pattern works on **two levels**:
 ## Pipeline Structure
 
 Every XENI pipeline follows the same structure, making it easy to replicate and extend:
+
+```
+pipelines/
+│
+├── BENI/                  # ✅ Active — reference implementation
+├── AENI/                  # 🔜 Bootstrapped, ready for contributors
+├── NENI/                  # 🔜 Bootstrapped, ready for contributors
+├── SENI/                  # 🔜 Bootstrapped, feasibility stage
+├── CENI/                  # 🔜 Bootstrapped, feasibility stage
+├── HENI/                  # 🔜 Bootstrapped, ready for contributors
+├── KIENI/                 # 🔜 Bootstrapped, ready for contributors
+├── VIENI/                 # 🔜 Bootstrapped, ready for contributors
+├── TIENI/                 # 🔜 Bootstrapped, ready for contributors
+├── IDENI/                 # 🔜 Bootstrapped, ready for contributors
+│
+├── shared/                # Shared utilities (cross-pipeline)
+├── template/              # Bootstrap template for new pipelines
+├── LAB/                   # Non-XENI annotation infrastructure
+│   ├── audio-annotation-lab/  # Cross-modal annotation for speech
+│   └── text-annotation-lab/   # Text annotation lab (planned)
+│
+└── README.md              # ← You are here
+```
+
+Each [x]eni pipeline follows this internal structure:
 
 ```
 [x]eni/
@@ -106,6 +131,22 @@ Every XENI pipeline follows the same structure, making it easy to replicate and 
 ├── database/              # Data storage
 └── data/                  # Pipeline-specific data
 ```
+
+### Dataset ↔ Pipeline Separation
+
+```
+dataset/          pipelines/
+├── AENI/         ├── AENI/       ← code only
+├── BENI/         ├── BENI/       ← code + small data
+├── CENI/         ├── CENI/       ← code only
+├── ...           ├── ...
+└── IDENI/        └── IDENI/      ← code only
+     ↑ raw data, processed,       ↑ annotation scripts,
+       releases, manifests          index builders, experiments,
+                                     shared utilities
+```
+
+Raw corpora and large dataset artifacts live in `dataset/`. Pipeline directories contain code, schemas, and small config/data files.
 
 ### Shared Utilities
 
@@ -135,13 +176,15 @@ Any low-resource language with a news ecosystem works. Our **priority is 10 emer
 ### Step 2: Fork & Set Up
 
 ```bash
-# Fork the repo, then:
-cp -r pipelines/beni/ pipelines/[your-lang]/
+# Fork the repo, then use the template:
+cp -r pipelines/template/ pipelines/[your-lang]/
 cd pipelines/[your-lang]/
 
-# Rename for your language (e.g., YOR for Yoruba, QUE for Quechua)
-mv BENI_ROADMAP.md [YOUR-LANG]_ROADMAP.md
+# Also create a dataset directory
+mkdir -p ../../dataset/[YOUR-LANG]/{raw,processed}
 ```
+
+All 10 target pipelines are already bootstrapped from the template. If you're adding a new language beyond those, copy the template above.
 
 ### Step 3: Adapt the Pipeline
 
@@ -230,19 +273,19 @@ git clone https://github.com/LilaLABx/LILA-LAB.git
 cd LILA-LAB/pipelines/
 
 # 2. Explore the BENI pipeline
-ls beni/
-cat beni/README.md
+ls BENI/
+cat BENI/README.md
 
 # 3. Run a test annotation
-cd beni/annotation/
+cd BENI/annotation/
 python llm_annotate.py --help
 ```
 
 ### For Researchers
 
 ```bash
-# 1. Explore the BENI pipeline
-cd pipelines/beni/
+# 1. Explore the BENI pipeline (reference implementation)
+cd pipelines/BENI/
 
 # 2. Run the baseline classifier
 python3 experiment/beni_pilot/train.py --task economic --model-type tfidf
@@ -254,14 +297,18 @@ python3 experiment/beni_pilot/build_index.py --model-type tfidf
 ### For Developers
 
 ```bash
-# 1. Set up the Discord bot
+# 1. Explore the audio annotation lab (cross-modal tool)
+cd pipelines/LAB/audio-annotation-lab/
+pip install -r requirements.txt
+
+# 2. Set up the Discord bot
 cd infrastructure/discord-bot/
 cp .env.example .env
 pip install -r requirements.txt
 python bot.py
 
-# 2. Contribute to the website
-cd infrastructure/website/
+# 3. Contribute to the website
+cd docs/website/
 # Edit index.html, styles.css
 ```
 

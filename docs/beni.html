@@ -241,7 +241,7 @@
           <p>The classifier predicts an "economic probability" for every article in the corpus. Articles are grouped by month, and the index is the proportion with probability above 0.5. The result is a 79-month time series from June 2014 to December 2020.</p>
           <p><strong>Mean economic news share:</strong> 38.9% — meaning roughly 2 in 5 Bangla news articles carry economic relevance.</p>
           <p style="margin-top:1rem;">
-            <a href="pipelines/beni/experiment/beni_pilot/README.md" class="btn-outline" style="font-size:0.82rem;padding:7px 18px;">Explore the pilot experiment →</a>
+            <a href="pipelines/BENI/experiment/beni_pilot/README.md" class="btn-outline" style="font-size:0.82rem;padding:7px 18px;">Explore the pilot experiment →</a>
           </p>
         </div>
 
@@ -284,14 +284,14 @@
           <div class="start-card-icon">🔬</div>
           <h3>For Researchers</h3>
           <p>Train the baseline classifier and build the 79-month narrative index from scratch.</p>
-          <code>git clone https://github.com/LilaLABx/LILA-LAB.git<br>cd LILA-LAB<br>pip install -e ".[core]"<br>cd pipelines/beni/experiment/beni_pilot<br>python3 train.py --task economic --model-type tfidf<br>python3 build_index.py<br>python3 correlate.py</code>
+          <code>git clone https://github.com/LilaLABx/LILA-LAB.git<br>cd LILA-LAB<br>pip install -e ".[core]"<br>cd pipelines/BENI/experiment/beni_pilot<br>python3 train.py --task economic --model-type tfidf<br>python3 build_index.py<br>python3 correlate.py</code>
         </div>
 
         <div class="start-card">
           <div class="start-card-icon">💻</div>
           <h3>For Developers</h3>
           <p>Explore the full annotation pipeline, run LLM annotation, or fine-tune BanglaBERT.</p>
-          <code>cd pipelines/beni/annotation<br>python3 llm_annotate.py --help<br>python3 run_model_comparison.py --help<br><br># Set up the Discord bot<br>cd infrastructure/discord-bot<br>pip install -r requirements.txt<br>python bot.py</code>
+          <code>cd pipelines/BENI/annotation<br>python3 llm_annotate.py --help<br>python3 run_model_comparison.py --help<br><br># Set up the Discord bot<br>cd infrastructure/discord-bot<br>pip install -r requirements.txt<br>python bot.py</code>
         </div>
 
         <div class="start-card">
@@ -479,7 +479,7 @@
           <div class="contribute-card-icon">✅</div>
           <h3>Replication</h3>
           <p>Independently verify BENI's results using the open-source code and published data.</p>
-          <a href="pipelines/beni/experiment/beni_pilot/README.md" class="btn-sm">Replicate →</a>
+          <a href="pipelines/BENI/experiment/beni_pilot/README.md" class="btn-sm">Replicate →</a>
         </div>
 
         <div class="contribute-card">

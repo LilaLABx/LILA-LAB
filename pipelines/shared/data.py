@@ -5,6 +5,7 @@ Text normalization, keyword-based labeling, and general data helpers.
 
 import random
 import re
+import warnings
 
 import numpy as np
 import pandas as pd
@@ -16,10 +17,30 @@ UNICODE_PUNCT_RE = re.compile(r"[^\w\s]", re.UNICODE)
 SPACE_RE = re.compile(r"\s+")
 
 
-def set_seed(seed: int) -> None:
-    """Set random seeds for reproducibility."""
+def set_seed(seed: int, include_torch: bool = True) -> None:
+    """Set random seeds for reproducibility across Python, NumPy, and optionally PyTorch.
+
+    Args:
+        seed: Random seed value.
+        include_torch: If True (default), also sets torch and CUDA seeds.
+                       Pass False if torch is not installed to avoid import error.
+    """
     random.seed(seed)
     np.random.seed(seed)
+
+    if include_torch:
+        try:
+            import torch
+
+            torch.manual_seed(seed)
+            if torch.cuda.is_available():
+                torch.cuda.manual_seed(seed)
+                torch.cuda.manual_seed_all(seed)
+                # Make cuDNN operations deterministic (slower but reproducible)
+                torch.backends.cudnn.deterministic = True
+                torch.backends.cudnn.benchmark = False
+        except ImportError:
+            warnings.warn("torch not available — skipping PyTorch seed", stacklevel=2)
 
 
 def normalize_text(text: str, punct_re: re.Pattern | None = None) -> str:

@@ -143,7 +143,7 @@ pip install -e ".[all]"      # Everything above
 ### 4. (Optional) Install BENI pilot experiment dependencies
 
 ```bash
-cd pipelines/beni/experiment/beni_pilot
+cd pipelines/BENI/experiment/beni_pilot
 pip install -r requirements.txt
 cd ../../..
 ```
@@ -162,7 +162,7 @@ Run the BENI pilot baseline — from clone to narrative index in a few commands:
 # 1. Install dependencies (see Installation section above)
 
 # 2. Train the baseline TF-IDF classifier
-cd pipelines/beni/experiment/beni_pilot
+cd pipelines/BENI/experiment/beni_pilot
 python3 train.py --task economic --model-type tfidf --data-source potrika-timeseries
 
 # 3. Build the 79-month BENI Economic Index
@@ -174,7 +174,7 @@ python3 correlate.py
 
 **What you'll get:** A monthly narrative index (2014–2020), model artifacts, and correlation reports. See [`pipelines/beni/experiment/beni_pilot/README.md`](pipelines/beni/experiment/beni_pilot/README.md) for full documentation.
 
-**Need the Potrika dataset?** Download it from [Mendeley Data](https://data.mendeley.com/datasets/v362rp78dc/4) (3.3 GB, CC BY 4.0) and place it in `pipelines/beni/data/raw/potrika/`.
+**Need the Potrika dataset?** Download it from [Mendeley Data](https://data.mendeley.com/datasets/v362rp78dc/4) (3.3 GB, CC BY 4.0) and place it in `pipelines/BENI/data/raw/potrika/`.
 
 ### For Linguistic Contributors
 
@@ -215,40 +215,35 @@ cd infrastructure/website/
 
 ```
 lila-lab/
+├── .github/                    # CI workflows, issue templates, funding
+├── .vscode/                    # Workspace settings, recommended extensions
+│
 ├── pipelines/                  # XENI Pipeline Collection (10 emerging economies)
-│   ├── beni/                   # Bangla ✅ (proven — dataset collected)
-│   ├── aeni/                   # Assamese 🔜
-│   ├── neni/                   # Nepali 🔜
-│   ├── seni/                   # Sylheti 🔜
-│   ├── ceni/                   # Chittagonian 🔜
-│   ├── heni/                   # Hausa 🔜
-│   ├── kieni/                  # Kiswahili 🔜
-│   ├── vieni/                  # Vietnamese 🔜
-│   ├── tieni/                  # Tagalog 🔜
-│   ├── ideni/                  # Indonesian 🔜
-│   ├── template/               # Pipeline template (start here for new languages)
-│   └── shared/                 # Language-agnostic utilities (LLM, stats, config)
+│   ├── BENI/                   # Bangla ✅ (proven)
+│   ├── AENI/...                # 9 more bootstrapped pipelines
+│   ├── LAB/                    # Annotation infrastructure (AAL, TAL)
+│   ├── shared/                 # Language-agnostic utilities
+│   └── template/               # Bootstrap template (start here for new languages)
 │
-├── technical-reports/          # Research Papers (6-paper series)
-│   ├── paper1_.../
-│   ├── paper2_.../
-│   ├── paper3_.../
-│   ├── paper4_.../
-│   ├── paper5_.../
-│   ├── paper6_.../
-│   ├── contributions/          # Contributor records
-│   └── extensions/             # Extension proposals
+├── dataset/                    # Raw corpora + processed releases per language
+├── registry/                   # Central registry (languages, schemas, publications)
+├── api/                        # REST API (planned)
+├── cli/                        # CLI tool (planned)
+├── dist/                       # Distribution manifests (Zenodo, HuggingFace, OSF)
 │
-├── dataset/                    # Datasets
+├── technical-reports/          # 6-paper research series
 ├── communications/             # Brand, social media, community strategy
 ├── infrastructure/             # Discord bot, website, scripts
-└── docs/                       # Documentation
+│
+├── tests/                      # Shared test infrastructure
+└── docs/                       # Website (GitHub Pages) + documentation guides
 ```
 
 **Key entry points:**
 - [`pipelines/README.md`](pipelines/README.md) — full pipeline framework documentation
-- [`pipelines/beni/README.md`](pipelines/beni/README.md) — BENI deep dive
-- [`pipelines/beni/experiment/beni_pilot/README.md`](pipelines/beni/experiment/beni_pilot/README.md) — pilot experiment commands & results
+- [`pipelines/BENI/README.md`](pipelines/BENI/README.md) — BENI deep dive
+- [`registry/languages.json`](registry/languages.json) — language registry & pipeline status
+- [`registry/publications.bib`](registry/publications.bib) — full publication bibliography
 - [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — full contribution framework
 - [`docs/LINGUISTIC_CONTRIBUTION_GUIDE.md`](docs/LINGUISTIC_CONTRIBUTION_GUIDE.md) — guide for language contributors
 

@@ -40,9 +40,9 @@ Where [Language initial] is the first letter of the language name in English, up
 
 | Element | Convention | Example |
 |---------|-----------|---------|
-| Pipeline directory | `pipelines/[x]eni/` | `pipelines/beni/` |
+| Pipeline directory | `pipelines/[x]eni/` | `pipelines/BENI/` |
 | Narrative index | XENI [Domain] Index | BENI Economic Index |
-| Annotation pipeline | `pipelines/[x]eni/annotation/` | `pipelines/beni/annotation/` |
+| Annotation pipeline | `pipelines/[x]eni/annotation/` | `pipelines/BENI/annotation/` |
 
 ## Consequences
 

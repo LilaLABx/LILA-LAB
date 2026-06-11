@@ -28,8 +28,8 @@ const DOC_SECTIONS = [
         title: '🔧 Pipeline Reference',
         items: [
             { title: 'XENI Framework',       path: 'pipelines/README.md',          icon: 'pipeline' },
-            { title: 'BENI — Bangla',        path: 'pipelines/beni/README.md',     icon: 'lang' },
-            { title: 'BENI Pilot Experiment', path: 'pipelines/beni/experiment/beni_pilot/README.md', icon: 'experiment' },
+            { title: 'BENI — Bangla',        path: 'pipelines/BENI/README.md',     icon: 'lang' },
+            { title: 'BENI Pilot Experiment', path: 'pipelines/BENI/experiment/beni_pilot/README.md', icon: 'experiment' },
             { title: 'Template Pipeline',    path: 'pipelines/template/README.md', icon: 'template' },
             { title: 'AENI — Assamese',      path: 'pipelines/aeni/README.md',     icon: 'lang' },
             { title: 'NENI — Nepali',        path: 'pipelines/neni/README.md',     icon: 'lang' },

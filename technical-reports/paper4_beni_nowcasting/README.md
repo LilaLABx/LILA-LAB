@@ -18,7 +18,7 @@ The paper will evaluate whether the BENI Economic Index — a monthly measure of
 
 This paper depends on outputs from the following components:
 
-- **BENI Economic Index** — monthly narrative index values (2014–2020) from `pipelines/beni/indices/eco/`
+- **BENI Economic Index** — monthly narrative index values (2014–2020) from `pipelines/BENI/indices/eco/`
 - **Paper 3 — Building BENI Pipeline** — methodology and validation benchmarks that justify the index as a credible input
 - **Bangladesh macroeconomic data** — CPI, exchange rate, remittance, and interest rate series (public sources: Bangladesh Bank, BBS)
 - **Nowcasting model infrastructure** — the shared time-series library to be placed in `pipelines/shared/`

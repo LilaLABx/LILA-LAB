@@ -192,9 +192,9 @@
 |-------------------|-----------|
 | Start a pipeline for your language | [`pipelines/template/`](../pipelines/template/) + [`COLLABORATION.md`](COLLABORATION.md) |
 | Contribute linguistic data | [`LINGUISTIC_CONTRIBUTION_GUIDE.md`](LINGUISTIC_CONTRIBUTION_GUIDE.md) |
-| Improve the classifier | [`pipelines/beni/experiment/beni_pilot/`](../pipelines/beni/experiment/beni_pilot/) |
+| Improve the classifier | [`pipelines/BENI/experiment/beni_pilot/`](../pipelines/BENI/experiment/beni_pilot/) |
 | Build the website or tools | [`infrastructure/`](../infrastructure/) |
 | Write a policy brief | Open an issue or email lila.lab0x@gmail.com |
 | Replicate or validate results | [`technical-reports/extensions/REPLICATION_TEMPLATE.md`](../technical-reports/extensions/REPLICATION_TEMPLATE.md) |
 
-See the full BENI pipeline roadmap at [`../pipelines/beni/BENI_ROADMAP.md`](../pipelines/beni/BENI_ROADMAP.md) for granular BENI-specific research milestones.
+See the full BENI pipeline roadmap at [`../pipelines/BENI/BENI_ROADMAP.md`](../pipelines/BENI/BENI_ROADMAP.md) for granular BENI-specific research milestones.

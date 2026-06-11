@@ -33,7 +33,7 @@ services:
       - /absolute/path/to/your/data:/app/data
       - /absolute/path/to/your/outputs:/app/outputs
       # Optional: mount the BENI pipeline data directory directly
-      # - ./pipelines/beni/data:/app/pipelines/beni/data
+      # - ./pipelines/BENI/data:/app/pipelines/BENI/data
 
   discord-bot:
     # The Discord bot reads configuration from infrastructure/discord-bot/.env.

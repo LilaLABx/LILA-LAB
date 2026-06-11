@@ -59,9 +59,9 @@ target-version = "py310"
 line-length = 100
 # Excluded directories are linted ad-hoc; beni/ is production code
 # using patterns incompatible with current ruleset. To lint it:
-#   ruff check pipelines/beni/ --no-cache --select E,W,F,I
+#   ruff check pipelines/BENI/ --no-cache --select E,W,F,I
 exclude = [
-    "pipelines/beni/**",
+    "pipelines/BENI/**",
     "personal/",
 ]
 
@@ -83,13 +83,13 @@ ignore = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["shared"]
+known-first-party = ["shared", "cli", "api"]
 
 # --------------------------------------------------------------------------- #
 #  Pytest
 # --------------------------------------------------------------------------- #
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "pipelines/template/tests"]
 addopts = "-v --tb=short --ignore=personal"
 
 # --------------------------------------------------------------------------- #

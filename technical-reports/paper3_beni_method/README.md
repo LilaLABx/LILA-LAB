@@ -18,8 +18,8 @@ The paper will provide a comprehensive methodological account of the BENI (Bangl
 
 This paper depends on outputs from the following components:
 
-- **BENI pilot experiment** — model artifacts, index data, and evaluation results in `pipelines/beni/experiment/beni_pilot/`
-- **BENI annotation pipeline** — LLM annotation schemas, adjudication protocols, and labeled data in `pipelines/beni/annotation/`
+- **BENI pilot experiment** — model artifacts, index data, and evaluation results in `pipelines/BENI/experiment/beni_pilot/`
+- **BENI annotation pipeline** — LLM annotation schemas, adjudication protocols, and labeled data in `pipelines/BENI/annotation/`
 - **BENI Economic Index** — monthly index values and macroeconomic correlation results (CPI, FX, reserves)
 - **Potrika dataset** — 664,000+ Bangla news articles (Mendeley Data, CC BY 4.0)
 - **Shared pipeline library** — language-agnostic utilities in `pipelines/shared/`

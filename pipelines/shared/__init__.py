@@ -23,6 +23,12 @@ from pipelines.shared.io import (
     zip_outputs,
 )
 from pipelines.shared.models import build_tfidf_logreg
+from pipelines.shared.stats import (
+    classification_report,
+    cohens_kappa,
+    confusion_matrix,
+    fleiss_kappa,
+)
 
 __all__ = [
     "BaseExperimentConfig",
@@ -37,4 +43,8 @@ __all__ = [
     "read_jsonl",
     "read_csv_safe",
     "zip_outputs",
+    "cohens_kappa",
+    "fleiss_kappa",
+    "confusion_matrix",
+    "classification_report",
 ]

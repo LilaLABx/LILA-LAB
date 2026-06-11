@@ -38,21 +38,21 @@ install-all:
 # ── Lint & Format ─────────────────────────────────────
 
 lint:
-	ruff check pipelines/shared/ pipelines/template/ infrastructure/
-	ruff check --no-cache pipelines/beni/ --select E,W,F,I --ignore E501,E741 || \
-		echo "Note: beni/ linting is advisory (run separately)"
+	ruff check pipelines/shared/ pipelines/template/ infrastructure/ tests/
+	ruff check --no-cache pipelines/BENI/ --select E,W,F,I --ignore E501,E741 || \
+		echo "Note: BENI/ linting is advisory (run separately)"
 
 format:
-	ruff format pipelines/shared/ pipelines/template/ infrastructure/ --check
-	ruff format pipelines/beni/ --check || \
-		echo "Note: beni/ formatting check is advisory (run separately)"
+	ruff format pipelines/shared/ pipelines/template/ infrastructure/ tests/ --check
+	ruff format pipelines/BENI/ --check || \
+		echo "Note: BENI/ formatting check is advisory (run separately)"
 
 format-fix:
-	ruff format pipelines/shared/ pipelines/template/ infrastructure/
-	ruff format pipelines/beni/ 2>/dev/null || true
+	ruff format pipelines/shared/ pipelines/template/ infrastructure/ tests/
+	ruff format pipelines/BENI/ 2>/dev/null || true
 
 lint-fix:
-	ruff check --fix pipelines/shared/ pipelines/template/ infrastructure/
+	ruff check --fix pipelines/shared/ pipelines/template/ infrastructure/ tests/
 
 # ── Tests ──────────────────────────────────────────────
 
