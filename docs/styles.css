@@ -1268,6 +1268,80 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.35rem); }
 }
 
 /* Roadmap timeline */
+/* ── Domain Expert Callout ── */
+.join-expert {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 2rem 2.5rem;
+  background: linear-gradient(135deg, rgba(226, 149, 120, 0.08), rgba(0, 109, 119, 0.05));
+  border: 1px solid rgba(226, 149, 120, 0.25);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+.join-expert-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.join-expert-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 0.5rem;
+  font-variation-settings: 'SOFT' 30;
+}
+.join-expert-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+.join-expert-roles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.expert-role {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.55);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.expert-role-icon {
+  font-size: 1.1rem;
+}
+.expert-role-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--charcoal);
+}
+.expert-role-desc {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
+.join-expert .btn-primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+.join-expert .btn-primary:hover {
+  background: #D48260;
+  border-color: #D48260;
+  box-shadow: 0 0 25px rgba(226, 149, 120, 0.3);
+}
+
 .join-roadmap {
   margin-bottom: 4rem;
 }
