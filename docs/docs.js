@@ -279,6 +279,16 @@ function renderDoc(markdown, path) {
 
     // Rewrite relative links to GitHub
     rewriteRelativeLinks(path);
+
+    // Post-render enhancements
+    if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('.markdown-body pre code').forEach(function(el) {
+            hljs.highlightElement(el);
+        });
+    }
+    addHeadingAnchors();
+    addCopyButtons();
+    buildToc();
 }
 
 // ── Rewrite Relative Links ───────────────────────────────────────────
@@ -384,6 +394,10 @@ function showWelcome() {
     // Clear rendered markdown
     const mdBody = document.getElementById('markdownBody');
     if (mdBody) mdBody.innerHTML = '';
+
+    // Hide TOC
+    const tocContainer = document.getElementById('sidebarToc');
+    if (tocContainer) tocContainer.style.display = 'none';
 }
 
 // ── Hide Welcome, Show Doc Content ────────────────────────────────────
@@ -393,9 +407,133 @@ function enterDocView() {
     if (welcomePage) welcomePage.style.display = 'none';
 }
 
+// ── Add Heading Anchors ───────────────────────────────────────────────
+function addHeadingAnchors() {
+    document.querySelectorAll('.markdown-body h1[id], .markdown-body h2[id], .markdown-body h3[id], .markdown-body h4[id], .markdown-body h5[id], .markdown-body h6[id]').forEach(function(heading) {
+        var anchor = document.createElement('a');
+        anchor.className = 'heading-anchor';
+        anchor.href = '#' + heading.id;
+        anchor.setAttribute('aria-label', 'Link to this section');
+        anchor.textContent = '#';
+        heading.classList.add('heading-anchored');
+        heading.appendChild(anchor);
+    });
+}
+
+// ── Copy-Code Buttons ─────────────────────────────────────────────────
+function addCopyButtons() {
+    document.querySelectorAll('.markdown-body pre').forEach(function(pre) {
+        if (pre.querySelector('.copy-code-btn')) return;
+        var btn = document.createElement('button');
+        btn.className = 'copy-code-btn';
+        btn.textContent = 'Copy';
+        btn.addEventListener('click', function() {
+            var code = pre.querySelector('code');
+            if (!code) return;
+            var text = code.textContent || '';
+            navigator.clipboard.writeText(text).then(function() {
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(function() {
+                btn.textContent = 'Failed';
+            });
+        });
+        pre.appendChild(btn);
+    });
+}
+
+// ── Build Table of Contents ──────────────────────────────────────────
+function buildToc() {
+    var tocContainer = document.getElementById('sidebarToc');
+    var tocLinks = document.getElementById('sidebarTocLinks');
+    if (!tocContainer || !tocLinks) return;
+
+    var headings = document.querySelectorAll('.markdown-body h2, .markdown-body h3');
+    if (headings.length < 2) {
+        tocContainer.style.display = 'none';
+        return;
+    }
+
+    tocLinks.innerHTML = '';
+    tocContainer.style.display = '';
+
+    headings.forEach(function(heading) {
+        if (!heading.id) return;
+        var li = document.createElement('a');
+        li.className = 'toc-item';
+        if (heading.tagName === 'H3') {
+            li.className += ' toc-item-nested';
+        }
+        li.href = '#' + heading.id;
+        li.textContent = heading.textContent.replace(/#$/, '').trim();
+        li.addEventListener('click', function(e) {
+            e.preventDefault();
+            var target = document.getElementById(heading.id);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.pushState(null, '', '#' + heading.id);
+            }
+        });
+        tocLinks.appendChild(li);
+    });
+
+    updateTocActive();
+}
+
+// ── Toc Scroll-Spy ────────────────────────────────────────────────────
+function updateTocActive() {
+    var tocItems = document.querySelectorAll('.toc-item');
+    if (!tocItems.length) return;
+
+    var headings = [];
+    tocItems.forEach(function(item) {
+        var id = item.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) headings.push({ el: el, item: item });
+    });
+
+    function onScroll() {
+        var scrollPos = window.scrollY + 100;
+        var current = null;
+        headings.forEach(function(h) {
+            if (h.el.offsetTop <= scrollPos) {
+                current = h.item;
+            }
+        });
+        tocItems.forEach(function(item) { item.classList.remove('toc-active'); });
+        if (current) current.classList.add('toc-active');
+    }
+
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+}
+
+// ── Reading Progress Bar ──────────────────────────────────────────────
+function updateReadingProgress() {
+    var progressBar = document.getElementById('readingProgress');
+    if (!progressBar) return;
+
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) {
+        progressBar.style.width = '0%';
+        return;
+    }
+    var progress = Math.min((scrollTop / docHeight) * 100, 100);
+    progressBar.style.width = progress + '%';
+    progressBar.setAttribute('aria-valuenow', Math.round(progress));
+}
+
 // ── Init ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
     buildSidebar();
+
+    // Reading progress bar
+    window.addEventListener('scroll', updateReadingProgress);
 
     // Load from URL query param
     const params = new URLSearchParams(window.location.search);

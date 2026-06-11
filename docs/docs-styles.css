@@ -24,6 +24,23 @@ body {
   overflow-x: hidden;
 }
 
+/* ── Reading Progress Bar ── */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  z-index: 1001;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+[data-theme="light"] .reading-progress {
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+}
+
 /* Subtle grain texture overlay on body */
 /* Smooth theme transitions */
 body, body::before, .navbar, .docs-sidebar, .docs-content, .footer,
@@ -529,6 +546,74 @@ h1, h2, h3, h4 {
 .sidebar-toggle:hover {
   color: var(--cyan);
   border-color: var(--border-cyan);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SIDEBAR TOC — On This Page
+   ═══════════════════════════════════════════════════════════ */
+.sidebar-toc {
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--border-glass);
+  margin-top: var(--space-sm);
+}
+
+.sidebar-toc-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-bottom: var(--space-sm);
+}
+
+.sidebar-toc-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.toc-item {
+  display: block;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
+  color: var(--charcoal-light);
+  text-decoration: none;
+  border-radius: 4px;
+  border-left: 2px solid transparent;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toc-item:hover {
+  color: var(--cyan);
+  background: var(--bg-surface);
+}
+
+.toc-item.toc-active {
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  border-left-color: var(--cyan);
+  font-weight: 500;
+}
+
+.toc-item-nested {
+  padding-left: 1.25rem;
+  font-size: 0.75rem;
+}
+
+/* Scrollbar for TOC */
+.sidebar-toc-links::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-toc-links::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 2px;
 }
 
 /* ========== Sidebar Overlay (mobile) ========== */
@@ -1790,6 +1875,31 @@ h1, h2, h3, h4 {
 .markdown-body h5 { font-size: 1rem; }
 .markdown-body h6 { font-size: 0.875rem; color: var(--muted); }
 
+/* Heading anchor links */
+.heading-anchor {
+  float: left;
+  margin-left: -1.2em;
+  padding-right: 0.3em;
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease;
+  font-size: 0.85em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.heading-anchored:hover .heading-anchor,
+.heading-anchor:hover {
+  opacity: 1;
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.heading-anchored {
+  position: relative;
+}
+
 .markdown-body p {
   margin-bottom: var(--space-lg);
 }
@@ -1846,6 +1956,42 @@ h1, h2, h3, h4 {
   color: #e2e8f0;
   font-size: 0.875rem;
   line-height: 1.6;
+}
+
+/* Copy-code button */
+.copy-code-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--charcoal-light);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s, color 0.2s, border-color 0.2s;
+  line-height: 1.5;
+  z-index: 2;
+}
+
+.markdown-body pre:hover .copy-code-btn {
+  opacity: 1;
+}
+
+.copy-code-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--cyan);
+  border-color: var(--border-cyan);
+}
+
+.copy-code-btn.copied {
+  color: #66BB6A;
+  border-color: #66BB6A;
+  background: rgba(102, 187, 106, 0.1);
 }
 
 .markdown-body ul,
@@ -1910,6 +2056,30 @@ h1, h2, h3, h4 {
   border-radius: var(--radius-sm);
   margin: var(--space-lg) 0;
   border: 1px solid var(--border-glass);
+}
+
+/* Syntax highlighting — match cyber-lab theme */
+.markdown-body pre {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .markdown-body pre {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.markdown-body pre code.hljs {
+  background: transparent;
+  padding: 0;
+}
+
+/* Highlight.js inline code (not in pre) */
+.markdown-body code.hljs {
+  padding: 0.2em 0.4em;
+}
+
+/* Light theme adjustments for highlight.js */
+[data-theme="light"] .markdown-body .hljs {
+  color: #24292e;
 }
 
 .markdown-body .task-list-item {
