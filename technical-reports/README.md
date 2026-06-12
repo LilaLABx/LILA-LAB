@@ -43,9 +43,16 @@ technical-reports/
 
 ## Using These Reports
 
-- **Researchers**: Each paper directory contains the manuscript, figures, data references, and replication code.
+- **Researchers**: Each paper directory contains the manuscript, figures, data references, and replication code. For the full methodology framework these papers build on, see [`docs/research/NARRATIVE_EXTRACTION_METHODOLOGIES.md`](../docs/research/NARRATIVE_EXTRACTION_METHODOLOGIES.md) (12-level hierarchy).
 - **Contributors**: See [extensions/INDEX.md](extensions/INDEX.md) for active extension opportunities, and [contributions/OWNERS.csv](contributions/OWNERS.csv) to record your participation.
 - **Reviewers**: Replication reports can be submitted using the [REPLICATION_TEMPLATE.md](extensions/REPLICATION_TEMPLATE.md).
+
+## Related Resources
+
+- [Methodology Hierarchy](../docs/research/NARRATIVE_EXTRACTION_METHODOLOGIES.md) — narrative extraction methods from manual coding to agentic systems
+- [Methodology Level Index](../docs/research/methodologies/INDEX.md) — detailed deep-dives into each of the 12 levels
+- [BENI Pilot Run Manifest](../docs/research/BENI_PILOT_RUN_MANIFEST.md) — experimental results from the Bangla pilot
+- [Documentation Portal](../docs/index.md) — all LILA Lab docs organized by role
 
 ---
 
