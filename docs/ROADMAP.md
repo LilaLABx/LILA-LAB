@@ -197,4 +197,4 @@
 | Write a policy brief | Open an issue or email lila.lab0x@gmail.com |
 | Replicate or validate results | [`technical-reports/extensions/REPLICATION_TEMPLATE.md`](../technical-reports/extensions/REPLICATION_TEMPLATE.md) |
 
-See the full BENI pipeline roadmap at [`../pipelines/BENI/BENI_ROADMAP.md`](../pipelines/BENI/BENI_ROADMAP.md) for granular BENI-specific research milestones.
+See the full BENI pipeline roadmap at [`pipelines/BENI/management/BENI_ROADMAP.md`](../pipelines/BENI/management/BENI_ROADMAP.md) for granular BENI-specific research milestones.
