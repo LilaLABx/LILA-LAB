@@ -26,6 +26,10 @@ See [template.md](template.md) for the canonical format.
 | ID | Title | Status | Date |
 |----|-------|--------|------|
 | ADR-001 | XENI Pipeline Naming Convention | Accepted | 2025-01-15 |
+| ADR-002 | Documentation Structure & Portal | Accepted | 2026-06-12 |
+| ADR-003 | Dataset ↔ Pipeline Separation | Accepted | 2026-06-12 |
+| ADR-004 | LLM Annotation Schema Versioning | Accepted | 2026-06-12 |
+| ADR-005 | Multi-Language Coordination Protocol | Accepted | 2026-06-12 |
 
 ## Proposing a New ADR
 
