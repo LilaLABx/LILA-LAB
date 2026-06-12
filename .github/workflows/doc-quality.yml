@@ -1,0 +1,111 @@
+# Documentation Quality — link validation, README coverage, ADR index completeness
+name: Doc Quality
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "docs/**"
+      - "technical-reports/**"
+      - "communications/**"
+      - "registry/**"
+      - ".github/workflows/doc-quality.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "docs/**"
+      - "technical-reports/**"
+      - "communications/**"
+      - "registry/**"
+
+permissions:
+  contents: read
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check internal cross-references resolve
+        run: |
+          echo "Checking for broken internal .md links..."
+          ERRORS=0
+          while IFS= read -r -d '' file; do
+            # Find all markdown links to local files (../something.md, ../../something.md, etc.)
+            while IFS= read -r link; do
+              # Extract the file path from the markdown link
+              target=$(echo "$link" | sed -n 's/.*](\([^)]*\))/\1/p')
+              # Only check relative .md links (not http, not anchors, not absolute)
+              case "$target" in
+                *.md)
+                  # Resolve relative to the file's directory
+                  dir=$(dirname "$file")
+                  resolved="$dir/$target"
+                  # Normalize path
+                  normalized=$(realpath --relative-to=. "$resolved" 2>/dev/null || echo "")
+                  if [ -z "$normalized" ] || [ ! -f "$normalized" ]; then
+                    echo "BROKEN: $file -> $target (resolved: $resolved)"
+                    ERRORS=$((ERRORS + 1))
+                  fi
+                  ;;
+              esac
+            done < <(grep -oP '\]\([^)]+\.md[^)]*\)' "$file" 2>/dev/null || true)
+          done < <(find docs/ technical-reports/ communications/ -name "*.md" -print0 2>/dev/null || true)
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "Found $ERRORS broken links."
+            exit 1
+          fi
+          echo "All internal links resolve."
+
+  check-readme-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify README coverage for top-level directories
+        run: |
+          echo "Checking README coverage..."
+          MISSING=0
+          for dir in pipelines dataset registry technical-reports docs communications infrastructure api cli dist; do
+            if [ -d "$dir" ]; then
+              if [ ! -f "$dir/README.md" ]; then
+                echo "MISSING: $dir/README.md"
+                MISSING=$((MISSING + 1))
+              fi
+            fi
+          done
+          if [ "$MISSING" -gt 0 ]; then
+            echo "$MISSING directories missing README.md."
+            exit 1
+          fi
+          echo "All top-level directories have README.md."
+
+  check-adr-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate ADR index matches actual files
+        run: |
+          echo "Checking ADR index..."
+          ERRORS=0
+          ADR_DIR="docs/adr"
+          if [ ! -d "$ADR_DIR" ]; then
+            echo "No ADR directory — skipping"
+            exit 0
+          fi
+          # List actual ADR files (ADR-NNN-*.md)
+          actual=$(find "$ADR_DIR" -name "ADR-*.md" ! -name "README.md" ! -name "template.md" | sort)
+          # Check each ADR file has a matching entry in the index (README.md)
+          while IFS= read -r file; do
+            id=$(basename "$file" | sed 's/\(ADR-[0-9]*\)-.*/\1/')
+            title_line=$(sed -n '1p' "$file" | sed 's/^# //')
+            # Check README.md mentions this ID
+            if ! grep -q "$id" "$ADR_DIR/README.md" 2>/dev/null; then
+              echo "MISSING FROM INDEX: $id — $title_line (file: $file)"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done <<< "$actual"
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "$ERRORS ADR files missing from index."
+            exit 1
+          fi
+          echo "All ADR files indexed correctly."
