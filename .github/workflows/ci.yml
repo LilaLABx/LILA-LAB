@@ -18,7 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install ruff
+      - name: Install dependencies
+        run: pip install -e ".[dev]"
       - name: Ruff lint
         run: ruff check pipelines/shared/ pipelines/template/ infrastructure/scripts/ cli/ tests/
       - name: Ruff format check
@@ -31,7 +32,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pytest
+      - name: Install package and test dependencies
+        run: pip install -e ".[dev]"
       - name: Pytest
         run: |
           if [ -d tests ]; then
