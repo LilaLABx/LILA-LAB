@@ -249,6 +249,18 @@ lila-lab/
 - [`docs/COLLABORATION.md`](docs/COLLABORATION.md) — full contribution framework
 - [`docs/LINGUISTIC_CONTRIBUTION_GUIDE.md`](docs/LINGUISTIC_CONTRIBUTION_GUIDE.md) — guide for language contributors
 
+### Documentation Quick Links
+
+| You Are | Start Here |
+|---------|------------|
+| 🧪 **Researcher** | [`docs/research/`](docs/research/) — methodologies, papers, run manifests |
+| 🌍 **Linguistic contributor** | [`docs/LINGUISTIC_CONTRIBUTION_GUIDE.md`](docs/LINGUISTIC_CONTRIBUTION_GUIDE.md) |
+| 👨‍💻 **Developer** | [`pipelines/README.md`](pipelines/README.md) → your pipeline |
+| 🛠️ **Maintainer** | [`docs/REPOSITORY_OPERATING_MODEL.md`](docs/REPOSITORY_OPERATING_MODEL.md) + [`docs/adr/`](docs/adr/) |
+| 📊 **Dataset user** | [`dataset/README.md`](dataset/README.md) |
+| 🤝 **Collaborator** | [`docs/COLLABORATION.md`](docs/COLLABORATION.md) |
+| 📖 **All docs** | [`docs/index.md`](docs/index.md) — central documentation portal |
+
 ---
 
 ## Project Status & Results

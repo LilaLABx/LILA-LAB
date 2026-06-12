@@ -1,6 +1,6 @@
 # LILA Lab Repository Restructuring Plan
 
-> **STATUS**: Most phases completed. This document is kept for reference — remaining items noted below.
+> **STATUS**: ⚠️ SUPERSEDED (as of 2026-06-12). All phases completed. The repository now follows the structure described herein. For current source-of-truth, see [`docs/REPOSITORY_OPERATING_MODEL.md`](../REPOSITORY_OPERATING_MODEL.md) and [`docs/index.md`](../index.md).
 
 ## Current Structure Analysis
 
