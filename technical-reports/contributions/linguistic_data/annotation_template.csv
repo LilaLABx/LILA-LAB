@@ -1,0 +1,5 @@
+article_id,label,confidence,notes,annotator,date
+# label: economic / not_economic / uncertain
+# confidence: high / medium / low
+# notes: explain your reasoning (especially for culturally specific or ambiguous cases)
+ex_001,economic,high,"Discusses inflation and its impact on food prices — clearly economic",Your Name,2026-06-10

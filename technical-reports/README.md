@@ -11,6 +11,9 @@ This directory documents the paper series produced by LILA Lab. Each paper direc
 | 1 | Systematic Review of Economic Narrative Indices | Complete (submitted) | `paper1_systematic_review/` |
 | 2 | BENI v1 Dataset (Potrika corpus + LLM labels) | Complete (OSF preprint) | `dataset/BENI/beni-v1/` |
 | 3 | Nowcasting Inflation with a TF-IDF Narrative Index | Active | `paper3_tfidf_nowcasting/` |
+| 4 | Nowcasting Inflation with BENI | 📋 Planned (Aug 2026) | `paper4_nowcasting_inflation/` |
+| 5 | Text as Data in Social Science | 📋 Planned (Oct 2026) | `paper5_text_as_data/` |
+| 6 | LLMs as Measurement Devices | 💡 Proposed (Jan 2027) | `paper6_llm_measurement/` |
 
 ### Paper 1 — Systematic Review of Economic Narrative Indices
 Systematic literature review of 66 papers (2007–2025) mapping dictionary-based, supervised ML, and LLM-based approaches to economic narrative index construction. Includes a BENI pilot (TF-IDF classifier at 91.7%, 79-month index, macro correlations). Identifies severe publication bias (88% positive), geographic bias (84% English, 56% US, 0% Bangla), and a pooled median RMSE improvement of 3.76%.
@@ -20,6 +23,15 @@ Describes the release of the BENI v1 dataset: 933K Bangla news articles (Potrika
 
 ### Paper 3 — Nowcasting Inflation with a TF-IDF Narrative Index
 Evaluates whether a simple TF-IDF narrative index from Bangla news contains predictive content for CPI inflation. Key findings: cointegration with macro variables (1 CV at all lags), CPI Granger-causes narrative (p=0.01), out-of-sample VAR beats random walk by 20.9% (DM p=0.0004).
+
+### Paper 4 — Nowcasting Inflation with BENI (Planned)
+*Manuscript forthcoming.* Directory placeholder for the BENI nowcasting paper.
+
+### Paper 5 — Text as Data in Social Science (Planned)
+*Manuscript forthcoming.* Directory placeholder for the text-as-data methodology paper.
+
+### Paper 6 — LLMs as Measurement Devices (Proposed)
+*Proposal stage.* Directory placeholder for the LLM measurement paper.
 
 ---
 

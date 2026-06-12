@@ -1,0 +1,18 @@
+field,value,notes
+language_name,Your Language Name,In English
+language_native_name,,"In your language's script (e.g., বাংলা)
+iso_639_1_code,,e.g., bn, as, ne, or
+iso_639_3_code,,e.g., ben, asm, npi, ori
+dialect_name,,"If this is a dialect, specify (e.g., Chittagonian, Sylheti)
+estimated_speakers,,e.g., 265000000
+primary_countries,,"e.g., Bangladesh, India
+submission_date,,YYYY-MM-DD
+contributor_name,,Your name as you want it in publications
+contributor_email,,Optional — for follow-ups
+contributor_affiliation,,Optional — your institution
+data_license,CC BY 4.0,"You can change this. Default is CC BY 4.0
+total_articles,,Number of articles submitted
+date_range_start,,Earliest article date (YYYY-MM-DD)
+date_range_end,,Latest article date (YYYY-MM-DD)
+sources,,e.g., Daily Newspaper, social media, blog archive
+notes,,"Any additional context about this data

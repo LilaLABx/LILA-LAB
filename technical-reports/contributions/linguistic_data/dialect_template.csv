@@ -1,0 +1,3 @@
+language,dialect,standard_form,dialect_form,english_translation,notes,contributor,date
+# Document dialectal variants and idioms that standard NLP misses
+bangla,chittagonian,মূল্যস্ফীতি (mulyosfitī),দাম বাড়ি (dam bari),inflation (price rise),"Chittagonian uses a different construction — from 'price' + 'rise'",Your Name,2026-06-10
