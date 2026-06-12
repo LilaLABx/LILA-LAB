@@ -109,7 +109,7 @@ function pageHTML(page) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="docs-styles.css">
+    <link rel="stylesheet" href="docs-styles.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#071215" media="(prefers-color-scheme: dark)">
@@ -262,7 +262,7 @@ function pageHTML(page) {
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 LILA Lab. Code: MIT | Data: CC BY 4.0 | Papers: &copy; Ann Naser Nabil</p>
+                <p>&copy; 2026 LILA Lab. Code: MIT | Data: CC BY 4.0</p>
             </div>
         </div>
     </footer>
