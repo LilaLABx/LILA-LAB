@@ -1,0 +1,557 @@
+- generic [active] [ref=e1]:
+  - progressbar
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "LILA Lab" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - generic [ref=e5]: LILA
+        - generic [ref=e6]: Lab
+      - generic [ref=e7]:
+        - link "Languages" [ref=e8] [cursor=pointer]:
+          - /url: index.html#languages
+        - link "Pipelines" [ref=e9] [cursor=pointer]:
+          - /url: index.html#pipelines
+        - link "BENI" [ref=e10] [cursor=pointer]:
+          - /url: beni.html
+        - link "Research" [ref=e11] [cursor=pointer]:
+          - /url: index.html#research
+        - link "Contribute" [ref=e12] [cursor=pointer]:
+          - /url: index.html#contribute
+        - link "Join the Lab" [ref=e13] [cursor=pointer]:
+          - /url: index.html#join
+        - link "Community" [ref=e14] [cursor=pointer]:
+          - /url: index.html#community
+        - link "Docs" [ref=e15] [cursor=pointer]:
+          - /url: docs.html
+        - link "Control Room" [ref=e16] [cursor=pointer]:
+          - /url: dashboard.html
+        - link "GitHub ↗" [ref=e17] [cursor=pointer]:
+          - /url: https://github.com/LilaLABx/LILA-LAB
+      - button "Switch theme" [ref=e19] [cursor=pointer]:
+        - img [ref=e20]
+        - img [ref=e23]
+  - generic [ref=e25]:
+    - complementary [ref=e26]:
+      - generic [ref=e27]:
+        - heading "Documentation" [level=2] [ref=e28]
+        - textbox "Search documentation" [ref=e30]:
+          - /placeholder: Search docs...
+      - navigation [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34] [cursor=pointer]:
+            - text: 🚀 Getting Started
+            - img [ref=e35]
+          - list [ref=e37]:
+            - listitem [ref=e38]:
+              - link "About LILA Lab" [ref=e39] [cursor=pointer]:
+                - /url: about-lila-lab.html
+                - img [ref=e40]
+                - text: About LILA Lab
+            - listitem [ref=e43]:
+              - link "Quickstart Guide" [ref=e44] [cursor=pointer]:
+                - /url: quickstart-guide.html
+                - img [ref=e45]
+                - text: Quickstart Guide
+            - listitem [ref=e49]:
+              - link "Pipeline Flow" [ref=e50] [cursor=pointer]:
+                - /url: pipeline-flow.html
+                - img [ref=e51]
+                - text: Pipeline Flow
+            - listitem [ref=e53]:
+              - link "FAQ" [ref=e54] [cursor=pointer]:
+                - /url: faq.html
+                - img [ref=e55]
+                - text: FAQ
+        - generic [ref=e57]:
+          - generic [ref=e58] [cursor=pointer]:
+            - text: 📚 Knowledge Base
+            - img [ref=e59]
+          - list [ref=e61]:
+            - listitem [ref=e62]:
+              - link "Research Papers" [ref=e63] [cursor=pointer]:
+                - /url: research-papers.html
+                - img [ref=e64]
+                - text: Research Papers
+            - listitem [ref=e66]:
+              - link "Methodologies" [ref=e67] [cursor=pointer]:
+                - /url: narrative-extraction-methodologies.html
+                - img [ref=e68]
+                - text: Methodologies
+            - listitem [ref=e70]:
+              - link "Datasets" [ref=e71] [cursor=pointer]:
+                - /url: datasets.html
+                - img [ref=e72]
+                - text: Datasets
+            - listitem [ref=e74]:
+              - link "Project Roadmap" [ref=e75] [cursor=pointer]:
+                - /url: project-roadmap.html
+                - img [ref=e76]
+                - text: Project Roadmap
+            - listitem [ref=e78]:
+              - link "XENI Naming Convention" [ref=e79] [cursor=pointer]:
+                - /url: xeni-naming-convention.html
+                - img [ref=e80]
+                - text: XENI Naming Convention
+        - generic [ref=e82]:
+          - generic [ref=e83] [cursor=pointer]:
+            - text: 🔧 Pipeline Reference
+            - img [ref=e84]
+          - list [ref=e86]:
+            - listitem [ref=e87]:
+              - link "XENI Framework" [ref=e88] [cursor=pointer]:
+                - /url: xeni-framework.html
+                - img [ref=e89]
+                - text: XENI Framework
+            - listitem [ref=e91]:
+              - link "BENI — Bangla" [ref=e92] [cursor=pointer]:
+                - /url: beni-bangla.html
+                - img [ref=e93]
+                - text: BENI — Bangla
+            - listitem [ref=e95]:
+              - link "BENI Pilot Experiment" [ref=e96] [cursor=pointer]:
+                - /url: beni-pilot-experiment.html
+                - img [ref=e97]
+                - text: BENI Pilot Experiment
+            - listitem [ref=e99]:
+              - link "Template Pipeline" [ref=e100] [cursor=pointer]:
+                - /url: template-pipeline.html
+                - img [ref=e101]
+                - text: Template Pipeline
+            - listitem [ref=e103]:
+              - link "AENI — Assamese Coming Soon":
+                - /url: aeni-assamese.html
+                - img
+                - text: AENI — Assamese
+                - generic: Coming Soon
+            - listitem [ref=e104]:
+              - link "NENI — Nepali Coming Soon":
+                - /url: neni-nepali.html
+                - img
+                - text: NENI — Nepali
+                - generic: Coming Soon
+            - listitem [ref=e105]:
+              - link "SENI — Sylheti Coming Soon":
+                - /url: seni-sylheti.html
+                - img
+                - text: SENI — Sylheti
+                - generic: Coming Soon
+            - listitem [ref=e106]:
+              - link "Audio Annotation Lab" [ref=e107] [cursor=pointer]:
+                - /url: audio-annotation-lab.html
+                - img [ref=e108]
+                - text: Audio Annotation Lab
+        - generic [ref=e110]:
+          - generic [ref=e111] [cursor=pointer]:
+            - text: 🤝 Contribution
+            - img [ref=e112]
+          - list [ref=e114]:
+            - listitem [ref=e115]:
+              - link "Collaboration Framework" [ref=e116] [cursor=pointer]:
+                - /url: collaboration-framework.html
+                - img [ref=e117]
+                - text: Collaboration Framework
+            - listitem [ref=e120]:
+              - link "Linguistic Contribution" [ref=e121] [cursor=pointer]:
+                - /url: linguistic-contribution.html
+                - img [ref=e122]
+                - text: Linguistic Contribution
+            - listitem [ref=e129]:
+              - link "Code Contribution" [ref=e130] [cursor=pointer]:
+                - /url: code-contribution.html
+                - img [ref=e131]
+                - text: Code Contribution
+            - listitem [ref=e133]:
+              - link "Code of Conduct" [ref=e134] [cursor=pointer]:
+                - /url: code-of-conduct.html
+                - img [ref=e135]
+                - text: Code of Conduct
+        - generic [ref=e139]:
+          - generic [ref=e140] [cursor=pointer]:
+            - text: 📋 Reference
+            - img [ref=e141]
+          - list [ref=e143]:
+            - listitem [ref=e144]:
+              - link "Glossary" [ref=e145] [cursor=pointer]:
+                - /url: glossary.html
+                - img [ref=e146]
+                - text: Glossary
+            - listitem [ref=e149]:
+              - link "Data Release" [ref=e150] [cursor=pointer]:
+                - /url: data-release.html
+                - img [ref=e151]
+                - text: Data Release
+            - listitem [ref=e153]:
+              - link "Repo Operating Model" [ref=e154] [cursor=pointer]:
+                - /url: repo-operating-model.html
+                - img [ref=e155]
+                - text: Repo Operating Model
+            - listitem [ref=e158]:
+              - link "Infrastructure" [ref=e159] [cursor=pointer]:
+                - /url: infrastructure.html
+                - img [ref=e160]
+                - text: Infrastructure
+            - listitem [ref=e162]:
+              - link "Security Policy" [ref=e163] [cursor=pointer]:
+                - /url: security-policy.html
+                - img [ref=e164]
+                - text: Security Policy
+    - main [ref=e166]:
+      - generic [ref=e167]:
+        - generic [ref=e168]:
+          - generic [ref=e169]:
+            - generic:
+              - generic: ব
+              - generic: লা
+              - generic: अ
+              - generic: मी
+              - generic: ने
+              - generic: পা
+              - generic: ꠍ
+              - generic: ꠤ
+              - generic: ه
+              - generic: و
+              - generic: ệ
+              - generic: Vi
+              - generic: س
+              - generic: লী
+              - generic: ng
+            - heading "Welcome to LILA Lab" [level=1] [ref=e170]
+            - paragraph [ref=e171]: Learn, build, and contribute to language intelligence for underserved languages — whether you're an NLP beginner or a system architect.
+            - generic [ref=e172]:
+              - generic [ref=e173]: Open Source
+              - generic [ref=e174]: Text as Data
+              - generic [ref=e175]: 10 Languages Target
+              - generic [ref=e176]: Community-Driven
+          - generic [ref=e177]:
+            - generic [ref=e178]: ▸ Start Here
+            - heading "Your first 5 minutes" [level=2] [ref=e179]
+            - paragraph [ref=e180]: A quick tour of the big ideas — no technical background needed.
+            - generic [ref=e181]:
+              - link "1 Concept What is Text as Data? →" [ref=e182] [cursor=pointer]:
+                - /url: "#how-it-works"
+                - generic [ref=e183]: "1"
+                - generic [ref=e184]
+                - generic [ref=e187]: →
+              - link "2 Process How a narrative index is built →" [ref=e188] [cursor=pointer]:
+                - /url: "#how-it-works"
+                - generic [ref=e189]: "2"
+                - generic [ref=e190]
+                - generic [ref=e193]: →
+              - link "3 Result See the BENI Economic Index →" [ref=e194] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e195]: "3"
+                - generic [ref=e196]
+                - generic [ref=e199]: →
+              - link "4 Your Role Pick your path →" [ref=e200] [cursor=pointer]:
+                - /url: "#paths"
+                - generic [ref=e201]: "4"
+                - generic [ref=e202]
+                - generic [ref=e205]: →
+          - generic [ref=e206]:
+            - generic [ref=e207]: ▸ How It Works
+            - heading "From text to narrative index" [level=2] [ref=e208]
+            - paragraph [ref=e209]: Three ideas that make LILA Lab tick — and the pipeline that connects them.
+            - generic [ref=e210]:
+              - link "📄→📊 Text as Data Newspaper articles aren't just words — they're measurements of what a society pays attention to. LILA Lab builds instruments to turn this text into quantitative signals. Foundation →" [ref=e211] [cursor=pointer]:
+                - /url: docs/GLOSSARY.md
+                - generic [ref=e212]: 📄→📊
+                - heading "Text as Data" [level=3] [ref=e213]
+                - paragraph [ref=e214]: Newspaper articles aren't just words — they're measurements of what a society pays attention to. LILA Lab builds instruments to turn this text into quantitative signals.
+                - generic [ref=e215]: Foundation →
+              - link "📈 Narrative Index A monthly score tracking how much a topic (like \"the economy\") appears in news. Like an economic indicator — but built from text instead of numbers. Measurement →" [ref=e216] [cursor=pointer]:
+                - /url: docs/FAQ.md#what-is-a-xeni-pipeline
+                - generic [ref=e217]: 📈
+                - heading "Narrative Index" [level=3] [ref=e218]
+                - paragraph [ref=e219]: A monthly score tracking how much a topic (like "the economy") appears in news. Like an economic indicator — but built from text instead of numbers.
+                - generic [ref=e220]: Measurement →
+              - link "🎯 Domain Indices One pipeline, many indices. BENI starts with Economic. The same instrument can measure Health, Climate, Education — each domain just needs its own annotation schema. Scale →" [ref=e221] [cursor=pointer]:
+                - /url: docs/FAQ.md#whats-the-difference-between-a-pipeline-and-an-index
+                - generic [ref=e222]: 🎯
+                - heading "Domain Indices" [level=3] [ref=e223]
+                - paragraph [ref=e224]: One pipeline, many indices. BENI starts with Economic. The same instrument can measure Health, Climate, Education — each domain just needs its own annotation schema.
+                - generic [ref=e225]: Scale →
+              - 'link "⚙️ XENI Framework A reproducible pipeline pattern for any language: collect news → LLM annotate → train classifier → build index → validate against real-world data. Blueprint →" [ref=e226] [cursor=pointer]':
+                - /url: docs/PIPELINE_FLOW.md
+                - generic [ref=e227]: ⚙️
+                - heading "XENI Framework" [level=3] [ref=e228]
+                - paragraph [ref=e229]: "A reproducible pipeline pattern for any language: collect news → LLM annotate → train classifier → build index → validate against real-world data."
+                - generic [ref=e230]: Blueprint →
+            - generic [ref=e231]:
+              - generic [ref=e232]: Pipeline → Index Flow
+              - generic [ref=e233]:
+                - generic [ref=e234]
+                - generic [ref=e238]: →
+                - generic [ref=e239]
+                - generic [ref=e243]: →
+                - generic [ref=e244]
+                - generic [ref=e248]: →
+                - generic [ref=e249]
+                - generic [ref=e253]: →
+                - generic [ref=e254]
+          - generic [ref=e258]:
+            - generic [ref=e259]: ▸ Choose Your Path
+            - heading "Start where you are" [level=2] [ref=e260]
+            - paragraph [ref=e261]: Pick your profile and we'll guide you to the right resources.
+            - generic [ref=e262]:
+              - link "🌱 NLP Beginner New to NLP? Start with fundamentals, learn the XENI framework, and understand how LILA Lab works — no coding required. No experience needed →" [ref=e263] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e264]: 🌱
+                - heading "NLP Beginner" [level=3] [ref=e265]
+                - paragraph [ref=e266]: New to NLP? Start with fundamentals, learn the XENI framework, and understand how LILA Lab works — no coding required.
+                - generic [ref=e267]
+              - link "🔬 Researcher Explore our 6-paper series, methodology, validation results, and collaboration models for academic publishing. Papers & methodology →" [ref=e270] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e271]: 🔬
+                - heading "Researcher" [level=3] [ref=e272]
+                - paragraph [ref=e273]: Explore our 6-paper series, methodology, validation results, and collaboration models for academic publishing.
+                - generic [ref=e274]
+              - link "💻 Developer Set up pipelines, run experiments, deploy infrastructure. Clone the repo and build from source. Python • CLI • API →" [ref=e277] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e278]: 💻
+                - heading "Developer" [level=3] [ref=e279]
+                - paragraph [ref=e280]: Set up pipelines, run experiments, deploy infrastructure. Clone the repo and build from source.
+                - generic [ref=e281]
+              - link "🗣️ Linguistic Contributor Speak a low-resource language? Help annotate data, design schemas, and build pipelines. Co-authorship guaranteed. No coding required →" [ref=e284] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e285]: 🗣️
+                - heading "Linguistic Contributor" [level=3] [ref=e286]
+                - paragraph [ref=e287]: Speak a low-resource language? Help annotate data, design schemas, and build pipelines. Co-authorship guaranteed.
+                - generic [ref=e288]
+          - generic [ref=e291]:
+            - generic [ref=e292]: ▸ Learning Roadmap
+            - heading "From zero to pipeline creator" [level=2] [ref=e293]
+            - paragraph [ref=e294]: Follow this path to go from NLP novice to building your own language pipeline.
+            - generic [ref=e296]:
+              - generic [ref=e297]:
+                - generic [ref=e299]: "1"
+                - generic [ref=e301]
+              - generic [ref=e312]:
+                - generic [ref=e314]: "2"
+                - generic [ref=e316]
+              - generic [ref=e327]:
+                - generic [ref=e329]: "3"
+                - generic [ref=e331]
+              - generic [ref=e343]:
+                - generic [ref=e345]: "4"
+                - generic [ref=e347]
+              - generic [ref=e359]:
+                - generic [ref=e361]: "5"
+                - generic [ref=e362]
+          - generic [ref=e373]:
+            - generic [ref=e374]: ▸ Key Concepts
+            - heading "The LILA Lab lexicon" [level=2] [ref=e375]
+            - paragraph [ref=e376]:
+              - text: Five terms you'll encounter everywhere —
+              - link "visit the full glossary →" [ref=e377] [cursor=pointer]:
+                - /url: docs/GLOSSARY.md
+            - link "BENI The Bangla Exploration & Native-language Intelligence pipeline — the first proven XENI pipeline, built for 265M Bangla speakers. Full definition →" [ref=e378] [cursor=pointer]:
+              - /url: docs/GLOSSARY.md#b
+              - generic [ref=e379]: BENI
+              - paragraph [ref=e380]: The Bangla Exploration & Native-language Intelligence pipeline — the first proven XENI pipeline, built for 265M Bangla speakers.
+              - generic [ref=e381]: Full definition →
+            - 'link "XENI The naming convention for LILA Lab pipelines: [Language initial] + Exploration & Native-language Intelligence. Full definition →" [ref=e382] [cursor=pointer]':
+              - /url: docs/GLOSSARY.md#x
+              - generic [ref=e383]: XENI
+              - paragraph [ref=e384]: "The naming convention for LILA Lab pipelines: [Language initial] + Exploration & Native-language Intelligence."
+              - generic [ref=e385]: Full definition →
+            - link "Narrative Index A monthly time series measuring the prevalence of a narrative in a language's media ecosystem, validated against macro indicators. Full definition →" [ref=e386] [cursor=pointer]:
+              - /url: docs/GLOSSARY.md#n
+              - generic [ref=e387]: Narrative Index
+              - paragraph [ref=e388]: A monthly time series measuring the prevalence of a narrative in a language's media ecosystem, validated against macro indicators.
+              - generic [ref=e389]: Full definition →
+            - link "Annotation Schema The structured fields and labels used to classify each news article — economic relevance, topic, narrative force, and more. Full definition →" [ref=e390] [cursor=pointer]:
+              - /url: docs/GLOSSARY.md#a
+              - generic [ref=e391]: Annotation Schema
+              - paragraph [ref=e392]: The structured fields and labels used to classify each news article — economic relevance, topic, narrative force, and more.
+              - generic [ref=e393]: Full definition →
+            - link "Macro Validation Comparing the narrative index against real economic indicators (CPI, FX, reserves) to prove it captures meaningful signal. Full definition →" [ref=e394] [cursor=pointer]:
+              - /url: docs/GLOSSARY.md#m
+              - generic [ref=e395]: Macro Validation
+              - paragraph [ref=e396]: Comparing the narrative index against real economic indicators (CPI, FX, reserves) to prove it captures meaningful signal.
+              - generic [ref=e397]: Full definition →
+        - generic [ref=e398]:
+          - generic [ref=e399]: ▸ Knowledge & Resources
+          - heading "Everything you need to build" [level=2] [ref=e400]
+          - paragraph [ref=e401]: Curated resources — from academic papers to community channels.
+          - generic [ref=e402]:
+            - link "📄 Research Papers 6-paper series on narrative indices, LLM annotation, and low-resource NLP methodology." [ref=e403] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e404]: 📄
+              - generic [ref=e405]:
+                - heading "Research Papers" [level=3] [ref=e406]
+                - paragraph [ref=e407]: 6-paper series on narrative indices, LLM annotation, and low-resource NLP methodology.
+            - link "💾 Datasets BENI v1.0 dataset with 664K Bangla articles, annotations, and narrative indices on Zenodo." [ref=e408] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e409]: 💾
+              - generic [ref=e410]:
+                - heading "Datasets" [level=3] [ref=e411]
+                - paragraph [ref=e412]: BENI v1.0 dataset with 664K Bangla articles, annotations, and narrative indices on Zenodo.
+            - link "⚙️ Pipeline Framework Complete XENI framework documentation — annotation, classification, index construction." [ref=e413] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e414]: ⚙️
+              - generic [ref=e415]:
+                - heading "Pipeline Framework" [level=3] [ref=e416]
+                - paragraph [ref=e417]: Complete XENI framework documentation — annotation, classification, index construction.
+            - link "💬 Community Discord Ask questions, find collaborators, and get help from the LILA Lab team and contributors." [ref=e418] [cursor=pointer]:
+              - /url: https://discord.gg/TrrdKbky
+              - generic [ref=e419]: 💬
+              - generic [ref=e420]:
+                - heading "Community Discord" [level=3] [ref=e421]
+                - paragraph [ref=e422]: Ask questions, find collaborators, and get help from the LILA Lab team and contributors.
+            - link "⌨️ GitHub Repository Browse the source code, submit issues, fork the repo, and contribute to the project." [ref=e423] [cursor=pointer]:
+              - /url: https://github.com/LilaLABx/LILA-LAB
+              - generic [ref=e424]: ⌨️
+              - generic [ref=e425]:
+                - heading "GitHub Repository" [level=3] [ref=e426]
+                - paragraph [ref=e427]: Browse the source code, submit issues, fork the repo, and contribute to the project.
+            - link "📰 Research Blog Updates, findings, and deep dives published on Substack. Subscribe for the latest." [ref=e428] [cursor=pointer]:
+              - /url: https://lila.substack.com
+              - generic [ref=e429]: 📰
+              - generic [ref=e430]:
+                - heading "Research Blog" [level=3] [ref=e431]
+                - paragraph [ref=e432]: Updates, findings, and deep dives published on Substack. Subscribe for the latest.
+        - generic [ref=e433]:
+          - generic [ref=e434]: ▸ Index of Domains
+          - heading "One pipeline, many domains" [level=2] [ref=e435]
+          - paragraph [ref=e436]: Every XENI pipeline can produce indices across multiple domains. Here's what exists, what's planned, and what's possible.
+          - table [ref=e438]:
+            - rowgroup [ref=e439]:
+              - row "Domain BENI Bangla AENI Assamese NENI Nepali SENI Sylheti CENI Chittagonian HENI Hausa KIENI Swahili More…" [ref=e440]:
+                - columnheader "Domain" [ref=e441]
+                - columnheader "BENI Bangla" [ref=e442]
+                - columnheader "AENI Assamese" [ref=e443]
+                - columnheader "NENI Nepali" [ref=e444]
+                - columnheader "SENI Sylheti" [ref=e445]
+                - columnheader "CENI Chittagonian" [ref=e446]
+                - columnheader "HENI Hausa" [ref=e447]
+                - columnheader "KIENI Swahili" [ref=e448]
+                - columnheader "More…" [ref=e449]
+            - rowgroup [ref=e450]:
+              - row "Economic ✅ Active 🔜 Planned 🔜 Planned 💡 TBD 💡 TBD 💡 TBD 💡 TBD 💡 TBD" [ref=e451]:
+                - cell "Economic" [ref=e452]
+                - cell "✅ Active" [ref=e453]
+                - cell "🔜 Planned" [ref=e455]
+                - cell "🔜 Planned" [ref=e457]
+                - cell "💡 TBD" [ref=e459]
+                - cell "💡 TBD" [ref=e461]
+                - cell "💡 TBD" [ref=e463]
+                - cell "💡 TBD" [ref=e465]
+                - cell "💡 TBD" [ref=e467]
+              - row "Health 🔜 Planned — — — — — — 💡 TBD" [ref=e469]:
+                - cell "Health" [ref=e470]
+                - cell "🔜 Planned" [ref=e471]
+                - cell "—" [ref=e473]
+                - cell "—" [ref=e475]
+                - cell "—" [ref=e477]
+                - cell "—" [ref=e479]
+                - cell "—" [ref=e481]
+                - cell "—" [ref=e483]
+                - cell "💡 TBD" [ref=e485]
+              - row "Climate 🔜 Planned — — — — — — 💡 TBD" [ref=e487]:
+                - cell "Climate" [ref=e488]
+                - cell "🔜 Planned" [ref=e489]
+                - cell "—" [ref=e491]
+                - cell "—" [ref=e493]
+                - cell "—" [ref=e495]
+                - cell "—" [ref=e497]
+                - cell "—" [ref=e499]
+                - cell "—" [ref=e501]
+                - cell "💡 TBD" [ref=e503]
+              - row "Education 💡 Proposed — — — — — — 💡 TBD" [ref=e505]:
+                - cell "Education" [ref=e506]
+                - cell "💡 Proposed" [ref=e507]
+                - cell "—" [ref=e509]
+                - cell "—" [ref=e511]
+                - cell "—" [ref=e513]
+                - cell "—" [ref=e515]
+                - cell "—" [ref=e517]
+                - cell "—" [ref=e519]
+                - cell "💡 TBD" [ref=e521]
+          - generic [ref=e523]:
+            - generic [ref=e524]: Active — index published
+            - generic [ref=e526]: Planned — pipeline in development
+            - generic [ref=e528]: Proposed — awaiting contributors
+            - generic [ref=e530]: Not started
+        - generic [ref=e532]:
+          - generic [ref=e533]: ▸ Quick Links
+          - heading "Popular documentation" [level=2] [ref=e534]
+          - paragraph [ref=e535]: Frequently accessed guides and references.
+          - generic [ref=e536]:
+            - link "🚀 Contributor Quickstart" [ref=e537] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e538]: 🚀
+              - generic [ref=e539]: Contributor Quickstart
+            - link "📊 Pipeline Flowchart" [ref=e540] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e541]: 📊
+              - generic [ref=e542]: Pipeline Flowchart
+            - link "🤝 Collaboration Guide" [ref=e543] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e544]: 🤝
+              - generic [ref=e545]: Collaboration Guide
+            - link "❓ Frequently Asked Questions" [ref=e546] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e547]: ❓
+              - generic [ref=e548]: Frequently Asked Questions
+            - link "🗺️ Project Roadmap" [ref=e549] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e550]: 🗺️
+              - generic [ref=e551]: Project Roadmap
+            - link "🔧 BENI Pipeline" [ref=e552] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e553]: 🔧
+              - generic [ref=e554]: BENI Pipeline
+            - link "🎙️ Audio Annotation Lab" [ref=e555] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e556]: 🎙️
+              - generic [ref=e557]: Audio Annotation Lab
+            - link "🌍 Contribute Your Language" [ref=e558] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e559]: 🌍
+              - generic [ref=e560]: Contribute Your Language
+            - link "🖥️ Infrastructure Guide" [ref=e561] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e562]: 🖥️
+              - generic [ref=e563]: Infrastructure Guide
+            - link "🔒 Security Policy" [ref=e564] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e565]: 🔒
+              - generic [ref=e566]: Security Policy
+  - contentinfo [ref=e567]:
+    - generic [ref=e568]:
+      - generic [ref=e569]:
+        - generic [ref=e570]:
+          - heading "LILA Lab" [level=3] [ref=e571]
+          - paragraph [ref=e572]: Language Intelligence for Low-resource Applications
+          - paragraph [ref=e573]: Your language. Your stories. Amplified by AI.
+        - generic [ref=e574]:
+          - heading "Documentation" [level=4] [ref=e575]
+          - link "Docs Home" [ref=e576] [cursor=pointer]:
+            - /url: docs.html
+          - link "How It Works" [ref=e577] [cursor=pointer]:
+            - /url: "#how-it-works"
+          - link "Learning Roadmap" [ref=e578] [cursor=pointer]:
+            - /url: "#roadmap"
+          - link "Choose Your Path" [ref=e579] [cursor=pointer]:
+            - /url: "#paths"
+          - link "Domain Index" [ref=e580] [cursor=pointer]:
+            - /url: "#domains"
+        - generic [ref=e581]:
+          - heading "Community" [level=4] [ref=e582]
+          - link "Discord" [ref=e583] [cursor=pointer]:
+            - /url: https://discord.gg/TrrdKbky
+          - link "Collaborate" [ref=e584] [cursor=pointer]:
+            - /url: https://github.com/LilaLABx/LILA-LAB/blob/main/docs/COLLABORATION.md
+          - link "Contribute Data" [ref=e585] [cursor=pointer]:
+            - /url: https://github.com/LilaLABx/LILA-LAB/blob/main/docs/LINGUISTIC_CONTRIBUTION_GUIDE.md
+        - generic [ref=e586]:
+          - heading "Connect" [level=4] [ref=e587]
+          - link "X / Twitter" [ref=e588] [cursor=pointer]:
+            - /url: https://x.com/LILA_Lab
+          - link "LinkedIn" [ref=e589] [cursor=pointer]:
+            - /url: https://linkedin.com/company/lila-lab
+          - link "YouTube" [ref=e590] [cursor=pointer]:
+            - /url: https://youtube.com/@LILA_Lab
+          - link "Email" [ref=e591] [cursor=pointer]:
+            - /url: mailto:lila.lab0x@gmail.com
+      - paragraph [ref=e593]: "© 2026 LILA Lab. Code: MIT | Data: CC BY 4.0 | Papers: © Ann Naser Nabil"

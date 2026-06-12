@@ -1,0 +1,163 @@
+- generic [active] [ref=e1]:
+  - progressbar
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "LILA Lab" [ref=e4] [cursor=pointer]:
+        - /url: index.html
+        - generic [ref=e5]: LILA
+        - generic [ref=e6]: Lab
+      - generic [ref=e7]:
+        - link "Languages" [ref=e8] [cursor=pointer]:
+          - /url: index.html#languages
+        - link "Pipelines" [ref=e9] [cursor=pointer]:
+          - /url: index.html#pipelines
+        - link "BENI" [ref=e10] [cursor=pointer]:
+          - /url: beni.html
+        - link "Research" [ref=e11] [cursor=pointer]:
+          - /url: index.html#research
+        - link "Contribute" [ref=e12] [cursor=pointer]:
+          - /url: index.html#contribute
+        - link "Join the Lab" [ref=e13] [cursor=pointer]:
+          - /url: index.html#join
+        - link "Community" [ref=e14] [cursor=pointer]:
+          - /url: index.html#community
+        - link "Docs" [ref=e15] [cursor=pointer]:
+          - /url: docs.html
+        - link "Control Room" [ref=e16] [cursor=pointer]:
+          - /url: dashboard.html
+        - link "GitHub ↗" [ref=e17] [cursor=pointer]:
+          - /url: https://github.com/LilaLABx/LILA-LAB
+      - button "Switch theme" [ref=e19] [cursor=pointer]:
+        - img [ref=e20]
+        - img [ref=e23]
+  - generic [ref=e25]:
+    - complementary [ref=e26]:
+      - generic [ref=e27]:
+        - heading "Documentation" [level=2] [ref=e28]
+        - textbox "Search documentation" [ref=e30]:
+          - /placeholder: Search docs...
+      - navigation [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34] [cursor=pointer]:
+            - text: 🚀 Getting Started
+            - img [ref=e35]
+          - list [ref=e37]:
+            - listitem [ref=e38]
+            - listitem [ref=e43]
+            - listitem [ref=e49]
+            - listitem [ref=e53]
+        - generic [ref=e57]:
+          - generic [ref=e58] [cursor=pointer]:
+            - text: 📚 Knowledge Base
+            - img [ref=e59]
+          - list [ref=e61]:
+            - listitem [ref=e62]
+            - listitem [ref=e66]
+            - listitem [ref=e70]
+            - listitem [ref=e74]
+            - listitem [ref=e78]
+        - generic [ref=e82]:
+          - generic [ref=e83] [cursor=pointer]:
+            - text: 🔧 Pipeline Reference
+            - img [ref=e84]
+          - list [ref=e86]:
+            - listitem [ref=e87]
+            - listitem [ref=e91]
+            - listitem [ref=e95]
+            - listitem [ref=e99]
+            - listitem [ref=e103]
+            - listitem [ref=e104]
+            - listitem [ref=e105]
+            - listitem [ref=e106]
+        - generic [ref=e110]:
+          - generic [ref=e111] [cursor=pointer]:
+            - text: 🤝 Contribution
+            - img [ref=e112]
+          - list [ref=e114]:
+            - listitem [ref=e115]
+            - listitem [ref=e120]
+            - listitem [ref=e129]
+            - listitem [ref=e133]
+        - generic [ref=e139]:
+          - generic [ref=e140] [cursor=pointer]:
+            - text: 📋 Reference
+            - img [ref=e141]
+          - list [ref=e143]:
+            - listitem [ref=e144]
+            - listitem [ref=e149]
+            - listitem [ref=e154]
+            - listitem [ref=e159]
+            - listitem [ref=e163]
+    - main [ref=e167]:
+      - generic [ref=e168]:
+        - navigation "Breadcrumb" [ref=e169]:
+          - link "Docs" [ref=e170] [cursor=pointer]:
+            - /url: docs.html
+          - generic [ref=e171]: ›
+          - generic [ref=e172]: Getting Started
+        - generic [ref=e173]:
+          - generic [ref=e174]: 🚀 Getting Started
+          - heading "FAQ" [level=1] [ref=e175]
+          - paragraph [ref=e176]: "> **Moved**: This file now lives at [`docs/FAQ.md`](docs/FAQ.md). [→ View the FAQ](docs/FAQ.md)"
+          - generic [ref=e177]:
+            - generic [ref=e178]: Getting Started
+            - link "Edit on GitHub" [ref=e179] [cursor=pointer]:
+              - /url: https://github.com/LilaLABx/LILA-LAB/blob/main/FAQ.md
+        - generic [ref=e182]:
+          - generic [ref=e224]:
+            - blockquote [ref=e225]
+            - paragraph [ref=e230]
+          - generic [ref=e232]:
+            - generic [ref=e233]
+            - link "Edit on GitHub" [ref=e236] [cursor=pointer]:
+              - /url: https://github.com/LilaLABx/LILA-LAB/blob/main/FAQ.md
+        - navigation "Document navigation" [ref=e186]:
+          - link "Previous Pipeline Flow" [ref=e187] [cursor=pointer]:
+            - /url: pipeline-flow.html
+            - generic [ref=e188]: Previous
+            - generic [ref=e189]: Pipeline Flow
+          - link "Back to Docs Home" [ref=e190] [cursor=pointer]:
+            - /url: docs.html
+            - img [ref=e191]
+          - link "Next Research Papers" [ref=e194] [cursor=pointer]:
+            - /url: research-papers.html
+            - generic [ref=e195]: Next
+            - generic [ref=e196]: Research Papers
+  - contentinfo [ref=e197]:
+    - generic [ref=e198]:
+      - generic [ref=e199]:
+        - generic [ref=e200]:
+          - heading "LILA Lab" [level=3] [ref=e201]
+          - paragraph [ref=e202]: Language Intelligence for Low-resource Applications
+          - paragraph [ref=e203]: Your language. Your stories. Amplified by AI.
+        - generic [ref=e204]:
+          - heading "Documentation" [level=4] [ref=e205]
+          - link "Docs Home" [ref=e206] [cursor=pointer]:
+            - /url: docs.html
+          - link "About LILA Lab" [ref=e207] [cursor=pointer]:
+            - /url: about-lila-lab.html
+          - link "Quickstart Guide" [ref=e208] [cursor=pointer]:
+            - /url: quickstart-guide.html
+          - link "Pipeline Flow" [ref=e209] [cursor=pointer]:
+            - /url: pipeline-flow.html
+          - link "FAQ" [ref=e210] [cursor=pointer]:
+            - /url: faq.html
+        - generic [ref=e211]:
+          - heading "Community" [level=4] [ref=e212]
+          - link "Discord" [ref=e213] [cursor=pointer]:
+            - /url: https://discord.gg/TrrdKbky
+          - link "Collaborate" [ref=e214] [cursor=pointer]:
+            - /url: https://github.com/LilaLABx/LILA-LAB/blob/main/docs/COLLABORATION.md
+          - link "Contribute Data" [ref=e215] [cursor=pointer]:
+            - /url: https://github.com/LilaLABx/LILA-LAB/blob/main/docs/LINGUISTIC_CONTRIBUTION_GUIDE.md
+        - generic [ref=e216]:
+          - heading "Connect" [level=4] [ref=e217]
+          - link "X / Twitter" [ref=e218] [cursor=pointer]:
+            - /url: https://x.com/LILA_Lab
+          - link "LinkedIn" [ref=e219] [cursor=pointer]:
+            - /url: https://linkedin.com/company/lila-lab
+          - link "YouTube" [ref=e220] [cursor=pointer]:
+            - /url: https://youtube.com/@LILA_Lab
+          - link "Email" [ref=e221] [cursor=pointer]:
+            - /url: mailto:lila.lab0x@gmail.com
+      - paragraph [ref=e223]: "© 2026 LILA Lab. Code: MIT | Data: CC BY 4.0 | Papers: © Ann Naser Nabil"

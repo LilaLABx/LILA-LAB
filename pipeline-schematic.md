@@ -1,0 +1,35 @@
+- generic [ref=e233] [box=397,1409,734,210]:
+  - generic [ref=e234] [box=397,1409,109,101]:
+    - generic [ref=e235] [box=440,1418,22,28]: 📰
+    - generic [ref=e236] [box=414,1450,75,29]:
+      - text: 664K Bangla
+      - text: News Articles
+    - generic [ref=e237] [box=421,1483,60,18]: 2014–2020
+  - generic [ref=e238] [box=514,1447,16,26]: →
+  - generic [ref=e239] [box=538,1409,126,101]:
+    - generic [ref=e240] [box=590,1418,22,28]: 🤖
+    - generic [ref=e241] [box=555,1450,92,29]:
+      - text: LLM Annotation
+      - text: Claude + GPT-4o
+    - generic [ref=e242] [box=575,1483,52,18]: Ensemble
+  - generic [ref=e243] [box=671,1447,16,26]: →
+  - generic [ref=e244] [box=695,1409,144,101]:
+    - generic [ref=e245] [box=756,1418,22,28]: 🧠
+    - generic [ref=e246] [box=712,1450,110,29]:
+      - text: Classifier
+      - text: TF-IDF / BanglaBERT
+    - generic [ref=e247] [box=726,1483,82,18]: 91.7% Accuracy
+  - generic [ref=e248] [box=847,1447,16,26]: →
+  - generic [ref=e249] [box=871,1409,111,101]:
+    - generic [ref=e250] [box=915,1418,22,28]: 📊
+    - generic [ref=e251] [box=888,1450,77,29]:
+      - text: Monthly Index
+      - text: 79 Months
+    - generic [ref=e252] [box=894,1483,64,18]: 38.9% Mean
+  - generic [ref=e253] [box=990,1447,16,26]: →
+  - generic [ref=e254] [box=397,1518,131,101]:
+    - generic [ref=e255] [box=451,1527,22,28]: ✅
+    - generic [ref=e256] [box=414,1559,97,29]:
+      - text: Macro Validation
+      - text: CPI · FX · Reserves
+    - generic [ref=e257] [box=440,1592,45,18]: r = −0.75
