@@ -11,7 +11,7 @@ This repository is the public operating system for LILA Lab: research code, data
 | `technical-reports/` | papers, extension templates, replication templates, contributor records | generated build artifacts as canonical records | `technical-reports/README.md`, `technical-reports/contributions/OWNERS.csv` |
 | `registry/` | machine-readable language and schema metadata | prose-only status claims | `registry/languages.json`, `registry/schemas.json` |
 | `dist/` | external platform manifests, DOI records, publication metadata | dataset payloads | `dist/manifests/` |
-| `docs/` | public docs, governance, release checklists, GitHub Pages content | local secrets or raw data | `docs/README.md` |
+| `docs/` | public docs, governance, release checklists, GitHub Pages content | local secrets or raw data | [`docs/index.md`](index.md) (portal), [`docs/WEBSITE.md`](WEBSITE.md) (GitHub Pages) |
 | `infrastructure/` | deployment helpers, scripts, website and bot source when public | live `.env` files or private deployments | `infrastructure/README.md` |
 | `communications/` | brand, content, community coordination | pipeline status or release metadata | `communications/COMMUNICATIONS.md` |
 | `api/` | future API specification and implementation | source-of-truth metadata duplicated from registry | `api/README.md` |
@@ -47,6 +47,18 @@ Do not describe a pipeline as active unless `registry/languages.json` says it is
 - Schema validation checks actual `annotation/schemas/*.json` files.
 - Contributor-facing changes should include command evidence in `.omo/evidence/` when executed by an agent.
 
+## Documentation Review Gates
+
+Any documentation change must satisfy:
+
+1. **Link check**: All internal cross-references resolve correctly (no broken `.md` links)
+2. **Portal update**: If adding a new document, update [`docs/index.md`](index.md) in the same change
+3. **Removal tombstone**: If removing a document, add a redirect note or tombstone in its place (e.g., "This page has moved to [new location]")
+4. **ADR index**: If adding or changing an ADR, update the index in `docs/adr/README.md`
+5. **OWNERS update**: If adding a new documentation area, update [`docs/OWNERS.md`](OWNERS.md)
+
+These gates are enforced by the `doc-quality.yml` CI workflow.
+
 ## Maintenance Rule
 
-When adding a new top-level directory or new public status claim, update this operating model, `docs/README.md`, and the relevant registry or checklist in the same change.
+When adding a new top-level directory or new public status claim, update this operating model, [`docs/index.md`](index.md), and the relevant registry or checklist in the same change.
