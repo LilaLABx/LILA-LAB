@@ -43,7 +43,6 @@ texput.log
 
 # BENI pipeline — raw databases, experiment outputs, model weights
 # BENI pipeline — raw databases, experiment outputs, model weights
-pipelines/BENI/data/
 pipelines/BENI/database/beni_v0_1.sqlite
 pipelines/BENI/database/outputs/
 pipelines/BENI/experiment/outputs/
@@ -54,6 +53,7 @@ pipelines/BENI/annotation/outputs/
 # BENI-specific — large CSV and JSON data (keep small config JSONs tracked)
 pipelines/BENI/**/*.csv
 pipelines/BENI/**/*.json
+!pipelines/BENI/annotation/schemas/*.json
 
 # Dataset — large processed data only
 dataset/**/*.csv
