@@ -99,6 +99,9 @@ addopts = "-v --tb=short --ignore=personal"
 # --------------------------------------------------------------------------- #
 #  Build system
 # --------------------------------------------------------------------------- #
+[tool.setuptools.packages.find]
+include = ["cli", "cli.*"]
+
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
