@@ -34,7 +34,7 @@ const DOC_SECTIONS = [
             { slug: 'aeni-assamese',         title: 'AENI — Assamese',           path: 'pipelines/AENI/README.md',     icon: 'lang', status: 'coming-soon' },
             { slug: 'neni-nepali',           title: 'NENI — Nepali',             path: 'pipelines/NENI/README.md',     icon: 'lang', status: 'coming-soon' },
             { slug: 'seni-sylheti',          title: 'SENI — Sylheti',            path: 'pipelines/SENI/README.md',     icon: 'lang', status: 'coming-soon' },
-            { slug: 'audio-annotation-lab',  title: 'Audio Annotation Lab',      path: 'pipelines/audio-annotation-lab/README.md', icon: 'audio' },
+            { slug: 'audio-annotation-lab',  title: 'Audio Annotation Lab',      path: 'pipelines/LAB/audio-annotation-lab/README.md', icon: 'audio' },
         ]
     },
     {
@@ -49,8 +49,11 @@ const DOC_SECTIONS = [
     {
         title: '📋 Reference',
         items: [
-            { slug: 'infrastructure',  title: 'Infrastructure',   path: 'infrastructure/README.md',     icon: 'server' },
-            { slug: 'security-policy', title: 'Security Policy',  path: 'SECURITY.md',                  icon: 'lock' },
+            { slug: 'glossary',             title: 'Glossary',             path: 'docs/GLOSSARY.md',                  icon: 'book' },
+            { slug: 'data-release',         title: 'Data Release',         path: 'docs/DATA_RELEASE_CHECKLIST.md',     icon: 'checklist' },
+            { slug: 'repo-operating-model', title: 'Repo Operating Model',  path: 'docs/REPOSITORY_OPERATING_MODEL.md', icon: 'gear' },
+            { slug: 'infrastructure',       title: 'Infrastructure',       path: 'infrastructure/README.md',           icon: 'server' },
+            { slug: 'security-policy',      title: 'Security Policy',      path: 'SECURITY.md',                        icon: 'lock' },
         ]
     }
 ];

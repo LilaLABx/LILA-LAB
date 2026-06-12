@@ -255,7 +255,7 @@ lila-lab/
 |---------|------------|
 | 🧪 **Researcher** | [`docs/research/`](docs/research/) — methodologies, papers, run manifests |
 | 🌍 **Linguistic contributor** | [`docs/LINGUISTIC_CONTRIBUTION_GUIDE.md`](docs/LINGUISTIC_CONTRIBUTION_GUIDE.md) |
-| 👨‍💻 **Developer** | [`pipelines/README.md`](pipelines/README.md) → your pipeline |
+| 👨‍💻 **Developer** | [`pipelines/README.md`](pipelines/README.md) → your pipeline · [`CONTRIBUTING.md`](CONTRIBUTING.md) for code guidelines |
 | 🛠️ **Maintainer** | [`docs/REPOSITORY_OPERATING_MODEL.md`](docs/REPOSITORY_OPERATING_MODEL.md) + [`docs/adr/`](docs/adr/) |
 | 📊 **Dataset user** | [`dataset/README.md`](dataset/README.md) |
 | 🤝 **Collaborator** | [`docs/COLLABORATION.md`](docs/COLLABORATION.md) |

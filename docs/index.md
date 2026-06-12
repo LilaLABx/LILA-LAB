@@ -49,9 +49,20 @@
 | Resource | Description |
 |----------|-------------|
 | [Collaboration Framework](COLLABORATION.md) | Full contribution model & authorship |
+| [Linguistic Contribution Guide](LINGUISTIC_CONTRIBUTION_GUIDE.md) | Native language data submission guide |
 | [Contributor Quickstart](CONTRIBUTOR_QUICKSTART.md) | Getting started checklist |
 | [Roadmap](ROADMAP.md) | Project milestones and timeline |
 | [Pipeline Flow](PIPELINE_FLOW.md) | Visual pipeline walkthrough |
+
+## 🌍 For Linguistic Contributors
+
+| Resource | Description |
+|----------|-------------|
+| [Linguistic Contribution Guide](LINGUISTIC_CONTRIBUTION_GUIDE.md) | How to submit your native language data |
+| [Language Extension Registry](../technical-reports/extensions/INDEX.md) | Which languages are most needed |
+| [Pipeline Template](../pipelines/template/) | Copy to start a new language pipeline |
+| [Dataset Tracker](../dataset/README.md) | Collection progress across all languages |
+| [Collaboration Framework](COLLABORATION.md) | Authorship model & what you get |
 
 ## 📢 Communications & Brand
 
@@ -68,6 +79,11 @@
 
 - [Glossary](GLOSSARY.md) — Unified terminology
 - [FAQ](FAQ.md) — Common questions
+- [Quick Reference](QUICK_REFERENCE.md) — One-page cheat sheet
+- [Repository Operating Model](REPOSITORY_OPERATING_MODEL.md) — Governance & source-of-truth map
+- [Data Release Checklist](DATA_RELEASE_CHECKLIST.md) — FAIR/data-card release gates
+- [Website Guide](WEBSITE.md) — GitHub Pages deployment & maintenance
+- [Documentation Ownership](OWNERS.md) — Who maintains what
 - [Repository Overview](../README.md#repository-overview) — Directory structure map
 - [Subrepository Index](SUBREPOS.md) — External repos and mirrors
 

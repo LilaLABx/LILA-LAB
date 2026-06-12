@@ -20,16 +20,16 @@ The structured set of fields and labels used to classify each news article. The 
 ## B
 
 **BanglaBERT**
-A pre-trained Bangla language model (`csebuetnlp/banglabert`) based on the Electra architecture (424 MB). It serves as the deep-learning classifier alongside the TF-IDF baseline in the BENI pipeline. Full fine-tuning on the full 70,000-article training set is scheduled for a Kaggle GPU run. See [`pipelines/BENI/experiment/beni_pilot/banglabert.py`](pipelines/BENI/experiment/beni_pilot/banglabert.py).
+A pre-trained Bangla language model (`csebuetnlp/banglabert`) based on the Electra architecture (424 MB). It serves as the deep-learning classifier alongside the TF-IDF baseline in the BENI pipeline. Full fine-tuning on the full 70,000-article training set is scheduled for a Kaggle GPU run. See [`../pipelines/BENI/experiment/beni_pilot/banglabert.py`](../pipelines/BENI/experiment/beni_pilot/banglabert.py).
 
 **BENI (Bangla Exploration & Native-language Intelligence)**
-The first proven XENI pipeline, built for the Bangla language (265 million speakers). BENI collects Bangla news articles from six major Bangladeshi newspapers, annotates them for economic relevance using an LLM ensemble (Claude, GPT-4o), trains a classifier (TF-IDF + logistic regression at 91.7% accuracy), constructs a monthly narrative index, and validates it against macroeconomic indicators. BENI is the flagship pipeline of LILA Lab. See [`pipelines/BENI/`](pipelines/BENI/).
+The first proven XENI pipeline, built for the Bangla language (265 million speakers). BENI collects Bangla news articles from six major Bangladeshi newspapers, annotates them for economic relevance using an LLM ensemble (Claude, GPT-4o), trains a classifier (TF-IDF + logistic regression at 91.7% accuracy), constructs a monthly narrative index, and validates it against macroeconomic indicators. BENI is the flagship pipeline of LILA Lab. See [`../pipelines/BENI/`](../pipelines/BENI/).
 
 **BENI Economic Index**
 The monthly narrative index produced by the BENI pipeline. It measures the share of economic news in Bangla-language media over time. The index spans 79 months (June 2014 to December 2020), shows a mean economic news share of 38.9%, and correlates strongly with CPI (r = -0.75) and the BDT/USD exchange rate (r = -0.72) at the level. The index is built by aggregating article-level classifier predictions into monthly proportions.
 
 **BENI Pilot**
-The first end-to-end experimental run of the BENI pipeline, from raw Potrika news CSVs to a validated monthly narrative index. The pilot proved the pipeline concept using a TF-IDF + logistic regression classifier and established the 79-month baseline index. It is the runnable reference implementation documented in [`pipelines/BENI/experiment/beni_pilot/`](pipelines/BENI/experiment/beni_pilot/).
+The first end-to-end experimental run of the BENI pipeline, from raw Potrika news CSVs to a validated monthly narrative index. The pilot proved the pipeline concept using a TF-IDF + logistic regression classifier and established the 79-month baseline index. It is the runnable reference implementation documented in [`../pipelines/BENI/experiment/beni_pilot/`](../pipelines/BENI/experiment/beni_pilot/).
 
 ---
 
@@ -43,7 +43,7 @@ The planned XENI pipeline for Chittagonian (চাঁটগাঁইয়া), 
 ## L
 
 **LLM annotation**
-The use of large language models (Claude, GPT-4o) to label news articles according to the annotation schema. LLM annotation replaces or augments human annotation for scalability. The BENI pipeline runs each article through multiple LLMs and adjudicates the results. See [`pipelines/BENI/annotation/llm_annotate.py`](pipelines/BENI/annotation/llm_annotate.py).
+The use of large language models (Claude, GPT-4o) to label news articles according to the annotation schema. LLM annotation replaces or augments human annotation for scalability. The BENI pipeline runs each article through multiple LLMs and adjudicates the results. See [`../pipelines/BENI/annotation/llm_annotate.py`](../pipelines/BENI/annotation/llm_annotate.py).
 
 **LLM ensemble**
 A collection of multiple LLMs (currently Claude and GPT-4o) that each annotate the same article independently. Their labels are combined through adjudication (majority voting) to produce a consensus label. Ensembling improves annotation reliability and provides confidence estimates.
@@ -63,7 +63,7 @@ The process of comparing the BENI narrative index against real-world macroeconom
 ## N
 
 **Narrative force / narrative regime**
-Narrative force refers to the intensity or pressure conveyed by economic discourse in news articles. A narrative regime is a sustained period in which a particular narrative pattern dominates (for example, a sustained focus on inflation versus trade). These are planned extensions to the BENI pipeline, tracked through fields like `narrative_force` (crisis, burden, blame, reform, stability, uncertainty, resilience, neutral) and analyzed via topic modeling. See [`pipelines/BENI/experiment/beni_pilot/narrative.py`](pipelines/BENI/experiment/beni_pilot/narrative.py).
+Narrative force refers to the intensity or pressure conveyed by economic discourse in news articles. A narrative regime is a sustained period in which a particular narrative pattern dominates (for example, a sustained focus on inflation versus trade). These are planned extensions to the BENI pipeline, tracked through fields like `narrative_force` (crisis, burden, blame, reform, stability, uncertainty, resilience, neutral) and analyzed via topic modeling. See [`../pipelines/BENI/experiment/beni_pilot/narrative.py`](../pipelines/BENI/experiment/beni_pilot/narrative.py).
 
 **Narrative index**
 A monthly time series that measures the prevalence of a particular narrative (for example, economic news) in a language's media ecosystem. It is constructed by classifying each article in a corpus, aggregating the classifications by month, and computing the proportion of articles that belong to the target narrative class. The BENI Economic Index is the lab's first proven narrative index, built from 120,707 articles across 79 months.
@@ -107,4 +107,4 @@ The baseline classifier used in the BENI pipeline: a TF-IDF vectorizer (80,000 m
 ## X
 
 **XENI ([Language initial] + Exploration & Native-language Intelligence)**
-The naming convention for LILA Lab's NLP pipelines. Each pipeline is named by taking the first letter of the target language and appending "ENI" (Exploration & Native-language Intelligence). Examples: BENI (Bangla), AENI (Assamese), NENI (Nepali), SENI (Sylheti), CENI (Chittagonian). Every XENI pipeline follows the same structure: news collection, LLM annotation, classifier training, index construction, and macroeconomic validation. See [`pipelines/README.md`](pipelines/README.md).
+The naming convention for LILA Lab's NLP pipelines. Each pipeline is named by taking the first letter of the target language and appending "ENI" (Exploration & Native-language Intelligence). Examples: BENI (Bangla), AENI (Assamese), NENI (Nepali), SENI (Sylheti), CENI (Chittagonian). Every XENI pipeline follows the same structure: news collection, LLM annotation, classifier training, index construction, and macroeconomic validation. See [`../pipelines/README.md`](../pipelines/README.md).
