@@ -141,9 +141,10 @@ img { max-width: 100%; height: auto; }
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
   --shadow-glow: 0 0 30px rgba(0, 109, 119, 0.1);
+}
 
-  /* Mobile typography contrast boost */
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  [data-theme="light"] {
     --charcoal-light: #9AB0C0;
     --muted: #6A8A9A;
   }
@@ -1117,9 +1118,6 @@ h1, h2, h3, h4 {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--charcoal);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .onboarding-step-arrow {
@@ -1271,7 +1269,7 @@ h1, h2, h3, h4 {
 }
 
 .schematic-node-stat {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: var(--muted);
   font-weight: 500;
 }
@@ -1570,9 +1568,9 @@ h1, h2, h3, h4 {
 }
 
 .glossary-card-def {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--charcoal-light);
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
   flex: 1;
 }
@@ -2514,7 +2512,7 @@ h1, h2, h3, h4 {
   }
 
   .footer-links {
-    display: none;
+    text-align: center;
   }
 }
 
