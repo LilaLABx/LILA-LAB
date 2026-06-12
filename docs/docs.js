@@ -652,3 +652,48 @@ document.addEventListener('click', function(e) {
         navigateToDoc(stepLink.dataset.doc);
     }
 });
+
+// ── Mobile Nav Toggle ────────────────────────────────────────────────
+(function() {
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (!navToggle || !navLinks) return;
+
+    let scrollPosition = 0;
+
+    function lockBodyScroll() {
+        scrollPosition = window.scrollY;
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = '-' + scrollPosition + 'px';
+        document.body.style.width = '100%';
+    }
+
+    function unlockBodyScroll() {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollPosition);
+    }
+
+    function closeMobileNav() {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+        unlockBodyScroll();
+    }
+
+    navToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('open');
+        if (navLinks.classList.contains('open')) {
+            lockBodyScroll();
+        } else {
+            unlockBodyScroll();
+        }
+    });
+
+    navLinks.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeMobileNav);
+    });
+})();

@@ -25,7 +25,7 @@
                 <span class="logo-text">LILA</span>
                 <span class="logo-sub">Lab</span>
             </a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="index.html#languages">Languages</a>
                 <a href="index.html#pipelines">Pipelines</a>
                 <a href="beni.html">BENI</a>
@@ -48,7 +48,7 @@
                     </svg>
                 </button>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -666,7 +666,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="docs.js"></script>
+    <script src="docs.js?v=2"></script>
     <script>
         // ── Theme Toggle (shared with dashboard via 'lila-theme') ──
         function initTheme() {
