@@ -18,8 +18,9 @@ const DOC_SECTIONS = [
     {
         title: '📚 Knowledge Base',
         items: [
-            { slug: 'research-papers',        title: 'Research Papers',             path: 'technical-reports/README.md',  icon: 'paper' },
-            { slug: 'datasets',               title: 'Datasets',                    path: 'dataset/README.md',            icon: 'database' },
+            { slug: 'research-papers',               title: 'Research Papers',                path: 'technical-reports/README.md',                     icon: 'paper' },
+            { slug: 'narrative-extraction-methodologies', title: 'Methodologies',            path: 'docs/research/NARRATIVE_EXTRACTION_METHODOLOGIES.md', icon: 'flow' },
+            { slug: 'datasets',                      title: 'Datasets',                   path: 'dataset/README.md',                               icon: 'database' },
             { slug: 'project-roadmap',        title: 'Project Roadmap',             path: 'docs/ROADMAP.md',              icon: 'map' },
             { slug: 'xeni-naming-convention', title: 'XENI Naming Convention',      path: 'docs/adr/ADR-001-xeni-naming-convention.md', icon: 'adr' },
         ]
