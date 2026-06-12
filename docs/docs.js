@@ -12,7 +12,7 @@ const DOC_SECTIONS = [
             { slug: 'about-lila-lab',   title: 'About LILA Lab',       path: 'README.md',                    icon: 'book' },
             { slug: 'quickstart-guide',  title: 'Quickstart Guide',     path: 'docs/CONTRIBUTOR_QUICKSTART.md', icon: 'rocket' },
             { slug: 'pipeline-flow',     title: 'Pipeline Flow',        path: 'docs/PIPELINE_FLOW.md',        icon: 'flow' },
-            { slug: 'faq',               title: 'FAQ',                  path: 'FAQ.md',                       icon: 'help' },
+            { slug: 'faq',               title: 'FAQ',                  path: 'docs/FAQ.md',                  icon: 'help' },
         ]
     },
     {
@@ -20,7 +20,7 @@ const DOC_SECTIONS = [
         items: [
             { slug: 'research-papers',        title: 'Research Papers',             path: 'technical-reports/README.md',  icon: 'paper' },
             { slug: 'datasets',               title: 'Datasets',                    path: 'dataset/README.md',            icon: 'database' },
-            { slug: 'project-roadmap',        title: 'Project Roadmap',             path: 'ROADMAP.md',                   icon: 'map' },
+            { slug: 'project-roadmap',        title: 'Project Roadmap',             path: 'docs/ROADMAP.md',              icon: 'map' },
             { slug: 'xeni-naming-convention', title: 'XENI Naming Convention',      path: 'docs/adr/ADR-001-xeni-naming-convention.md', icon: 'adr' },
         ]
     },
@@ -40,8 +40,8 @@ const DOC_SECTIONS = [
     {
         title: '🤝 Contribution',
         items: [
-            { slug: 'collaboration-framework', title: 'Collaboration Framework',  path: 'COLLABORATION.md',         icon: 'handshake' },
-            { slug: 'linguistic-contribution', title: 'Linguistic Contribution',  path: 'LINGUISTIC_CONTRIBUTION_GUIDE.md', icon: 'globe' },
+            { slug: 'collaboration-framework', title: 'Collaboration Framework',  path: 'docs/COLLABORATION.md',    icon: 'handshake' },
+            { slug: 'linguistic-contribution', title: 'Linguistic Contribution',  path: 'docs/LINGUISTIC_CONTRIBUTION_GUIDE.md', icon: 'globe' },
             { slug: 'code-contribution',       title: 'Code Contribution',        path: 'CONTRIBUTING.md',          icon: 'code' },
             { slug: 'code-of-conduct',         title: 'Code of Conduct',          path: 'CODE_OF_CONDUCT.md',       icon: 'shield' },
         ]
@@ -610,9 +610,20 @@ function navigateToDoc(docPath) {
     const slug = PATH_TO_SLUG[path];
     if (slug) {
         window.location.href = slug + '.html' + hash;
-    } else {
-        window.location.href = GITHUB_BLOB_BASE + path;
+        return;
     }
+
+    // Fallback: if path has no docs/ prefix, try with it
+    if (!path.startsWith('docs/')) {
+        const prefixed = 'docs/' + path;
+        const slug2 = PATH_TO_SLUG[prefixed];
+        if (slug2) {
+            window.location.href = slug2 + '.html' + hash;
+            return;
+        }
+    }
+
+    window.location.href = GITHUB_BLOB_BASE + path;
 }
 
 // Re-bind all doc links on the welcome page
