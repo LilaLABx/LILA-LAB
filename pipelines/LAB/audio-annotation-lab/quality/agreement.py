@@ -66,19 +66,19 @@ def _reliability_data(
 def _coincidence_matrix(
     units: dict[str, list[tuple[str, int | None]]],
     n_codes: int,
-) -> list[list[int]]:
+) -> list[list[float]]:
     """Build the coincidence matrix for Krippendorff's alpha.
 
-    ``o_{vu}`` is the number of times code ``v`` is paired with code ``u``
-    across all unit-annotator pairs.
+    Each ordered pair in a unit with ``m`` usable ratings contributes
+    ``1 / (m - 1)``. Unpaired ratings do not contribute.
     """
-    coinc: list[list[int]] = [[0] * n_codes for _ in range(n_codes)]
+    coinc: list[list[float]] = [[0.0] * n_codes for _ in range(n_codes)]
 
     for pairs in units.values():
         # Only consider units with at least 2 annotations
         annotators_present = [p for p in pairs if p[1] is not None]
         for (_, v), (_, u) in itertools.permutations(annotators_present, 2):
-            coinc[v][u] += 1
+            coinc[v][u] += 1 / (len(annotators_present) - 1)
 
     return coinc
 
@@ -149,7 +149,7 @@ def krippendorff_alpha(
         # Expected disagreement (chance)
         expected = (
             sum(totals[c] * totals[k] for c in range(n_codes) for k in range(n_codes) if c != k)
-            / total_paired
+            / (total_paired - 1)
         )
 
     elif level == "ordinal":
